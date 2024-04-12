@@ -1,9 +1,13 @@
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace SpinsOnlineRazor.Models
 {
     public class Barangays
     {
-        public int ID { get; set; }
-        public int PSGCBrgy { get; set; }
+         /*The DatabaseGenerated attribute allows the app to 
+        specify the primary key rather than having the database generate it.*/
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int PSGCBrgyID { get; set; }
         public string BrgyName { get; set; }
         public int PSGCCityMun { get; set; }
         public int ClassificationID { get; set; }

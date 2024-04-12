@@ -1,11 +1,19 @@
 is_global = true
 build_property.TargetFramework = net8.0
+build_property.TargetFramework = net8.0
+build_property.TargetPlatformMinVersion = 
 build_property.TargetPlatformMinVersion = 
 build_property.UsingMicrosoftNETSdkWeb = true
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
 build_property.ProjectTypeGuids = 
 build_property.InvariantGlobalization = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
 build_property.PlatformNeutralAssembly = 
 build_property.EnforceExtendedAnalyzerRules = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = SpinsOnlineRazor
 build_property.RootNamespace = SpinsOnlineRazor
@@ -24,6 +32,26 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/DSWD/SpinsOnlineRazor/Pages/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/DSWD/SpinsOnlineRazor/Pages/Masterlists/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTWFzdGVybGlzdHNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/DSWD/SpinsOnlineRazor/Pages/Masterlists/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTWFzdGVybGlzdHNcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/DSWD/SpinsOnlineRazor/Pages/Masterlists/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTWFzdGVybGlzdHNcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/DSWD/SpinsOnlineRazor/Pages/Masterlists/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTWFzdGVybGlzdHNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/DSWD/SpinsOnlineRazor/Pages/Masterlists/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTWFzdGVybGlzdHNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/DSWD/SpinsOnlineRazor/Pages/Privacy.cshtml]

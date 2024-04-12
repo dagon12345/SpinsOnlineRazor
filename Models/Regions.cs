@@ -1,9 +1,13 @@
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace SpinsOnlineRazor.Models
 {
     public class Regions
     {
-        public int ID { get; set; }
-        public int PSGCRegion { get; set; }
+        /*The DatabaseGenerated attribute allows the app to 
+        specify the primary key rather than having the database generate it.*/
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int PSGCRegionID { get; set; }
         public string Region { get; set; }
         public int Default { get; set; }
         public int TenDigitCode { get; set; }

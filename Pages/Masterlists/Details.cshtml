@@ -1,0 +1,289 @@
+@page
+@model SpinsOnlineRazor.Pages.Masterlists.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Masterlist</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Masterlist.LastName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Masterlist.LastName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Masterlist.FirstName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Masterlist.FirstName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Masterlist.MiddleName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Masterlist.MiddleName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Masterlist.ExtName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Masterlist.ExtName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Masterlist.Citizenship)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Masterlist.Citizenship)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Masterlist.MothersMaiden)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Masterlist.MothersMaiden)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Masterlist.PSGCRegion)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Masterlist.PSGCRegion)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Masterlist.PSGCProvince)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Masterlist.PSGCProvince)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Masterlist.PSGCCityMun)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Masterlist.PSGCCityMun)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Masterlist.PSGCBrgy)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Masterlist.PSGCBrgy)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Masterlist.Address)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Masterlist.Address)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Masterlist.BirthDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Masterlist.BirthDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Masterlist.SexID)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Masterlist.SexID)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Masterlist.MaritalStatusID)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Masterlist.MaritalStatusID)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Masterlist.Religion)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Masterlist.Religion)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Masterlist.BirthPlace)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Masterlist.BirthPlace)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Masterlist.EducAttain)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Masterlist.EducAttain)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Masterlist.IDTypeID)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Masterlist.IDTypeID)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Masterlist.IDNumber)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Masterlist.IDNumber)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Masterlist.IDDateIssued)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Masterlist.IDDateIssued)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Masterlist.Pantawid)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Masterlist.Pantawid)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Masterlist.Indigenous)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Masterlist.Indigenous)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Masterlist.SocialPensionID)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Masterlist.SocialPensionID)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Masterlist.HouseholdID)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Masterlist.HouseholdID)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Masterlist.IndigenousID)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Masterlist.IndigenousID)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Masterlist.ContactNum)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Masterlist.ContactNum)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Masterlist.HealthStatusID)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Masterlist.HealthStatusID)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Masterlist.HealthStatusRemarks)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Masterlist.HealthStatusRemarks)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Masterlist.DateTimeEntry)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Masterlist.DateTimeEntry)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Masterlist.EnteryBy)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Masterlist.EnteryBy)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Masterlist.DataSourceID)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Masterlist.DataSourceID)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Masterlist.StatusID)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Masterlist.StatusID)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Masterlist.Remarks)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Masterlist.Remarks)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Masterlist.RegTypeID)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Masterlist.RegTypeID)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Masterlist.InclusionBatch)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Masterlist.InclusionBatch)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Masterlist.InclusionDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Masterlist.InclusionDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Masterlist.ExclusionBatch)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Masterlist.ExclusionBatch)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Masterlist.ExclusionDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Masterlist.ExclusionDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Masterlist.DateDeceased)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Masterlist.DateDeceased)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Masterlist.DateTimeModified)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Masterlist.DateTimeModified)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Masterlist.ModifiedBy)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Masterlist.ModifiedBy)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Masterlist.DateTimeDeleted)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Masterlist.DateTimeDeleted)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Masterlist.DeletedBy)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Masterlist.DeletedBy)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Masterlist.WaitlistedReportID)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Masterlist.WaitlistedReportID)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Masterlist.WithPhoto)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Masterlist.WithPhoto)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Masterlist.ID">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

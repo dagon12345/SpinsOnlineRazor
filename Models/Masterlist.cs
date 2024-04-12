@@ -49,5 +49,14 @@ namespace SpinsOnlineRazor.Models
         public int WaitlistedReportID { get; set; }
         public int WithPhoto { get; set; }
 
+
+        //Below are classes  A Regions,Provinces,Municipalities, and Barangays entity can be related to any number of Masterlist entities.
+        /*
+        public Regions Regions { get; set; }
+        public Provinces Provinces { get; set; }
+        public Municipalities Municipalities { get; set; }
+        public Barangays Barangays { get; set; }
+        */
+
     }
 }
