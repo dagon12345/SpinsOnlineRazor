@@ -14,14 +14,14 @@ namespace SpinsOnlineRazor.Data
 
             var beneficiaries = new Beneficiary[]
             {
-                new Beneficiary{LastName="ESPINA",FirstName="LANCE ANDREI",MiddleName="URIARTE",ExtName=""},
-                new Beneficiary{LastName="ALQUIZAR",FirstName="CORNELIA",MiddleName="ONYOT",ExtName=""},
-                new Beneficiary{LastName="AMEMENZI",FirstName="MARIA",MiddleName="JAIME",ExtName=""},
-                new Beneficiary{LastName="BALINGIT",FirstName="CIPRIANO",MiddleName="CIBALLOS",ExtName=""},
-                new Beneficiary{LastName="BELLEZA",FirstName="ERNESTO",MiddleName="TEOLOGO",ExtName=""},
-                new Beneficiary{LastName="BELTIS",FirstName="ANICITA",MiddleName="RONQUILLO",ExtName=""},
-                new Beneficiary{LastName="BERNANTE",FirstName="ESMERALDA",MiddleName="SAN PABLO",ExtName=""},
-                new Beneficiary{LastName="CABIGON",FirstName="CANCIO",MiddleName="OBEDENCIO",ExtName=""},
+                new Beneficiary{LastName="ESPINA",FirstName="LANCE ANDREI",MiddleName="URIARTE",ExtName="",BirthDate=DateTime.Parse("1938-09-30")},
+                new Beneficiary{LastName="ALQUIZAR",FirstName="CORNELIA",MiddleName="ONYOT",ExtName="",BirthDate=DateTime.Parse("1939-10-29")},
+                new Beneficiary{LastName="AMEMENZI",FirstName="MARIA",MiddleName="JAIME",ExtName="",BirthDate=DateTime.Parse("1940-11-28")},
+                new Beneficiary{LastName="BALINGIT",FirstName="CIPRIANO",MiddleName="CIBALLOS",ExtName="",BirthDate=DateTime.Parse("1941-12-27")},
+                new Beneficiary{LastName="BELLEZA",FirstName="ERNESTO",MiddleName="TEOLOGO",ExtName="",BirthDate=DateTime.Parse("1942-01-26")},
+                new Beneficiary{LastName="BELTIS",FirstName="ANICITA",MiddleName="RONQUILLO",ExtName="",BirthDate=DateTime.Parse("1943-02-25")},
+                new Beneficiary{LastName="BERNANTE",FirstName="ESMERALDA",MiddleName="SAN PABLO",ExtName="",BirthDate=DateTime.Parse("1944-03-24")},
+                new Beneficiary{LastName="CABIGON",FirstName="CANCIO",MiddleName="OBEDENCIO",ExtName="",BirthDate=DateTime.Parse("1945-04-23")},
             };
 
             context.Beneficiaries.AddRange(beneficiaries);
@@ -93,6 +93,57 @@ namespace SpinsOnlineRazor.Data
             context.Masterlists.AddRange(masterlists);
             context.SaveChanges();
 
+/*
+            var validationforms = new ValidationForm[]
+            {
+                new ValidationForm{BeneficiaryID=1,AssessmentID=1,ReferenceCode=21031243,SpinsBatch=98},
+                new ValidationForm{BeneficiaryID=2,AssessmentID=2,ReferenceCode=21031242,SpinsBatch=98},
+                new ValidationForm{BeneficiaryID=3,AssessmentID=3,ReferenceCode=21031241,SpinsBatch=99},
+                new ValidationForm{BeneficiaryID=4,AssessmentID=4,ReferenceCode=21031240,SpinsBatch=99},
+                new ValidationForm{BeneficiaryID=5,AssessmentID=4,ReferenceCode=21031239,SpinsBatch=100},
+                new ValidationForm{BeneficiaryID=6,AssessmentID=3,ReferenceCode=21031238,SpinsBatch=100},
+                new ValidationForm{BeneficiaryID=7,AssessmentID=2,ReferenceCode=21031237,SpinsBatch=101},
+                new ValidationForm{BeneficiaryID=8,AssessmentID=1,ReferenceCode=21031236,SpinsBatch=101},
+          
+            };
+
+            context.ValidationForms.AddRange(validationforms);
+            context.SaveChanges();
+
+              var assessments = new Assessment[]
+            {
+                new Assessment{AssessmentID=1,Name="Eligible"},
+                new Assessment{AssessmentID=2,Name="Drop/Not Eligible"},
+                new Assessment{AssessmentID=3,Name="Pending - Revalidate"},
+                new Assessment{AssessmentID=4,Name="Deceased"},
+          
+            };
+
+            context.Assessments.AddRange(assessments);
+            context.SaveChanges();
+
+            var sexes = new Sex[]
+            {
+                new Sex{SexID=1,Name="Male"},
+                new Sex{SexID=2,Name="Female"},
+            };
+
+            context.Sexes.AddRange(sexes);
+            context.SaveChanges();
+
+             var maritalstatuses = new Maritalstatus[]
+            {
+                new Maritalstatus{MaritalstatusID=1,Name="Single"},
+                new Maritalstatus{MaritalstatusID=2,Name="Married"},
+                new Maritalstatus{MaritalstatusID=3,Name="Widowed"},
+                new Maritalstatus{MaritalstatusID=4,Name="Separated"},
+                new Maritalstatus{MaritalstatusID=5,Name="Widower"},
+                new Maritalstatus{MaritalstatusID=6,Name="CommonLaw"},
+            };
+
+            context.MaritalStatuses.AddRange(maritalstatuses);
+            context.SaveChanges();
+*/
         }
     }
 }

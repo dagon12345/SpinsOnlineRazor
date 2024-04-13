@@ -53,6 +53,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Beneficiaries[0].ExtName)
             </th>
+             <th>
+                @Html.DisplayNameFor(model => model.Beneficiaries[0].BirthDate)
+            </th>
             @*
             <th>
             <a asp-page="./Index" asp-route-sortOrder="@Model.DateSort">
@@ -77,6 +80,9 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.ExtName)
+                </td>
+                 <td>
+                    @Html.DisplayFor(modelItem => item.BirthDate)
                 </td>
                 <td>
                     <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |

@@ -53,7 +53,7 @@ namespace SpinsOnlineRazor.Pages.Beneficiaries
             }
 
             if (await TryUpdateModelAsync<Beneficiary>(beneficiaryToUpdate, "beneficiary",
-            s => s.LastName, s => s.FirstName, s => s.MiddleName, s => s.ExtName))
+            s => s.LastName, s => s.FirstName, s => s.MiddleName, s => s.ExtName,s=>s.BirthDate))
             {
                 await _context.SaveChangesAsync();
                 return RedirectToPage("./Index");

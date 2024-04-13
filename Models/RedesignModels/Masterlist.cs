@@ -14,26 +14,40 @@ namespace SpinsOnlineRazor.Models.RedesignModels
         /*The RegionID property is a foreign key, 
         and the corresponding navigation property is Region. 
         An Masterlist entity is associated with one Region entity.*/
-        public int RegionID { get; set; } 
-         /*The ProvinceID property is a foreign key, 
-        and the corresponding navigation property is Province. 
-        An Masterlist entity is associated with one Province entity.*/
+        public int RegionID { get; set; }
+        /*The ProvinceID property is a foreign key, 
+       and the corresponding navigation property is Province. 
+       An Masterlist entity is associated with one Province entity.*/
         public int ProvinceID { get; set; }
-         /*The MunicipalityID property is a foreign key, 
-        and the corresponding navigation property is Municipality. 
-        An Masterlist entity is associated with one Municipality entity.*/
+        /*The MunicipalityID property is a foreign key, 
+       and the corresponding navigation property is Municipality. 
+       An Masterlist entity is associated with one Municipality entity.*/
         public int MunicipalityID { get; set; }
-         /*The BarangayID property is a foreign key, 
-        and the corresponding navigation property is Barangay. 
-        An Masterlist entity is associated with one Barangay entity.*/
+        /*The BarangayID property is a foreign key, 
+       and the corresponding navigation property is Barangay. 
+       An Masterlist entity is associated with one Barangay entity.*/
         public int BarangayID { get; set; }
 
-        //Isa ra ija dawaton na entities isa ka Beneficiary,Region,Province,Municipality, and Barangay. So Entity below
+        /*The SexID property is a foreign key, 
+       and the corresponding navigation property is Sex. 
+       An Masterlist entity is associated with one Sex entity.*/
+        //public int SexID { get; set; }
+
+        /*The MaritalstatusID property is a foreign key, 
+               and the corresponding navigation property is MaritalStatus. 
+               An Masterlist entity is associated with one MaritalStatus entity.*/
+       // public int MaritalstatusID { get; set; }
+
+        //Isa ra ija dawaton na entity isa ka Beneficiary,Region,Province,Municipality, and Barangay. So Entity below
         /*An Masterlist entity is associated with one Beneficiary entity, so the property contains a single Beneficiary entity.*/
         public Beneficiary Beneficiary { get; set; }
         public Region Region { get; set; }
         public Province Province { get; set; }
         public Municipality Municipality { get; set; }
         public Barangay Barangay { get; set; }
+
+        //Isa ra ka sex and MaritalStatus per masterlist an madawat diri dili pwedi baje yaki an sex and duha ka marital nan isa ka bene so isa ra.
+       //public Sex Sex { get; set; }
+        //public Maritalstatus Maritalstatus { get; set; }
     }
 }

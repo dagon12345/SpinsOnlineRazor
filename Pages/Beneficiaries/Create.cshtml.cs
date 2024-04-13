@@ -54,7 +54,7 @@ namespace SpinsOnlineRazor.Pages.Beneficiaries
             var emptyBeneficiary = new Beneficiary();
 
             if (await TryUpdateModelAsync<Beneficiary>(emptyBeneficiary, "beneficiary", s => s.LastName, s => s.FirstName,
-             s => s.MiddleName, s => s.ExtName))
+             s => s.MiddleName, s => s.ExtName, s => s.BirthDate))
             {
                 _context.Beneficiaries.Add(emptyBeneficiary);
                 await _context.SaveChangesAsync();

@@ -56,15 +56,7 @@ namespace SpinsOnlineRazor.Models
         
 
      
-       //Isa ra ka region m gamiton
-        public LibraryRegion LibraryRegions { get; set; }
-        //public ICollection<LibraryRegion> LibraryRegions { get; set; }
-
-        public LibraryProvince LibraryProvince { get; set; }
-
-        public LibraryMunicipality LibraryMunicipality { get; set; }
-
-        public LibraryBarangay LibraryBarangay { get; set; }
+  
        
        /*
         public Provinces Provinces { get; set; }
