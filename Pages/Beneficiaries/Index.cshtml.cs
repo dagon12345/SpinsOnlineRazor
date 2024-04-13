@@ -6,24 +6,24 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using SpinsOnlineRazor.Data;
-using SpinsOnlineRazor.Models;
+using SpinsOnlineRazor.Models.RedesignModels;
 
-namespace SpinsOnlineRazor.Pages.Masterlists
+namespace SpinsOnlineRazor.Pages.Beneficiaries
 {
     public class IndexModel : PageModel
     {
-        private readonly SpinsOnlineRazor.Data.SchoolContext _context;
+        private readonly SpinsOnlineRazor.Data.SpinsContext _context;
 
-        public IndexModel(SpinsOnlineRazor.Data.SchoolContext context)
+        public IndexModel(SpinsOnlineRazor.Data.SpinsContext context)
         {
             _context = context;
         }
 
-        public IList<Masterlist> Masterlist { get;set; } = default!;
+        public IList<Beneficiary> Beneficiary { get;set; } = default!;
 
         public async Task OnGetAsync()
         {
-            Masterlist = await _context.Masterlist.ToListAsync();
+            Beneficiary = await _context.Beneficiaries.ToListAsync();
         }
     }
 }

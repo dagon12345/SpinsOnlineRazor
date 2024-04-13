@@ -6,15 +6,15 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using SpinsOnlineRazor.Data;
-using SpinsOnlineRazor.Models;
+using SpinsOnlineRazor.Models.RedesignModels;
 
-namespace SpinsOnlineRazor.Pages.Masterlists
+namespace SpinsOnlineRazor.Pages.Beneficiaries
 {
     public class CreateModel : PageModel
     {
-        private readonly SpinsOnlineRazor.Data.SchoolContext _context;
+        private readonly SpinsOnlineRazor.Data.SpinsContext _context;
 
-        public CreateModel(SpinsOnlineRazor.Data.SchoolContext context)
+        public CreateModel(SpinsOnlineRazor.Data.SpinsContext context)
         {
             _context = context;
         }
@@ -25,7 +25,7 @@ namespace SpinsOnlineRazor.Pages.Masterlists
         }
 
         [BindProperty]
-        public Masterlist Masterlist { get; set; } = default!;
+        public Beneficiary Beneficiary { get; set; } = default!;
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
@@ -35,7 +35,7 @@ namespace SpinsOnlineRazor.Pages.Masterlists
                 return Page();
             }
 
-            _context.Masterlist.Add(Masterlist);
+            _context.Beneficiaries.Add(Beneficiary);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

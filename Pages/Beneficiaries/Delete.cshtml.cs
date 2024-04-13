@@ -6,21 +6,21 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using SpinsOnlineRazor.Data;
-using SpinsOnlineRazor.Models;
+using SpinsOnlineRazor.Models.RedesignModels;
 
-namespace SpinsOnlineRazor.Pages.Masterlists
+namespace SpinsOnlineRazor.Pages.Beneficiaries
 {
     public class DeleteModel : PageModel
     {
-        private readonly SpinsOnlineRazor.Data.SchoolContext _context;
+        private readonly SpinsOnlineRazor.Data.SpinsContext _context;
 
-        public DeleteModel(SpinsOnlineRazor.Data.SchoolContext context)
+        public DeleteModel(SpinsOnlineRazor.Data.SpinsContext context)
         {
             _context = context;
         }
 
         [BindProperty]
-        public Masterlist Masterlist { get; set; } = default!;
+        public Beneficiary Beneficiary { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -29,15 +29,15 @@ namespace SpinsOnlineRazor.Pages.Masterlists
                 return NotFound();
             }
 
-            var masterlist = await _context.Masterlist.FirstOrDefaultAsync(m => m.ID == id);
+            var beneficiary = await _context.Beneficiaries.FirstOrDefaultAsync(m => m.ID == id);
 
-            if (masterlist == null)
+            if (beneficiary == null)
             {
                 return NotFound();
             }
             else
             {
-                Masterlist = masterlist;
+                Beneficiary = beneficiary;
             }
             return Page();
         }
@@ -49,11 +49,11 @@ namespace SpinsOnlineRazor.Pages.Masterlists
                 return NotFound();
             }
 
-            var masterlist = await _context.Masterlist.FindAsync(id);
-            if (masterlist != null)
+            var beneficiary = await _context.Beneficiaries.FindAsync(id);
+            if (beneficiary != null)
             {
-                Masterlist = masterlist;
-                _context.Masterlist.Remove(Masterlist);
+                Beneficiary = beneficiary;
+                _context.Beneficiaries.Remove(Beneficiary);
                 await _context.SaveChangesAsync();
             }
 

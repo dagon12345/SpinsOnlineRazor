@@ -7,21 +7,21 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SpinsOnlineRazor.Data;
-using SpinsOnlineRazor.Models;
+using SpinsOnlineRazor.Models.RedesignModels;
 
-namespace SpinsOnlineRazor.Pages.Masterlists
+namespace SpinsOnlineRazor.Pages.Beneficiaries
 {
     public class EditModel : PageModel
     {
-        private readonly SpinsOnlineRazor.Data.SchoolContext _context;
+        private readonly SpinsOnlineRazor.Data.SpinsContext _context;
 
-        public EditModel(SpinsOnlineRazor.Data.SchoolContext context)
+        public EditModel(SpinsOnlineRazor.Data.SpinsContext context)
         {
             _context = context;
         }
 
         [BindProperty]
-        public Masterlist Masterlist { get; set; } = default!;
+        public Beneficiary Beneficiary { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -30,12 +30,12 @@ namespace SpinsOnlineRazor.Pages.Masterlists
                 return NotFound();
             }
 
-            var masterlist =  await _context.Masterlist.FirstOrDefaultAsync(m => m.ID == id);
-            if (masterlist == null)
+            var beneficiary =  await _context.Beneficiaries.FirstOrDefaultAsync(m => m.ID == id);
+            if (beneficiary == null)
             {
                 return NotFound();
             }
-            Masterlist = masterlist;
+            Beneficiary = beneficiary;
             return Page();
         }
 
@@ -48,7 +48,7 @@ namespace SpinsOnlineRazor.Pages.Masterlists
                 return Page();
             }
 
-            _context.Attach(Masterlist).State = EntityState.Modified;
+            _context.Attach(Beneficiary).State = EntityState.Modified;
 
             try
             {
@@ -56,7 +56,7 @@ namespace SpinsOnlineRazor.Pages.Masterlists
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!MasterlistExists(Masterlist.ID))
+                if (!BeneficiaryExists(Beneficiary.ID))
                 {
                     return NotFound();
                 }
@@ -69,9 +69,9 @@ namespace SpinsOnlineRazor.Pages.Masterlists
             return RedirectToPage("./Index");
         }
 
-        private bool MasterlistExists(int id)
+        private bool BeneficiaryExists(int id)
         {
-            return _context.Masterlist.Any(e => e.ID == id);
+            return _context.Beneficiaries.Any(e => e.ID == id);
         }
     }
 }

@@ -1,13 +1,16 @@
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SpinsOnlineRazor.Models
 {
-    public class Regions
+    public class LibraryRegion
     {
+        
+
         /*The DatabaseGenerated attribute allows the app to 
         specify the primary key rather than having the database generate it.*/
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int PSGCRegionID { get; set; }
+        [Key]
+        public int PSGCRegion{ get; set; }
         public string Region { get; set; }
         public int Default { get; set; }
         public int TenDigitCode { get; set; }
@@ -16,6 +19,10 @@ namespace SpinsOnlineRazor.Models
 
         /*The Masterlists property is defined as ICollection<Masterlist> 
         because there may be multiple related Masterlist entities*/
-        public ICollection<Masterlist> Masterlists { get; set; }
+        public ICollection<Masterlistold> Masterlists { get; set; }
+        
+        //Dabo na provinces mugamit sa isa ka region
+        public ICollection<LibraryProvince> LibraryProvinces { get; set; }
+
     }
 }

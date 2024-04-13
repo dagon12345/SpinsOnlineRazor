@@ -1,6 +1,8 @@
+
+
 namespace SpinsOnlineRazor.Models
 {
-    public class Masterlist
+    public class Masterlistold
     {
         public int ID { get; set; }
         public string LastName { get; set; }
@@ -32,7 +34,7 @@ namespace SpinsOnlineRazor.Models
         public int HealthStatusID { get; set; }
         public string HealthStatusRemarks { get; set; } 
         public DateTime DateTimeEntry { get; set; }
-        public string EnteryBy { get; set; }
+        public string EntryBy { get; set; }
         public int DataSourceID { get; set; }
         public int StatusID { get; set; }
         public string Remarks { get; set; }
@@ -51,12 +53,28 @@ namespace SpinsOnlineRazor.Models
 
 
         //Below are classes  A Regions,Provinces,Municipalities, and Barangays entity can be related to any number of Masterlist entities.
-        /*
-        public Regions Regions { get; set; }
+        
+
+     
+       //Isa ra ka region m gamiton
+        public LibraryRegion LibraryRegions { get; set; }
+        //public ICollection<LibraryRegion> LibraryRegions { get; set; }
+
+        public LibraryProvince LibraryProvince { get; set; }
+
+        public LibraryMunicipality LibraryMunicipality { get; set; }
+
+        public LibraryBarangay LibraryBarangay { get; set; }
+       
+       /*
         public Provinces Provinces { get; set; }
         public Municipalities Municipalities { get; set; }
-        public Barangays Barangays { get; set; }
+        public Barangays Barangays { get; set; } 
+
+        public ICollection<GeneralSheet> GeneralSheet { get; set; }
         */
+        
+       
 
     }
 }
