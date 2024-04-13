@@ -12,32 +12,42 @@ namespace SpinsOnlineRazor.Pages.Beneficiaries
 {
     public class DeleteModel : PageModel
     {
-        private readonly SpinsOnlineRazor.Data.SpinsContext _context;
+        /*Adds Logging.
+Adds the optional parameter saveChangesError to the OnGetAsync method signature. 
+saveChangesError indicates whether the method was 
+called after a failure to delete the student object.*/
+        private readonly SpinsContext _context;
+        private readonly ILogger<DeleteModel> _logger;
 
-        public DeleteModel(SpinsOnlineRazor.Data.SpinsContext context)
+        public DeleteModel(SpinsContext context,
+                           ILogger<DeleteModel> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
         [BindProperty]
-        public Beneficiary Beneficiary { get; set; } = default!;
+        public Beneficiary Beneficiary { get; set; }
+        public string ErrorMessage { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task<IActionResult> OnGetAsync(int? id, bool? saveChangesError = false)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var beneficiary = await _context.Beneficiaries.FirstOrDefaultAsync(m => m.ID == id);
+            Beneficiary = await _context.Beneficiaries
+            .AsNoTracking()
+            .FirstOrDefaultAsync(m => m.ID == id);
 
-            if (beneficiary == null)
+            if (Beneficiary == null)
             {
                 return NotFound();
             }
-            else
+            if (saveChangesError.GetValueOrDefault())
             {
-                Beneficiary = beneficiary;
+                ErrorMessage = string.Format("Delete {ID} failed. Try again", id);
             }
             return Page();
         }
@@ -50,14 +60,27 @@ namespace SpinsOnlineRazor.Pages.Beneficiaries
             }
 
             var beneficiary = await _context.Beneficiaries.FindAsync(id);
-            if (beneficiary != null)
+            if (beneficiary == null)
             {
-                Beneficiary = beneficiary;
-                _context.Beneficiaries.Remove(Beneficiary);
-                await _context.SaveChangesAsync();
+                return NotFound();
             }
+            try
+            {
+                _context.Beneficiaries.Remove(beneficiary);
+                await _context.SaveChangesAsync();
+                return RedirectToPage("./Index");
+            }
+            catch (DbUpdateException ex)
+            {
+                _logger.LogError(ex, ErrorMessage);
 
-            return RedirectToPage("./Index");
+                return RedirectToAction("./Delete", new { id, saveChangesError = true });
+            }
+            /*The delete operation might fail because of transient network problems. 
+            Transient network errors are more likely when the database is in the cloud. 
+            The saveChangesError parameter is false when the Delete page OnGetAsync is called from the UI.
+             When OnGetAsync is called by OnPostAsync because the delete operation failed, the saveChangesError parameter is true.*/
+
         }
     }
 }

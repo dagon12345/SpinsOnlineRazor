@@ -2,53 +2,86 @@
 @model SpinsOnlineRazor.Pages.Beneficiaries.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Beneficiaries";
 }
 
-<h1>Index</h1>
+<h1>Beneficiaries</h1>
 
 <p>
     <a asp-page="Create">Create New</a>
 </p>
+
+@*The preceding code uses the <form> tag helper to add the search text box and button.
+    By default, the <form> tag helper submits form data with a POST.
+         With POST, the parameters are passed in the HTTP message body and not in the URL.
+          When HTTP GET is used, the form data is passed in the URL as query strings.
+           Passing the data with query strings enables users to bookmark the URL. 
+           The W3C guidelines recommend that GET should be used when the action doesn't result in an update.*@
+           
+<form asp-page="./Index" method="get">
+<div class="form-actions no-color">
+    <p>
+        Find by name:
+        <input type="text" name="SearchString" value="@Model.CurrentFilter"/>
+        <input type="submit" value="Search" class="btn btn-primary"/> | 
+        <a asp-page="./Index">Back to full list</a>
+    </p>
+</div>
+</form>
+
+
 <table class="table">
     <thead>
         <tr>
+            @*Adds hyperlinks to the LastName and Birthdate column headings.
+            Uses the information in NameSort and DateSort to set up hyperlinks with the current sort order values.
+            Changes the page heading from Index to Beneficiaries.
+            Changes Model.Beneficiary to Model.Beneficiaries.*@
             <th>
-                @Html.DisplayNameFor(model => model.Beneficiary[0].LastName)
+                <a asp-page="./Index" asp-route-sortOrder="@Model.NameSort">
+                    @Html.DisplayNameFor(model => model.Beneficiaries[0].LastName)
+                </a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Beneficiary[0].FirstName)
+                @Html.DisplayNameFor(model => model.Beneficiaries[0].FirstName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Beneficiary[0].MiddleName)
+                @Html.DisplayNameFor(model => model.Beneficiaries[0].MiddleName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Beneficiary[0].ExtName)
+                @Html.DisplayNameFor(model => model.Beneficiaries[0].ExtName)
             </th>
+            @*
+            <th>
+            <a asp-page="./Index" asp-route-sortOrder="@Model.DateSort">
+            @Html.DisplayNameFor(model => model.Beneficiaries[0].Birthdate)
+            </a>
+            </th>*@
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Beneficiary) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.LastName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FirstName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MiddleName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ExtName)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model.Beneficiaries)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MiddleName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ExtName)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

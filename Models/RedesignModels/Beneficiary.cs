@@ -11,5 +11,6 @@ namespace SpinsOnlineRazor.Models.RedesignModels
         /*One is to Many relationship with Masterlist Entity, isa ra ka name sa Bene an makasuyod
          sa masterlist pero an masterlist mudawat nan dabo na beneficiary, try nat an ICollection*/
         public ICollection<Masterlist> Masterlists { get; set; }
+  
     }
 }
