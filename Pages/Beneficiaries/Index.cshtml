@@ -38,7 +38,9 @@
             Changes the page heading from Index to Beneficiaries.
             Changes Model.Beneficiary to Model.Beneficiaries.*@
             <th>
-                <a asp-page="./Index" asp-route-sortOrder="@Model.NameSort">
+                @*The column header links use the query string to pass the current search string to the OnGetAsync method:*@
+                <a asp-page="./Index" asp-route-sortOrder="@Model.NameSort"
+                asp-route-currentFilter="@Model.CurrentFilter">
                     @Html.DisplayNameFor(model => model.Beneficiaries[0].LastName)
                 </a>
             </th>
@@ -85,3 +87,26 @@
         }
     </tbody>
 </table>
+
+@*Paging code for razor below*@
+
+@{
+    //An mga button ma disable kung waya nay previous or next page.
+    var prevDisabled = !Model.Beneficiaries.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.Beneficiaries.HasNextPage ? "disabled" : "";
+}
+@*The paging buttons are displayed by tag helpers:*@
+<a asp-page="./Index"
+   asp-route-sortOrder="@Model.CurrentSort"
+   asp-route-pageIndex="@(Model.Beneficiaries.PageIndex - 1)"
+   asp-route-currentFilter="@Model.CurrentFilter"
+   class="btn btn-primary @prevDisabled">
+    Previous
+</a>
+<a asp-page="./Index"
+   asp-route-sortOrder="@Model.CurrentSort"
+   asp-route-pageIndex="@(Model.Beneficiaries.PageIndex + 1)"
+   asp-route-currentFilter="@Model.CurrentFilter"
+   class="btn btn-primary @nextDisabled">
+    Next
+</a>
