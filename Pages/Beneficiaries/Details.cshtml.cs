@@ -19,7 +19,7 @@ namespace SpinsOnlineRazor.Pages.Beneficiaries
             _context = context;
         }
 
-        public Beneficiary Beneficiary { get; set; } = default!;
+        public Beneficiary Beneficiary { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -28,28 +28,34 @@ namespace SpinsOnlineRazor.Pages.Beneficiaries
                 return NotFound();
             }
 
-          
-        /*Beneficiary = await _context.Beneficiaries
-        .Include(s => s.Masterlists)
-        .ThenInclude(r => r.Region)
-         .ThenInclude(p => p.Provinces)
-          .ThenInclude(m => m.Municipalities)
-           .ThenInclude(r => r.Barangays)
-        .AsNoTracking()
-        .FirstOrDefaultAsync(m => m.ID == id);*/
 
-//Code na mag pa show instead of Region, Province, Municipality, and Barangay codes and e show ila name an e show.
-        Beneficiary = await _context.Beneficiaries
-    .Include(b => b.Masterlists)
-        .ThenInclude(m => m.Region)
-    .Include(b => b.Masterlists)
-        .ThenInclude(m => m.Province)
-    .Include(b => b.Masterlists)
-        .ThenInclude(m => m.Municipality)
-    .Include(b => b.Masterlists)
-        .ThenInclude(m => m.Barangay)
-    .AsNoTracking()
-    .FirstOrDefaultAsync(m => m.ID == id);
+            /*Beneficiary = await _context.Beneficiaries
+            .Include(s => s.Masterlists)
+            .ThenInclude(r => r.Region)
+             .ThenInclude(p => p.Provinces)
+              .ThenInclude(m => m.Municipalities)
+               .ThenInclude(r => r.Barangays)
+            .AsNoTracking()
+            .FirstOrDefaultAsync(m => m.ID == id);*/
+
+            //Code na mag pa show instead of Region, Province, Municipality, and Barangay codes and e show ila name an e show.
+            Beneficiary = await _context.Beneficiaries
+        .Include(b => b.Masterlists)
+            .ThenInclude(m => m.Region)
+        .Include(b => b.Masterlists)
+            .ThenInclude(m => m.Province)
+        .Include(b => b.Masterlists)
+            .ThenInclude(m => m.Municipality)
+        .Include(b => b.Masterlists)
+            .ThenInclude(m => m.Barangay)
+        .Include(b => b.Masterlists)
+            .ThenInclude(s => s.Sex)
+        .Include(b => b.Masterlists)
+            .ThenInclude(s => s.Maritalstatus)
+        .Include(b => b.Masterlists)
+            .ThenInclude(s => s.Validationform)
+        .AsNoTracking()
+        .FirstOrDefaultAsync(m => m.BeneficiaryID == id);
 
 
             if (Beneficiary == null)

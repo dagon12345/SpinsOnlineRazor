@@ -1,4 +1,5 @@
 using System.Drawing;
+using SpinsOnlineRazor.Models.RedesignModels.ComplexModels;
 
 namespace SpinsOnlineRazor.Models.RedesignModels
 {
@@ -27,17 +28,17 @@ namespace SpinsOnlineRazor.Models.RedesignModels
        and the corresponding navigation property is Barangay. 
        An Masterlist entity is associated with one Barangay entity.*/
         public int BarangayID { get; set; }
-
         /*The SexID property is a foreign key, 
        and the corresponding navigation property is Sex. 
        An Masterlist entity is associated with one Sex entity.*/
-        //public int SexID { get; set; }
+        public int SexID { get; set; }
 
         /*The MaritalstatusID property is a foreign key, 
                and the corresponding navigation property is MaritalStatus. 
                An Masterlist entity is associated with one MaritalStatus entity.*/
-       // public int MaritalstatusID { get; set; }
+        public int MaritalstatusID { get; set; }
 
+        public int ValidationformID { get; set; }
         //Isa ra ija dawaton na entity isa ka Beneficiary,Region,Province,Municipality, and Barangay. So Entity below
         /*An Masterlist entity is associated with one Beneficiary entity, so the property contains a single Beneficiary entity.*/
         public Beneficiary Beneficiary { get; set; }
@@ -47,7 +48,11 @@ namespace SpinsOnlineRazor.Models.RedesignModels
         public Barangay Barangay { get; set; }
 
         //Isa ra ka sex and MaritalStatus per masterlist an madawat diri dili pwedi baje yaki an sex and duha ka marital nan isa ka bene so isa ra.
-       //public Sex Sex { get; set; }
-        //public Maritalstatus Maritalstatus { get; set; }
+        public Sex Sex { get; set; }
+        public Maritalstatus Maritalstatus { get; set; }
+
+        //Isa ra ka validation form per masterlist di mag dabo
+        public Validationform Validationform { get; set; }
+
     }
 }

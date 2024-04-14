@@ -116,7 +116,8 @@ The LINQ statement is executed only if there's a value to search for.*/
             // Para sa pagination nanpage. The expression pageIndex ?? 1 returns the value of pageIndex if it has a value, otherwise, it returns 1.
             var pageSize = Configuration.GetValue("PageSize", 3);
             Beneficiaries = await PaginatedList<Beneficiary>.CreateAsync(
-                beneficiariesIQ.AsNoTracking(), pageIndex ?? 1, pageSize);
+                beneficiariesIQ
+                .AsNoTracking(), pageIndex ?? 1, pageSize);
         }
     }
 }

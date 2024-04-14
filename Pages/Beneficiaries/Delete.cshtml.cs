@@ -39,7 +39,7 @@ called after a failure to delete the student object.*/
 
             Beneficiary = await _context.Beneficiaries
             .AsNoTracking()
-            .FirstOrDefaultAsync(m => m.ID == id);
+            .FirstOrDefaultAsync(m => m.BeneficiaryID == id);
 
             if (Beneficiary == null)
             {

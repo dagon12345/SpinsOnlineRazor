@@ -1,20 +1,58 @@
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace SpinsOnlineRazor.Models.RedesignModels
 {
     public class Beneficiary
     {
-        public int ID { get; set; }
+        public int BeneficiaryID { get; set; }
+        [Required]
+        [StringLength(20, ErrorMessage = "Last name cannot be longer than 20 characters.")]
+        [Display(Name = "Last Name")]
+       
         public string LastName { get; set; }
+        [Required]
+        [StringLength(20, ErrorMessage = "First name cannot be longer than 20 characters.")]
+        //[Column("FirstName")] - This DataAnnotation kay mag puli nan name nan column if ever na sajop ato property page name amu ini way pag rename
+        [Display(Name = "First Name")]
         public string FirstName { get; set; }
+        [StringLength(20, ErrorMessage = "Middle name cannot be longer than 20 characters.")]
+        [Display(Name = "Middle Name")]
         public string MiddleName { get; set; }
+        [StringLength(3, ErrorMessage = "Extension name cannot be longer than 3 characters.")]
+        [Display(Name = "Extension Name")]
         public string ExtName { get; set; }
-
+        //public int RegionID { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [Display(Name = "Birth Date")]
         public DateTime BirthDate { get; set; }
+
+        /*Sa ubos kay combination of properties kun gusto nim e merge or concatenate an properties
+        [Display(Name = "Full Name")]
+        public string FullName
+        {
+            get
+            {
+                return LastName + ", " + FirstName;
+            }
+        }
+        */
+
+
+
+        //public int MasterlistID { get; set; }
+        //public Masterlist masterlist { get; set; }
+
         /*One is to Many relationship with Masterlist Entity, isa ra ka name sa Bene an makasuyod
          sa masterlist pero an masterlist mudawat nan dabo na beneficiary, try nat an ICollection*/
         public ICollection<Masterlist> Masterlists { get; set; }
 
-        //Isa  ra ka validation form per bene. Pero an validation form dabo na bene an mahatagan one validation form many bene
-        public ICollection<ValidationForm> ValidationForm { get; set; }
+        //public int Sex { get; set; }
+        //public Region Region { get; set; }
+
+        //Isa  ra ka validation form per bene. dabo man na bene an hatagan so collection
+        //public ICollection<ValidationForm> ValidationForms { get; set; }
   
     }
 }

@@ -64,7 +64,7 @@ namespace SpinsOnlineRazor.Pages.Beneficiaries
 
         private bool BeneficiaryExists(int id)
         {
-            return _context.Beneficiaries.Any(e => e.ID == id);
+            return _context.Beneficiaries.Any(e => e.BeneficiaryID == id);
         }
     }
 }
