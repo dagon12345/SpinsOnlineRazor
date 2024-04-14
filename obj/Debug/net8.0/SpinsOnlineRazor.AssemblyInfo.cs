@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SpinsOnlineRazor")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+85941e34f855f38e3df55ac33a57b61f0c5ad2e5")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c65dd936599348143262c28d3e2730a163cc8896")]
 [assembly: System.Reflection.AssemblyProductAttribute("SpinsOnlineRazor")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SpinsOnlineRazor")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

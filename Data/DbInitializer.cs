@@ -98,24 +98,64 @@ namespace SpinsOnlineRazor.Data
 
             context.MaritalStatuses.AddRange(maritalstatuses);
             context.SaveChanges();
-            
+
+//
+
+ 
+
+           var eligible = new Assessment
+           {
+            AssessmentID=1,
+             Name="Eligible"
+           };
+             var drop = new Assessment
+           {
+            AssessmentID=2,
+             Name="Drop/Not Eligible"
+
+           };
+            var pending = new Assessment
+           {
+            AssessmentID=3,
+             Name="Pending - Revalidate"
+
+           };
+            var deceased = new Assessment
+           {
+            AssessmentID=4,
+             Name="Deceased"
+           };
+             var assessments = new Assessment[]
+            {
+                eligible,
+                drop,
+                pending,
+                deceased
+            };
+
+            context.Assessments.AddRange(assessments);
+            context.SaveChanges();
+//////////////////////////////////////////////////////////
+
+///
             var validationforms = new Validationform[]
                                  {
-                            new Validationform{ValidationformID=10,AssessmentID=1,ReferenceCode=21031243,SpinsBatch=98},
-                            new Validationform{ValidationformID=20,AssessmentID=2,ReferenceCode=21031242,SpinsBatch=98},
-                            new Validationform{ValidationformID=30,AssessmentID=3,ReferenceCode=21031241,SpinsBatch=99},
-                            new Validationform{ValidationformID=40,AssessmentID=4,ReferenceCode=21031240,SpinsBatch=99},
-                            new Validationform{ValidationformID=50,AssessmentID=4,ReferenceCode=21031239,SpinsBatch=100},
-                            new Validationform{ValidationformID=60,AssessmentID=3,ReferenceCode=21031238,SpinsBatch=100},
-                            new Validationform{ValidationformID=70,AssessmentID=2,ReferenceCode=21031237,SpinsBatch=101},
-                            new Validationform{ValidationformID=80,AssessmentID=1,ReferenceCode=21031236,SpinsBatch=101},
+                            new Validationform{ValidationformID=10,ReferenceCode=21031243,SpinsBatch=98,AssessmentID=1},
+                            new Validationform{ValidationformID=20,ReferenceCode=21031242,SpinsBatch=98,AssessmentID=3},
+                            new Validationform{ValidationformID=30,ReferenceCode=21031241,SpinsBatch=99,AssessmentID=4},
+                            new Validationform{ValidationformID=40,ReferenceCode=21031240,SpinsBatch=99,AssessmentID=2},
+                            new Validationform{ValidationformID=50,ReferenceCode=21031239,SpinsBatch=100,AssessmentID=1},
+                            new Validationform{ValidationformID=60,ReferenceCode=21031238,SpinsBatch=100,AssessmentID=2},
+                            new Validationform{ValidationformID=70,ReferenceCode=21031237,SpinsBatch=101,AssessmentID=3},
+                            new Validationform{ValidationformID=80,ReferenceCode=21031236,SpinsBatch=101,AssessmentID=4},
 
                                  };
 
             context.Validationforms.AddRange(validationforms);
             context.SaveChanges();
 
-            var masterlists = new Masterlist[]
+ 
+           var masterlists = new Masterlist[]
          {
                 new Masterlist{BeneficiaryID=1,RegionID=160000000,ProvinceID=160200000,MunicipalityID=160201000,BarangayID=160201001,SexID=1,MaritalstatusID=1,ValidationformID=10},
                 new Masterlist{BeneficiaryID=2,RegionID=160000000,ProvinceID=160300000,MunicipalityID=160301000,BarangayID=160301001,SexID=2,MaritalstatusID=2,ValidationformID=20},
@@ -130,26 +170,6 @@ namespace SpinsOnlineRazor.Data
 
             context.Masterlists.AddRange(masterlists);
             context.SaveChanges();
-
-            /*
-                     
-
-                          var assessments = new Assessment[]
-                        {
-                            new Assessment{AssessmentID=1,Name="Eligible"},
-                            new Assessment{AssessmentID=2,Name="Drop/Not Eligible"},
-                            new Assessment{AssessmentID=3,Name="Pending - Revalidate"},
-                            new Assessment{AssessmentID=4,Name="Deceased"},
-
-                        };
-
-                        context.Assessments.AddRange(assessments);
-                        context.SaveChanges();
-
-            */
-
-
-
 
         }
     }

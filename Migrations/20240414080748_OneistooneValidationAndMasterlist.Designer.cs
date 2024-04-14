@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SpinsOnlineRazor.Data;
 
@@ -10,9 +11,11 @@ using SpinsOnlineRazor.Data;
 namespace SpinsOnlineRazor.Migrations
 {
     [DbContext(typeof(SpinsContext))]
-    partial class SpinsContextModelSnapshot : ModelSnapshot
+    [Migration("20240414080748_OneistooneValidationAndMasterlist")]
+    partial class OneistooneValidationAndMasterlist
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.4");
@@ -161,7 +164,8 @@ namespace SpinsOnlineRazor.Migrations
 
                     b.HasIndex("SexID");
 
-                    b.HasIndex("ValidationformID");
+                    b.HasIndex("ValidationformID")
+                        .IsUnique();
 
                     b.ToTable("Masterlist", (string)null);
                 });
@@ -295,8 +299,8 @@ namespace SpinsOnlineRazor.Migrations
                         .IsRequired();
 
                     b.HasOne("SpinsOnlineRazor.Models.RedesignModels.ComplexModels.Validationform", "Validationform")
-                        .WithMany("Masterlists")
-                        .HasForeignKey("ValidationformID")
+                        .WithOne("Masterlist")
+                        .HasForeignKey("SpinsOnlineRazor.Models.RedesignModels.Masterlist", "ValidationformID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -356,7 +360,7 @@ namespace SpinsOnlineRazor.Migrations
 
             modelBuilder.Entity("SpinsOnlineRazor.Models.RedesignModels.ComplexModels.Validationform", b =>
                 {
-                    b.Navigation("Masterlists");
+                    b.Navigation("Masterlist");
                 });
 
             modelBuilder.Entity("SpinsOnlineRazor.Models.RedesignModels.Maritalstatus", b =>

@@ -7,12 +7,12 @@ namespace SpinsOnlineRazor.Models.RedesignModels
     {
         public int BeneficiaryID { get; set; }
         [Required]
-        [StringLength(20, ErrorMessage = "Last name cannot be longer than 20 characters.")]
+        [StringLength(20, MinimumLength=2, ErrorMessage = "Last name cannot be longer than 20 characters.")]
         [Display(Name = "Last Name")]
        
         public string LastName { get; set; }
         [Required]
-        [StringLength(20, ErrorMessage = "First name cannot be longer than 20 characters.")]
+        [StringLength(20, MinimumLength=2, ErrorMessage = "First name cannot be longer than 20 characters.")]
         //[Column("FirstName")] - This DataAnnotation kay mag puli nan name nan column if ever na sajop ato property page name amu ini way pag rename
         [Display(Name = "First Name")]
         public string FirstName { get; set; }
@@ -24,6 +24,10 @@ namespace SpinsOnlineRazor.Models.RedesignModels
         public string ExtName { get; set; }
         //public int RegionID { get; set; }
         [DataType(DataType.Date)]
+        /*The DisplayFormat attribute is used to explicitly specify the date format. 
+        The ApplyFormatInEditMode setting specifies that the formatting should also be applied to the edit UI. 
+        Some fields shouldn't use ApplyFormatInEditMode. 
+        For example, the currency symbol should generally not be displayed in an edit text box.*/
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [Display(Name = "Birth Date")]
         public DateTime BirthDate { get; set; }
