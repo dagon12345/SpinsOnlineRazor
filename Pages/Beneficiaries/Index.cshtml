@@ -56,6 +56,7 @@
              <th>
                 @Html.DisplayNameFor(model => model.Beneficiaries[0].BirthDate)
             </th>
+
             @*
             <th>
             <a asp-page="./Index" asp-route-sortOrder="@Model.DateSort">
@@ -84,6 +85,7 @@
                  <td>
                     @Html.DisplayFor(modelItem => item.BirthDate)
                 </td>
+
                 <td>
                     <a asp-page="./Edit" asp-route-id="@item.BeneficiaryID">Edit</a> |
                     <a asp-page="./Details" asp-route-id="@item.BeneficiaryID">Details</a> |
@@ -93,6 +95,7 @@
         }
     </tbody>
 </table>
+
 
 @*Paging code for razor below*@
 

@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using SpinsOnlineRazor.Models.RedesignModels.ComplexModels;
 
 namespace SpinsOnlineRazor.Models.RedesignModels
 {
@@ -52,6 +53,8 @@ namespace SpinsOnlineRazor.Models.RedesignModels
          sa masterlist pero an masterlist mudawat nan dabo na beneficiary, try nat an ICollection*/
         public ICollection<Masterlist> Masterlists { get; set; }
 
+         //public Validationform Validationform { get; set; }
+        //public Masterlist Validationform { get; set; }
         //public int Sex { get; set; }
         //public Region Region { get; set; }
 
