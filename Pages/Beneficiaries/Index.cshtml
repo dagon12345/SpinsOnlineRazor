@@ -7,10 +7,20 @@
 }
 
 <h1>Beneficiaries</h1>
-
+<div class="Row" style="display: flex; justify-content: space-between;">
+<div class="col-sm-6 ">
 <p>
-    <a asp-page="Create">Create New</a>
+    <a class="btn btn-secondary" asp-page="Create">Create New</a>
 </p>
+   </div>
+<div class="col-sm-6 ">
+
+        <button type="button" class="btn btn-primary" id="btnExport" data-kt-menu-trigger="click" 
+        data-kt-menu-placement="bottom-end" style="padding: 9px; margin-left: 78%;"><i class="bi bi-pencil-square"></i> Export Report
+      </button>
+    </div>
+</div>
+
 
 @*The preceding code uses the <form> tag helper to add the search text box and button.
 By default, the <form> tag helper submits form data with a POST.
@@ -22,19 +32,19 @@ The W3C guidelines recommend that GET should be used when the action doesn't res
 <form asp-page="./Index" method="get">
     <div class="form-actions no-color">
         <p>
-            Find by name:
-            <input type="text" name="SearchString" value="@Model.CurrentFilter" />
+            <input type="text" name="SearchString" value="@Model.CurrentFilter" placeholder="Find by Name" />
             <input type="submit" value="Search" class="btn btn-primary" /> |
             <a asp-page="./Index">Back to full list</a>
         </p>
     </div>
 </form>
 
+<div class="container">
 
-<table class="table table-hover">
-    <thead>
-        <tr>
-            @*Adds hyperlinks to the LastName and Birthdate column headings.
+   <table class="table table-bordered table-striped table-responsive-stack table-dark" style="width:100%;"  id="tableOne">
+      <thead class="thead-dark">
+         <tr>
+              @*Adds hyperlinks to the LastName and Birthdate column headings.
             Uses the information in NameSort and Da teSort to set up hyperlinks with the current sort order values.
             Changes the page heading from Index to Beneficiaries.
             Changes Model.Beneficiary to Model.Beneficiaries.*@
@@ -59,7 +69,7 @@ The W3C guidelines recommend that GET should be used when the action doesn't res
             <th>
                 @Html.DisplayNameFor(model => model.Beneficiaries[0].BirthDate)
             </th>
-             <th>
+             <th bgcolor="white">
                  Status
             </th>
             <th>
@@ -89,11 +99,15 @@ The W3C guidelines recommend that GET should be used when the action doesn't res
             @Html.DisplayNameFor(model => model.Beneficiaries[0].Birthdate)
             </a>
             </th>*@
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.Beneficiaries)
+            <th>
+
+            </th>
+
+         </tr>
+      </thead>
+      <tbody>
+         <tr>
+             @foreach (var item in Model.Beneficiaries)
         {
             <tr>
              
@@ -158,29 +172,22 @@ The W3C guidelines recommend that GET should be used when the action doesn't res
                         }
                     }
                 </td>
-                @*
-                  <td>
-                    @{
-                        foreach (var masterlist in item.Masterlists)
-                        {
-                            @Html.DisplayFor(modelItem => masterlist.IdentificationType.Name)
-                        }
-                    }
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.IdentificationNumber)
-                </td>*@
+          
 
                 <td>
-                    <a asp-page="./Edit" asp-route-id="@item.BeneficiaryID">Edit</a> |
-                    <a asp-page="./Details" asp-route-id="@item.BeneficiaryID">Details</a> |
-                    <a asp-page="./Delete" asp-route-id="@item.BeneficiaryID">Delete</a>
+                    <a class="btn btn-secondary" asp-page="./Edit" asp-route-id="@item.BeneficiaryID"><i class="bi bi-pencil-square"></i></a>
+                    <a class="btn btn-info" asp-page="./Details" asp-route-id="@item.BeneficiaryID"><i class="bi bi-view-list"></i></a> 
+                    <a class="btn btn-danger" asp-page="./Delete" asp-route-id="@item.BeneficiaryID"><i class="bi bi-trash3-fill"></i></a>
                 </td>
+
+                
             </tr>
         }
-    </tbody>
-</table>
-
+         </tr>
+        
+      </tbody>
+   </table>
+   
 
 @*Paging code for razor below*@
 
@@ -200,3 +207,22 @@ The W3C guidelines recommend that GET should be used when the action doesn't res
     class="btn btn-primary @nextDisabled">
     Next
 </a>
+
+<script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/gh/linways/table-to-excel@v1.0.4/dist/tableToExcel.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#btnExport").click(function () {
+            let table = document.getElementsByTagName("table");
+            console.log(table);
+            debugger;
+            TableToExcel.convert(table[0], {
+                name: `UserManagement.xlsx`,
+                sheet: {
+                    name: 'Usermanagement'
+                }
+            });
+        });
+    });
+</script>
+

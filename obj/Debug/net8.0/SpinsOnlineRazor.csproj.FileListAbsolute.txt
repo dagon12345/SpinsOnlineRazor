@@ -559,3 +559,6 @@ D:\Repositories\SpinsOnlineRazor\obj\Debug\net8.0\ref\SpinsOnlineRazor.dll
 C:\Users\DSWD\SpinsOnlineRazor\bin\Debug\net8.0\Syncfusion.EJ2.dll
 C:\Users\DSWD\SpinsOnlineRazor\bin\Debug\net8.0\Syncfusion.Licensing.dll
 C:\Users\DSWD\SpinsOnlineRazor\obj\Debug\net8.0\SpinsOnlineRazor.MvcApplicationPartsAssemblyInfo.cs
+D:\Repositories\SpinsOnlineRazor\bin\Debug\net8.0\Syncfusion.EJ2.dll
+D:\Repositories\SpinsOnlineRazor\bin\Debug\net8.0\Syncfusion.Licensing.dll
+D:\Repositories\SpinsOnlineRazor\obj\Debug\net8.0\SpinsOnlineRazor.MvcApplicationPartsAssemblyInfo.cs
