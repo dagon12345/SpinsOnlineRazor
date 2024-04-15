@@ -33,16 +33,30 @@ namespace SpinsOnlineRazor.Models.RedesignModels
         [Display(Name = "Birth Date")]
         public DateTime BirthDate { get; set; }
 
-        /*Sa ubos kay combination of properties kun gusto nim e merge or concatenate an properties
+        [Required]
+        [StringLength(20, ErrorMessage = "ID Number cannot be longer than 20 characters.")]
+        [Display(Name = "ID Number")]
+        public string IdentificationNumber { get; set; }
+
+         [DataType(DataType.Date)]
+        /*The DisplayFormat attribute is used to explicitly specify the date format. 
+        The ApplyFormatInEditMode setting specifies that the formatting should also be applied to the edit UI. 
+        Some fields shouldn't use ApplyFormatInEditMode. 
+        For example, the currency symbol should generally not be displayed in an edit text box.*/
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [Display(Name = "Date Issued")]
+        public DateTime IdentificationDateIssued { get; set; }
+
+        /*Sa ubos kay combination of properties kun gusto nim e merge or concatenate an properties 
         [Display(Name = "Full Name")]
         public string FullName
         {
             get
             {
-                return LastName + ", " + FirstName;
+                return $"{LastName}, {FirstName} {MiddleName} {ExtName}";
             }
         }
-        */
+       */
 
 
 
@@ -52,6 +66,8 @@ namespace SpinsOnlineRazor.Models.RedesignModels
         /*One is to Many relationship with Masterlist Entity, isa ra ka name sa Bene an makasuyod
          sa masterlist pero an masterlist mudawat nan dabo na beneficiary, try nat an ICollection*/
         public ICollection<Masterlist> Masterlists { get; set; }
+
+
 
          //public Validationform Validationform { get; set; }
         //public Masterlist Validationform { get; set; }

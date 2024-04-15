@@ -3,6 +3,7 @@
 
 @{
     ViewData["Title"] = "Beneficiaries";
+
 }
 
 <h1>Beneficiaries</h1>
@@ -12,35 +13,37 @@
 </p>
 
 @*The preceding code uses the <form> tag helper to add the search text box and button.
-    By default, the <form> tag helper submits form data with a POST.
-         With POST, the parameters are passed in the HTTP message body and not in the URL.
-          When HTTP GET is used, the form data is passed in the URL as query strings.
-           Passing the data with query strings enables users to bookmark the URL. 
-           The W3C guidelines recommend that GET should be used when the action doesn't result in an update.*@
-           
+By default, the <form> tag helper submits form data with a POST.
+With POST, the parameters are passed in the HTTP message body and not in the URL.
+When HTTP GET is used, the form data is passed in the URL as query strings.
+Passing the data with query strings enables users to bookmark the URL.
+The W3C guidelines recommend that GET should be used when the action doesn't result in an update.*@
+
 <form asp-page="./Index" method="get">
-<div class="form-actions no-color">
-    <p>
-        Find by name:
-        <input type="text" name="SearchString" value="@Model.CurrentFilter"/>
-        <input type="submit" value="Search" class="btn btn-primary"/> | 
-        <a asp-page="./Index">Back to full list</a>
-    </p>
-</div>
+    <div class="form-actions no-color">
+        <p>
+            Find by name:
+            <input type="text" name="SearchString" value="@Model.CurrentFilter" />
+            <input type="submit" value="Search" class="btn btn-primary" /> |
+            <a asp-page="./Index">Back to full list</a>
+        </p>
+    </div>
 </form>
 
 
-<table class="table">
+<table class="table table-hover">
     <thead>
         <tr>
             @*Adds hyperlinks to the LastName and Birthdate column headings.
-            Uses the information in NameSort and DateSort to set up hyperlinks with the current sort order values.
+            Uses the information in NameSort and Da teSort to set up hyperlinks with the current sort order values.
             Changes the page heading from Index to Beneficiaries.
             Changes Model.Beneficiary to Model.Beneficiaries.*@
+        
             <th>
-                @*The column header links use the query string to pass the current search string to the OnGetAsync method:*@
+                @*The column header links use the query string to pass the current search string to the OnGetAsync
+                method:*@
                 <a asp-page="./Index" asp-route-sortOrder="@Model.NameSort"
-                asp-route-currentFilter="@Model.CurrentFilter">
+                    asp-route-currentFilter="@Model.CurrentFilter">
                     @Html.DisplayNameFor(model => model.Beneficiaries[0].LastName)
                 </a>
             </th>
@@ -53,9 +56,32 @@
             <th>
                 @Html.DisplayNameFor(model => model.Beneficiaries[0].ExtName)
             </th>
-             <th>
+            <th>
                 @Html.DisplayNameFor(model => model.Beneficiaries[0].BirthDate)
             </th>
+             <th>
+                 Status
+            </th>
+            <th>
+                 Region
+            </th>
+            <th>
+                Province
+            </th>
+            <th>
+                Municipality
+            </th>
+            <th>
+                Barangay
+            </th>
+            @*
+            <th>
+                ID Type
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Beneficiaries[0].IdentificationNumber)
+            </th>*@
+
 
             @*
             <th>
@@ -70,6 +96,7 @@
         @foreach (var item in Model.Beneficiaries)
         {
             <tr>
+             
                 <td>
                     @Html.DisplayFor(modelItem => item.LastName)
                 </td>
@@ -82,9 +109,67 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.ExtName)
                 </td>
-                 <td>
+                <td>
                     @Html.DisplayFor(modelItem => item.BirthDate)
                 </td>
+                 <td>
+                    @{
+                        foreach (var masterlist in item.Masterlists)
+                        {
+                            @*@masterlist.ValidationformID @: @validation. <br />*@
+                            @Html.DisplayFor(modelItem => masterlist.Status.Name)
+                        }
+                    }
+                </td>
+                <td>
+                    @{
+                        foreach (var masterlist in item.Masterlists)
+                        {
+                            @*@masterlist.ValidationformID @: @validation. <br />*@
+                            @Html.DisplayFor(modelItem => masterlist.Region.Name)
+
+                        }
+                    }
+                </td>
+                <td>
+                    @{
+                        foreach (var masterlist in item.Masterlists)
+                        {
+                            @*@masterlist.ValidationformID @: @validation. <br />*@
+                            @Html.DisplayFor(modelItem => masterlist.Province.Name)
+                        }
+                    }
+                </td>
+                <td>
+                    @{
+                        foreach (var masterlist in item.Masterlists)
+                        {
+                            @*@masterlist.ValidationformID @: @validation. <br />*@
+                            @Html.DisplayFor(modelItem => masterlist.Municipality.Name)
+                        }
+                    }
+                </td>
+                  <td>
+                    @{
+                        foreach (var masterlist in item.Masterlists)
+                        {
+                            @*@masterlist.ValidationformID @: @validation. <br />*@
+                            @Html.DisplayFor(modelItem => masterlist.Barangay.Name)
+                        }
+                    }
+                </td>
+                @*
+                  <td>
+                    @{
+                        foreach (var masterlist in item.Masterlists)
+                        {
+                            @Html.DisplayFor(modelItem => masterlist.IdentificationType.Name)
+                        }
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdentificationNumber)
+                </td>*@
 
                 <td>
                     <a asp-page="./Edit" asp-route-id="@item.BeneficiaryID">Edit</a> |
@@ -105,17 +190,13 @@
     var nextDisabled = !Model.Beneficiaries.HasNextPage ? "disabled" : "";
 }
 @*The paging buttons are displayed by tag helpers:*@
-<a asp-page="./Index"
-   asp-route-sortOrder="@Model.CurrentSort"
-   asp-route-pageIndex="@(Model.Beneficiaries.PageIndex - 1)"
-   asp-route-currentFilter="@Model.CurrentFilter"
-   class="btn btn-primary @prevDisabled">
+<a asp-page="./Index" asp-route-sortOrder="@Model.CurrentSort"
+    asp-route-pageIndex="@(Model.Beneficiaries.PageIndex - 1)" asp-route-currentFilter="@Model.CurrentFilter"
+    class="btn btn-primary @prevDisabled">
     Previous
 </a>
-<a asp-page="./Index"
-   asp-route-sortOrder="@Model.CurrentSort"
-   asp-route-pageIndex="@(Model.Beneficiaries.PageIndex + 1)"
-   asp-route-currentFilter="@Model.CurrentFilter"
-   class="btn btn-primary @nextDisabled">
+<a asp-page="./Index" asp-route-sortOrder="@Model.CurrentSort"
+    asp-route-pageIndex="@(Model.Beneficiaries.PageIndex + 1)" asp-route-currentFilter="@Model.CurrentFilter"
+    class="btn btn-primary @nextDisabled">
     Next
 </a>

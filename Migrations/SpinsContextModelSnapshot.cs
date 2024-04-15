@@ -53,6 +53,14 @@ namespace SpinsOnlineRazor.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("TEXT");
 
+                    b.Property<DateTime>("IdentificationDateIssued")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("IdentificationNumber")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasMaxLength(20)
@@ -62,12 +70,7 @@ namespace SpinsOnlineRazor.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("ValidationformID")
-                        .HasColumnType("INTEGER");
-
                     b.HasKey("BeneficiaryID");
-
-                    b.HasIndex("ValidationformID");
 
                     b.ToTable("Beneficiary", (string)null);
                 });
@@ -107,6 +110,19 @@ namespace SpinsOnlineRazor.Migrations
                     b.ToTable("Validationform", (string)null);
                 });
 
+            modelBuilder.Entity("SpinsOnlineRazor.Models.RedesignModels.IdentificationType", b =>
+                {
+                    b.Property<int>("IdentificationTypeID")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("IdentificationTypeID");
+
+                    b.ToTable("IdentificationType", (string)null);
+                });
+
             modelBuilder.Entity("SpinsOnlineRazor.Models.RedesignModels.Maritalstatus", b =>
                 {
                     b.Property<int>("MaritalstatusID")
@@ -132,6 +148,9 @@ namespace SpinsOnlineRazor.Migrations
                     b.Property<int>("BeneficiaryID")
                         .HasColumnType("INTEGER");
 
+                    b.Property<int>("IdentificationTypeID")
+                        .HasColumnType("INTEGER");
+
                     b.Property<int>("MaritalstatusID")
                         .HasColumnType("INTEGER");
 
@@ -147,6 +166,9 @@ namespace SpinsOnlineRazor.Migrations
                     b.Property<int>("SexID")
                         .HasColumnType("INTEGER");
 
+                    b.Property<int>("StatusID")
+                        .HasColumnType("INTEGER");
+
                     b.Property<int>("ValidationformID")
                         .HasColumnType("INTEGER");
 
@@ -155,6 +177,8 @@ namespace SpinsOnlineRazor.Migrations
                     b.HasIndex("BarangayID");
 
                     b.HasIndex("BeneficiaryID");
+
+                    b.HasIndex("IdentificationTypeID");
 
                     b.HasIndex("MaritalstatusID");
 
@@ -165,6 +189,8 @@ namespace SpinsOnlineRazor.Migrations
                     b.HasIndex("RegionID");
 
                     b.HasIndex("SexID");
+
+                    b.HasIndex("StatusID");
 
                     b.HasIndex("ValidationformID");
 
@@ -233,6 +259,19 @@ namespace SpinsOnlineRazor.Migrations
                     b.ToTable("Sex", (string)null);
                 });
 
+            modelBuilder.Entity("SpinsOnlineRazor.Models.RedesignModels.Status", b =>
+                {
+                    b.Property<int>("StatusID")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("StatusID");
+
+                    b.ToTable("Status", (string)null);
+                });
+
             modelBuilder.Entity("SpinsOnlineRazor.Models.RedesignModels.Barangay", b =>
                 {
                     b.HasOne("SpinsOnlineRazor.Models.RedesignModels.Municipality", "Municipality")
@@ -242,15 +281,6 @@ namespace SpinsOnlineRazor.Migrations
                         .IsRequired();
 
                     b.Navigation("Municipality");
-                });
-
-            modelBuilder.Entity("SpinsOnlineRazor.Models.RedesignModels.Beneficiary", b =>
-                {
-                    b.HasOne("SpinsOnlineRazor.Models.RedesignModels.ComplexModels.Validationform", "Validationform")
-                        .WithMany()
-                        .HasForeignKey("ValidationformID");
-
-                    b.Navigation("Validationform");
                 });
 
             modelBuilder.Entity("SpinsOnlineRazor.Models.RedesignModels.ComplexModels.Validationform", b =>
@@ -275,6 +305,12 @@ namespace SpinsOnlineRazor.Migrations
                     b.HasOne("SpinsOnlineRazor.Models.RedesignModels.Beneficiary", "Beneficiary")
                         .WithMany("Masterlists")
                         .HasForeignKey("BeneficiaryID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SpinsOnlineRazor.Models.RedesignModels.IdentificationType", "IdentificationType")
+                        .WithMany("Masterlists")
+                        .HasForeignKey("IdentificationTypeID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -308,6 +344,12 @@ namespace SpinsOnlineRazor.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("SpinsOnlineRazor.Models.RedesignModels.Status", "Status")
+                        .WithMany("Masterlists")
+                        .HasForeignKey("StatusID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("SpinsOnlineRazor.Models.RedesignModels.ComplexModels.Validationform", "Validationform")
                         .WithMany("Masterlists")
                         .HasForeignKey("ValidationformID")
@@ -318,6 +360,8 @@ namespace SpinsOnlineRazor.Migrations
 
                     b.Navigation("Beneficiary");
 
+                    b.Navigation("IdentificationType");
+
                     b.Navigation("Maritalstatus");
 
                     b.Navigation("Municipality");
@@ -327,6 +371,8 @@ namespace SpinsOnlineRazor.Migrations
                     b.Navigation("Region");
 
                     b.Navigation("Sex");
+
+                    b.Navigation("Status");
 
                     b.Navigation("Validationform");
                 });
@@ -373,6 +419,11 @@ namespace SpinsOnlineRazor.Migrations
                     b.Navigation("Masterlists");
                 });
 
+            modelBuilder.Entity("SpinsOnlineRazor.Models.RedesignModels.IdentificationType", b =>
+                {
+                    b.Navigation("Masterlists");
+                });
+
             modelBuilder.Entity("SpinsOnlineRazor.Models.RedesignModels.Maritalstatus", b =>
                 {
                     b.Navigation("Masterlists");
@@ -400,6 +451,11 @@ namespace SpinsOnlineRazor.Migrations
                 });
 
             modelBuilder.Entity("SpinsOnlineRazor.Models.RedesignModels.Sex", b =>
+                {
+                    b.Navigation("Masterlists");
+                });
+
+            modelBuilder.Entity("SpinsOnlineRazor.Models.RedesignModels.Status", b =>
                 {
                     b.Navigation("Masterlists");
                 });

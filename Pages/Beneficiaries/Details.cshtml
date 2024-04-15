@@ -41,7 +41,32 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Beneficiary.BirthDate)
         </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Beneficiary.IdentificationNumber)
+        </dt>
+         <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Beneficiary.IdentificationNumber)
+        </dd>
+
+        <dt class="col-sm-2">
+            ID Type
+        </dt>
+        <dd class="col-sm-10">
+              @foreach (var item in Model.Beneficiary.Masterlists)
+                {
+                  @Html.DisplayFor(modelItem => item.IdentificationType.Name)
+                }
+        </dd>
+
+         <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Beneficiary.IdentificationDateIssued)
+        </dt>
+         <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Beneficiary.IdentificationDateIssued)
+        </dd>
+
         <hr />
+
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Beneficiary.Masterlists)
         </dt>

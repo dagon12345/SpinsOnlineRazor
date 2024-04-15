@@ -37,8 +37,9 @@ namespace SpinsOnlineRazor.Models.RedesignModels
                and the corresponding navigation property is MaritalStatus. 
                An Masterlist entity is associated with one MaritalStatus entity.*/
         public int MaritalstatusID { get; set; }
-
         public int ValidationformID { get; set; }
+        public int StatusID { get; set; }
+        public int IdentificationTypeID { get; set; }
         //Isa ra ija dawaton na entity isa ka Beneficiary,Region,Province,Municipality, and Barangay. So Entity below
         /*An Masterlist entity is associated with one Beneficiary entity, so the property contains a single Beneficiary entity.*/
         public Beneficiary Beneficiary { get; set; }
@@ -53,6 +54,9 @@ namespace SpinsOnlineRazor.Models.RedesignModels
 
         //Isa ra ka validation form per masterlist di mag dabo
         public Validationform Validationform { get; set; }
+        // Isa ra ka Status per masterlist di mag dabo
+        public Status Status { get; set; }
+        public IdentificationType IdentificationType { get; set; }
 
     }
 }

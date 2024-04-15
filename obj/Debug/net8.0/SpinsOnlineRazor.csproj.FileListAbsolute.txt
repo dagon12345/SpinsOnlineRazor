@@ -556,3 +556,6 @@ D:\Repositories\SpinsOnlineRazor\obj\Debug\net8.0\scopedcss\projectbundle\SpinsO
 D:\Repositories\SpinsOnlineRazor\obj\Debug\net8.0\SpinsOnl.96E344D1.Up2Date
 D:\Repositories\SpinsOnlineRazor\obj\Debug\net8.0\SpinsOnlineRazor.genruntimeconfig.cache
 D:\Repositories\SpinsOnlineRazor\obj\Debug\net8.0\ref\SpinsOnlineRazor.dll
+C:\Users\DSWD\SpinsOnlineRazor\bin\Debug\net8.0\Syncfusion.EJ2.dll
+C:\Users\DSWD\SpinsOnlineRazor\bin\Debug\net8.0\Syncfusion.Licensing.dll
+C:\Users\DSWD\SpinsOnlineRazor\obj\Debug\net8.0\SpinsOnlineRazor.MvcApplicationPartsAssemblyInfo.cs

@@ -1,6 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using SpinsOnlineRazor.Data;
+using SpinsOnlineRazor.Models.RedesignModels;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,11 +13,10 @@ builder.Services.AddRazorPages();
 builder.Services.AddDbContext<SpinsContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("SpinsContext")));
 
-
-
     /*The AddDatabaseDeveloperPageExceptionFilter provides helpful error 
     information in the development environment for EF migrations errors.*/
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+
 
 var app = builder.Build();
 

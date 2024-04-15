@@ -54,8 +54,10 @@ namespace SpinsOnlineRazor.Pages.Beneficiaries
             .ThenInclude(s => s.Maritalstatus)
         .Include(b => b.Masterlists)
             .ThenInclude(s => s.Validationform)
-         .Include(b => b.Masterlists)
+        .Include(b => b.Masterlists)
             .ThenInclude(s => s.Validationform.Assessment)
+        .Include(b => b.Masterlists)
+            .ThenInclude(s => s.IdentificationType)
         .AsNoTracking()
         .FirstOrDefaultAsync(m => m.BeneficiaryID == id);
 
