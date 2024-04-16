@@ -6,11 +6,11 @@ $(document).ready(function() {
 
    
     // inspired by http://jsfiddle.net/arunpjohny/564Lxosz/1/
-    $('.table-responsive-stack').find("th").each(function (i) {
+   //  $('.table-responsive-stack').find("th").each(function (i) {
        
-       $('.table-responsive-stack td:nth-child(' + (i + 1) + ')').prepend('<span class="table-responsive-stack-thead">'+ $(this).text() + ':</span> ');
-       $('.table-responsive-stack-thead').hide();
-    });
+   //     $('.table-responsive-stack td:nth-child(' + (i + 1) + ')').prepend('<span class="table-responsive-stack-thead">'+ $(this).text() + ':</span> ');
+   //     $('.table-responsive-stack-thead').hide();
+   //  });
  
     
     
@@ -62,5 +62,13 @@ $(document).ready(function() {
  });
  
  
+ function ExportToExcel(type, fn, dl) {
+   var elt = document.getElementById('tbl_exporttable_to_xls');
+   var wb = XLSX.utils.table_to_book(elt, { sheet: "sheet1" });
+   return dl ?
+     XLSX.write(wb, { bookType: type, bookSST: true, type: 'base64' }):
+     XLSX.writeFile(wb, fn || ('MySheetName.' + (type || 'xlsx')));
+}
+
  
  

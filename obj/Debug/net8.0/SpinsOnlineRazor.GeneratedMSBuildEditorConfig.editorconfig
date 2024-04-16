@@ -17,59 +17,59 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = SpinsOnlineRazor
 build_property.RootNamespace = SpinsOnlineRazor
-build_property.ProjectDir = D:\Repositories\SpinsOnlineRazor\
+build_property.ProjectDir = C:\Users\DSWD\SpinsOnlineRazor\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = D:\Repositories\SpinsOnlineRazor
+build_property.MSBuildProjectDirectory = C:\Users\DSWD\SpinsOnlineRazor
 build_property._RazorSourceGeneratorDebug = 
 
-[D:/Repositories/SpinsOnlineRazor/Pages/Beneficiaries/Create.cshtml]
+[C:/Users/DSWD/SpinsOnlineRazor/Pages/Beneficiaries/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQmVuZWZpY2lhcmllc1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Repositories/SpinsOnlineRazor/Pages/Beneficiaries/Delete.cshtml]
+[C:/Users/DSWD/SpinsOnlineRazor/Pages/Beneficiaries/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQmVuZWZpY2lhcmllc1xEZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Repositories/SpinsOnlineRazor/Pages/Beneficiaries/Details.cshtml]
+[C:/Users/DSWD/SpinsOnlineRazor/Pages/Beneficiaries/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQmVuZWZpY2lhcmllc1xEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Repositories/SpinsOnlineRazor/Pages/Beneficiaries/Edit.cshtml]
+[C:/Users/DSWD/SpinsOnlineRazor/Pages/Beneficiaries/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQmVuZWZpY2lhcmllc1xFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Repositories/SpinsOnlineRazor/Pages/Beneficiaries/Index.cshtml]
+[C:/Users/DSWD/SpinsOnlineRazor/Pages/Beneficiaries/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQmVuZWZpY2lhcmllc1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Repositories/SpinsOnlineRazor/Pages/Error.cshtml]
+[C:/Users/DSWD/SpinsOnlineRazor/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Repositories/SpinsOnlineRazor/Pages/Index.cshtml]
+[C:/Users/DSWD/SpinsOnlineRazor/Pages/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Repositories/SpinsOnlineRazor/Pages/Privacy.cshtml]
+[C:/Users/DSWD/SpinsOnlineRazor/Pages/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJpdmFjeS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Repositories/SpinsOnlineRazor/Pages/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/DSWD/SpinsOnlineRazor/Pages/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Repositories/SpinsOnlineRazor/Pages/_ViewImports.cshtml]
+[C:/Users/DSWD/SpinsOnlineRazor/Pages/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Repositories/SpinsOnlineRazor/Pages/_ViewStart.cshtml]
+[C:/Users/DSWD/SpinsOnlineRazor/Pages/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Repositories/SpinsOnlineRazor/Pages/Shared/_Layout.cshtml]
+[C:/Users/DSWD/SpinsOnlineRazor/Pages/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-owouyn5hu4
