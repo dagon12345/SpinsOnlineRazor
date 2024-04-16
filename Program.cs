@@ -16,8 +16,12 @@ builder.Services.AddDbContext<SpinsContext>(options =>
     /*The AddDatabaseDeveloperPageExceptionFilter provides helpful error 
     information in the development environment for EF migrations errors.*/
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
-
-
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles;
+    });
+Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("Mgo+DSMBMAY9C3t2UFhhQlJBfV5AQmBIYVp/TGpJfl96cVxMZVVBJAtUQF1hTX5Xd0NjWX9acHZRQ2hb");
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

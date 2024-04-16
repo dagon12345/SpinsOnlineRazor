@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 using SpinsOnlineRazor.Models.RedesignModels.ComplexModels;
 
 namespace SpinsOnlineRazor.Models.RedesignModels
@@ -65,6 +66,7 @@ namespace SpinsOnlineRazor.Models.RedesignModels
 
         /*One is to Many relationship with Masterlist Entity, isa ra ka name sa Bene an makasuyod
          sa masterlist pero an masterlist mudawat nan dabo na beneficiary, try nat an ICollection*/
+        //[JsonIgnore]
         public ICollection<Masterlist> Masterlists { get; set; }
 
 

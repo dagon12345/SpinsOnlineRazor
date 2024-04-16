@@ -20,206 +20,207 @@ The W3C guidelines recommend that GET should be used when the action doesn't res
 
 
 <div class="Row" style="display: flex; justify-content: space-between;">
-    
-<div class="col-sm-6 ">
-    <p>
-    <a class="btn btn-secondary" asp-page="Create" style="padding: 5px; margin-left: 2%;">Create New</a>
-    <button class="btn btn-primary"   data-kt-menu-placement="bottom-end" onclick="ExportToExcel('xlsx')"style="padding: 5px; "><i class="bi bi-file-earmark-excel-fill"></i>Export </button>
-    </p>
-   </div>
+
+    <div class="col-sm-6 ">
+        <p>
+            <a class="btn btn-secondary" asp-page="Create" style="padding: 5px; margin-left: 2%;">Create New</a>
+            @* <button class="btn btn-primary" data-kt-menu-placement="bottom-end"
+            onclick="ExportToExcel('xlsx')"style="padding: 5px; "><i class="bi bi-file-earmark-excel-fill"></i>Export
+            </button> *@
+        </p>
+    </div>
 
 
-<div class="col-sm-6 ">
-    <form class="d-flex" asp-page="./Index" method="get">
-        <input class="form-control me-sm-2" type="search" placeholder="Search Name" name="SearchString" value="@Model.CurrentFilter" >
-        <button class="btn btn-secondary my-2 my-sm-0" type="submit"  value="Search" >Search</button>
-        <a class="btn btn-primary" style="margin-right: 5" asp-page="./Index">Refresh</a>
-    </form>
+    <div class="col-sm-6 ">
+        <form class="d-flex" asp-page="./Index" method="get">
+            <input class="form-control me-sm-2" type="search" placeholder="Search Name" name="SearchString"
+                value="@Model.CurrentFilter">
+            <button class="btn btn-secondary my-2 my-sm-0" type="submit" value="Search">Search</button>
+            <a class="btn btn-primary" style="margin-right: 5" asp-page="./Index">Refresh</a>
+        </form>
+    </div>
+
+
 </div>
+ 
+<ejs-grid id="Grid" dataSource="@Model.Beneficiaries">
+    <e-grid-columns>
+        <e-grid-column field="LastName" headerText="Last Name" width="120"></e-grid-column>
+        <e-grid-column field="FirstName" headerText="First Name" width="150"></e-grid-column>
+        <e-grid-column field="MiddleName" headerText="Middle Name" width="130"></e-grid-column>
+        <e-grid-column field="ExtName" headerText="Ext Name" width="120"></e-grid-column>
+        <e-grid-column field="BirthDate" headerText="Birth Date" width="120" format="yMd"></e-grid-column>
+    </e-grid-columns>
+</ejs-grid>
 
 
-</div>
 
+  
 
 <div class="container">
-   <table class="table table-bordered table-striped table-responsive-stack table-dark" id="tbl_exporttable_to_xls" border="1">
-   
-      <thead class="thead-dark">
-         <tr>
-              @*Adds hyperlinks to the LastName and Birthdate column headings.
-            Uses the information in NameSort and Da teSort to set up hyperlinks with the current sort order values.
-            Changes the page heading from Index to Beneficiaries.
-            Changes Model.Beneficiary to Model.Beneficiaries.*@
-        
-            <th>
-                @*The column header links use the query string to pass the current search string to the OnGetAsync
-                method:*@
-                <a asp-page="./Index" asp-route-sortOrder="@Model.NameSort"
-                    asp-route-currentFilter="@Model.CurrentFilter">
-                    @Html.DisplayNameFor(model => model.Beneficiaries[0].LastName)
-                </a>
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Beneficiaries[0].FirstName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Beneficiaries[0].MiddleName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Beneficiaries[0].ExtName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Beneficiaries[0].BirthDate)
-            </th>
-             <th bgcolor="white">
-                 Status
-            </th>
-            <th>
-                 Region
-            </th>
-            <th>
-                Province
-            </th>
-            <th>
-                Municipality
-            </th>
-            <th>
-                Barangay
-            </th>
-            @*
-            <th>
-                ID Type
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Beneficiaries[0].IdentificationNumber)
-            </th>*@
+    @* <table class="table table-bordered table-striped table-responsive-stack table-dark" id="tbl_exporttable_to_xls"
+    border="1">
+
+    <thead class="thead-dark">
+    <tr>
 
 
-            @*
-            <th>
-            <a asp-page="./Index" asp-route-sortOrder="@Model.DateSort">
-            @Html.DisplayNameFor(model => model.Beneficiaries[0].Birthdate)
-            </a>
-            </th>*@
- <th style="text-align: center;">
+    <th>
+
+    <a asp-page="./Index" asp-route-sortOrder="@Model.NameSort"
+    asp-route-currentFilter="@Model.CurrentFilter">
+    @Html.DisplayNameFor(model => model.Beneficiaries[0].LastName)
+    </a>
+    </th>
+    <th>
+    @Html.DisplayNameFor(model => model.Beneficiaries[0].FirstName)
+    </th>
+    <th>
+    @Html.DisplayNameFor(model => model.Beneficiaries[0].MiddleName)
+    </th>
+    <th>
+    @Html.DisplayNameFor(model => model.Beneficiaries[0].ExtName)
+    </th>
+    <th>
+    @Html.DisplayNameFor(model => model.Beneficiaries[0].BirthDate)
+    </th>
+    <th bgcolor="white">
+    Status
+    </th>
+    <th>
+    Region
+    </th>
+    <th>
+    Province
+    </th>
+    <th>
+    Municipality
+    </th>
+    <th>
+    Barangay
+    </th>
+
+    <th style="text-align: center;">
     <div class="btn-group" role="group" aria-label="Actions">
-        <div class="header-container" style="width: 100px;">
-          
-        </div>
+    <div class="header-container" style="width: 100px;">
+
     </div>
-</th>
+    </div>
+    </th>
 
 
-        
-
-         </tr>
-      </thead>
-      <tbody>
-         <tr>
-             @foreach (var item in Model.Beneficiaries)
-        {
-            <tr>
-             
-                <td>
-                    @Html.DisplayFor(modelItem => item.LastName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FirstName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.MiddleName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ExtName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.BirthDate)
-                </td>
-                 <td>
-                    @{
-                        foreach (var masterlist in item.Masterlists)
-                        {
-                            @*@masterlist.ValidationformID @: @validation. <br />*@
-                            @Html.DisplayFor(modelItem => masterlist.Status.Name)
-                        }
-                    }
-                </td>
-                <td>
-                    @{
-                        foreach (var masterlist in item.Masterlists)
-                        {
-                            @*@masterlist.ValidationformID @: @validation. <br />*@
-                            @Html.DisplayFor(modelItem => masterlist.Region.Name)
-
-                        }
-                    }
-                </td>
-                <td>
-                    @{
-                        foreach (var masterlist in item.Masterlists)
-                        {
-                            @*@masterlist.ValidationformID @: @validation. <br />*@
-                            @Html.DisplayFor(modelItem => masterlist.Province.Name)
-                        }
-                    }
-                </td>
-                <td>
-                    @{
-                        foreach (var masterlist in item.Masterlists)
-                        {
-                            @*@masterlist.ValidationformID @: @validation. <br />*@
-                            @Html.DisplayFor(modelItem => masterlist.Municipality.Name)
-                        }
-                    }
-                </td>
-                  <td>
-                    @{
-                        foreach (var masterlist in item.Masterlists)
-                        {
-                            @*@masterlist.ValidationformID @: @validation. <br />*@
-                            @Html.DisplayFor(modelItem => masterlist.Barangay.Name)
-                        }
-                    }
-                </td>
-          
-
-                <td style="text-align:center; " >
-                     <div class="btn-group" role="group" aria-label="Actions">
-                    <a class="btn btn-secondary" asp-page="./Edit" asp-route-id="@item.BeneficiaryID"><i class="bi bi-pencil-square"  style="font-size: 8px;"></i></a>
-    
-          
-                    <a class="btn btn-info" asp-page="./Details" asp-route-id="@item.BeneficiaryID"><i class="bi bi-view-list"  style="font-size: 8px;"></i></a> 
-     
-                    <a class="btn btn-danger" asp-page="./Delete" asp-route-id="@item.BeneficiaryID"><i class="bi bi-trash3-fill" style="font-size: 8px;"> </i></a>
-              </div>
-                </td>
 
 
-                
-            </tr>
-        }
-         </tr>
-        
-      </tbody>
-   </table>
-   
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+    @foreach (var item in Model.Beneficiaries)
+    {
+    <tr>
 
-@*Paging code for razor below*@
+    <td>
+    @Html.DisplayFor(modelItem => item.LastName)
+    </td>
+    <td>
+    @Html.DisplayFor(modelItem => item.FirstName)
+    </td>
+    <td>
+    @Html.DisplayFor(modelItem => item.MiddleName)
+    </td>
+    <td>
+    @Html.DisplayFor(modelItem => item.ExtName)
+    </td>
+    <td>
+    @Html.DisplayFor(modelItem => item.BirthDate)
+    </td>
+    <td>
+    @{
+    foreach (var masterlist in item.Masterlists)
+    {
 
-@{
-    //An mga button ma disable kung waya nay previous or next page.
-    var prevDisabled = !Model.Beneficiaries.HasPreviousPage ? "disabled" : "";
-    var nextDisabled = !Model.Beneficiaries.HasNextPage ? "disabled" : "";
-}
-@*The paging buttons are displayed by tag helpers:*@
-<a asp-page="./Index" asp-route-sortOrder="@Model.CurrentSort"
-    asp-route-pageIndex="@(Model.Beneficiaries.PageIndex - 1)" asp-route-currentFilter="@Model.CurrentFilter"
-    class="btn btn-primary @prevDisabled">
-    &laquo;
-</a>
-<a asp-page="./Index" asp-route-sortOrder="@Model.CurrentSort"
-    asp-route-pageIndex="@(Model.Beneficiaries.PageIndex + 1)" asp-route-currentFilter="@Model.CurrentFilter"
-    class="btn btn-primary @nextDisabled">
-    &raquo;
-</a>
+    @Html.DisplayFor(modelItem => masterlist.Status.Name)
+    }
+    }
+    </td>
+    <td>
+    @{
+    foreach (var masterlist in item.Masterlists)
+    {
 
+    @Html.DisplayFor(modelItem => masterlist.Region.Name)
+
+    }
+    }
+    </td>
+    <td>
+    @{
+    foreach (var masterlist in item.Masterlists)
+    {
+
+    @Html.DisplayFor(modelItem => masterlist.Province.Name)
+    }
+    }
+    </td>
+    <td>
+    @{
+    foreach (var masterlist in item.Masterlists)
+    {
+
+    @Html.DisplayFor(modelItem => masterlist.Municipality.Name)
+    }
+    }
+    </td>
+    <td>
+    @{
+    foreach (var masterlist in item.Masterlists)
+    {
+
+    @Html.DisplayFor(modelItem => masterlist.Barangay.Name)
+    }
+    }
+    </td>
+
+
+    <td style="text-align:center; " >
+    <div class="btn-group" role="group" aria-label="Actions">
+
+    <a class="btn btn-secondary" asp-page="./Edit" asp-route-id="@item.BeneficiaryID"><i class="bi bi-pencil-square"
+    style="font-size: 8px;"></i></a>
+
+
+    <a class="btn btn-info" asp-page="./Details" asp-route-id="@item.BeneficiaryID"><i class="bi bi-view-list"style="font-size: 8px;"></i></a>
+
+    <a class="btn btn-danger" asp-page="./Delete" asp-route-id="@item.BeneficiaryID"><i class="bi bi-trash3-fill"
+    style="font-size: 8px;"> </i></a>
+    </div>
+    </td>
+
+
+
+    </tr>
+    }
+    </tr>
+
+    </tbody>
+    </table> *@
+
+
+    @*Paging code for razor below*@
+
+    @{
+        //An mga button ma disable kung waya nay previous or next page.
+        var prevDisabled = !Model.Beneficiaries.HasPreviousPage ? "disabled" : "";
+        var nextDisabled = !Model.Beneficiaries.HasNextPage ? "disabled" : "";
+    }
+    @*The paging buttons are displayed by tag helpers:*@
+    <a asp-page="./Index" asp-route-sortOrder="@Model.CurrentSort"
+        asp-route-pageIndex="@(Model.Beneficiaries.PageIndex - 1)" asp-route-currentFilter="@Model.CurrentFilter"
+        class="btn btn-primary @prevDisabled">
+        &laquo;
+    </a>
+    <a asp-page="./Index" asp-route-sortOrder="@Model.CurrentSort"
+        asp-route-pageIndex="@(Model.Beneficiaries.PageIndex + 1)" asp-route-currentFilter="@Model.CurrentFilter"
+        class="btn btn-primary @nextDisabled">
+        &raquo;
+    </a>

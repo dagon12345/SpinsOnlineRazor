@@ -1,0 +1,69 @@
+@page
+@model SpinsOnlineRazor.Pages.Masterlists.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Masterlist</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Masterlist.BeneficiaryID" class="control-label"></label>
+                <select asp-for="Masterlist.BeneficiaryID" class ="form-control" asp-items="ViewBag.BeneficiaryID"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Masterlist.RegionID" class="control-label"></label>
+                <select asp-for="Masterlist.RegionID" class ="form-control" asp-items="ViewBag.RegionID"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Masterlist.ProvinceID" class="control-label"></label>
+                <select asp-for="Masterlist.ProvinceID" class ="form-control" asp-items="ViewBag.ProvinceID"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Masterlist.MunicipalityID" class="control-label"></label>
+                <select asp-for="Masterlist.MunicipalityID" class ="form-control" asp-items="ViewBag.MunicipalityID"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Masterlist.BarangayID" class="control-label"></label>
+                <select asp-for="Masterlist.BarangayID" class ="form-control" asp-items="ViewBag.BarangayID"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Masterlist.SexID" class="control-label"></label>
+                <select asp-for="Masterlist.SexID" class ="form-control" asp-items="ViewBag.SexID"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Masterlist.MaritalstatusID" class="control-label"></label>
+                <select asp-for="Masterlist.MaritalstatusID" class ="form-control" asp-items="ViewBag.MaritalstatusID"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Masterlist.ValidationformID" class="control-label"></label>
+                <select asp-for="Masterlist.ValidationformID" class ="form-control" asp-items="ViewBag.ValidationformID"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Masterlist.StatusID" class="control-label"></label>
+                <select asp-for="Masterlist.StatusID" class ="form-control" asp-items="ViewBag.StatusID"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Masterlist.IdentificationTypeID" class="control-label"></label>
+                <select asp-for="Masterlist.IdentificationTypeID" class ="form-control" asp-items="ViewBag.IdentificationTypeID"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
