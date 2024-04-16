@@ -42,20 +42,41 @@ The W3C guidelines recommend that GET should be used when the action doesn't res
 
 
 </div>
- 
+
 <ejs-grid id="Grid" dataSource="@Model.Beneficiaries">
     <e-grid-columns>
+      
         <e-grid-column field="LastName" headerText="Last Name" width="120"></e-grid-column>
         <e-grid-column field="FirstName" headerText="First Name" width="150"></e-grid-column>
         <e-grid-column field="MiddleName" headerText="Middle Name" width="130"></e-grid-column>
         <e-grid-column field="ExtName" headerText="Ext Name" width="120"></e-grid-column>
-        <e-grid-column field="BirthDate" headerText="Birth Date" width="120" format="yMd"></e-grid-column>
+        <e-grid-column field="BirthDate" headerText="Birth Date" width="80" format="yMd"></e-grid-column>
+        <e-grid-column headerText="Actions" template="#template" width="100" textAlign="Center"></e-grid-column>
     </e-grid-columns>
 </ejs-grid>
 
 
+<script id="template" type="text/x-template">
+    @if (Model.Beneficiaries.Any())
+    {
+        <div>
+            <a class="btn btn-info" asp-page="./Details"  asp-route-id="@Model.Beneficiaries.First().BeneficiaryID">
+                <i class="bi bi-eye"></i>
+            </a>
 
-  
+            <a class="btn btn-secondary" asp-page="./Edit" asp-route-id="@Model.Beneficiaries.First().BeneficiaryID">
+                <i class="bi bi-pencil-square"></i>
+            </a>
+
+            <a class="btn btn-danger" asp-page="./Delete" asp-route-id="@Model.Beneficiaries.First().BeneficiaryID">
+            <i class="bi bi-trash3-fill"> </i>
+            </a>
+        </div>
+    }
+</script>
+
+
+
 
 <div class="container">
     @* <table class="table table-bordered table-striped table-responsive-stack table-dark" id="tbl_exporttable_to_xls"
@@ -189,7 +210,8 @@ The W3C guidelines recommend that GET should be used when the action doesn't res
     style="font-size: 8px;"></i></a>
 
 
-    <a class="btn btn-info" asp-page="./Details" asp-route-id="@item.BeneficiaryID"><i class="bi bi-view-list"style="font-size: 8px;"></i></a>
+    <a class="btn btn-info" asp-page="./Details" asp-route-id="@item.BeneficiaryID"><i class="bi
+    bi-view-list"style="font-size: 8px;"></i></a>
 
     <a class="btn btn-danger" asp-page="./Delete" asp-route-id="@item.BeneficiaryID"><i class="bi bi-trash3-fill"
     style="font-size: 8px;"> </i></a>

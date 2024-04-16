@@ -89,18 +89,19 @@
 </tbody>
 </table> *@
 
-<ejs-grid id="Grid" dataSource="@Model.BeneficiaryViewModel" allowFiltering="true">
+<ejs-grid id="Grid" allowExcelExport="true" dataSource="@Model.BeneficiaryViewModel" allowFiltering="true"  detailTemplate="#detailtemplate" toolbarClick="toolbarClick" ExcelQueryCellInfo="exportQueryCellInfo"
+                      pdfQueryCellInfo="exportQueryCellInfo" dataBound="gridDataBound" toolbar="@(new List<string>() {"ExcelExport"})">
     <e-grid-filterSettings type="Excel"></e-grid-filterSettings>
     <e-grid-columns>
 
         <e-grid-column field="LastName" headerText="Last Name" width="120"></e-grid-column>
         <e-grid-column field="FirstName" headerText="First Name" width="120"></e-grid-column>
-        <e-grid-column field="MiddleName" headerText="MiddleName" width="200"></e-grid-column>
+        <e-grid-column field="MiddleName" headerText="Middle Name" width="150"></e-grid-column>
         <e-grid-column field="ExtName" headerText="Ext Name" width="120"></e-grid-column>
         <e-grid-column field="Status" headerText="Status" width="200"></e-grid-column>
         <e-grid-column field="Referencecode" headerText="GIS" width="200"></e-grid-column>
         <e-grid-column field="SpinsBatch" headerText="Spins Batch" width="150"></e-grid-column>
-        <e-grid-column field="BirthDate" headerText="Birth Date" width="120" format="yyyy-MM-dd"></e-grid-column>
+        @*<e-grid-column field="BirthDate" headerText="Birth Date" width="120" format="yyyy-MM-dd"  visible="false"></e-grid-column>
         <e-grid-column field="RegionName" headerText="Region" width="200"></e-grid-column>
         <e-grid-column field="ProvinceName" headerText="Province" width="200"></e-grid-column>
         <e-grid-column field="MunicipalityName" headerText="Municipality" width="200"></e-grid-column>
@@ -108,10 +109,97 @@
         <e-grid-column field="Assessment" headerText="Assessment" width="200"></e-grid-column>
         <e-grid-column field="IdentificationType" headerText="ID Type" width="200"></e-grid-column>
         <e-grid-column field="IdentificationNo" headerText="ID Number" width="200"></e-grid-column>
-        <e-grid-column field="IdentificationDate" headerText="Date Issued" width="200"
-            format="yyyy-MM-dd"></e-grid-column>
+        <e-grid-column field="IdentificationDate" headerText="Date Issued" width="200"format="yyyy-MM-dd"></e-grid-column> *@
     </e-grid-columns>
 </ejs-grid>
+
+        <script>
+            function toolbarClick(args) {
+                var gridObj = document.getElementById("Grid").ej2_instances[0];
+
+                if (args.item.id === 'Grid_excelexport') {
+                    gridObj.excelExport();
+                }
+            }
+
+            function exportQueryCellInfo(args) {
+                
+            };
+            var isInitial = true;
+            function gridDataBound(args) {
+                if (isInitial) {
+                    var grid = document.getElementById("Grid").ej2_instances[0];
+                    grid.toolbarModule.toolbar.hideItem(2, true);
+                    isInitial = false;
+                }
+            }
+        </script>
+
+
+
+
+<style type="text/css" class="cssStyles">
+    .detailtable td {
+        font-size: 13px;
+        padding: 4px;
+        max-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+	font-weight: normal;
+    }
+    
+</style>
+
+<script type="text/x-template" id="detailtemplate">
+    <table class="detailtable" width="100%">
+        <colgroup>
+            <col width="20%" />
+            <col width="20%" />
+            <col width="20%" />
+            <col width="40%" />
+        </colgroup>
+        <tbody>
+            <tr>
+                <td>
+                    <span style="font-weight: 500;">Region </span> ${RegionName}
+                </td>
+                <td>
+                    <span style="font-weight: 500;">Assessment: </span> ${Assessment}
+                </td>
+                 <td>
+                    <span style="font-weight: 500;">Birth Date: </span> ${BirthDate.toLocaleDateString()}
+                </td>
+            </tr>
+             <tr>
+                   <td>
+                    <span style="font-weight: 500;">Province: </span> ${ProvinceName}
+                </td>
+                <td>
+                    <span style="font-weight: 500;">ID Type: </span> ${IdentificationType}
+                </td>
+            </tr>
+             <tr>
+                   <td>
+                    <span style="font-weight: 500;">Municipality: </span> ${MunicipalityName}
+                </td>
+                <td>
+                    <span style="font-weight: 500;">ID Number: </span> ${IdentificationNo}
+                </td>
+            </tr>
+              <tr>
+                   <td>
+                    <span style="font-weight: 500;">Barangay: </span> ${BarangayName}
+                </td>
+                <td>
+                    <span style="font-weight: 500;">Date Issued: </span> ${IdentificationDate.toLocaleDateString()}
+                </td>
+            </tr>
+             </tr>
+        </tbody>
+    </table>
+</script>
+
 
 @*Paging code for razor below*@
 
