@@ -26,6 +26,114 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\DSWD\SpinsOnlineRazor
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/DSWD/SpinsOnlineRazor/ContosoUniversity/Pages/About.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Q29udG9zb1VuaXZlcnNpdHlcUGFnZXNcQWJvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/DSWD/SpinsOnlineRazor/ContosoUniversity/Pages/Courses/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Q29udG9zb1VuaXZlcnNpdHlcUGFnZXNcQ291cnNlc1xDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/DSWD/SpinsOnlineRazor/ContosoUniversity/Pages/Courses/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Q29udG9zb1VuaXZlcnNpdHlcUGFnZXNcQ291cnNlc1xEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/DSWD/SpinsOnlineRazor/ContosoUniversity/Pages/Courses/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Q29udG9zb1VuaXZlcnNpdHlcUGFnZXNcQ291cnNlc1xEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/DSWD/SpinsOnlineRazor/ContosoUniversity/Pages/Courses/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Q29udG9zb1VuaXZlcnNpdHlcUGFnZXNcQ291cnNlc1xFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/DSWD/SpinsOnlineRazor/ContosoUniversity/Pages/Courses/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Q29udG9zb1VuaXZlcnNpdHlcUGFnZXNcQ291cnNlc1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/DSWD/SpinsOnlineRazor/ContosoUniversity/Pages/Departments/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Q29udG9zb1VuaXZlcnNpdHlcUGFnZXNcRGVwYXJ0bWVudHNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/DSWD/SpinsOnlineRazor/ContosoUniversity/Pages/Departments/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Q29udG9zb1VuaXZlcnNpdHlcUGFnZXNcRGVwYXJ0bWVudHNcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/DSWD/SpinsOnlineRazor/ContosoUniversity/Pages/Departments/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Q29udG9zb1VuaXZlcnNpdHlcUGFnZXNcRGVwYXJ0bWVudHNcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/DSWD/SpinsOnlineRazor/ContosoUniversity/Pages/Departments/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Q29udG9zb1VuaXZlcnNpdHlcUGFnZXNcRGVwYXJ0bWVudHNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/DSWD/SpinsOnlineRazor/ContosoUniversity/Pages/Departments/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Q29udG9zb1VuaXZlcnNpdHlcUGFnZXNcRGVwYXJ0bWVudHNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/DSWD/SpinsOnlineRazor/ContosoUniversity/Pages/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Q29udG9zb1VuaXZlcnNpdHlcUGFnZXNcRXJyb3IuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/DSWD/SpinsOnlineRazor/ContosoUniversity/Pages/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Q29udG9zb1VuaXZlcnNpdHlcUGFnZXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/DSWD/SpinsOnlineRazor/ContosoUniversity/Pages/Instructors/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Q29udG9zb1VuaXZlcnNpdHlcUGFnZXNcSW5zdHJ1Y3RvcnNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/DSWD/SpinsOnlineRazor/ContosoUniversity/Pages/Instructors/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Q29udG9zb1VuaXZlcnNpdHlcUGFnZXNcSW5zdHJ1Y3RvcnNcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/DSWD/SpinsOnlineRazor/ContosoUniversity/Pages/Instructors/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Q29udG9zb1VuaXZlcnNpdHlcUGFnZXNcSW5zdHJ1Y3RvcnNcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/DSWD/SpinsOnlineRazor/ContosoUniversity/Pages/Instructors/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Q29udG9zb1VuaXZlcnNpdHlcUGFnZXNcSW5zdHJ1Y3RvcnNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/DSWD/SpinsOnlineRazor/ContosoUniversity/Pages/Instructors/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Q29udG9zb1VuaXZlcnNpdHlcUGFnZXNcSW5zdHJ1Y3RvcnNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/DSWD/SpinsOnlineRazor/ContosoUniversity/Pages/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Q29udG9zb1VuaXZlcnNpdHlcUGFnZXNcUHJpdmFjeS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/DSWD/SpinsOnlineRazor/ContosoUniversity/Pages/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Q29udG9zb1VuaXZlcnNpdHlcUGFnZXNcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/DSWD/SpinsOnlineRazor/ContosoUniversity/Pages/Students/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Q29udG9zb1VuaXZlcnNpdHlcUGFnZXNcU3R1ZGVudHNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/DSWD/SpinsOnlineRazor/ContosoUniversity/Pages/Students/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Q29udG9zb1VuaXZlcnNpdHlcUGFnZXNcU3R1ZGVudHNcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/DSWD/SpinsOnlineRazor/ContosoUniversity/Pages/Students/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Q29udG9zb1VuaXZlcnNpdHlcUGFnZXNcU3R1ZGVudHNcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/DSWD/SpinsOnlineRazor/ContosoUniversity/Pages/Students/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Q29udG9zb1VuaXZlcnNpdHlcUGFnZXNcU3R1ZGVudHNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/DSWD/SpinsOnlineRazor/ContosoUniversity/Pages/Students/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Q29udG9zb1VuaXZlcnNpdHlcUGFnZXNcU3R1ZGVudHNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/DSWD/SpinsOnlineRazor/ContosoUniversity/Pages/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Q29udG9zb1VuaXZlcnNpdHlcUGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/DSWD/SpinsOnlineRazor/ContosoUniversity/Pages/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Q29udG9zb1VuaXZlcnNpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/DSWD/SpinsOnlineRazor/Pages/Beneficiaries/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQmVuZWZpY2lhcmllc1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -89,6 +197,10 @@ build_metadata.AdditionalFiles.CssScope =
 [C:/Users/DSWD/SpinsOnlineRazor/Pages/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/DSWD/SpinsOnlineRazor/ContosoUniversity/Pages/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Q29udG9zb1VuaXZlcnNpdHlcUGFnZXNcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-l8i3u3qfil
 
 [C:/Users/DSWD/SpinsOnlineRazor/Pages/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXQuY3NodG1s
