@@ -44,6 +44,10 @@ namespace SpinsOnlineRazor.Migrations
                     b.Property<DateTime>("BirthDate")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("ContactNumber")
+                        .HasMaxLength(11)
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("ExtName")
                         .HasMaxLength(3)
                         .HasColumnType("TEXT");
@@ -52,6 +56,13 @@ namespace SpinsOnlineRazor.Migrations
                         .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("TEXT");
+
+                    b.Property<string>("HealthRemarks")
+                        .HasMaxLength(50)
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("HealthStatusID")
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("IdentificationDateIssued")
                         .HasColumnType("TEXT");
@@ -70,7 +81,13 @@ namespace SpinsOnlineRazor.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("SpecificAddress")
+                        .HasMaxLength(20)
+                        .HasColumnType("TEXT");
+
                     b.HasKey("BeneficiaryID");
+
+                    b.HasIndex("HealthStatusID");
 
                     b.ToTable("Beneficiary", (string)null);
                 });
@@ -97,6 +114,12 @@ namespace SpinsOnlineRazor.Migrations
                     b.Property<int>("AssessmentID")
                         .HasColumnType("INTEGER");
 
+                    b.Property<bool>("Indigenous")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("Pantawid")
+                        .HasColumnType("INTEGER");
+
                     b.Property<int>("ReferenceCode")
                         .HasColumnType("INTEGER");
 
@@ -108,6 +131,19 @@ namespace SpinsOnlineRazor.Migrations
                     b.HasIndex("AssessmentID");
 
                     b.ToTable("Validationform", (string)null);
+                });
+
+            modelBuilder.Entity("SpinsOnlineRazor.Models.RedesignModels.HealthStatus", b =>
+                {
+                    b.Property<int>("HealthStatusID")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("HealthStatusID");
+
+                    b.ToTable("HealthStatus", (string)null);
                 });
 
             modelBuilder.Entity("SpinsOnlineRazor.Models.RedesignModels.IdentificationType", b =>
@@ -148,6 +184,9 @@ namespace SpinsOnlineRazor.Migrations
                     b.Property<int>("BeneficiaryID")
                         .HasColumnType("INTEGER");
 
+                    b.Property<int?>("HealthStatusID")
+                        .HasColumnType("INTEGER");
+
                     b.Property<int>("IdentificationTypeID")
                         .HasColumnType("INTEGER");
 
@@ -177,6 +216,8 @@ namespace SpinsOnlineRazor.Migrations
                     b.HasIndex("BarangayID");
 
                     b.HasIndex("BeneficiaryID");
+
+                    b.HasIndex("HealthStatusID");
 
                     b.HasIndex("IdentificationTypeID");
 
@@ -283,6 +324,17 @@ namespace SpinsOnlineRazor.Migrations
                     b.Navigation("Municipality");
                 });
 
+            modelBuilder.Entity("SpinsOnlineRazor.Models.RedesignModels.Beneficiary", b =>
+                {
+                    b.HasOne("SpinsOnlineRazor.Models.RedesignModels.HealthStatus", "HealthStatus")
+                        .WithMany()
+                        .HasForeignKey("HealthStatusID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("HealthStatus");
+                });
+
             modelBuilder.Entity("SpinsOnlineRazor.Models.RedesignModels.ComplexModels.Validationform", b =>
                 {
                     b.HasOne("SpinsOnlineRazor.Models.RedesignModels.ComplexModels.Assessment", "Assessment")
@@ -307,6 +359,10 @@ namespace SpinsOnlineRazor.Migrations
                         .HasForeignKey("BeneficiaryID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("SpinsOnlineRazor.Models.RedesignModels.HealthStatus", null)
+                        .WithMany("Masterlists")
+                        .HasForeignKey("HealthStatusID");
 
                     b.HasOne("SpinsOnlineRazor.Models.RedesignModels.IdentificationType", "IdentificationType")
                         .WithMany("Masterlists")
@@ -415,6 +471,11 @@ namespace SpinsOnlineRazor.Migrations
                 });
 
             modelBuilder.Entity("SpinsOnlineRazor.Models.RedesignModels.ComplexModels.Validationform", b =>
+                {
+                    b.Navigation("Masterlists");
+                });
+
+            modelBuilder.Entity("SpinsOnlineRazor.Models.RedesignModels.HealthStatus", b =>
                 {
                     b.Navigation("Masterlists");
                 });

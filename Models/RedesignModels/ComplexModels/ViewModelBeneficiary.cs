@@ -52,7 +52,10 @@ namespace SpinsOnlineRazor.Models.RedesignModels.ComplexModels
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [Display(Name = "Date Issued")]
         public DateTime IdentificationDate { get; set; }
+        public string Address { get; set; }
+        public string ContactNumber { get; set; }
 
+        //Joined
         public string Sex { get; set; }
 
         public string MaritalStatus { get; set; }
@@ -60,6 +63,8 @@ namespace SpinsOnlineRazor.Models.RedesignModels.ComplexModels
         public string Assessment { get; set; }
         public int Referencecode { get; set; }
         public int SpinsBatch { get; set; }
+        public bool Pantawid { get; set; }
+        public bool Indigenous { get; set; }
 
         //Masterlist
         public string Status { get; set; }

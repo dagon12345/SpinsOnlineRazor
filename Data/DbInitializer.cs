@@ -13,20 +13,13 @@ namespace SpinsOnlineRazor.Data
                 return;   // DB has been seeded
             }
 
-            var beneficiaries = new Beneficiary[]
-            {
-                new Beneficiary{LastName="ESPINA",FirstName="LANCE ANDREI",MiddleName="URIARTE",ExtName="",BirthDate=DateTime.Parse("1938-09-30"),IdentificationNumber="T57948",IdentificationDateIssued=DateTime.Parse("2023-09-15")},
-                new Beneficiary{LastName="ALQUIZAR",FirstName="CORNELIA",MiddleName="ONYOT",ExtName="",BirthDate=DateTime.Parse("1939-10-29"),IdentificationNumber="T57930",IdentificationDateIssued=DateTime.Parse("2023-10-30")},
-                new Beneficiary{LastName="AMEMENZI",FirstName="MARIA",MiddleName="JAIME",ExtName="",BirthDate=DateTime.Parse("1940-11-28"),IdentificationNumber="T57929",IdentificationDateIssued=DateTime.Parse("2023-11-30")},
-                new Beneficiary{LastName="BALINGIT",FirstName="CIPRIANO",MiddleName="CIBALLOS",ExtName="",BirthDate=DateTime.Parse("1941-12-27"),IdentificationNumber="T57902",IdentificationDateIssued=DateTime.Parse("2023-12-30")},
-                new Beneficiary{LastName="BELLEZA",FirstName="ERNESTO",MiddleName="TEOLOGO",ExtName="",BirthDate=DateTime.Parse("1942-01-26"),IdentificationNumber="T57895",IdentificationDateIssued=DateTime.Parse("2023-01-30")},
-                new Beneficiary{LastName="BELTIS",FirstName="ANICITA",MiddleName="RONQUILLO",ExtName="",BirthDate=DateTime.Parse("1943-02-25"),IdentificationNumber="T57867",IdentificationDateIssued=DateTime.Parse("2023-02-12")},
-                new Beneficiary{LastName="BERNANTE",FirstName="ESMERALDA",MiddleName="SAN PABLO",ExtName="",BirthDate=DateTime.Parse("1944-03-24"),IdentificationNumber="T57537",IdentificationDateIssued=DateTime.Parse("2023-03-30")},
-                new Beneficiary{LastName="CABIGON",FirstName="CANCIO",MiddleName="OBEDENCIO",ExtName="",BirthDate=DateTime.Parse("1945-04-23"),IdentificationNumber="T57429",IdentificationDateIssued=DateTime.Parse("2023-04-30")},
-            };
+           
 
-            context.Beneficiaries.AddRange(beneficiaries);
-            context.SaveChanges();
+
+            
+          
+
+
 
             var regions = new Region[]
             {
@@ -141,6 +134,18 @@ namespace SpinsOnlineRazor.Data
             context.IdentificationTypes.AddRange(identificationTypes);
             context.SaveChanges();
 
+                 var healthstatuses = new HealthStatus[]
+            {
+                new HealthStatus{HealthStatusID=1,Name="Bedridden"},
+                new HealthStatus{HealthStatusID=2,Name="Frail/ Sickly"},
+                new HealthStatus{HealthStatusID=4,Name="Able"},
+                new HealthStatus{HealthStatusID=5,Name="PWD"},
+
+            };
+
+            context.HealthStatuses.AddRange(healthstatuses);
+            context.SaveChanges();
+
 //
 
  
@@ -182,18 +187,35 @@ namespace SpinsOnlineRazor.Data
 ///
             var validationforms = new Validationform[]
                                  {
-                            new Validationform{ValidationformID=10,ReferenceCode=21031243,SpinsBatch=98,AssessmentID=1},
-                            new Validationform{ValidationformID=20,ReferenceCode=21031242,SpinsBatch=98,AssessmentID=3},
-                            new Validationform{ValidationformID=30,ReferenceCode=21031241,SpinsBatch=99,AssessmentID=4},
-                            new Validationform{ValidationformID=40,ReferenceCode=21031240,SpinsBatch=99,AssessmentID=2},
-                            new Validationform{ValidationformID=50,ReferenceCode=21031239,SpinsBatch=100,AssessmentID=1},
-                            new Validationform{ValidationformID=60,ReferenceCode=21031238,SpinsBatch=100,AssessmentID=2},
-                            new Validationform{ValidationformID=70,ReferenceCode=21031237,SpinsBatch=101,AssessmentID=3},
-                            new Validationform{ValidationformID=80,ReferenceCode=21031236,SpinsBatch=101,AssessmentID=4},
+                            new Validationform{ValidationformID=10,ReferenceCode=21031243,SpinsBatch=98,AssessmentID=1,Pantawid=true,Indigenous=true},
+                            new Validationform{ValidationformID=20,ReferenceCode=21031242,SpinsBatch=98,AssessmentID=3,Pantawid=false,Indigenous=true},
+                            new Validationform{ValidationformID=30,ReferenceCode=21031241,SpinsBatch=99,AssessmentID=4,Pantawid=true,Indigenous=false},
+                            new Validationform{ValidationformID=40,ReferenceCode=21031240,SpinsBatch=99,AssessmentID=2,Pantawid=false,Indigenous=true},
+                            new Validationform{ValidationformID=50,ReferenceCode=21031239,SpinsBatch=100,AssessmentID=1,Pantawid=true,Indigenous=false},
+                            new Validationform{ValidationformID=60,ReferenceCode=21031238,SpinsBatch=100,AssessmentID=2,Pantawid=false,Indigenous=true},
+                            new Validationform{ValidationformID=70,ReferenceCode=21031237,SpinsBatch=101,AssessmentID=3,Pantawid=true,Indigenous=false},
+                            new Validationform{ValidationformID=80,ReferenceCode=21031236,SpinsBatch=101,AssessmentID=4,Pantawid=false,Indigenous=true},
 
                                  };
 
             context.Validationforms.AddRange(validationforms);
+            context.SaveChanges();
+
+            
+            var beneficiaries = new Beneficiary[]
+            {
+                new Beneficiary{LastName="ESPINA",FirstName="LANCE ANDREI",MiddleName="URIARTE",ExtName="",BirthDate=DateTime.Parse("1938-09-30"),IdentificationNumber="T57948",IdentificationDateIssued=DateTime.Parse("2023-09-15"),SpecificAddress="Purok-2",ContactNumber="09123456789",HealthStatusID=1,HealthRemarks="Bed ridden"},
+                new Beneficiary{LastName="ALQUIZAR",FirstName="CORNELIA",MiddleName="ONYOT",ExtName="",BirthDate=DateTime.Parse("1939-10-29"),IdentificationNumber="T57930",IdentificationDateIssued=DateTime.Parse("2023-10-30"),SpecificAddress="Purok-3",ContactNumber="09123456789",HealthStatusID=2,HealthRemarks="Sick"},
+                new Beneficiary{LastName="AMEMENZI",FirstName="MARIA",MiddleName="JAIME",ExtName="",BirthDate=DateTime.Parse("1940-11-28"),IdentificationNumber="T57929",IdentificationDateIssued=DateTime.Parse("2023-11-30"),SpecificAddress="Purok-4",ContactNumber="09123456789",HealthStatusID=4,HealthRemarks="Healthy"},
+                new Beneficiary{LastName="BALINGIT",FirstName="CIPRIANO",MiddleName="CIBALLOS",ExtName="",BirthDate=DateTime.Parse("1941-12-27"),IdentificationNumber="T57902",IdentificationDateIssued=DateTime.Parse("2023-12-30"),SpecificAddress="Purok-5",ContactNumber="09123456789",HealthStatusID=5,HealthRemarks="Can't walk"},
+                new Beneficiary{LastName="BELLEZA",FirstName="ERNESTO",MiddleName="TEOLOGO",ExtName="",BirthDate=DateTime.Parse("1942-01-26"),IdentificationNumber="T57895",IdentificationDateIssued=DateTime.Parse("2023-01-30"),SpecificAddress="Purok-2",ContactNumber="09123456789",HealthStatusID=4,HealthRemarks="Healthy"},
+                new Beneficiary{LastName="BELTIS",FirstName="ANICITA",MiddleName="RONQUILLO",ExtName="",BirthDate=DateTime.Parse("1943-02-25"),IdentificationNumber="T57867",IdentificationDateIssued=DateTime.Parse("2023-02-12"),SpecificAddress="Purok-3",ContactNumber="09123456789",HealthStatusID=4,HealthRemarks="Healthy"},
+                new Beneficiary{LastName="BERNANTE",FirstName="ESMERALDA",MiddleName="SAN PABLO",ExtName="",BirthDate=DateTime.Parse("1944-03-24"),IdentificationNumber="T57537",IdentificationDateIssued=DateTime.Parse("2023-03-30"),SpecificAddress="Purok-1",ContactNumber="09123456789",HealthStatusID=4,HealthRemarks="Healthy"},
+                new Beneficiary{LastName="CABIGON",FirstName="CANCIO",MiddleName="OBEDENCIO",ExtName="",BirthDate=DateTime.Parse("1945-04-23"),IdentificationNumber="T57429",IdentificationDateIssued=DateTime.Parse("2023-04-30"),SpecificAddress="Purok-2",ContactNumber="09123456789",HealthStatusID=2,HealthRemarks="Sickly"},
+            };
+
+
+            context.Beneficiaries.AddRange(beneficiaries);
             context.SaveChanges();
 
  

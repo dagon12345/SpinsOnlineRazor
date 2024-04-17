@@ -27,6 +27,7 @@ namespace SpinsOnlineRazor.Data
         public DbSet<Assessment> Assessments { get; set; }
         public DbSet<Status> Statuses { get; set; }
         public DbSet<IdentificationType> IdentificationTypes { get; set; }
+        public DbSet<HealthStatus> HealthStatuses { get; set; }
 
 /*Calls OnModelCreating. OnModelCreating:
 Is called when SchoolContext has been initialized, but before the model has been locked down and used to initialize the context.
@@ -45,6 +46,7 @@ Is required because later in the tutorial the Beneficiary entity will have refer
             modelBuilder.Entity<Assessment>().ToTable("Assessment");
             modelBuilder.Entity<Status>().ToTable("Status");
             modelBuilder.Entity<IdentificationType>().ToTable("IdentificationType");
+            modelBuilder.Entity<HealthStatus>().ToTable("HealthStatus");
              
         }
 

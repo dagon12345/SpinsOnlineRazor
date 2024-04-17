@@ -5,6 +5,17 @@
     ViewData["Title"] = "Masterlists";
 }
 
+@using Syncfusion.EJ2
+@using Syncfusion.EJ2.PdfViewer
+
+@{
+    PdfViewerAnnotationSettings annotationSettings = new PdfViewerAnnotationSettings()
+            {
+                IsLock = true
+
+            };
+}
+
 <h1>Masterlist</h1>
 
 @* <p>
@@ -89,8 +100,9 @@
 </tbody>
 </table> *@
 
-<ejs-grid id="Grid" allowExcelExport="true" dataSource="@Model.BeneficiaryViewModel" allowFiltering="true"  detailTemplate="#detailtemplate" toolbarClick="toolbarClick" ExcelQueryCellInfo="exportQueryCellInfo"
-                      pdfQueryCellInfo="exportQueryCellInfo" dataBound="gridDataBound" toolbar="@(new List<string>() {"ExcelExport"})">
+<ejs-grid id="Grid" allowExcelExport="true" dataSource="@Model.BeneficiaryViewModel" allowFiltering="true"
+    detailTemplate="#detailtemplate" toolbarClick="toolbarClick" ExcelQueryCellInfo="exportQueryCellInfo"
+    pdfQueryCellInfo="exportQueryCellInfo" dataBound="gridDataBound" toolbar="@(new List<string>() {"ExcelExport"})">
     <e-grid-filterSettings type="Excel"></e-grid-filterSettings>
     <e-grid-columns>
 
@@ -101,7 +113,12 @@
         <e-grid-column field="Status" headerText="Status" width="200"></e-grid-column>
         <e-grid-column field="Referencecode" headerText="GIS" width="200"></e-grid-column>
         <e-grid-column field="SpinsBatch" headerText="Spins Batch" width="150"></e-grid-column>
-        @*<e-grid-column field="BirthDate" headerText="Birth Date" width="120" format="yyyy-MM-dd"  visible="false"></e-grid-column>
+        @*<e-grid-column field="Pantawid" headerText="Pantawid" width="150" displayAsCheckBox="true" textAlign="Center"
+        type="boolean"></e-grid-column>
+        <e-grid-column field="Indigenous" headerText="Indigenous" width="150" displayAsCheckBox="true"
+        textAlign="Center" type="boolean"></e-grid-column>
+        <e-grid-column field="BirthDate" headerText="Birth Date" width="120" format="yyyy-MM-dd"
+        visible="false"></e-grid-column>
         <e-grid-column field="RegionName" headerText="Region" width="200"></e-grid-column>
         <e-grid-column field="ProvinceName" headerText="Province" width="200"></e-grid-column>
         <e-grid-column field="MunicipalityName" headerText="Municipality" width="200"></e-grid-column>
@@ -109,31 +126,32 @@
         <e-grid-column field="Assessment" headerText="Assessment" width="200"></e-grid-column>
         <e-grid-column field="IdentificationType" headerText="ID Type" width="200"></e-grid-column>
         <e-grid-column field="IdentificationNo" headerText="ID Number" width="200"></e-grid-column>
-        <e-grid-column field="IdentificationDate" headerText="Date Issued" width="200"format="yyyy-MM-dd"></e-grid-column> *@
+        <e-grid-column field="IdentificationDate" headerText="Date Issued"
+        width="200"format="yyyy-MM-dd"></e-grid-column> *@
     </e-grid-columns>
 </ejs-grid>
 
-        <script>
-            function toolbarClick(args) {
-                var gridObj = document.getElementById("Grid").ej2_instances[0];
+<script>
+    function toolbarClick(args) {
+        var gridObj = document.getElementById("Grid").ej2_instances[0];
 
-                if (args.item.id === 'Grid_excelexport') {
-                    gridObj.excelExport();
-                }
-            }
+        if (args.item.id === 'Grid_excelexport') {
+            gridObj.excelExport();
+        }
+    }
 
-            function exportQueryCellInfo(args) {
-                
-            };
-            var isInitial = true;
-            function gridDataBound(args) {
-                if (isInitial) {
-                    var grid = document.getElementById("Grid").ej2_instances[0];
-                    grid.toolbarModule.toolbar.hideItem(2, true);
-                    isInitial = false;
-                }
-            }
-        </script>
+    function exportQueryCellInfo(args) {
+
+    };
+    var isInitial = true;
+    function gridDataBound(args) {
+        if (isInitial) {
+            var grid = document.getElementById("Grid").ej2_instances[0];
+            grid.toolbarModule.toolbar.hideItem(2, true);
+            isInitial = false;
+        }
+    }
+</script>
 
 
 
@@ -146,9 +164,8 @@
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
-	font-weight: normal;
+        font-weight: normal;
     }
-    
 </style>
 
 <script type="text/x-template" id="detailtemplate">
@@ -170,6 +187,9 @@
                  <td>
                     <span style="font-weight: 500;">Birth Date: </span> ${BirthDate.toLocaleDateString()}
                 </td>
+                 <td>
+                    <span style="font-weight: 500;">Pantawid: </span> ${Pantawid}
+                </td>
             </tr>
              <tr>
                    <td>
@@ -178,6 +198,12 @@
                 <td>
                     <span style="font-weight: 500;">ID Type: </span> ${IdentificationType}
                 </td>
+                <td>
+                    <span style="font-weight: 500;">Address/Purok: </span> ${Address}
+                </td>
+                 <td>
+                    <span style="font-weight: 500;">Indigenous: </span> ${Indigenous}
+                </td>
             </tr>
              <tr>
                    <td>
@@ -185,6 +211,9 @@
                 </td>
                 <td>
                     <span style="font-weight: 500;">ID Number: </span> ${IdentificationNo}
+                </td>
+                 <td>
+                    <span style="font-weight: 500;">Contact Number: </span> ${ContactNumber}
                 </td>
             </tr>
               <tr>
@@ -195,10 +224,14 @@
                     <span style="font-weight: 500;">Date Issued: </span> ${IdentificationDate.toLocaleDateString()}
                 </td>
             </tr>
+            
              </tr>
         </tbody>
     </table>
 </script>
+
+
+
 
 
 @*Paging code for razor below*@

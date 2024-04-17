@@ -62,7 +62,11 @@ namespace SpinsOnlineRazor.Pages.Masterlists
                     Referencecode = p.Validationform.ReferenceCode,
                     SpinsBatch = p.Validationform.SpinsBatch,
                     Status = p.Status.Name,
-                    IdentificationType = p.IdentificationType.Name
+                    IdentificationType = p.IdentificationType.Name,
+                    Address = p.Beneficiary.SpecificAddress,
+                    ContactNumber = p.Beneficiary.ContactNumber,
+                    Pantawid = p.Validationform.Pantawid,
+                    Indigenous = p.Validationform.Indigenous
                 }).AsNoTracking(), pageIndex ?? 1, pageSize);
         }
     }

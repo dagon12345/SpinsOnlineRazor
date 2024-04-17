@@ -43,189 +43,169 @@ The W3C guidelines recommend that GET should be used when the action doesn't res
 
 </div>
 
-<ejs-grid id="Grid" dataSource="@Model.Beneficiaries">
-    <e-grid-columns>
-      
-        <e-grid-column field="LastName" headerText="Last Name" width="120"></e-grid-column>
-        <e-grid-column field="FirstName" headerText="First Name" width="150"></e-grid-column>
-        <e-grid-column field="MiddleName" headerText="Middle Name" width="130"></e-grid-column>
-        <e-grid-column field="ExtName" headerText="Ext Name" width="120"></e-grid-column>
-        <e-grid-column field="BirthDate" headerText="Birth Date" width="80" format="yMd"></e-grid-column>
-        <e-grid-column headerText="Actions" template="#template" width="100" textAlign="Center"></e-grid-column>
-    </e-grid-columns>
-</ejs-grid>
-
-
-<script id="template" type="text/x-template">
-    @if (Model.Beneficiaries.Any())
-    {
-        <div>
-            <a class="btn btn-info" asp-page="./Details"  asp-route-id="@Model.Beneficiaries.First().BeneficiaryID">
-                <i class="bi bi-eye"></i>
-            </a>
-
-            <a class="btn btn-secondary" asp-page="./Edit" asp-route-id="@Model.Beneficiaries.First().BeneficiaryID">
-                <i class="bi bi-pencil-square"></i>
-            </a>
-
-            <a class="btn btn-danger" asp-page="./Delete" asp-route-id="@Model.Beneficiaries.First().BeneficiaryID">
-            <i class="bi bi-trash3-fill"> </i>
-            </a>
-        </div>
-    }
-</script>
-
 
 
 
 <div class="container">
-    @* <table class="table table-bordered table-striped table-responsive-stack table-dark" id="tbl_exporttable_to_xls"
-    border="1">
+    <table class="table table-bordered table-striped table-responsive-stack table-dark" id="tbl_exporttable_to_xls"
+        border="1">
 
-    <thead class="thead-dark">
-    <tr>
-
-
-    <th>
-
-    <a asp-page="./Index" asp-route-sortOrder="@Model.NameSort"
-    asp-route-currentFilter="@Model.CurrentFilter">
-    @Html.DisplayNameFor(model => model.Beneficiaries[0].LastName)
-    </a>
-    </th>
-    <th>
-    @Html.DisplayNameFor(model => model.Beneficiaries[0].FirstName)
-    </th>
-    <th>
-    @Html.DisplayNameFor(model => model.Beneficiaries[0].MiddleName)
-    </th>
-    <th>
-    @Html.DisplayNameFor(model => model.Beneficiaries[0].ExtName)
-    </th>
-    <th>
-    @Html.DisplayNameFor(model => model.Beneficiaries[0].BirthDate)
-    </th>
-    <th bgcolor="white">
-    Status
-    </th>
-    <th>
-    Region
-    </th>
-    <th>
-    Province
-    </th>
-    <th>
-    Municipality
-    </th>
-    <th>
-    Barangay
-    </th>
-
-    <th style="text-align: center;">
-    <div class="btn-group" role="group" aria-label="Actions">
-    <div class="header-container" style="width: 100px;">
-
-    </div>
-    </div>
-    </th>
+        <thead class="thead-dark">
+            <tr>
 
 
+                <th>
+                    <a asp-page="./Index" asp-route-sortOrder="@Model.NameSort"
+                        asp-route-currentFilter="@Model.CurrentFilter">
+                        @Html.DisplayNameFor(model => model.Beneficiaries[0].LastName)
+                    </a>
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Beneficiaries[0].FirstName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Beneficiaries[0].MiddleName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Beneficiaries[0].ExtName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Beneficiaries[0].BirthDate)
+                </th>
+                @* <th bgcolor="white">
+                Status
+                </th>
+                <th>
+                Region
+                </th>
+                <th>
+                Province
+                </th>
+                <th>
+                Municipality
+                </th>
+                <th>
+                Barangay
+                </th>*@
+
+                <th style="text-align: center;">
+                    <div class="btn-group" role="group" aria-label="Actions">
+                        <div class="header-container" style="width: 50px;">
+                            Actions
+                        </div>
+                    </div>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                @foreach (var item in Model.Beneficiaries)
+                {
+                <tr>
+
+                    <td>
+                            @Html.DisplayFor(modelItem => item.LastName)
+                    </td>
+                    <td>
+                            @Html.DisplayFor(modelItem => item.FirstName)
+                    </td>
+                    <td>
+                            @Html.DisplayFor(modelItem => item.MiddleName)
+                    </td>
+                    <td>
+                            @Html.DisplayFor(modelItem => item.ExtName)
+                    </td>
+                    <td>
+                            @Html.DisplayFor(modelItem => item.BirthDate)
+                    </td>
+                        @* <td>
+                @{
+                foreach (var masterlist in item.Masterlists)
+                {
+
+                @Html.DisplayFor(modelItem => masterlist.Status.Name)
+                }
+                }
+                </td>
+                <td>
+                @{
+                foreach (var masterlist in item.Masterlists)
+                {
+
+                @Html.DisplayFor(modelItem => masterlist.Region.Name)
+
+                }
+                }
+                </td>
+                <td>
+                @{
+                foreach (var masterlist in item.Masterlists)
+                {
+
+                @Html.DisplayFor(modelItem => masterlist.Province.Name)
+                }
+                }
+                </td>
+                <td>
+                @{
+                foreach (var masterlist in item.Masterlists)
+                {
+
+                @Html.DisplayFor(modelItem => masterlist.Municipality.Name)
+                }
+                }
+                </td>
+                <td>
+                @{
+                foreach (var masterlist in item.Masterlists)
+                {
+
+                @Html.DisplayFor(modelItem => masterlist.Barangay.Name)
+                }
+                }
+                </td>
+                *@
+
+                    <td style="text-align:center; ">
+                        <div class="btn-group" role="group" aria-label="Actions">
+
+                            <a class="btn btn-secondary" asp-page="./Edit" asp-route-id="@item.BeneficiaryID">
+                                <i class="bi bi-pencil-square" style="font-size: 8px;"></i>
+                            </a>
 
 
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-    @foreach (var item in Model.Beneficiaries)
-    {
-    <tr>
+                            <a class="btn btn-info" asp-page="./Details" asp-route-id="@item.BeneficiaryID">
+                                <i class="bi bi-view-list" style="font-size: 8px;"></i>
+                            </a>
 
-    <td>
-    @Html.DisplayFor(modelItem => item.LastName)
-    </td>
-    <td>
-    @Html.DisplayFor(modelItem => item.FirstName)
-    </td>
-    <td>
-    @Html.DisplayFor(modelItem => item.MiddleName)
-    </td>
-    <td>
-    @Html.DisplayFor(modelItem => item.ExtName)
-    </td>
-    <td>
-    @Html.DisplayFor(modelItem => item.BirthDate)
-    </td>
-    <td>
-    @{
-    foreach (var masterlist in item.Masterlists)
-    {
-
-    @Html.DisplayFor(modelItem => masterlist.Status.Name)
-    }
-    }
-    </td>
-    <td>
-    @{
-    foreach (var masterlist in item.Masterlists)
-    {
-
-    @Html.DisplayFor(modelItem => masterlist.Region.Name)
-
-    }
-    }
-    </td>
-    <td>
-    @{
-    foreach (var masterlist in item.Masterlists)
-    {
-
-    @Html.DisplayFor(modelItem => masterlist.Province.Name)
-    }
-    }
-    </td>
-    <td>
-    @{
-    foreach (var masterlist in item.Masterlists)
-    {
-
-    @Html.DisplayFor(modelItem => masterlist.Municipality.Name)
-    }
-    }
-    </td>
-    <td>
-    @{
-    foreach (var masterlist in item.Masterlists)
-    {
-
-    @Html.DisplayFor(modelItem => masterlist.Barangay.Name)
-    }
-    }
-    </td>
-
-
-    <td style="text-align:center; " >
-    <div class="btn-group" role="group" aria-label="Actions">
-
-    <a class="btn btn-secondary" asp-page="./Edit" asp-route-id="@item.BeneficiaryID"><i class="bi bi-pencil-square"
-    style="font-size: 8px;"></i></a>
-
-
-    <a class="btn btn-info" asp-page="./Details" asp-route-id="@item.BeneficiaryID"><i class="bi
-    bi-view-list"style="font-size: 8px;"></i></a>
-
-    <a class="btn btn-danger" asp-page="./Delete" asp-route-id="@item.BeneficiaryID"><i class="bi bi-trash3-fill"
-    style="font-size: 8px;"> </i></a>
-    </div>
-    </td>
+                            <a class="btn btn-danger" asp-page="./Delete" asp-route-id="@item.BeneficiaryID">
+                                <i class="bi bi-trash3-fill" style="font-size: 8px;"> </i>
+                            </a>
+                        </div>
+                    </td>
 
 
 
-    </tr>
-    }
-    </tr>
+                </tr>
+                }
+            </tr>
 
-    </tbody>
-    </table> *@
+        </tbody>
+    </table>
+
+
+    @* <ejs-grid id="Grid" dataSource="@Model.Beneficiaries" toolbar="@(new List<string>() { "Add", "Edit",
+    "Delete", "Update", "Cancel" })" action-begin="actionBegin" cssClass="e-css">
+    <e-grid-editSettings allowAdding="true" allowDeleting="true" allowEditing="true"
+    allowEditOnDblClick="false"></e-grid-editSettings>
+    <e-grid-columns>
+    <e-grid-column field="LastName" headerText="Last Name" width="120"></e-grid-column>
+    <e-grid-column field="FirstName" headerText="First Name" width="150"></e-grid-column>
+    <e-grid-column field="MiddleName" headerText="Middle Name" width="130"></e-grid-column>
+    <e-grid-column field="ExtName" headerText="Ext Name" width="120"></e-grid-column>
+    <e-grid-column field="BirthDate" headerText="Birth Date" width="80" format="yMd"></e-grid-column>
+    </e-grid-columns>
+    </ejs-grid> *@
 
 
     @*Paging code for razor below*@
@@ -246,3 +226,4 @@ The W3C guidelines recommend that GET should be used when the action doesn't res
         class="btn btn-primary @nextDisabled">
         &raquo;
     </a>
+</div>

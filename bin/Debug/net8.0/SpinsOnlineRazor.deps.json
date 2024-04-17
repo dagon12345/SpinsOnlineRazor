@@ -8,6 +8,7 @@
     ".NETCoreApp,Version=v8.0": {
       "SpinsOnlineRazor/1.0.0": {
         "dependencies": {
+          "GrapeCity.Documents.Pdf": "7.1.0",
           "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": "8.0.4",
           "Microsoft.EntityFrameworkCore.Design": "8.0.4",
           "Microsoft.EntityFrameworkCore.Sqlite": "8.0.4",
@@ -51,6 +52,50 @@
           "lib/netstandard2.0/Azure.Identity.dll": {
             "assemblyVersion": "1.10.3.0",
             "fileVersion": "1.1000.323.51804"
+          }
+        }
+      },
+      "BouncyCastle.Cryptography/2.2.1": {
+        "runtime": {
+          "lib/net6.0/BouncyCastle.Cryptography.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.2.1.47552"
+          }
+        }
+      },
+      "GrapeCity.Documents.Imaging/7.1.0": {
+        "dependencies": {
+          "System.Buffers": "4.4.0",
+          "System.Memory": "4.5.4",
+          "System.Numerics.Vectors": "4.5.0",
+          "System.Runtime.CompilerServices.Unsafe": "6.0.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/GrapeCity.Documents.Imaging.dll": {
+            "assemblyVersion": "7.1.0.0",
+            "fileVersion": "7.1.0.0"
+          }
+        },
+        "resources": {
+          "lib/netstandard2.0/ja/GrapeCity.Documents.Imaging.resources.dll": {
+            "locale": "ja"
+          }
+        }
+      },
+      "GrapeCity.Documents.Pdf/7.1.0": {
+        "dependencies": {
+          "BouncyCastle.Cryptography": "2.2.1",
+          "GrapeCity.Documents.Imaging": "7.1.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/GrapeCity.Documents.Pdf.dll": {
+            "assemblyVersion": "7.1.0.0",
+            "fileVersion": "7.1.0.0"
+          }
+        },
+        "resources": {
+          "lib/netstandard2.0/ja/GrapeCity.Documents.Pdf.resources.dll": {
+            "locale": "ja"
           }
         }
       },
@@ -1800,6 +1845,7 @@
           }
         }
       },
+      "System.Buffers/4.4.0": {},
       "System.CodeDom/5.0.0": {
         "runtime": {
           "lib/netstandard2.0/System.CodeDom.dll": {
@@ -2090,6 +2136,27 @@
       "sha512": "sha512-l1Xm2MWOF2Mzcwuarlw8kWQXLZk3UeB55aQXVyjj23aBfDwOZ3gu5GP2kJ6KlmZeZv2TCzw7x4L3V36iNr3gww==",
       "path": "azure.identity/1.10.3",
       "hashPath": "azure.identity.1.10.3.nupkg.sha512"
+    },
+    "BouncyCastle.Cryptography/2.2.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-A6Zr52zVqJKt18ZBsTnX0qhG0kwIQftVAjLmszmkiR/trSp8H+xj1gUOzk7XHwaKgyREMSV1v9XaKrBUeIOdvQ==",
+      "path": "bouncycastle.cryptography/2.2.1",
+      "hashPath": "bouncycastle.cryptography.2.2.1.nupkg.sha512"
+    },
+    "GrapeCity.Documents.Imaging/7.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-wBNPtQ+efhh7RzRl+dtYGhH3/gWAWOf4VHnZh4POfBqsv0SL+lEqRZwXxqZ79ANxzevMwn/orro7l7UQIOuUjg==",
+      "path": "grapecity.documents.imaging/7.1.0",
+      "hashPath": "grapecity.documents.imaging.7.1.0.nupkg.sha512"
+    },
+    "GrapeCity.Documents.Pdf/7.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Xkj6sbcQnOnFhlo4jktIjSPh2X0pD3oh4ng44/l5ClxoyyqKrX8QPW3mUKWESOHLgyRkdkmMlfe6uM1s1xan+w==",
+      "path": "grapecity.documents.pdf/7.1.0",
+      "hashPath": "grapecity.documents.pdf.7.1.0.nupkg.sha512"
     },
     "Humanizer/2.14.1": {
       "type": "package",
@@ -2986,6 +3053,13 @@
       "sha512": "sha512-i8krFQ2ElmL27dOwoPwwi8BZBX9hxaVgXVeVQZMvHp/U5k9Pn0UDp7/edzDkLmsIQFZHXx1J56VxR+4T+UKarA==",
       "path": "syncfusion.licensing/25.1.39",
       "hashPath": "syncfusion.licensing.25.1.39.nupkg.sha512"
+    },
+    "System.Buffers/4.4.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-AwarXzzoDwX6BgrhjoJsk6tUezZEozOT5Y9QKF94Gl4JK91I4PIIBkBco9068Y9/Dra8Dkbie99kXB8+1BaYKw==",
+      "path": "system.buffers/4.4.0",
+      "hashPath": "system.buffers.4.4.0.nupkg.sha512"
     },
     "System.CodeDom/5.0.0": {
       "type": "package",

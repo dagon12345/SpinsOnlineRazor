@@ -562,3 +562,9 @@ C:\Users\DSWD\SpinsOnlineRazor\obj\Debug\net8.0\SpinsOnlineRazor.MvcApplicationP
 D:\Repositories\SpinsOnlineRazor\bin\Debug\net8.0\Syncfusion.EJ2.dll
 D:\Repositories\SpinsOnlineRazor\bin\Debug\net8.0\Syncfusion.Licensing.dll
 D:\Repositories\SpinsOnlineRazor\obj\Debug\net8.0\SpinsOnlineRazor.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\DSWD\SpinsOnlineRazor\bin\Debug\net8.0\package-lock.json
+C:\Users\DSWD\SpinsOnlineRazor\bin\Debug\net8.0\BouncyCastle.Cryptography.dll
+C:\Users\DSWD\SpinsOnlineRazor\bin\Debug\net8.0\GrapeCity.Documents.Imaging.dll
+C:\Users\DSWD\SpinsOnlineRazor\bin\Debug\net8.0\GrapeCity.Documents.Pdf.dll
+C:\Users\DSWD\SpinsOnlineRazor\bin\Debug\net8.0\ja\GrapeCity.Documents.Imaging.resources.dll
+C:\Users\DSWD\SpinsOnlineRazor\bin\Debug\net8.0\ja\GrapeCity.Documents.Pdf.resources.dll

@@ -10,7 +10,9 @@
 <div>
     <h4>Beneficiary</h4>
     <hr />
+  
     <dl class="row">
+      
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Beneficiary.LastName)
         </dt>
@@ -64,6 +66,19 @@
          <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Beneficiary.IdentificationDateIssued)
         </dd>
+         <dt class="col-sm-2">
+           Health Status
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Beneficiary.HealthStatus.Name)
+        </dd>
+         <dt class="col-sm-2">
+           Health Remarks
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Beneficiary.HealthRemarks)
+        </dd>
+
 
         <hr />
 
