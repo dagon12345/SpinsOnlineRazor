@@ -568,3 +568,9 @@ C:\Users\DSWD\SpinsOnlineRazor\bin\Debug\net8.0\GrapeCity.Documents.Imaging.dll
 C:\Users\DSWD\SpinsOnlineRazor\bin\Debug\net8.0\GrapeCity.Documents.Pdf.dll
 C:\Users\DSWD\SpinsOnlineRazor\bin\Debug\net8.0\ja\GrapeCity.Documents.Imaging.resources.dll
 C:\Users\DSWD\SpinsOnlineRazor\bin\Debug\net8.0\ja\GrapeCity.Documents.Pdf.resources.dll
+D:\Repositories\SpinsOnlineRazor\bin\Debug\net8.0\package-lock.json
+D:\Repositories\SpinsOnlineRazor\bin\Debug\net8.0\BouncyCastle.Cryptography.dll
+D:\Repositories\SpinsOnlineRazor\bin\Debug\net8.0\GrapeCity.Documents.Imaging.dll
+D:\Repositories\SpinsOnlineRazor\bin\Debug\net8.0\GrapeCity.Documents.Pdf.dll
+D:\Repositories\SpinsOnlineRazor\bin\Debug\net8.0\ja\GrapeCity.Documents.Imaging.resources.dll
+D:\Repositories\SpinsOnlineRazor\bin\Debug\net8.0\ja\GrapeCity.Documents.Pdf.resources.dll

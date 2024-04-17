@@ -61,6 +61,7 @@ namespace SpinsOnlineRazor.Models.RedesignModels.ComplexModels
         public string MaritalStatus { get; set; }
         //Validation form
         public string Assessment { get; set; }
+        //public IFormFile BookPdf { get; set; }
         public int Referencecode { get; set; }
         public int SpinsBatch { get; set; }
         public bool Pantawid { get; set; }
@@ -69,6 +70,10 @@ namespace SpinsOnlineRazor.Models.RedesignModels.ComplexModels
         //Masterlist
         public string Status { get; set; }
         public string IdentificationType { get; set; }
+
+        //Beneficiary model
+        public string HealthStatus { get; set; }
+        public string Remarks { get; set; }
 
     }
 }

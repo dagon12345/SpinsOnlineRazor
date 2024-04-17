@@ -66,7 +66,9 @@ namespace SpinsOnlineRazor.Pages.Masterlists
                     Address = p.Beneficiary.SpecificAddress,
                     ContactNumber = p.Beneficiary.ContactNumber,
                     Pantawid = p.Validationform.Pantawid,
-                    Indigenous = p.Validationform.Indigenous
+                    Indigenous = p.Validationform.Indigenous,
+                    HealthStatus = p.Beneficiary.HealthStatus.Name,
+                    Remarks = p.Beneficiary.HealthRemarks
                 }).AsNoTracking(), pageIndex ?? 1, pageSize);
         }
     }

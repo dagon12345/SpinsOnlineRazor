@@ -7,19 +7,65 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using SpinsOnlineRazor.Data;
 using SpinsOnlineRazor.Models.RedesignModels;
+using SpinsOnlineRazor.Models.RedesignModels.ComplexModels;
 
 namespace SpinsOnlineRazor.Pages.Beneficiaries
 {
     public class DetailsModel : PageModel
     {
+        private readonly IWebHostEnvironment _webHostEnvironment;
         private readonly SpinsOnlineRazor.Data.SpinsContext _context;
 
         public DetailsModel(SpinsOnlineRazor.Data.SpinsContext context)
         {
             _context = context;
         }
+        
 
+    public Validationform validationform { get; set; }
         public Beneficiary Beneficiary { get; set; }
+
+
+        // public async Task<IActionResult> AddNewValidation(Validationform validationformModel)
+        // {
+        //     if (ModelState.IsValid)
+        //     {
+
+        //         if (validationformModel.BookPdf != null)
+        //         {
+
+        //             string folder = "wwwroot/pdf/";
+        //             validationformModel.ReferenceCode = await UploadImage(folder, validationformModel.BookPdf);
+        //         }
+
+        //         if (await TryUpdateModelAsync<Validationform>(validationformModel, "Validationform", s => s.ReferenceCode))
+        //         {
+        //             _context.Validationforms.Add(validationformModel);
+        //             await _context.SaveChangesAsync();
+        //             return RedirectToPage("./Index");
+        //         }
+
+
+
+        //     }
+        //           return Page();
+
+
+        // }
+
+        // private async Task<int> UploadImage(string folderPath, IFormFile file)
+        // {
+
+        //     folderPath += Guid.NewGuid().ToString() + "_" + file.FileName;
+
+        //     string serverFolder = Path.Combine(_webHostEnvironment.WebRootPath, folderPath);
+
+        //     await file.CopyToAsync(new FileStream(serverFolder, FileMode.Create));
+
+        //     return "/" + folderPath;
+        // }
+
+
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {

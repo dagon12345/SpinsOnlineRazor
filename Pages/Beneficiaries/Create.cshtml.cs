@@ -23,6 +23,52 @@ namespace SpinsOnlineRazor.Pages.Beneficiaries
         {
             return Page();
         }
+        //Later for uploading GIS
+        /*public async Task<IActionResult> AddNewValidation(Validationform validationformModel)
+        // {
+        //     if (ModelState.IsValid)
+        //     {
+        //         if (validationformModel.BookPdf != null)
+        //         {
+        //             string folder = "wwwroot/pdf/";
+        //             string filePath = await UploadImage(folder, validationformModel.BookPdf);
+        //             // Assuming ReferenceCode is an int field, you need to convert the filePath to an int.
+        //             if (int.TryParse(filePath, out int referenceCode))
+        //             {
+        //                 validationformModel.ReferenceCode = referenceCode;
+        //             }
+        //             else
+        //             {
+        //                 // Handle the case where the conversion fails
+        //                 // For example, you could log an error or set a default value.
+        //                 // For now, let's set it to 0.
+        //                 validationformModel.ReferenceCode = 0;
+        //             }
+        //         }
+
+        //         if (await TryUpdateModelAsync<Validationform>(validationformModel, "Validationform", s => s.ReferenceCode))
+        //         {
+        //             _context.Validationforms.Add(validationformModel);
+        //             await _context.SaveChangesAsync();
+        //             return RedirectToPage("./Index");
+        //         }
+        //     }
+
+        //     return Page();
+        // } 
+
+        private async Task<string> UploadImage(string folderPath, IFormFile file)
+        {
+            folderPath += Guid.NewGuid().ToString() + "_" + file.FileName;
+
+            string serverFolder = Path.Combine(_webHostEnvironment.WebRootPath, folderPath);
+
+            await file.CopyToAsync(new FileStream(serverFolder, FileMode.Create));
+
+            // Assuming you want to return the reference code (which is part of the file path) as a string.
+            return folderPath;
+        }
+*/
 
         [BindProperty]
         public Beneficiary Beneficiary { get; set; } = default!;
@@ -49,7 +95,7 @@ namespace SpinsOnlineRazor.Pages.Beneficiaries
                 For example, Student.FirstMidName. It's not case sensitive.
                 Uses the model binding system to convert form values from strings to the types in the Student model. 
                 For example, EnrollmentDate is converted to DateTime.*/
-                
+
             //Code below disables the overposting, para sa mga hackers maka set sila nan data like bisan not eligible e eligible
             var emptyBeneficiary = new Beneficiary();
 
