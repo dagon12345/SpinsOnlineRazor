@@ -43,7 +43,66 @@
                 <input asp-for="Beneficiary.IdentificationNumber" class="form-control" />
                 <span asp-validation-for="Beneficiary.IdentificationNumber" class="text-danger"></span>
             </div>
-            
+             <div class="form-group">
+                <label asp-for="Masterlist.IdentificationType" class="control-label"></label>
+                <select asp-for="Masterlist.IdentificationTypeID" class="form-control"asp-items="@Model.IdentificationNameSL">
+                        <option value="">--Select ID Type--</option>
+                </select>
+                <span asp-validation-for="Masterlist.IdentificationTypeID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Beneficiary.IdentificationDateIssued" class="control-label"></label>
+                <input asp-for="Beneficiary.IdentificationDateIssued" class="form-control" />
+                <span asp-validation-for="Beneficiary.IdentificationDateIssued" class="text-danger"></span>
+            </div>
+             <div class="form-group">
+                <label asp-for="Beneficiary.SpecificAddress" class="control-label"></label>
+                <input asp-for="Beneficiary.SpecificAddress" class="form-control" />
+                <span asp-validation-for="Beneficiary.SpecificAddress" class="text-danger"></span>
+            </div>
+             <div class="form-group">
+                <label asp-for="Beneficiary.ContactNumber" class="control-label"></label>
+                <input asp-for="Beneficiary.ContactNumber" class="form-control" />
+                <span asp-validation-for="Beneficiary.ContactNumber" class="text-danger"></span>
+            </div>
+             <div class="form-group">
+                <label asp-for="Beneficiary.HealthStatusID" class="control-label"></label>
+                <input asp-for="Beneficiary.HealthStatusID" class="form-control" />
+                <span asp-validation-for="Beneficiary.HealthStatusID" class="text-danger"></span>
+            </div>
+               <div class="form-group">
+                <label asp-for="Beneficiary.HealthRemarks" class="control-label"></label>
+                <input asp-for="Beneficiary.HealthRemarks" class="form-control" />
+                <span asp-validation-for="Beneficiary.HealthRemarks" class="text-danger"></span>
+            </div>
+              <div class="form-group">
+                <label asp-for="Masterlist.BarangayID" class="control-label"></label>
+                <input asp-for="Masterlist.BarangayID" class="form-control" />
+                <span asp-validation-for="Masterlist.BarangayID" class="text-danger"></span>
+            </div>
+                  <div class="form-group">
+                <label asp-for="Masterlist.SexID" class="control-label"></label>
+                <input asp-for="Masterlist.SexID" class="form-control" />
+                <span asp-validation-for="Masterlist.SexID" class="text-danger"></span>
+            </div>
+                  <div class="form-group">
+                <label asp-for="Masterlist.MaritalstatusID" class="control-label"></label>
+                <input asp-for="Masterlist.MaritalstatusID" class="form-control" />
+                <span asp-validation-for="Masterlist.MaritalstatusID" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Masterlist.StatusID" class="control-label"></label>
+                <input asp-for="Masterlist.StatusID" class="form-control" />
+                <span asp-validation-for="Masterlist.StatusID" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Masterlist.IdentificationTypeID" class="control-label"></label>
+                <input asp-for="Masterlist.IdentificationTypeID" class="form-control" />
+                <span asp-validation-for="Masterlist.IdentificationTypeID" class="text-danger"></span>
+            </div>
+    
             @* Later for uploading GIS
                 <div class="form-group">
                     <div class="form-group">

@@ -1,16 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using SpinsOnlineRazor.Data;
 using SpinsOnlineRazor.Models.RedesignModels;
+using SpinsOnlineRazor.Models.RedesignModels.Dropdowns;
 
 namespace SpinsOnlineRazor.Pages.Beneficiaries
 {
-    public class CreateModel : PageModel
+    public class CreateModel : IdentificationTypeNamePageModel
     {
         private readonly SpinsOnlineRazor.Data.SpinsContext _context;
 
@@ -21,6 +15,7 @@ namespace SpinsOnlineRazor.Pages.Beneficiaries
 
         public IActionResult OnGet()
         {
+            PopulateIndetificationDropDownList(_context);
             return Page();
         }
         //Later for uploading GIS
@@ -72,6 +67,8 @@ namespace SpinsOnlineRazor.Pages.Beneficiaries
 
         [BindProperty]
         public Beneficiary Beneficiary { get; set; } = default!;
+         [BindProperty]
+        public Masterlist Masterlist { get; set; } = default!;
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
@@ -100,14 +97,27 @@ namespace SpinsOnlineRazor.Pages.Beneficiaries
             var emptyBeneficiary = new Beneficiary();
 
             if (await TryUpdateModelAsync<Beneficiary>(emptyBeneficiary, "beneficiary", s => s.LastName, s => s.FirstName,
-             s => s.MiddleName, s => s.ExtName, s => s.BirthDate, s => s.IdentificationNumber))
+             s => s.MiddleName, s => s.ExtName, s => s.BirthDate, s => s.IdentificationNumber,
+             s => s.IdentificationDateIssued, s => s.SpecificAddress, s => s.ContactNumber,s => s.HealthStatusID, s => s.HealthRemarks
+             ))
             {
                 _context.Beneficiaries.Add(emptyBeneficiary);
                 await _context.SaveChangesAsync();
-                return RedirectToPage("./Index");
+                //return RedirectToPage("./Index");
             }
 
-            return Page();
+             var emptyMasterlist = new Masterlist();
+
+            if (await TryUpdateModelAsync<Masterlist>(emptyMasterlist, "Masterlist", s => s.RegionID, s => s.ProvinceID,
+             s => s.MunicipalityID, s => s.BarangayID, s => s.SexID, s => s.MaritalstatusID, s => s.StatusID, s => s.IdentificationTypeID
+             ))
+            {
+                _context.Masterlists.Add(emptyMasterlist);
+                await _context.SaveChangesAsync();
+               // return RedirectToPage("./Index");
+            }
+
+            return RedirectToPage("./Index");
         }
     }
 }
