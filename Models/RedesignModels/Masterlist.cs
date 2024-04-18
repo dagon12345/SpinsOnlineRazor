@@ -40,6 +40,7 @@ namespace SpinsOnlineRazor.Models.RedesignModels
         public int ValidationformID { get; set; }
         public int StatusID { get; set; }
         public int IdentificationTypeID { get; set; }
+        public int DetailID { get; set; }
         //Isa ra ija dawaton na entity isa ka Beneficiary,Region,Province,Municipality, and Barangay. So Entity below
         /*An Masterlist entity is associated with one Beneficiary entity, so the property contains a single Beneficiary entity.*/
         public Beneficiary Beneficiary { get; set; }
@@ -57,6 +58,9 @@ namespace SpinsOnlineRazor.Models.RedesignModels
         // Isa ra ka Status per masterlist di mag dabo
         public Status Status { get; set; }
         public IdentificationType IdentificationType { get; set; }
+
+        //DetailID per masterlist
+        public Detail Detail { get; set; }
 
     }
 }

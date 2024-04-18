@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SpinsOnlineRazor.Data;
 
@@ -10,9 +11,11 @@ using SpinsOnlineRazor.Data;
 namespace SpinsOnlineRazor.Migrations
 {
     [DbContext(typeof(SpinsContext))]
-    partial class SpinsContextModelSnapshot : ModelSnapshot
+    [Migration("20240418052058_DeceasedinDetail")]
+    partial class DeceasedinDetail
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.4");
@@ -149,22 +152,6 @@ namespace SpinsOnlineRazor.Migrations
                     b.ToTable("Deceased", (string)null);
                 });
 
-            modelBuilder.Entity("SpinsOnlineRazor.Models.RedesignModels.Delete", b =>
-                {
-                    b.Property<int>("DeleteID")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTime>("DeletedDate")
-                        .HasColumnType("TEXT");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("DeleteID");
-
-                    b.ToTable("Delete", (string)null);
-                });
-
             modelBuilder.Entity("SpinsOnlineRazor.Models.RedesignModels.Detail", b =>
                 {
                     b.Property<int>("DetailID")
@@ -198,11 +185,7 @@ namespace SpinsOnlineRazor.Migrations
 
                     b.HasIndex("DeceasedID");
 
-                    b.HasIndex("DeleteID");
-
                     b.HasIndex("ExclusionID");
-
-                    b.HasIndex("ModifyID");
 
                     b.ToTable("Detail", (string)null);
                 });
@@ -336,25 +319,6 @@ namespace SpinsOnlineRazor.Migrations
                     b.ToTable("Masterlist", (string)null);
                 });
 
-            modelBuilder.Entity("SpinsOnlineRazor.Models.RedesignModels.Modify", b =>
-                {
-                    b.Property<int>("ModifyID")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("IsModified")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("ModifiedBy")
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("ModifiedDate")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("ModifyID");
-
-                    b.ToTable("Modify", (string)null);
-                });
-
             modelBuilder.Entity("SpinsOnlineRazor.Models.RedesignModels.Municipality", b =>
                 {
                     b.Property<int>("MunicipalityID")
@@ -469,25 +433,13 @@ namespace SpinsOnlineRazor.Migrations
                         .WithMany("Details")
                         .HasForeignKey("DeceasedID");
 
-                    b.HasOne("SpinsOnlineRazor.Models.RedesignModels.Delete", "Delete")
-                        .WithMany("Details")
-                        .HasForeignKey("DeleteID");
-
                     b.HasOne("SpinsOnlineRazor.Models.RedesignModels.Exclusion", "Exclusion")
                         .WithMany("Details")
                         .HasForeignKey("ExclusionID");
 
-                    b.HasOne("SpinsOnlineRazor.Models.RedesignModels.Modify", "Modify")
-                        .WithMany("Details")
-                        .HasForeignKey("ModifyID");
-
                     b.Navigation("Deceased");
 
-                    b.Navigation("Delete");
-
                     b.Navigation("Exclusion");
-
-                    b.Navigation("Modify");
                 });
 
             modelBuilder.Entity("SpinsOnlineRazor.Models.RedesignModels.Masterlist", b =>
@@ -632,11 +584,6 @@ namespace SpinsOnlineRazor.Migrations
                     b.Navigation("Details");
                 });
 
-            modelBuilder.Entity("SpinsOnlineRazor.Models.RedesignModels.Delete", b =>
-                {
-                    b.Navigation("Details");
-                });
-
             modelBuilder.Entity("SpinsOnlineRazor.Models.RedesignModels.Detail", b =>
                 {
                     b.Navigation("Masterlists");
@@ -660,11 +607,6 @@ namespace SpinsOnlineRazor.Migrations
             modelBuilder.Entity("SpinsOnlineRazor.Models.RedesignModels.Maritalstatus", b =>
                 {
                     b.Navigation("Masterlists");
-                });
-
-            modelBuilder.Entity("SpinsOnlineRazor.Models.RedesignModels.Modify", b =>
-                {
-                    b.Navigation("Details");
                 });
 
             modelBuilder.Entity("SpinsOnlineRazor.Models.RedesignModels.Municipality", b =>

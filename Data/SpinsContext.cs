@@ -10,7 +10,7 @@ namespace SpinsOnlineRazor.Data
 {
     public class SpinsContext : DbContext
     {
-        public SpinsContext (DbContextOptions<SpinsContext> options)
+        public SpinsContext(DbContextOptions<SpinsContext> options)
             : base(options)
         {
         }
@@ -28,10 +28,15 @@ namespace SpinsOnlineRazor.Data
         public DbSet<Status> Statuses { get; set; }
         public DbSet<IdentificationType> IdentificationTypes { get; set; }
         public DbSet<HealthStatus> HealthStatuses { get; set; }
+        public DbSet<Detail> Details { get; set; }
+        public DbSet<Exclusion> Exclusions { get; set; }
+        public DbSet<Deceased> Deceaseds { get; set; }
+        public DbSet<Modify> Modifies { get; set; }
+        public DbSet<Delete> Deletes { get; set; }
 
-/*Calls OnModelCreating. OnModelCreating:
-Is called when SchoolContext has been initialized, but before the model has been locked down and used to initialize the context.
-Is required because later in the tutorial the Beneficiary entity will have references to the other entities.*/
+        /*Calls OnModelCreating. OnModelCreating:
+        Is called when SchoolContext has been initialized, but before the model has been locked down and used to initialize the context.
+        Is required because later in the tutorial the Beneficiary entity will have references to the other entities.*/
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Beneficiary>().ToTable("Beneficiary");
@@ -47,7 +52,11 @@ Is required because later in the tutorial the Beneficiary entity will have refer
             modelBuilder.Entity<Status>().ToTable("Status");
             modelBuilder.Entity<IdentificationType>().ToTable("IdentificationType");
             modelBuilder.Entity<HealthStatus>().ToTable("HealthStatus");
-             
+            modelBuilder.Entity<Detail>().ToTable("Detail");
+            modelBuilder.Entity<Exclusion>().ToTable("Exclusion");
+            modelBuilder.Entity<Deceased>().ToTable("Deceased");
+            modelBuilder.Entity<Modify>().ToTable("Modify");
+            modelBuilder.Entity<Delete>().ToTable("Delete");
         }
 
         /*NOTE: A foreign key constraint fail usually means that the code is trying to insert something 

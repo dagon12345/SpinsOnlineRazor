@@ -105,6 +105,14 @@ namespace SpinsOnlineRazor.Pages.Beneficiaries
         .Include(b => b.Masterlists)
             .ThenInclude(s => s.IdentificationType)
         .Include(h => h.HealthStatus)
+        .Include(b => b.Masterlists)
+            .ThenInclude(d => d.Detail.Exclusion)
+        .Include(b => b.Masterlists)
+            .ThenInclude(d => d.Detail.Deceased) 
+        .Include(b => b.Masterlists)
+            .ThenInclude(m => m.Detail.Modify)   
+        .Include(b=>b.Masterlists)
+            .ThenInclude(d => d.Detail.Delete)
         .AsNoTracking()
         .FirstOrDefaultAsync(m => m.BeneficiaryID == id);
 

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SpinsOnlineRazor.Data;
 
@@ -10,9 +11,11 @@ using SpinsOnlineRazor.Data;
 namespace SpinsOnlineRazor.Migrations
 {
     [DbContext(typeof(SpinsContext))]
-    partial class SpinsContextModelSnapshot : ModelSnapshot
+    [Migration("20240418060839_AddedModify")]
+    partial class AddedModify
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.4");
@@ -149,22 +152,6 @@ namespace SpinsOnlineRazor.Migrations
                     b.ToTable("Deceased", (string)null);
                 });
 
-            modelBuilder.Entity("SpinsOnlineRazor.Models.RedesignModels.Delete", b =>
-                {
-                    b.Property<int>("DeleteID")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTime>("DeletedDate")
-                        .HasColumnType("TEXT");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("DeleteID");
-
-                    b.ToTable("Delete", (string)null);
-                });
-
             modelBuilder.Entity("SpinsOnlineRazor.Models.RedesignModels.Detail", b =>
                 {
                     b.Property<int>("DetailID")
@@ -197,8 +184,6 @@ namespace SpinsOnlineRazor.Migrations
                     b.HasKey("DetailID");
 
                     b.HasIndex("DeceasedID");
-
-                    b.HasIndex("DeleteID");
 
                     b.HasIndex("ExclusionID");
 
@@ -469,10 +454,6 @@ namespace SpinsOnlineRazor.Migrations
                         .WithMany("Details")
                         .HasForeignKey("DeceasedID");
 
-                    b.HasOne("SpinsOnlineRazor.Models.RedesignModels.Delete", "Delete")
-                        .WithMany("Details")
-                        .HasForeignKey("DeleteID");
-
                     b.HasOne("SpinsOnlineRazor.Models.RedesignModels.Exclusion", "Exclusion")
                         .WithMany("Details")
                         .HasForeignKey("ExclusionID");
@@ -482,8 +463,6 @@ namespace SpinsOnlineRazor.Migrations
                         .HasForeignKey("ModifyID");
 
                     b.Navigation("Deceased");
-
-                    b.Navigation("Delete");
 
                     b.Navigation("Exclusion");
 
@@ -628,11 +607,6 @@ namespace SpinsOnlineRazor.Migrations
                 });
 
             modelBuilder.Entity("SpinsOnlineRazor.Models.RedesignModels.Deceased", b =>
-                {
-                    b.Navigation("Details");
-                });
-
-            modelBuilder.Entity("SpinsOnlineRazor.Models.RedesignModels.Delete", b =>
                 {
                     b.Navigation("Details");
                 });
