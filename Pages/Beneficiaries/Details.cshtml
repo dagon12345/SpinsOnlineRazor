@@ -11,9 +11,9 @@
 <div>
     <h4>Beneficiary</h4>
     <hr />
-  
+
     <dl class="row">
-      
+
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Beneficiary.LastName)
         </dt>
@@ -38,7 +38,7 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Beneficiary.ExtName)
         </dd>
-         <dt class="col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Beneficiary.BirthDate)
         </dt>
         <dd class="col-sm-10">
@@ -47,7 +47,7 @@
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Beneficiary.IdentificationNumber)
         </dt>
-         <dd class="col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Beneficiary.IdentificationNumber)
         </dd>
 
@@ -55,26 +55,26 @@
             ID Type
         </dt>
         <dd class="col-sm-10">
-              @foreach (var item in Model.Beneficiary.Masterlists)
-                {
-                  @Html.DisplayFor(modelItem => item.IdentificationType.Name)
-                }
+            @foreach (var item in Model.Beneficiary.Masterlists)
+            {
+                @Html.DisplayFor(modelItem => item.IdentificationType.Name)
+            }
         </dd>
 
-         <dt class="col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Beneficiary.IdentificationDateIssued)
         </dt>
-         <dd class="col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Beneficiary.IdentificationDateIssued)
         </dd>
-         <dt class="col-sm-2">
-           Health Status
+        <dt class="col-sm-2">
+            Health Status
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Beneficiary.HealthStatus.Name)
         </dd>
-         <dt class="col-sm-2">
-           Health Remarks
+        <dt class="col-sm-2">
+            Health Remarks
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Beneficiary.HealthRemarks)
@@ -92,6 +92,7 @@
         The Masterlists title is retrieved from the Masterlist entity that's stored in the Region navigation property of
         the Masterlist entity.*@
         <dd class="col-sm-10">
+            <div style="height:100px;overflow:auto;">
             <table class="table">
                 <tr>
                     <th>Region</th>
@@ -110,26 +111,27 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.Province.Name)
                         </td>
-                         <td>
+                        <td>
                             @Html.DisplayFor(modelItem => item.Municipality.Name)
                         </td>
-                         <td>
+                        <td>
                             @Html.DisplayFor(modelItem => item.Barangay.Name)
                         </td>
-                          <td>
+                        <td>
                             @Html.DisplayFor(modelItem => item.Sex.Name)
                         </td>
-                          <td>
+                        <td>
                             @Html.DisplayFor(modelItem => item.Maritalstatus.Name)
                         </td>
                     </tr>
                 }
             </table>
+            </div>
         </dd>
 
 
 
-         <dt class="col-sm-2">
+        <dt class="col-sm-2">
             Validation Form
         </dt>
         @*The preceding code loops through the entities in the Enrollments navigation property.
@@ -152,27 +154,31 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.Validationform.SpinsBatch)
                         </td>
-                         <td>
+                        <td>
                             @Html.DisplayFor(modelItem => item.Validationform.Assessment.Name)
                         </td>
                     </tr>
                 }
             </table>
         </dd>
-<hr/>
-         <dt class="col-sm-2">
-         Details
+        <hr />
+        <dt class="col-sm-2">
+            Details
         </dt>
         @*The preceding code loops through the entities in the Enrollments navigation property.
         For each enrollment, it displays the Region RegionName and the RegionID.
         The Masterlists title is retrieved from the Masterlist entity that's stored in the Region navigation property of
         the Masterlist entity.*@
         <dd class="col-sm-10">
+             <div style="height:100px;overflow:auto;">
             <table class="table">
                 <tr>
                     <th>Date Entered</th>
                     <th>Entered By</th>
                     <th>Inclusion Date</th>
+                    <th>Modified?</th>
+                    <th>Modified By</th>
+                    <th>Modified Date</th>
                 </tr>
                 @foreach (var item in Model.Beneficiary.Masterlists)
                 {
@@ -183,120 +189,69 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.Detail.EnteredBy)
                         </td>
-                         <td>
+                        <td>
                             @Html.DisplayFor(modelItem => item.Detail.InclusionDate)
+                        </td>
+                          <td>
+                                @Html.DisplayFor(modelItem => item.Detail.Modify.IsModified)
+                        </td>
+                        <td>
+                                @Html.DisplayFor(modelItem => item.Detail.Modify.ModifiedBy)
+                        </td>
+                        <td>
+                                @Html.DisplayFor(modelItem => item.Detail.Modify.ModifiedDate)
                         </td>
                     </tr>
                 }
             </table>
+            </div>
         </dd>
 
-         <dt class="col-sm-2">
-          Other Details
+        <dt class="col-sm-2">
+            Other Details
         </dt>
 
-            <dd class="col-sm-10">
+        <dd class="col-sm-10">
+               <div style="height:100px;overflow:auto;">
             <table class="table">
                 <tr>
                     <th>Excluded?</th>
                     <th>Exclusion Date</th>
                     <th>Exclusion Batch</th>
-                </tr>
-                @foreach (var item in Model.Beneficiary.Masterlists)
-                {
-                    <tr>
-                        <td >
-                            @Html.DisplayFor(modelItem => item.Detail.Exclusion.IsExcluded)
-                        </td>
-                         <td>
-                            @Html.DisplayFor(modelItem => item.Detail.Exclusion.ExclusionDate)
-                        </td>
-                          <td>
-                            @Html.DisplayFor(modelItem => item.Detail.Exclusion.ExclusionBatch)
-                        </td>
-                    </tr>
-                    
-                }
-            </table>
-
-   <dt class="col-sm-2">
-        </dt>
-
-            <dd class="col-sm-10">
-            <table class="table">
-                <tr>
                     <th>Deceased?</th>
                     <th>Deceased Date</th>
-                </tr>
-                @foreach (var item in Model.Beneficiary.Masterlists)
-                {
-                    <tr>
-                        <td >
-                            @Html.DisplayFor(modelItem => item.Detail.Deceased.IsDeceased)
-                        </td>
-                         <td>
-                            @Html.DisplayFor(modelItem => item.Detail.Deceased.DeceasedDate)
-                        </td>
-                    </tr>
-                    
-                }
-            </table>
-        </dd>
-
-           <dt class="col-sm-2">
-        </dt>
-
-            <dd class="col-sm-10">
-            <table class="table">
-                <tr>
-                    <th>Modified?</th>
-                    <th>Modified By</th>
-                    <th>Modified Date</th>
-                </tr>
-                @foreach (var item in Model.Beneficiary.Masterlists)
-                {
-                    <tr>
-                        <td >
-                            @Html.DisplayFor(modelItem => item.Detail.Modify.IsModified)
-                        </td>
-                         <td>
-                            @Html.DisplayFor(modelItem => item.Detail.Modify.ModifiedBy)
-                        </td>
-                         <td>
-                            @Html.DisplayFor(modelItem => item.Detail.Modify.ModifiedDate)
-                        </td>
-                    </tr>
-                    
-                }
-            </table>
-        </dd>
-
-          <dt class="col-sm-2">
-        </dt>
-
-            <dd class="col-sm-10">
-            <table class="table">
-                <tr>
                     <th>Deleted?</th>
                     <th>Deleted Date</th>
                 </tr>
                 @foreach (var item in Model.Beneficiary.Masterlists)
                 {
                     <tr>
-                        <td >
-                            @Html.DisplayFor(modelItem => item.Detail.Delete.IsDeleted)
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Detail.Exclusion.IsExcluded)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Detail.Exclusion.ExclusionDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Detail.Exclusion.ExclusionBatch)
                         </td>
                          <td>
-                            @Html.DisplayFor(modelItem => item.Detail.Delete.DeletedDate)
+                                @Html.DisplayFor(modelItem => item.Detail.Deceased.IsDeceased)
+                        </td>
+                        <td>
+                                @Html.DisplayFor(modelItem => item.Detail.Deceased.DeceasedDate)
+                        </td>
+                         <td>
+                                @Html.DisplayFor(modelItem => item.Detail.Delete.IsDeleted)
+                        </td>
+                        <td>
+                                @Html.DisplayFor(modelItem => item.Detail.Delete.DeletedDate)
                         </td>
                     </tr>
-                    
+
                 }
             </table>
-        </dd>
-
-
-
+            </div>
     </dl>
 </div>
 <div>
