@@ -14,6 +14,12 @@
     <h4>Beneficiary</h4>
     <hr />
     <dl class="row">
+           <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Beneficiary.BeneficiaryID)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Beneficiary.BeneficiaryID)
+        </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Beneficiary.LastName)
         </dt>
@@ -44,12 +50,76 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Beneficiary.BirthDate)
         </dd>
-          <dt class="col-sm-2">
+         <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Beneficiary.IdentificationType)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Beneficiary.IdentificationType.Name)
+        </dd>
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Beneficiary.IdentificationNumber)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Beneficiary.IdentificationNumber)
         </dd>
+         <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Beneficiary.IdentificationDateIssued)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Beneficiary.IdentificationDateIssued)
+        </dd>
+         <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Beneficiary.SpecificAddress)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Beneficiary.SpecificAddress)
+        </dd>
+          <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Beneficiary.ContactNumber)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Beneficiary.ContactNumber)
+        </dd>
+         </dd>
+          <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Beneficiary.HealthStatus)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Beneficiary.HealthStatus.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Beneficiary.HealthRemarks)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Beneficiary.HealthRemarks)
+        </dd>
+         <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Beneficiary.Region)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Beneficiary.Region.Name)
+        </dd> 
+
+         <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Beneficiary.Province)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Beneficiary.Province.Name)
+        </dd> 
+
+         <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Beneficiary.Municipality)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Beneficiary.Municipality.Name)
+        </dd> 
+
+          <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Beneficiary.Barangay)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Beneficiary.Barangay.Name)
+        </dd> 
     </dl>
     
     <form method="post">

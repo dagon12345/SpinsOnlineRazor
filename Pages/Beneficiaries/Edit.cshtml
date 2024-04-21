@@ -15,6 +15,10 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Beneficiary.BeneficiaryID" />
             <div class="form-group">
+                <label asp-for="Beneficiary.BeneficiaryID" class="control-label"></label>
+                <div>@Html.DisplayFor(model => model.Beneficiary.BeneficiaryID)</div>
+            </div>
+            <div class="form-group">
                 <label asp-for="Beneficiary.LastName" class="control-label"></label>
                 <input asp-for="Beneficiary.LastName" class="form-control" />
                 <span asp-validation-for="Beneficiary.LastName" class="text-danger"></span>
@@ -39,11 +43,105 @@
                 <input asp-for="Beneficiary.BirthDate" class="form-control" />
                 <span asp-validation-for="Beneficiary.BirthDate" class="text-danger"></span>
             </div>
+
+              <div class="form-group">
+                <label asp-for="Beneficiary.IdentificationType" class="control-label"></label>
+                <select asp-for="Beneficiary.IdentificationTypeID" class="form-control" 
+                        asp-items="@Model.IdentificationTypeSL"></select>
+                <span asp-validation-for="Beneficiary.IdentificationTypeID" class="text-danger"></span>
+            </div>
+
               <div class="form-group">
                 <label asp-for="Beneficiary.IdentificationNumber" class="control-label"></label>
                 <input asp-for="Beneficiary.IdentificationNumber" class="form-control" />
                 <span asp-validation-for="Beneficiary.IdentificationNumber" class="text-danger"></span>
             </div>
+              <div class="form-group">
+                <label asp-for="Beneficiary.IdentificationDateIssued" class="control-label"></label>
+                <input asp-for="Beneficiary.IdentificationDateIssued" class="form-control" />
+                <span asp-validation-for="Beneficiary.IdentificationDateIssued" class="text-danger"></span>
+            </div>
+
+             <div class="form-group">
+                <label asp-for="Beneficiary.ContactNumber" class="control-label"></label>
+                <input asp-for="Beneficiary.ContactNumber" class="form-control" />
+                <span asp-validation-for="Beneficiary.ContactNumber" class="text-danger"></span>
+            </div>
+             <div class="form-group">
+                <label asp-for="Beneficiary.HealthStatus" class="control-label"></label>
+                <select asp-for="Beneficiary.HealthStatusID" class="form-control" 
+                        asp-items="@Model.HealthStatusSL"></select>
+                <span asp-validation-for="Beneficiary.HealthStatusID" class="text-danger"></span>
+            </div>
+              <div class="form-group">
+                <label asp-for="Beneficiary.HealthRemarks" class="control-label"></label>
+                <input asp-for="Beneficiary.HealthRemarks" class="form-control" />
+                <span asp-validation-for="Beneficiary.HealthRemarks" class="text-danger"></span>
+            </div>
+
+
+              @* <div class="form-group">
+                <label asp-for="Beneficiary.Region" class="control-label"></label>
+                <select asp-for="Beneficiary.RegionID" class="form-control" 
+                        asp-items="@Model.RegionSL"></select>
+                <span asp-validation-for="Beneficiary.RegionID" class="text-danger"></span>
+            </div> 
+
+              <div class="form-group">
+                <label asp-for="Beneficiary.Province" class="control-label"></label>
+                <select asp-for="Beneficiary.ProvinceID" class="form-control" 
+                        asp-items="@Model.ProvinceSL"></select>
+                <span asp-validation-for="Beneficiary.ProvinceID" class="text-danger"></span>
+            </div> 
+
+              <div class="form-group">
+                <label asp-for="Beneficiary.Municipality" class="control-label"></label>
+                <select asp-for="Beneficiary.MunicipalityID" class="form-control" 
+                        asp-items="@Model.MunicipalitySL"></select>
+                <span asp-validation-for="Beneficiary.MunicipalityID" class="text-danger"></span>
+            </div> 
+
+              <div class="form-group">
+                <label asp-for="Beneficiary.Barangay" class="control-label"></label>
+                <select asp-for="Beneficiary.BarangayID" class="form-control" 
+                        asp-items="@Model.BarangaySL"></select>
+                <span asp-validation-for="Beneficiary.BarangayID" class="text-danger"></span>
+            </div>  *@
+                  <div class="form-group">
+                <label asp-for="Beneficiary.RegionID" class="control-label"></label>
+                <select id="RegionID" asp-for="Beneficiary.RegionID" class="form-control" asp-items="@Model.RegionSL">
+                    <option value="">--Select Region--</option>
+                </select>
+                <span asp-validation-for="Beneficiary.RegionID" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Beneficiary.ProvinceID" class="control-label"></label>
+                <select id="ProvinceID" asp-for="Beneficiary.ProvinceID" class="form-control" asp-items="@Model.ProvinceSL">
+                    <option value="">--Select Province--</option>
+                </select>
+                <span asp-validation-for="Beneficiary.ProvinceID" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Beneficiary.MunicipalityID" class="control-label"></label>
+                <select id="MunicipalityID" asp-for="Beneficiary.MunicipalityID" class="form-control" asp-items="@Model.MunicipalitySL">
+                    <option value="">--Select Municipality--</option>
+                </select>
+                <span asp-validation-for="Beneficiary.MunicipalityID" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Beneficiary.BarangayID" class="control-label"></label>
+                <select id="BarangayID" asp-for="Beneficiary.BarangayID" class="form-control" asp-items="@Model.BarangaySL">
+                    <option value="">--Select Barangay--</option>
+                </select>
+                <span asp-validation-for="Beneficiary.BarangayID" class="text-danger"></span>
+            </div>
+
+
+
+
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
@@ -56,5 +154,72 @@
 </div>
 
 @section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#RegionID').change(function () {
+                var regionId = $(this).val();
+                if (regionId) {
+                    $.ajax({
+                        type: "GET",
+                        url: "/Beneficiaries/Create?handler=Provinces",
+                        data: { regionId: regionId },
+                        success: function (provinces) {
+                            $("#ProvinceID").empty();
+                            $("#ProvinceID").append('<option value="">--Select Province--</option>');
+                            $.each(provinces, function (key, value) {
+                                $("#ProvinceID").append('<option value="' + value.provinceID + '">' + value.name + '</option>');
+                            });
+                        }
+                    });
+                } else {
+                    $("#ProvinceID").empty();
+                    $("#MunicipalityID").empty();
+                    $("#BarangayID").empty();
+                }
+            });
+
+            $('#ProvinceID').change(function () {
+                var provinceId = $(this).val();
+                if (provinceId) {
+                    $.ajax({
+                        type: "GET",
+                        url: "/Beneficiaries/Create?handler=Municipalities",
+                        data: { provinceId: provinceId },
+                        success: function (municipalities) {
+                            $("#MunicipalityID").empty();
+                            $("#MunicipalityID").append('<option value="">--Select Municipality--</option>');
+                            $.each(municipalities, function (key, value) {
+                                $("#MunicipalityID").append('<option value="' + value.municipalityID + '">' + value.name + '</option>');
+                            });
+                        }
+                    });
+                } else {
+                    $("#MunicipalityID").empty();
+                    $("#BarangayID").empty();
+                }
+            });
+
+            $('#MunicipalityID').change(function () {
+                var municipalityId = $(this).val();
+                if (municipalityId) {
+                    $.ajax({
+                        type: "GET",
+                        url: "/Beneficiaries/Create?handler=Barangays",
+                        data: { municipalityId: municipalityId },
+                        success: function (barangays) {
+                            $("#BarangayID").empty();
+                            $("#BarangayID").append('<option value="">--Select Barangay--</option>');
+                            $.each(barangays, function (key, value) {
+                                $("#BarangayID").append('<option value="' + value.barangayID + '">' + value.name + '</option>');
+                            });
+                        }
+                    });
+                } else {
+                    $("#BarangayID").empty();
+                }
+            });
+        });
+    </script>
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

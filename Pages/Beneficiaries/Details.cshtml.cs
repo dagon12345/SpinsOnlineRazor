@@ -13,57 +13,16 @@ namespace SpinsOnlineRazor.Pages.Beneficiaries
 {
     public class DetailsModel : PageModel
     {
-        private readonly IWebHostEnvironment _webHostEnvironment;
+        //private readonly IWebHostEnvironment _webHostEnvironment;
         private readonly SpinsOnlineRazor.Data.SpinsContext _context;
 
         public DetailsModel(SpinsOnlineRazor.Data.SpinsContext context)
         {
             _context = context;
         }
-        
 
-    public Validationform validationform { get; set; }
+
         public Beneficiary Beneficiary { get; set; }
-
-
-        // public async Task<IActionResult> AddNewValidation(Validationform validationformModel)
-        // {
-        //     if (ModelState.IsValid)
-        //     {
-
-        //         if (validationformModel.BookPdf != null)
-        //         {
-
-        //             string folder = "wwwroot/pdf/";
-        //             validationformModel.ReferenceCode = await UploadImage(folder, validationformModel.BookPdf);
-        //         }
-
-        //         if (await TryUpdateModelAsync<Validationform>(validationformModel, "Validationform", s => s.ReferenceCode))
-        //         {
-        //             _context.Validationforms.Add(validationformModel);
-        //             await _context.SaveChangesAsync();
-        //             return RedirectToPage("./Index");
-        //         }
-
-
-
-        //     }
-        //           return Page();
-
-
-        // }
-
-        // private async Task<int> UploadImage(string folderPath, IFormFile file)
-        // {
-
-        //     folderPath += Guid.NewGuid().ToString() + "_" + file.FileName;
-
-        //     string serverFolder = Path.Combine(_webHostEnvironment.WebRootPath, folderPath);
-
-        //     await file.CopyToAsync(new FileStream(serverFolder, FileMode.Create));
-
-        //     return "/" + folderPath;
-        // }
 
 
 
@@ -75,45 +34,25 @@ namespace SpinsOnlineRazor.Pages.Beneficiaries
             }
 
 
-            /*Beneficiary = await _context.Beneficiaries
-            .Include(s => s.Masterlists)
-            .ThenInclude(r => r.Region)
-             .ThenInclude(p => p.Provinces)
-              .ThenInclude(m => m.Municipalities)
-               .ThenInclude(r => r.Barangays)
-            .AsNoTracking()
-            .FirstOrDefaultAsync(m => m.ID == id);*/
-
             //Code na mag pa show instead of Region, Province, Municipality, and Barangay codes and e show ila name an e show.
             Beneficiary = await _context.Beneficiaries
-        .Include(b => b.Masterlists)
-            .ThenInclude(m => m.Region)
-        .Include(b => b.Masterlists)
-            .ThenInclude(m => m.Province)
-        .Include(b => b.Masterlists)
-            .ThenInclude(m => m.Municipality)
-        .Include(b => b.Masterlists)
-            .ThenInclude(m => m.Barangay)
-        .Include(b => b.Masterlists)
-            .ThenInclude(s => s.Sex)
-        .Include(b => b.Masterlists)
-            .ThenInclude(s => s.Maritalstatus)
-        .Include(b => b.Masterlists)
-            .ThenInclude(s => s.Validationform)
-        .Include(b => b.Masterlists)
-            .ThenInclude(s => s.Validationform.Assessment)
-        .Include(b => b.Masterlists)
-            .ThenInclude(s => s.IdentificationType)
-        .Include(h => h.HealthStatus)
-        .Include(b => b.Masterlists)
-            .ThenInclude(d => d.Detail.Exclusion)
-        .Include(b => b.Masterlists)
-            .ThenInclude(d => d.Detail.Deceased) 
-        .Include(b => b.Masterlists)
-            .ThenInclude(m => m.Detail.Modify)   
-        .Include(b=>b.Masterlists)
-            .ThenInclude(d => d.Detail.Delete)
+            // .Include(m => m.Region)
+            // .Include(m => m.Province)
+            // .Include(m => m.Municipality)
+            // .Include(m => m.Barangay)
+            // .Include(s => s.Validationform)
+            // .ThenInclude(s => s.Assessment)
+            // .Include(s => s.Sex)
+            // .Include(s => s.Maritalstatus)
+            // .Include(s => s.IdentificationType)
+            // .Include(h => h.HealthStatus)// This entity is one is to one relation with Beneficiar
         .AsNoTracking()
+        .Include(b => b.HealthStatus)
+        .Include(b => b.IdentificationType)
+        .Include(r => r.Region)
+        .Include(p => p.Province)
+        .Include(p => p.Municipality)
+        .Include(p => p.Barangay)
         .FirstOrDefaultAsync(m => m.BeneficiaryID == id);
 
 

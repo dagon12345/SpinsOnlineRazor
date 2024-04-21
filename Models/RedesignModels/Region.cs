@@ -10,10 +10,8 @@ namespace SpinsOnlineRazor.Models.RedesignModels
         public int RegionID { get; set; }
         public string Name { get; set; }
 
-        //Mudawat sija na dabo na Masterlist gikan sa Beneficiary na mga data.So an masterlist kay collection
-        public ICollection<Masterlist> Masterlists { get; set; }
-
-        //Dabo na provinsya an sakop nan isa ka region so collection sija nan province
-        public ICollection<Province> Provinces { get; set; }
+        
+        public ICollection<Beneficiary> Beneficiaries { get; set; } // Dabo na bene mugamit sa m
+       // public ICollection<Province> Provinces { get; set; } // dabo na province mugamit sa region
     }
 }

@@ -1,4 +1,6 @@
 using System.ComponentModel.DataAnnotations;
+using NuGet.Common;
+using SpinsOnlineRazor.Models.RedesignModels.ComplexModels;
 
 namespace SpinsOnlineRazor.Models.RedesignModels
 {
@@ -31,6 +33,9 @@ namespace SpinsOnlineRazor.Models.RedesignModels
         [Display(Name = "Birth Date")]
         public DateTime BirthDate { get; set; }
 
+         public int IdentificationTypeID { get; set; }
+         public IdentificationType IdentificationType { get; set; }//For ID Model
+
         [Required]
         [StringLength(20, ErrorMessage = "ID Number cannot be longer than 20 characters.")]
         [Display(Name = "ID Number")]
@@ -54,43 +59,37 @@ namespace SpinsOnlineRazor.Models.RedesignModels
          [Display(Name = "Contact Number")]
          public string ContactNumber { get; set; }
          public int HealthStatusID { get; set; }
+        public HealthStatus HealthStatus { get; set; }
 
         [StringLength(50, ErrorMessage = "Health Status not more than 50 characters.")]
         [Display(Name = "Health Remarks")]
          public string HealthRemarks { get; set; }
-        /*Sa ubos kay combination of properties kun gusto nim e merge or concatenate an properties 
-        [Display(Name = "Full Name")]
-        public string FullName
-        {
-            get
-            {
-                return $"{LastName}, {FirstName} {MiddleName} {ExtName}";
-            }
-        }
-       */
-
-
-
-        //public int MasterlistID { get; set; }
-        //public Masterlist masterlist { get; set; }
-
-        /*One is to Many relationship with Masterlist Entity, isa ra ka name sa Bene an makasuyod
-         sa masterlist pero an masterlist mudawat nan dabo na beneficiary, try nat an ICollection*/
-        //[JsonIgnore]
-        public ICollection<Masterlist> Masterlists { get; set; }
-
-        // Isa ra ka status an kada beneficiary di pwedi able tapos disable, or bedridden.
-        public HealthStatus HealthStatus { get; set; }
-
-
-
-        //public Validationform Validationform { get; set; }
-        //public Masterlist Validationform { get; set; }
-        //public int Sex { get; set; }
-        //public Region Region { get; set; }
-
-        //Isa  ra ka validation form per bene. dabo man na bene an hatagan so collection
-        //public ICollection<ValidationForm> ValidationForms { get; set; }
-
+         public int RegionID { get; set; }
+         public Region Region { get; set; }//For Region model
+         public int ProvinceID { get; set; }   
+         public Province Province { get; set; }//For province model 
+         public int MunicipalityID { get; set; }
+         public Municipality Municipality { get; set; }//For Municipality Model
+         public int BarangayID { get; set; }
+         public Barangay Barangay { get; set; }//For Barangay Model
+        //  public int SexID { get; set; }
+        //  public Sex Sex { get; set; }// For Sex model
+        //  public int MaritalstatusID { get; set; }
+        //  public Maritalstatus Maritalstatus { get; set; }//For marital Model
+        //  public int? ValidationformID { get; set; }
+        //  public Validationform Validationform { get; set; }//For Valdationform Model
+        //  public int StatusID { get; set; }
+        //  public Status Status { get; set; }//For Status model
+        //  public DateTime DateEntered { get; set; }
+        //  public string EnteredBy { get; set; }
+        //  public DateTime InclusionDate { get; set; }
+        //  public string ExclusionBatch { get; set; }
+        //  public DateTime? ExclusionDate { get; set; }
+        //  public DateTime? DeceasedDate { get; set; }
+        //  public string  ModifiedBy { get; set; }
+        //  public DateTime ModifiedDate { get; set; }
+        //  public bool IsDeleted { get; set; }
+        //  public DateTime? DeletedDate { get; set; }
+        //  public string DeletedBy { get; set; }
     }
 }

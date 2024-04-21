@@ -14,8 +14,10 @@ namespace SpinsOnlineRazor.Models.RedesignModels.ComplexModels
 
         [NotMapped]
         public IFormFile BookPdf { get; set; }
-         //Collection kaw nan masterlist kay dabo mugamit sa m na masterlist pero isa ra m hatagan per bene
-         public ICollection<Masterlist> Masterlists { get; set; }
+         // Validation form per masterlist only
+         
+        public ICollection<Beneficiary> Beneficiaries { get; set; } // Dabo na bene mugamit sa m
+
 
 
             // isa ra ka assessment kada validation

@@ -11,7 +11,9 @@ namespace SpinsOnlineRazor.Models.RedesignModels
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int StatusID { get; set; }
         public string Name { get; set; }
+        //One is to one with masterlist
+        
+         public ICollection<Beneficiary> Beneficiaries { get; set; } // Dabo na bene mugamit sa m
 
-        public ICollection<Masterlist> Masterlists { get; set; }
-    }
+}
 }

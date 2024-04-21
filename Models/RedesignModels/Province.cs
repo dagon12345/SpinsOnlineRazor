@@ -15,13 +15,13 @@ namespace SpinsOnlineRazor.Models.RedesignModels
         public string Name { get; set; }
         public int RegionID { get; set; }//Cascade ini sija from Entity Barangay nagsugod
 
-        //Mudawat sija na dabo na Masterlist gikan sa Beneficiary na mga data.So an masterlist kay collection
-        public ICollection<Masterlist> Masterlists { get; set; }
+       
+        public ICollection<Beneficiary> Beneficiaries { get; set; } // Dabo na bene mugamit sa m
 
-        // Dabo na Municipality an sakop nan isa ka Province or Probinsya so collection ini nan Municipality
-        public ICollection<Municipality> Municipalities { get; set; }
+
+        //public ICollection<Municipality> Municipalities { get; set; } // Dabo na municipalities magamit sa region
 
         //Isa ra ka province an naka base sa isa ka Region so dili collection an region diri
-        public Region Region { get; set; }
+        //public Region Region { get; set; } // Isa ra ka region an m mgamit
     }
 }

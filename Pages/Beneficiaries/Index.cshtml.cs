@@ -36,7 +36,6 @@ Saves the sort order in the CurrentSort property.
 Resets page index to 1 when there's a new search string.
 Uses the PaginatedList class to get Student entities.
 Sets pageSize to 2 from Configuration, 3 if configuration fails.*/
-   public PaginatedList<Masterlist> Masterlists  { get; set; }
    public PaginatedList<Beneficiary> Beneficiaries { get; set; }
 
    public PaginatedList<ViewModelBeneficiary> BeneficiaryViewModel { get; set; }

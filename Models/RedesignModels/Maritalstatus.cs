@@ -12,7 +12,10 @@ namespace SpinsOnlineRazor.Models.RedesignModels
         public int MaritalstatusID { get; set; }
         public string Name { get; set; }
 
-        //Dabo an ma cater nan marital sa Masterlist so ICollection again an masterlist
-        public ICollection<Masterlist> Masterlists { get; set; }
+        //One is to one with masterlist
+        
+        
+         public ICollection<Beneficiary> Beneficiaries { get; set; } // Dabo na bene mugamit sa m
+
     }
 }

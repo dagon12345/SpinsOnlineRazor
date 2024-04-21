@@ -1,4 +1,4 @@
-@page
+@* @page
 @model SpinsOnlineRazor.Pages.Masterlists.IndexModel
 
 @{
@@ -18,87 +18,7 @@
 
 <h1>Masterlist</h1>
 
-@* <p>
-<a asp-page="Create">Create New</a>
-</p> *@
-@* <table class="table">
-<thead>
-<tr>
-<th>
-@Html.DisplayNameFor(model => model.Masterlist[0].Beneficiary)
-</th>
-<th>
-@Html.DisplayNameFor(model => model.Masterlist[0].Region)
-</th>
-<th>
-@Html.DisplayNameFor(model => model.Masterlist[0].Province)
-</th>
-<th>
-@Html.DisplayNameFor(model => model.Masterlist[0].Municipality)
-</th>
-<th>
-@Html.DisplayNameFor(model => model.Masterlist[0].Barangay)
-</th>
-<th>
-@Html.DisplayNameFor(model => model.Masterlist[0].Sex)
-</th>
-<th>
-@Html.DisplayNameFor(model => model.Masterlist[0].Maritalstatus)
-</th>
-<th>
-@Html.DisplayNameFor(model => model.Masterlist[0].Validationform)
-</th>
-<th>
-@Html.DisplayNameFor(model => model.Masterlist[0].Status)
-</th>
-<th>
-@Html.DisplayNameFor(model => model.Masterlist[0].IdentificationType)
-</th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-@foreach (var item in Model.Masterlist) {
-<tr>
-<td>
-@Html.DisplayFor(modelItem => item.Beneficiary.FirstName)
-</td>
-<td>
-@Html.DisplayFor(modelItem => item.Region.Name)
-</td>
-<td>
-@Html.DisplayFor(modelItem => item.Province.Name)
-</td>
-<td>
-@Html.DisplayFor(modelItem => item.Municipality.Name)
-</td>
-<td>
-@Html.DisplayFor(modelItem => item.Barangay.Name)
-</td>
-<td>
-@Html.DisplayFor(modelItem => item.Sex.Name)
-</td>
-<td>
-@Html.DisplayFor(modelItem => item.Maritalstatus.Name)
-</td>
-<td>
-@Html.DisplayFor(modelItem => item.Validationform.ValidationformID)
-</td>
-<td>
-@Html.DisplayFor(modelItem => item.Status.Name)
-</td>
-<td>
-@Html.DisplayFor(modelItem => item.IdentificationType.Name)
-</td>
-<td>
-<a asp-page="./Edit" asp-route-id="@item.MasterlistID">Edit</a> |
-<a asp-page="./Details" asp-route-id="@item.MasterlistID">Details</a> |
-<a asp-page="./Delete" asp-route-id="@item.MasterlistID">Delete</a>
-</td>
-</tr>
-}
-</tbody>
-</table> *@
+
 
 <ejs-grid id="Grid" allowExcelExport="true" dataSource="@Model.BeneficiaryViewModel" allowFiltering="true"
     detailTemplate="#detailtemplate" toolbarClick="toolbarClick" ExcelQueryCellInfo="exportQueryCellInfo"
@@ -113,21 +33,7 @@
         <e-grid-column field="Status" headerText="Status" width="200"></e-grid-column>
         <e-grid-column field="Referencecode" headerText="GIS" width="200"></e-grid-column>
         <e-grid-column field="SpinsBatch" headerText="Spins Batch" width="150"></e-grid-column>
-        @*<e-grid-column field="Pantawid" headerText="Pantawid" width="150" displayAsCheckBox="true" textAlign="Center"
-        type="boolean"></e-grid-column>
-        <e-grid-column field="Indigenous" headerText="Indigenous" width="150" displayAsCheckBox="true"
-        textAlign="Center" type="boolean"></e-grid-column>
-        <e-grid-column field="BirthDate" headerText="Birth Date" width="120" format="yyyy-MM-dd"
-        visible="false"></e-grid-column>
-        <e-grid-column field="RegionName" headerText="Region" width="200"></e-grid-column>
-        <e-grid-column field="ProvinceName" headerText="Province" width="200"></e-grid-column>
-        <e-grid-column field="MunicipalityName" headerText="Municipality" width="200"></e-grid-column>
-        <e-grid-column field="BarangayName" headerText="Barangay" width="200"></e-grid-column>
-        <e-grid-column field="Assessment" headerText="Assessment" width="200"></e-grid-column>
-        <e-grid-column field="IdentificationType" headerText="ID Type" width="200"></e-grid-column>
-        <e-grid-column field="IdentificationNo" headerText="ID Number" width="200"></e-grid-column>
-        <e-grid-column field="IdentificationDate" headerText="Date Issued"
-        width="200"format="yyyy-MM-dd"></e-grid-column> *@
+
     </e-grid-columns>
 </ejs-grid>
 
@@ -240,14 +146,12 @@
 
 
 
-@*Paging code for razor below*@
 
 @{
     //An mga button ma disable kung waya nay previous or next page.
     var prevDisabled = !Model.BeneficiaryViewModel.HasPreviousPage ? "disabled" : "";
     var nextDisabled = !Model.BeneficiaryViewModel.HasNextPage ? "disabled" : "";
 }
-@*The paging buttons are displayed by tag helpers:*@
 <a asp-page="./Index" asp-route-sortOrder="@Model.CurrentSort"
     asp-route-pageIndex="@(Model.BeneficiaryViewModel.PageIndex - 1)" asp-route-currentFilter="@Model.CurrentFilter"
     class="btn btn-primary @prevDisabled">
@@ -257,4 +161,4 @@
     asp-route-pageIndex="@(Model.BeneficiaryViewModel.PageIndex + 1)" asp-route-currentFilter="@Model.CurrentFilter"
     class="btn btn-primary @nextDisabled">
     &raquo;
-</a>
+</a> *@

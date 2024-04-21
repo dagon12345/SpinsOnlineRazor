@@ -18,9 +18,12 @@ namespace SpinsOnlineRazor.Models.RedesignModels
         public int MunicipalityID { get; set; }
 
          //Mudawat sija na dabo na Masterlist gikan sa Beneficiary na mga data.So an masterlist kay collection
-        public ICollection<Masterlist> Masterlists { get; set; }
+       // public ICollection<Masterlist> Masterlists { get; set; }
 
         //Dabo barangay sa isa ka municipality. An barangay kay isa ra ka municipality naka base so dili collection
-        public Municipality Municipality { get; set; }
+        public ICollection<Beneficiary> Beneficiaries { get; set; } // Dabo na bene mugamit sa m
+
+
+        
     }
 }

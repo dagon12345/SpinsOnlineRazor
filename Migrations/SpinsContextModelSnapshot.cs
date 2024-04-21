@@ -30,8 +30,6 @@ namespace SpinsOnlineRazor.Migrations
 
                     b.HasKey("BarangayID");
 
-                    b.HasIndex("MunicipalityID");
-
                     b.ToTable("Barangay", (string)null);
                 });
 
@@ -39,6 +37,9 @@ namespace SpinsOnlineRazor.Migrations
                 {
                     b.Property<int>("BeneficiaryID")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("BarangayID")
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("BirthDate")
@@ -72,6 +73,9 @@ namespace SpinsOnlineRazor.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("IdentificationTypeID")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasMaxLength(20)
@@ -81,149 +85,34 @@ namespace SpinsOnlineRazor.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("MunicipalityID")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("ProvinceID")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("RegionID")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("SpecificAddress")
                         .HasMaxLength(20)
                         .HasColumnType("TEXT");
 
                     b.HasKey("BeneficiaryID");
 
+                    b.HasIndex("BarangayID");
+
                     b.HasIndex("HealthStatusID");
 
+                    b.HasIndex("IdentificationTypeID");
+
+                    b.HasIndex("MunicipalityID");
+
+                    b.HasIndex("ProvinceID");
+
+                    b.HasIndex("RegionID");
+
                     b.ToTable("Beneficiary", (string)null);
-                });
-
-            modelBuilder.Entity("SpinsOnlineRazor.Models.RedesignModels.ComplexModels.Assessment", b =>
-                {
-                    b.Property<int>("AssessmentID")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("AssessmentID");
-
-                    b.ToTable("Assessment", (string)null);
-                });
-
-            modelBuilder.Entity("SpinsOnlineRazor.Models.RedesignModels.ComplexModels.Validationform", b =>
-                {
-                    b.Property<int>("ValidationformID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("AssessmentID")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("Indigenous")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("Pantawid")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("ReferenceCode")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("SpinsBatch")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("ValidationformID");
-
-                    b.HasIndex("AssessmentID");
-
-                    b.ToTable("Validationform", (string)null);
-                });
-
-            modelBuilder.Entity("SpinsOnlineRazor.Models.RedesignModels.Deceased", b =>
-                {
-                    b.Property<int>("DeceasedID")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTime>("DeceasedDate")
-                        .HasColumnType("TEXT");
-
-                    b.Property<bool>("IsDeceased")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("DeceasedID");
-
-                    b.ToTable("Deceased", (string)null);
-                });
-
-            modelBuilder.Entity("SpinsOnlineRazor.Models.RedesignModels.Delete", b =>
-                {
-                    b.Property<int>("DeleteID")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTime>("DeletedDate")
-                        .HasColumnType("TEXT");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("DeleteID");
-
-                    b.ToTable("Delete", (string)null);
-                });
-
-            modelBuilder.Entity("SpinsOnlineRazor.Models.RedesignModels.Detail", b =>
-                {
-                    b.Property<int>("DetailID")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTime>("DateEntered")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int?>("DeceasedID")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int?>("DeleteID")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("EnteredBy")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int?>("ExclusionID")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTime>("InclusionDate")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int?>("ModifyID")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("WaitlistedID")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("DetailID");
-
-                    b.HasIndex("DeceasedID");
-
-                    b.HasIndex("DeleteID");
-
-                    b.HasIndex("ExclusionID");
-
-                    b.HasIndex("ModifyID");
-
-                    b.ToTable("Detail", (string)null);
-                });
-
-            modelBuilder.Entity("SpinsOnlineRazor.Models.RedesignModels.Exclusion", b =>
-                {
-                    b.Property<int>("ExclusionID")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("ExclusionBatch")
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("ExclusionDate")
-                        .HasColumnType("TEXT");
-
-                    b.Property<bool>("IsExcluded")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("ExclusionID");
-
-                    b.ToTable("Exclusion", (string)null);
                 });
 
             modelBuilder.Entity("SpinsOnlineRazor.Models.RedesignModels.HealthStatus", b =>
@@ -252,109 +141,6 @@ namespace SpinsOnlineRazor.Migrations
                     b.ToTable("IdentificationType", (string)null);
                 });
 
-            modelBuilder.Entity("SpinsOnlineRazor.Models.RedesignModels.Maritalstatus", b =>
-                {
-                    b.Property<int>("MaritalstatusID")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("MaritalstatusID");
-
-                    b.ToTable("MaritalStatus", (string)null);
-                });
-
-            modelBuilder.Entity("SpinsOnlineRazor.Models.RedesignModels.Masterlist", b =>
-                {
-                    b.Property<int>("MasterlistID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("BarangayID")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("BeneficiaryID")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("DetailID")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int?>("HealthStatusID")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("IdentificationTypeID")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("MaritalstatusID")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("MunicipalityID")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("ProvinceID")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("RegionID")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("SexID")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("StatusID")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("ValidationformID")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("MasterlistID");
-
-                    b.HasIndex("BarangayID");
-
-                    b.HasIndex("BeneficiaryID");
-
-                    b.HasIndex("DetailID");
-
-                    b.HasIndex("HealthStatusID");
-
-                    b.HasIndex("IdentificationTypeID");
-
-                    b.HasIndex("MaritalstatusID");
-
-                    b.HasIndex("MunicipalityID");
-
-                    b.HasIndex("ProvinceID");
-
-                    b.HasIndex("RegionID");
-
-                    b.HasIndex("SexID");
-
-                    b.HasIndex("StatusID");
-
-                    b.HasIndex("ValidationformID");
-
-                    b.ToTable("Masterlist", (string)null);
-                });
-
-            modelBuilder.Entity("SpinsOnlineRazor.Models.RedesignModels.Modify", b =>
-                {
-                    b.Property<int>("ModifyID")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("IsModified")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("ModifiedBy")
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("ModifiedDate")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("ModifyID");
-
-                    b.ToTable("Modify", (string)null);
-                });
-
             modelBuilder.Entity("SpinsOnlineRazor.Models.RedesignModels.Municipality", b =>
                 {
                     b.Property<int>("MunicipalityID")
@@ -367,8 +153,6 @@ namespace SpinsOnlineRazor.Migrations
                         .HasColumnType("INTEGER");
 
                     b.HasKey("MunicipalityID");
-
-                    b.HasIndex("ProvinceID");
 
                     b.ToTable("Municipality", (string)null);
                 });
@@ -386,8 +170,6 @@ namespace SpinsOnlineRazor.Migrations
 
                     b.HasKey("ProvinceID");
 
-                    b.HasIndex("RegionID");
-
                     b.ToTable("Province", (string)null);
                 });
 
@@ -404,298 +186,85 @@ namespace SpinsOnlineRazor.Migrations
                     b.ToTable("Region", (string)null);
                 });
 
-            modelBuilder.Entity("SpinsOnlineRazor.Models.RedesignModels.Sex", b =>
-                {
-                    b.Property<int>("SexID")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("SexID");
-
-                    b.ToTable("Sex", (string)null);
-                });
-
-            modelBuilder.Entity("SpinsOnlineRazor.Models.RedesignModels.Status", b =>
-                {
-                    b.Property<int>("StatusID")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("StatusID");
-
-                    b.ToTable("Status", (string)null);
-                });
-
-            modelBuilder.Entity("SpinsOnlineRazor.Models.RedesignModels.Barangay", b =>
-                {
-                    b.HasOne("SpinsOnlineRazor.Models.RedesignModels.Municipality", "Municipality")
-                        .WithMany("Barangays")
-                        .HasForeignKey("MunicipalityID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Municipality");
-                });
-
             modelBuilder.Entity("SpinsOnlineRazor.Models.RedesignModels.Beneficiary", b =>
                 {
-                    b.HasOne("SpinsOnlineRazor.Models.RedesignModels.HealthStatus", "HealthStatus")
-                        .WithMany()
-                        .HasForeignKey("HealthStatusID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("HealthStatus");
-                });
-
-            modelBuilder.Entity("SpinsOnlineRazor.Models.RedesignModels.ComplexModels.Validationform", b =>
-                {
-                    b.HasOne("SpinsOnlineRazor.Models.RedesignModels.ComplexModels.Assessment", "Assessment")
-                        .WithMany("Validationforms")
-                        .HasForeignKey("AssessmentID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Assessment");
-                });
-
-            modelBuilder.Entity("SpinsOnlineRazor.Models.RedesignModels.Detail", b =>
-                {
-                    b.HasOne("SpinsOnlineRazor.Models.RedesignModels.Deceased", "Deceased")
-                        .WithMany("Details")
-                        .HasForeignKey("DeceasedID");
-
-                    b.HasOne("SpinsOnlineRazor.Models.RedesignModels.Delete", "Delete")
-                        .WithMany("Details")
-                        .HasForeignKey("DeleteID");
-
-                    b.HasOne("SpinsOnlineRazor.Models.RedesignModels.Exclusion", "Exclusion")
-                        .WithMany("Details")
-                        .HasForeignKey("ExclusionID");
-
-                    b.HasOne("SpinsOnlineRazor.Models.RedesignModels.Modify", "Modify")
-                        .WithMany("Details")
-                        .HasForeignKey("ModifyID");
-
-                    b.Navigation("Deceased");
-
-                    b.Navigation("Delete");
-
-                    b.Navigation("Exclusion");
-
-                    b.Navigation("Modify");
-                });
-
-            modelBuilder.Entity("SpinsOnlineRazor.Models.RedesignModels.Masterlist", b =>
-                {
                     b.HasOne("SpinsOnlineRazor.Models.RedesignModels.Barangay", "Barangay")
-                        .WithMany("Masterlists")
+                        .WithMany("Beneficiaries")
                         .HasForeignKey("BarangayID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("SpinsOnlineRazor.Models.RedesignModels.Beneficiary", "Beneficiary")
-                        .WithMany("Masterlists")
-                        .HasForeignKey("BeneficiaryID")
+                    b.HasOne("SpinsOnlineRazor.Models.RedesignModels.HealthStatus", "HealthStatus")
+                        .WithMany("Beneficiaries")
+                        .HasForeignKey("HealthStatusID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("SpinsOnlineRazor.Models.RedesignModels.Detail", "Detail")
-                        .WithMany("Masterlists")
-                        .HasForeignKey("DetailID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("SpinsOnlineRazor.Models.RedesignModels.HealthStatus", null)
-                        .WithMany("Masterlists")
-                        .HasForeignKey("HealthStatusID");
 
                     b.HasOne("SpinsOnlineRazor.Models.RedesignModels.IdentificationType", "IdentificationType")
-                        .WithMany("Masterlists")
+                        .WithMany("Beneficiaries")
                         .HasForeignKey("IdentificationTypeID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("SpinsOnlineRazor.Models.RedesignModels.Maritalstatus", "Maritalstatus")
-                        .WithMany("Masterlists")
-                        .HasForeignKey("MaritalstatusID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("SpinsOnlineRazor.Models.RedesignModels.Municipality", "Municipality")
-                        .WithMany("Masterlists")
+                        .WithMany("Beneficiaries")
                         .HasForeignKey("MunicipalityID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("SpinsOnlineRazor.Models.RedesignModels.Province", "Province")
-                        .WithMany("Masterlists")
+                        .WithMany("Beneficiaries")
                         .HasForeignKey("ProvinceID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("SpinsOnlineRazor.Models.RedesignModels.Region", "Region")
-                        .WithMany("Masterlists")
+                        .WithMany("Beneficiaries")
                         .HasForeignKey("RegionID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("SpinsOnlineRazor.Models.RedesignModels.Sex", "Sex")
-                        .WithMany("Masterlists")
-                        .HasForeignKey("SexID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("SpinsOnlineRazor.Models.RedesignModels.Status", "Status")
-                        .WithMany("Masterlists")
-                        .HasForeignKey("StatusID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("SpinsOnlineRazor.Models.RedesignModels.ComplexModels.Validationform", "Validationform")
-                        .WithMany("Masterlists")
-                        .HasForeignKey("ValidationformID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Barangay");
 
-                    b.Navigation("Beneficiary");
-
-                    b.Navigation("Detail");
+                    b.Navigation("HealthStatus");
 
                     b.Navigation("IdentificationType");
-
-                    b.Navigation("Maritalstatus");
 
                     b.Navigation("Municipality");
 
                     b.Navigation("Province");
 
                     b.Navigation("Region");
-
-                    b.Navigation("Sex");
-
-                    b.Navigation("Status");
-
-                    b.Navigation("Validationform");
-                });
-
-            modelBuilder.Entity("SpinsOnlineRazor.Models.RedesignModels.Municipality", b =>
-                {
-                    b.HasOne("SpinsOnlineRazor.Models.RedesignModels.Province", "Province")
-                        .WithMany("Municipalities")
-                        .HasForeignKey("ProvinceID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Province");
-                });
-
-            modelBuilder.Entity("SpinsOnlineRazor.Models.RedesignModels.Province", b =>
-                {
-                    b.HasOne("SpinsOnlineRazor.Models.RedesignModels.Region", "Region")
-                        .WithMany("Provinces")
-                        .HasForeignKey("RegionID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Region");
                 });
 
             modelBuilder.Entity("SpinsOnlineRazor.Models.RedesignModels.Barangay", b =>
                 {
-                    b.Navigation("Masterlists");
-                });
-
-            modelBuilder.Entity("SpinsOnlineRazor.Models.RedesignModels.Beneficiary", b =>
-                {
-                    b.Navigation("Masterlists");
-                });
-
-            modelBuilder.Entity("SpinsOnlineRazor.Models.RedesignModels.ComplexModels.Assessment", b =>
-                {
-                    b.Navigation("Validationforms");
-                });
-
-            modelBuilder.Entity("SpinsOnlineRazor.Models.RedesignModels.ComplexModels.Validationform", b =>
-                {
-                    b.Navigation("Masterlists");
-                });
-
-            modelBuilder.Entity("SpinsOnlineRazor.Models.RedesignModels.Deceased", b =>
-                {
-                    b.Navigation("Details");
-                });
-
-            modelBuilder.Entity("SpinsOnlineRazor.Models.RedesignModels.Delete", b =>
-                {
-                    b.Navigation("Details");
-                });
-
-            modelBuilder.Entity("SpinsOnlineRazor.Models.RedesignModels.Detail", b =>
-                {
-                    b.Navigation("Masterlists");
-                });
-
-            modelBuilder.Entity("SpinsOnlineRazor.Models.RedesignModels.Exclusion", b =>
-                {
-                    b.Navigation("Details");
+                    b.Navigation("Beneficiaries");
                 });
 
             modelBuilder.Entity("SpinsOnlineRazor.Models.RedesignModels.HealthStatus", b =>
                 {
-                    b.Navigation("Masterlists");
+                    b.Navigation("Beneficiaries");
                 });
 
             modelBuilder.Entity("SpinsOnlineRazor.Models.RedesignModels.IdentificationType", b =>
                 {
-                    b.Navigation("Masterlists");
-                });
-
-            modelBuilder.Entity("SpinsOnlineRazor.Models.RedesignModels.Maritalstatus", b =>
-                {
-                    b.Navigation("Masterlists");
-                });
-
-            modelBuilder.Entity("SpinsOnlineRazor.Models.RedesignModels.Modify", b =>
-                {
-                    b.Navigation("Details");
+                    b.Navigation("Beneficiaries");
                 });
 
             modelBuilder.Entity("SpinsOnlineRazor.Models.RedesignModels.Municipality", b =>
                 {
-                    b.Navigation("Barangays");
-
-                    b.Navigation("Masterlists");
+                    b.Navigation("Beneficiaries");
                 });
 
             modelBuilder.Entity("SpinsOnlineRazor.Models.RedesignModels.Province", b =>
                 {
-                    b.Navigation("Masterlists");
-
-                    b.Navigation("Municipalities");
+                    b.Navigation("Beneficiaries");
                 });
 
             modelBuilder.Entity("SpinsOnlineRazor.Models.RedesignModels.Region", b =>
                 {
-                    b.Navigation("Masterlists");
-
-                    b.Navigation("Provinces");
-                });
-
-            modelBuilder.Entity("SpinsOnlineRazor.Models.RedesignModels.Sex", b =>
-                {
-                    b.Navigation("Masterlists");
-                });
-
-            modelBuilder.Entity("SpinsOnlineRazor.Models.RedesignModels.Status", b =>
-                {
-                    b.Navigation("Masterlists");
+                    b.Navigation("Beneficiaries");
                 });
 #pragma warning restore 612, 618
         }

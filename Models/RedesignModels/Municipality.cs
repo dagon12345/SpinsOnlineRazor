@@ -16,13 +16,9 @@ namespace SpinsOnlineRazor.Models.RedesignModels
         public int ProvinceID { get; set; }// Naka Cascade sija sa province nag sugod sa pinaka ubos sa Barangay.
 
         //Mudawat sija na dabo na Masterlist gikan sa Beneficiary na mga data.So an masterlist kay collection
-        public ICollection<Masterlist> Masterlists { get; set; }
 
         //Dabo na Barangay an luon sa isa ka Municipality so collection sija nan barangay
-        public ICollection<Barangay> Barangays { get; set; }
-
-        //Isa ra ka ngayan nan Municipality an naka base sa province so dili sija ko collection
-        public Province Province { get; set; }
+         public ICollection<Beneficiary> Beneficiaries { get; set; } // Dabo na bene mugamit sa m
         
     }
 }

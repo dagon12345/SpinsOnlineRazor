@@ -15,7 +15,9 @@ namespace SpinsOnlineRazor.Models.RedesignModels
         public string Name { get; set; }
 
         //Dabo na masterlist an e cater nan sex so ICollection an Masterlist
-        public ICollection<Masterlist> Masterlists { get; set; }
+      
+         public ICollection<Beneficiary> Beneficiaries { get; set; } // Dabo na bene mugamit sa m
+
         //public ICollection<Beneficiary> Beneficiaries { get; set; }
 
     }

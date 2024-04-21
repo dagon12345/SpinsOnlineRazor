@@ -8,6 +8,8 @@ namespace SpinsOnlineRazor.Models.RedesignModels
         public int HealthStatusID { get; set; } 
         public string Name { get; set; }        
         // dabo magamit sa m na masterlist so masterlist is collection
-        public ICollection<Masterlist> Masterlists { get; set; }
+        
+         public ICollection<Beneficiary> Beneficiaries { get; set; } // Dabo na bene mugamit sa m
+
     }
 }

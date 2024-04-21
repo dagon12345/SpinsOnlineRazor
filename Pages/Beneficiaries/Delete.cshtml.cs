@@ -39,15 +39,17 @@ called after a failure to delete the student object.*/
 
             Beneficiary = await _context.Beneficiaries
             .AsNoTracking()
+            .Include(c => c.HealthStatus)
+            .Include(b => b.IdentificationType)
+            .Include(r => r.Region)
+            .Include(p => p.Province)
+            .Include(p => p.Municipality)
+            .Include(p => p.Barangay)
             .FirstOrDefaultAsync(m => m.BeneficiaryID == id);
 
             if (Beneficiary == null)
             {
                 return NotFound();
-            }
-            if (saveChangesError.GetValueOrDefault())
-            {
-                ErrorMessage = string.Format("Delete {ID} failed. Try again", id);
             }
             return Page();
         }

@@ -7,9 +7,10 @@ namespace SpinsOnlineRazor.Models.RedesignModels
          [DatabaseGenerated(DatabaseGeneratedOption.None)]
          public int IdentificationTypeID { get; set; }
          public string Name { get; set; }
-         //public string Number { get; set; }
 
-        //An IdentificationType kay Collection nan masterlist kay dabo magamit sa ija na masterlist
-         public ICollection<Masterlist> Masterlists { get; set; }
+        //Dabo na masterlist mugamit sa m
+         
+         public ICollection<Beneficiary> Beneficiaries { get; set; } // Dabo na bene mugamit sa m
+
     }
 }
