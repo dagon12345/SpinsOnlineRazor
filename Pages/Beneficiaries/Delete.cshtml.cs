@@ -45,6 +45,9 @@ called after a failure to delete the student object.*/
             .Include(p => p.Province)
             .Include(p => p.Municipality)
             .Include(p => p.Barangay)
+            .Include(p => p.Sex)
+            .Include(p => p.Maritalstatus)
+            .Include(p => p.Status)
             .FirstOrDefaultAsync(m => m.BeneficiaryID == id);
 
             if (Beneficiary == null)

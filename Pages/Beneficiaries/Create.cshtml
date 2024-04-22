@@ -150,6 +150,32 @@
                 <span asp-validation-for="Beneficiary.BarangayID" class="text-danger"></span>
             </div>
 
+             <div class="form-group">
+                <label asp-for="Beneficiary.Sex" class="control-label"></label>
+                <select asp-for="Beneficiary.SexID" class="form-control" asp-items="@Model.SexSL">
+                    <option value="">--Select Sex--</option>
+                </select>
+                <span asp-validation-for="Beneficiary.SexID" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Beneficiary.Maritalstatus" class="control-label"></label>
+                <select asp-for="Beneficiary.MaritalstatusID" class="form-control" asp-items="@Model.MaritalStatusSL">
+                    <option value="">--Select Marital status--</option>
+                </select>
+                <span asp-validation-for="Beneficiary.MaritalstatusID" class="text-danger"></span>
+            </div>
+
+             @* <div class="form-group">
+                <label asp-for="Beneficiary.Status" class="control-label"></label>
+                <select asp-for="Beneficiary.StatusID" class="form-control" asp-items="@Model.StatusSL">
+                    <option value="">--Select Status--</option>
+                </select>
+                <span asp-validation-for="Beneficiary.StatusID" class="text-danger"></span>
+            </div> *@
+
+
+
 
 
 

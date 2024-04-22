@@ -24,11 +24,14 @@ namespace SpinsOnlineRazor.Pages.Beneficiaries
         public SelectList ProvinceSL { get; set; }
         public SelectList MunicipalitySL { get; set; }
         public SelectList BarangaySL { get; set; }
+        public SelectList SexSL { get; set; }
+        public SelectList MaritalStatusSL { get; set; }
+        public SelectList StatusSL { get; set; }
 
 
         public IActionResult OnGet()
         {
-        
+
             //Populate HealthStatus, IdentificationType
             // PopulateHealthStatusDropDownList(_context);
             // PopulateIDDropDownList(_context);
@@ -38,10 +41,10 @@ namespace SpinsOnlineRazor.Pages.Beneficiaries
             // PopulateBarangayDropDownList(_context);
             PopulateDropDownLists();
             return Page();
-         
+
         }
 
-         private void PopulateDropDownLists()
+        private void PopulateDropDownLists()
         {
             HealthStatusSL = new SelectList(_context.HealthStatuses.OrderBy(h => h.Name), nameof(HealthStatus.HealthStatusID), nameof(HealthStatus.Name));
             IdentificationTypeSL = new SelectList(_context.IdentificationTypes.OrderBy(i => i.Name), nameof(IdentificationType.IdentificationTypeID), nameof(IdentificationType.Name));
@@ -49,9 +52,14 @@ namespace SpinsOnlineRazor.Pages.Beneficiaries
             ProvinceSL = new SelectList(new List<Province>(), nameof(Province.ProvinceID), nameof(Province.Name));
             MunicipalitySL = new SelectList(new List<Municipality>(), nameof(Municipality.MunicipalityID), nameof(Municipality.Name));
             BarangaySL = new SelectList(new List<Barangay>(), nameof(Barangay.BarangayID), nameof(Barangay.Name));
+            SexSL = new SelectList(_context.Sexes.OrderBy(r => r.Name), nameof(Sex.SexID), nameof(Sex.Name));
+            MaritalStatusSL = new SelectList(_context.Maritalstatuses.OrderBy(r => r.Name), nameof(Maritalstatus.MaritalstatusID), nameof(Maritalstatus.Name));
+            StatusSL = new SelectList(_context.Statuses.OrderBy(r => r.Name), nameof(Status.StatusID), nameof(Status.Name));
         }
 
-          public async Task<JsonResult> OnGetProvincesAsync(int regionId)
+        //Below are the code for Cascading.
+
+        public async Task<JsonResult> OnGetProvincesAsync(int regionId)
         {
             var provinces = await _context.Provinces
                 .Where(p => p.RegionID == regionId)
@@ -107,10 +115,14 @@ namespace SpinsOnlineRazor.Pages.Beneficiaries
             //  ))
             if (await TryUpdateModelAsync<Beneficiary>(emptyBeneficiary, "Beneficiary",
              s => s.HealthStatusID, s => s.IdentificationTypeID, s => s.RegionID, s => s.ProvinceID, s => s.MunicipalityID, s => s.BarangayID,
+             s => s.SexID, s => s.MaritalstatusID,
              s => s.LastName, s => s.FirstName, s => s.MiddleName, s => s.ExtName, s => s.BirthDate, s => s.IdentificationNumber,
              s => s.IdentificationDateIssued, s => s.SpecificAddress, s => s.ContactNumber, s => s.HealthRemarks
              ))
             {
+                // Set StatusID to 99 if it's not already set
+                emptyBeneficiary.StatusID = 99;
+
                 _context.Beneficiaries.Add(emptyBeneficiary);
                 await _context.SaveChangesAsync();
                 return RedirectToPage("./Index");

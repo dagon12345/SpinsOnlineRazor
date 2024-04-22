@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SpinsOnlineRazor.Data;
 using SpinsOnlineRazor.Models.RedesignModels;
+using SpinsOnlineRazor.Models.RedesignModels.ComplexModels;
 using SpinsOnlineRazor.Models.RedesignModels.Dropdowns;
 
 namespace SpinsOnlineRazor.Pages.Beneficiaries
@@ -22,7 +23,9 @@ namespace SpinsOnlineRazor.Pages.Beneficiaries
         }
 
         [BindProperty]
-        public Beneficiary Beneficiary { get; set; } = default!;
+        public Beneficiary Beneficiary { get; set; }
+        [BindProperty]
+        public Validationform ValidationForm { get; set; }
 
         /*FirstOrDefaultAsync has been replaced with FindAsync. 
         When you don't have to include related data, FindAsync is more efficient.
@@ -42,10 +45,14 @@ namespace SpinsOnlineRazor.Pages.Beneficiaries
             .Include(p => p.Province)
             .Include(p => p.Municipality)
             .Include(p => p.Barangay)
+            .Include(p => p.Sex)
+            .Include(p => p.Maritalstatus)
+            .Include(p => p.Status)
+            .Include(p => p.Validationform)
             .FirstOrDefaultAsync(m => m.BeneficiaryID == id);
-            
 
-           // Beneficiary = await _context.Beneficiaries.FindAsync(id);
+
+            // Beneficiary = await _context.Beneficiaries.FindAsync(id);
             if (Beneficiary == null)
             {
                 return NotFound();
@@ -61,15 +68,18 @@ namespace SpinsOnlineRazor.Pages.Beneficiaries
             return Page();
         }
 
-        
+
         public SelectList HealthStatusSL { get; set; }
         public SelectList IdentificationTypeSL { get; set; }
         public SelectList RegionSL { get; set; }
         public SelectList ProvinceSL { get; set; }
         public SelectList MunicipalitySL { get; set; }
         public SelectList BarangaySL { get; set; }
+        public SelectList SexSL { get; set; }
+        public SelectList MaritalstatusSL { get; set; }
+        public SelectList StatusSL { get; set; }
 
-         private void PopulateDropDownLists()
+        private void PopulateDropDownLists()
         {
             HealthStatusSL = new SelectList(_context.HealthStatuses.OrderBy(h => h.Name), nameof(HealthStatus.HealthStatusID), nameof(HealthStatus.Name));
             IdentificationTypeSL = new SelectList(_context.IdentificationTypes.OrderBy(i => i.Name), nameof(IdentificationType.IdentificationTypeID), nameof(IdentificationType.Name));
@@ -77,9 +87,14 @@ namespace SpinsOnlineRazor.Pages.Beneficiaries
             ProvinceSL = new SelectList(_context.Provinces.OrderBy(r => r.Name), nameof(Province.ProvinceID), nameof(Province.Name));
             MunicipalitySL = new SelectList(_context.Municipalities.OrderBy(r => r.Name), nameof(Municipality.MunicipalityID), nameof(Municipality.Name));
             BarangaySL = new SelectList(_context.Barangays.OrderBy(r => r.Name), nameof(Barangay.BarangayID), nameof(Barangay.Name));
+            SexSL = new SelectList(_context.Sexes.OrderBy(r => r.Name), nameof(Sex.SexID), nameof(Sex.Name));
+            MaritalstatusSL = new SelectList(_context.Maritalstatuses.OrderBy(r => r.Name), nameof(Maritalstatus.MaritalstatusID), nameof(Maritalstatus.Name));
+            StatusSL = new SelectList(_context.Statuses.OrderBy(r => r.Name), nameof(Status.StatusID), nameof(Status.Name));
         }
 
-          public async Task<JsonResult> OnGetProvincesAsync(int regionId)
+        // Cascading the dropdown regions on code below.
+
+        public async Task<JsonResult> OnGetProvincesAsync(int regionId)
         {
             var provinces = await _context.Provinces
                 .Where(p => p.RegionID == regionId)
@@ -118,30 +133,58 @@ namespace SpinsOnlineRazor.Pages.Beneficiaries
         // For more details, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync(int? id)
         {
-         
+
             if (id == null)
             {
                 return NotFound();
             }
 
             var beneficaryToUpdate = await _context.Beneficiaries.FindAsync(id);
-            if(beneficaryToUpdate == null)
+            if (beneficaryToUpdate == null)
             {
                 return NotFound();
             }
 
-            if(await TryUpdateModelAsync<Beneficiary>(
+            if (await TryUpdateModelAsync<Beneficiary>(
                 beneficaryToUpdate,
                 "beneficiary", // Prefix for form value
-             s => s.HealthStatusID, s => s.IdentificationTypeID, s => s.RegionID,s => s.ProvinceID, s => s.MunicipalityID, s => s.BarangayID,
-             s => s.LastName, s => s.FirstName,s => s.MiddleName, s => s.ExtName, s => s.BirthDate, s => s.IdentificationNumber,
+             s => s.HealthStatusID, s => s.IdentificationTypeID, s => s.RegionID, s => s.ProvinceID, s => s.MunicipalityID, s => s.BarangayID,
+             s => s.LastName, s => s.FirstName, s => s.MiddleName, s => s.ExtName, s => s.BirthDate, s => s.IdentificationNumber, s => s.SexID,
+             s => s.MaritalstatusID, s => s.StatusID,
              s => s.IdentificationDateIssued, s => s.SpecificAddress, s => s.ContactNumber, s => s.HealthRemarks
             ))
 
             {
+                //beneficaryToUpdate.ValidationformID = ValidationForm.ValidationformID; // Update Beneficiary validation form ID same with existed Validation form
                 await _context.SaveChangesAsync();
                 return RedirectToPage("./Index");
             }
+            //Addin of validation form
+
+            // var emptyValidationForm = new Validationform();
+
+            // if (await TryUpdateModelAsync<Validationform>(emptyValidationForm, "Validationform",
+            //  s => s.ValidationformID, s => s.AssessmentID, s => s.ReferenceCode, s => s.SpinsBatch, s => s.Pantawid, s => s.Indigenous
+            //  ))
+            // {
+            //     // Set StatusID to 99 if it's not already set
+            //     emptyValidationForm.ValidationformID = Beneficiary.BeneficiaryID; // Add validation form ID same with existed Beneficary form
+            //     // Generate a reference code consisting of year, month, day, and a random number
+            //     int referenceCode =
+            //         (DateTime.Now.Year % 100) * 1_000_000 +    // Year (last two digits) shifted left by 6 digits
+            //         DateTime.Now.Month * 10_000 +               // Month shifted left by 4 digits
+            //         DateTime.Now.Day * 100 +                    // Day shifted left by 2 digits
+            //         new Random().Next(100);                     // Random number (2 digits)
+
+            //     // Assign the reference code to your property (assuming emptyValidationForm is an instance of your model)
+            //     emptyValidationForm.ReferenceCode = referenceCode;
+
+
+
+            //     _context.Validationforms.Add(emptyValidationForm);
+            //     await _context.SaveChangesAsync();
+            //     return RedirectToPage("./Index");
+            // }
             // PopulateHealthStatusDropDownList(_context, beneficaryToUpdate.HealthStatusID);
             // PopulateIDDropDownList(_context, beneficaryToUpdate.IdentificationTypeID);
             // PopulateRegionDropDownList(_context, beneficaryToUpdate.RegionID);

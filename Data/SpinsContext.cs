@@ -18,6 +18,10 @@ namespace SpinsOnlineRazor.Data
         public DbSet<Barangay> Barangays { get; set; }
         public DbSet<IdentificationType> IdentificationTypes { get; set; }
         public DbSet<HealthStatus> HealthStatuses { get; set; }
+        public DbSet<Sex> Sexes { get; set; }
+        public DbSet<Maritalstatus> Maritalstatuses { get; set; }
+        public DbSet<Status> Statuses { get; set; }
+        public DbSet<Validationform> Validationforms { get; set; }
 
         /*Calls OnModelCreating. OnModelCreating:
         Is called when SchoolContext has been initialized, but before the model has been locked down and used to initialize the context.
@@ -34,6 +38,10 @@ namespace SpinsOnlineRazor.Data
              modelBuilder.Entity<Province>().ToTable("Province");
               modelBuilder.Entity<Municipality>().ToTable("Municipality");
                modelBuilder.Entity<Barangay>().ToTable("Barangay");
+               modelBuilder.Entity<Sex>().ToTable("Sex");
+               modelBuilder.Entity<Maritalstatus>().ToTable("Maritalstatus");
+                modelBuilder.Entity<Status>().ToTable("Status");
+                modelBuilder.Entity<Validationform>().ToTable("Validationform");
 
 
 

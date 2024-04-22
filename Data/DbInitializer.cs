@@ -13,8 +13,8 @@ namespace SpinsOnlineRazor.Data
         return;   // DB has been seeded
       }
 
-        var regions = new Region[]
-        {
+      var regions = new Region[]
+      {
           new Region{RegionID=10000000,Name="Region I (Ilocos Region)"},
           new Region{RegionID=20000000,Name="Region II (Cagayan Valley)"},
           new Region{RegionID=30000000,Name="Region III (Central Luzon)"},
@@ -33,127 +33,96 @@ namespace SpinsOnlineRazor.Data
           new Region{RegionID=160000000,Name="Region XIII (Caraga)"},
           new Region{RegionID=170000000,Name="MIMAROPA Region"}
 
-        };
+      };
 
-        context.Regions.AddRange(regions);
-        context.SaveChanges();
+      context.Regions.AddRange(regions);
+      context.SaveChanges();
 
-        var provinces = new Province[]
-        {
+      var provinces = new Province[]
+      {
                   new Province{ProvinceID=160200000,Name="Agusan del Norte",RegionID=160000000},
                   new Province{ProvinceID=160300000,Name="Agusan del Sur",RegionID=160000000},
                   new Province{ProvinceID=166700000,Name="Surigao del Norte",RegionID=160000000},
                   new Province{ProvinceID=166800000,Name="Surigao del Sur",RegionID=160000000},
                   new Province{ProvinceID=168500000,Name="Dinagat Islands",RegionID=160000000},
 
-        };
+      };
 
-        context.Provinces.AddRange(provinces);
-        context.SaveChanges();
+      context.Provinces.AddRange(provinces);
+      context.SaveChanges();
 
-        var municipalities = new Municipality[]
-       {
+      var municipalities = new Municipality[]
+     {
                   new Municipality{MunicipalityID=160201000,Name="Buenavista",ProvinceID=160200000},
                   new Municipality{MunicipalityID=160301000,Name="City of Bayugan",ProvinceID=160300000},
                   new Municipality{MunicipalityID=166701000,Name="Alegria",ProvinceID=166700000},
                   new Municipality{MunicipalityID=166801000,Name="Barobo",ProvinceID=166800000},
                   new Municipality{MunicipalityID=168501000,Name="Basilisa (Rizal)",ProvinceID=168500000},
 
-       };
+     };
 
-        context.Municipalities.AddRange(municipalities);
-        context.SaveChanges();
+      context.Municipalities.AddRange(municipalities);
+      context.SaveChanges();
 
 
-        var barangays = new Barangay[]
-      {
+      var barangays = new Barangay[]
+    {
                   new Barangay{BarangayID=160301001,Name="Calaitan",MunicipalityID=160301000},
                   new Barangay{BarangayID=160201001,Name="Abilan",MunicipalityID=160201000},
                   new Barangay{BarangayID=166701001,Name="Poblacion (Alegria)",MunicipalityID=166701000},
                   new Barangay{BarangayID=166801001,Name="Amaga",MunicipalityID=166801000},
                   new Barangay{BarangayID=168501002,Name="Catadman",MunicipalityID=168501000},
 
+    };
+
+      context.Barangays.AddRange(barangays);
+      context.SaveChanges();
+
+      var sexes = new Sex[]
+                {
+                  new Sex{SexID=1,Name="Male"},
+                  new Sex{SexID=2,Name="Female"},
+                };
+
+      context.Sexes.AddRange(sexes);
+      context.SaveChanges();
+
+      var maritalstatuses = new Maritalstatus[]
+     {
+                  new Maritalstatus{MaritalstatusID=1,Name="Single"},
+                  new Maritalstatus{MaritalstatusID=2,Name="Married"},
+                  new Maritalstatus{MaritalstatusID=3,Name="Widowed"},
+                  new Maritalstatus{MaritalstatusID=4,Name="Separated"},
+                  new Maritalstatus{MaritalstatusID=5,Name="Widower"},
+                  new Maritalstatus{MaritalstatusID=6,Name="CommonLaw"},
+     };
+
+      context.Maritalstatuses.AddRange(maritalstatuses);
+      context.SaveChanges();
+
+      var statuses = new Status[]
+      {
+      new Status{StatusID=1,Name="Active"},
+      new Status{StatusID=2,Name="Deceased"},
+      new Status{StatusID=3,Name="Pensioner"},
+      new Status{StatusID=4,Name="Financially Stable"},
+      new Status{StatusID=5,Name="Transferred Residence"},
+      new Status{StatusID=6,Name="Duplicate"},
+      new Status{StatusID=7,Name="Under Age"},
+      new Status{StatusID=8,Name="Unknown"},
+      new Status{StatusID=9,Name="Out of Town"},
+      new Status{StatusID=10,Name="Imprison"},
+      new Status{StatusID=11,Name="Waived/Not Interested"},
+      new Status{StatusID=12,Name="Delisted"},
+      new Status{StatusID=13,Name="Pending"},
+      new Status{StatusID=14,Name="Inactive"},
+      new Status{StatusID=15,Name="With Honorarium"},
+      new Status{StatusID=99,Name="Applicant"},
+
       };
 
-        context.Barangays.AddRange(barangays);
-        context.SaveChanges();
-
-      //   var sexes = new Sex[]
-      //             {
-      //             new Sex{SexID=1,Name="Male"},
-      //             new Sex{SexID=2,Name="Female"},
-      //             };
-
-      //   context.Sexes.AddRange(sexes);
-      //   context.SaveChanges();
-
-      //   var maritalstatuses = new Maritalstatus[]
-      //  {
-      //             new Maritalstatus{MaritalstatusID=1,Name="Single"},
-      //             new Maritalstatus{MaritalstatusID=2,Name="Married"},
-      //             new Maritalstatus{MaritalstatusID=3,Name="Widowed"},
-      //             new Maritalstatus{MaritalstatusID=4,Name="Separated"},
-      //             new Maritalstatus{MaritalstatusID=5,Name="Widower"},
-      //             new Maritalstatus{MaritalstatusID=6,Name="CommonLaw"},
-      //  };
-
-      //   context.MaritalStatuses.AddRange(maritalstatuses);
-      //   context.SaveChanges();
-
-      //     var statuses = new Status[]
-      // {
-      //               new Status{StatusID=1,Name="Active"},
-      //               new Status{StatusID=2,Name="Deceased"},
-      //               new Status{StatusID=3,Name="Pensioner"},
-      //               new Status{StatusID=4,Name="Financially Stable"},
-      //               new Status{StatusID=5,Name="Transferred Residence"},
-      //               new Status{StatusID=6,Name="Duplicate"},
-      //               new Status{StatusID=7,Name="Under Age"},
-      //               new Status{StatusID=8,Name="Unknown"},
-      //               new Status{StatusID=9,Name="Out of Town"},
-      //               new Status{StatusID=10,Name="Imprison"},
-      //               new Status{StatusID=11,Name="Waived/Not Interested"},
-      //               new Status{StatusID=12,Name="Delisted"},
-      //               new Status{StatusID=13,Name="Pending"},
-      //               new Status{StatusID=14,Name="Inactive"},
-      //               new Status{StatusID=15,Name="With Honorarium"},
-      //               new Status{StatusID=99,Name="Applicant"},
-
-      // };
-
-      //     context.Statuses.AddRange(statuses);
-      //     context.SaveChanges();
-
-      var identificationTypes = new IdentificationType[]
-{
-                new IdentificationType{IdentificationTypeID=1,Name="OSCA"},
-                new IdentificationType{IdentificationTypeID=2,Name="FSCAP"},
-                new IdentificationType{IdentificationTypeID=3,Name="VOTERS ID"},
-                new IdentificationType{IdentificationTypeID=4,Name="PHIC"},
-                new IdentificationType{IdentificationTypeID=5,Name="DRIVERS LICENSE"},
-                new IdentificationType{IdentificationTypeID=6,Name="PWD"},
-                new IdentificationType{IdentificationTypeID=7,Name="PANTAWID"},
-                new IdentificationType{IdentificationTypeID=8,Name="POSTAL"},
-                new IdentificationType{IdentificationTypeID=9,Name="TIN"},
-};
-
-      context.IdentificationTypes.AddRange(identificationTypes);
+      context.Statuses.AddRange(statuses);
       context.SaveChanges();
-
-      var healthstatuses = new HealthStatus[]
- {
-                new HealthStatus{HealthStatusID=1,Name="Bedridden"},
-                new HealthStatus{HealthStatusID=2,Name="Frail/ Sickly"},
-                new HealthStatus{HealthStatusID=4,Name="Able"},
-                new HealthStatus{HealthStatusID=5,Name="PWD"},
-
- };
-
-      context.HealthStatuses.AddRange(healthstatuses);
-      context.SaveChanges();
-
-      //
-
 
 
       //   var eligible = new Assessment
@@ -189,18 +158,53 @@ namespace SpinsOnlineRazor.Data
       //   context.Assessments.AddRange(assessments);
       //   context.SaveChanges();
 
-      // var validationforms = new Validationform[]
-      // {
-      //     new Validationform{ValidationformID=10,ReferenceCode=21031243,SpinsBatch=98,AssessmentID=1,Pantawid=true,Indigenous=true},
-      //     new Validationform{ValidationformID=20,ReferenceCode=21031242,SpinsBatch=98,AssessmentID=3,Pantawid=false,Indigenous=true},
-      //     new Validationform{ValidationformID=30,ReferenceCode=21031241,SpinsBatch=99,AssessmentID=4,Pantawid=true,Indigenous=false},
-      //     new Validationform{ValidationformID=40,ReferenceCode=21031240,SpinsBatch=99,AssessmentID=2,Pantawid=false,Indigenous=true},
+      var validationforms = new Validationform[]
+      {
+          new Validationform{ValidationformID=10,ReferenceCode=21031243,SpinsBatch=98,AssessmentID=1,Pantawid=true,Indigenous=true},
+          new Validationform{ValidationformID=20,ReferenceCode=21031242,SpinsBatch=98,AssessmentID=3,Pantawid=false,Indigenous=true},
+          new Validationform{ValidationformID=30,ReferenceCode=21031241,SpinsBatch=99,AssessmentID=4,Pantawid=true,Indigenous=false},
+          new Validationform{ValidationformID=40,ReferenceCode=21031240,SpinsBatch=99,AssessmentID=2,Pantawid=false,Indigenous=true},
 
 
-      //  };
+       };
 
-      // context.Validationforms.AddRange(validationforms);
-      // context.SaveChanges();
+      context.Validationforms.AddRange(validationforms);
+      context.SaveChanges();
+
+
+
+      var identificationTypes = new IdentificationType[]
+{
+                new IdentificationType{IdentificationTypeID=1,Name="OSCA"},
+                new IdentificationType{IdentificationTypeID=2,Name="FSCAP"},
+                new IdentificationType{IdentificationTypeID=3,Name="VOTERS ID"},
+                new IdentificationType{IdentificationTypeID=4,Name="PHIC"},
+                new IdentificationType{IdentificationTypeID=5,Name="DRIVERS LICENSE"},
+                new IdentificationType{IdentificationTypeID=6,Name="PWD"},
+                new IdentificationType{IdentificationTypeID=7,Name="PANTAWID"},
+                new IdentificationType{IdentificationTypeID=8,Name="POSTAL"},
+                new IdentificationType{IdentificationTypeID=9,Name="TIN"},
+};
+
+      context.IdentificationTypes.AddRange(identificationTypes);
+      context.SaveChanges();
+
+      var healthstatuses = new HealthStatus[]
+ {
+                new HealthStatus{HealthStatusID=1,Name="Bedridden"},
+                new HealthStatus{HealthStatusID=2,Name="Frail/ Sickly"},
+                new HealthStatus{HealthStatusID=4,Name="Able"},
+                new HealthStatus{HealthStatusID=5,Name="PWD"},
+
+ };
+
+      context.HealthStatuses.AddRange(healthstatuses);
+      context.SaveChanges();
+
+      //
+
+
+
 
 
 
@@ -221,11 +225,11 @@ namespace SpinsOnlineRazor.Data
         RegionID = 160000000,
         ProvinceID = 160200000,
         MunicipalityID = 160201000,
-        BarangayID  =160201001,
-        // SexID = 1,
-        // MaritalstatusID = 1,
-        // ValidationformID = 10,
-        // StatusID = 1,
+        BarangayID = 160201001,
+        SexID = 1,
+        MaritalstatusID = 1,
+        StatusID = 99,
+        ValidationformID = 10,
         // DateEntered = DateTime.Parse("2024-04-20"),
         // EnteredBy = "Unknown",
         // InclusionDate = DateTime.Parse("2024-04-20"),
@@ -258,11 +262,12 @@ namespace SpinsOnlineRazor.Data
         RegionID = 160000000,
         ProvinceID = 160200000,
         MunicipalityID = 160201000,
-        BarangayID  =160201001,
-        // SexID = 1,
-        // MaritalstatusID = 1,
-        // ValidationformID = 20,
-        // StatusID = 1,
+        BarangayID = 160201001,
+        SexID = 1,
+        MaritalstatusID = 1,
+        StatusID = 1,
+        ValidationformID = 20,
+
         // DateEntered = DateTime.Parse("2024-04-20"),
         // EnteredBy = "Unknown",
         // InclusionDate = DateTime.Parse("2024-04-20"),
@@ -293,11 +298,12 @@ namespace SpinsOnlineRazor.Data
         RegionID = 160000000,
         ProvinceID = 160200000,
         MunicipalityID = 160201000,
-        BarangayID  =160201001,
-        // SexID = 1,
-        // MaritalstatusID = 1,
-        // ValidationformID = 30,
-        // StatusID = 1,
+        BarangayID = 160201001,
+        SexID = 1,
+        MaritalstatusID = 1,
+        StatusID = 1,
+        ValidationformID = 30,
+
         // DateEntered = DateTime.Parse("2024-04-20"),
         // EnteredBy = "Unknown",
         // InclusionDate = DateTime.Parse("2024-04-20"),
@@ -328,11 +334,11 @@ namespace SpinsOnlineRazor.Data
         RegionID = 160000000,
         ProvinceID = 160200000,
         MunicipalityID = 160201000,
-        BarangayID  =160201001,
-        // SexID = 1,
-        // MaritalstatusID = 1,
-        // ValidationformID = 40,
-        // StatusID = 1,
+        BarangayID = 160201001,
+        SexID = 1,
+        MaritalstatusID = 1,
+        StatusID = 1,
+        ValidationformID = 40,
         // IdentificationTypeID = 2,
         // DateEntered = DateTime.Parse("2024-04-20"),
         // EnteredBy = "Unknown",

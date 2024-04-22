@@ -10,6 +10,6 @@ namespace SpinsOnlineRazor.Models.RedesignModels.ComplexModels
         public string Name { get; set; }
 
         //Dabo na validation mugamit sa m
-        public Validationform Validationform { get; set; }
+        public ICollection<Validationform> Validationforms { get; set; }
     }
 }

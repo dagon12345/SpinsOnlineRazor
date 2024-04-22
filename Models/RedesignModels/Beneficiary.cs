@@ -72,14 +72,14 @@ namespace SpinsOnlineRazor.Models.RedesignModels
          public Municipality Municipality { get; set; }//For Municipality Model
          public int BarangayID { get; set; }
          public Barangay Barangay { get; set; }//For Barangay Model
-        //  public int SexID { get; set; }
-        //  public Sex Sex { get; set; }// For Sex model
-        //  public int MaritalstatusID { get; set; }
-        //  public Maritalstatus Maritalstatus { get; set; }//For marital Model
-        //  public int? ValidationformID { get; set; }
-        //  public Validationform Validationform { get; set; }//For Valdationform Model
-        //  public int StatusID { get; set; }
-        //  public Status Status { get; set; }//For Status model
+         public int SexID { get; set; }
+         public Sex Sex { get; set; }// For Sex model
+         public int MaritalstatusID { get; set; }
+         public Maritalstatus Maritalstatus { get; set; }//For marital Model
+         public int StatusID { get; set; }
+         public Status Status { get; set; }//For Status model
+         public int? ValidationformID { get; set; }
+         public Validationform Validationform { get; set; }//For Valdationform Model
         //  public DateTime DateEntered { get; set; }
         //  public string EnteredBy { get; set; }
         //  public DateTime InclusionDate { get; set; }

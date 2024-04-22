@@ -5,12 +5,30 @@
     ViewData["Title"] = "Edit";
 }
 
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    .row {
+        display: flex;
+    }
+
+    /* Create two equal columns that sits next to each other */
+    .column {
+        flex: 50%;
+        padding: 10px;
+        height: 100%;
+        /* Should be removed. Only for demonstration */
+    }
+</style>
+
 <h1>Edit</h1>
 
 <h4>Beneficiary</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    @* <div class="col-md-4"> *@<div class="column">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Beneficiary.BeneficiaryID" />
@@ -38,76 +56,76 @@
                 <input asp-for="Beneficiary.ExtName" class="form-control" />
                 <span asp-validation-for="Beneficiary.ExtName" class="text-danger"></span>
             </div>
-             <div class="form-group">
+            <div class="form-group">
                 <label asp-for="Beneficiary.BirthDate" class="control-label"></label>
                 <input asp-for="Beneficiary.BirthDate" class="form-control" />
                 <span asp-validation-for="Beneficiary.BirthDate" class="text-danger"></span>
             </div>
 
-              <div class="form-group">
+            <div class="form-group">
                 <label asp-for="Beneficiary.IdentificationType" class="control-label"></label>
-                <select asp-for="Beneficiary.IdentificationTypeID" class="form-control" 
-                        asp-items="@Model.IdentificationTypeSL"></select>
+                <select asp-for="Beneficiary.IdentificationTypeID" class="form-control"
+                    asp-items="@Model.IdentificationTypeSL"></select>
                 <span asp-validation-for="Beneficiary.IdentificationTypeID" class="text-danger"></span>
             </div>
 
-              <div class="form-group">
+            <div class="form-group">
                 <label asp-for="Beneficiary.IdentificationNumber" class="control-label"></label>
                 <input asp-for="Beneficiary.IdentificationNumber" class="form-control" />
                 <span asp-validation-for="Beneficiary.IdentificationNumber" class="text-danger"></span>
             </div>
-              <div class="form-group">
+            <div class="form-group">
                 <label asp-for="Beneficiary.IdentificationDateIssued" class="control-label"></label>
                 <input asp-for="Beneficiary.IdentificationDateIssued" class="form-control" />
                 <span asp-validation-for="Beneficiary.IdentificationDateIssued" class="text-danger"></span>
             </div>
 
-             <div class="form-group">
+            <div class="form-group">
                 <label asp-for="Beneficiary.ContactNumber" class="control-label"></label>
                 <input asp-for="Beneficiary.ContactNumber" class="form-control" />
                 <span asp-validation-for="Beneficiary.ContactNumber" class="text-danger"></span>
             </div>
-             <div class="form-group">
+            <div class="form-group">
                 <label asp-for="Beneficiary.HealthStatus" class="control-label"></label>
-                <select asp-for="Beneficiary.HealthStatusID" class="form-control" 
-                        asp-items="@Model.HealthStatusSL"></select>
+                <select asp-for="Beneficiary.HealthStatusID" class="form-control"
+                    asp-items="@Model.HealthStatusSL"></select>
                 <span asp-validation-for="Beneficiary.HealthStatusID" class="text-danger"></span>
             </div>
-              <div class="form-group">
+            <div class="form-group">
                 <label asp-for="Beneficiary.HealthRemarks" class="control-label"></label>
                 <input asp-for="Beneficiary.HealthRemarks" class="form-control" />
                 <span asp-validation-for="Beneficiary.HealthRemarks" class="text-danger"></span>
             </div>
 
 
-              @* <div class="form-group">
-                <label asp-for="Beneficiary.Region" class="control-label"></label>
-                <select asp-for="Beneficiary.RegionID" class="form-control" 
-                        asp-items="@Model.RegionSL"></select>
-                <span asp-validation-for="Beneficiary.RegionID" class="text-danger"></span>
-            </div> 
+            @* <div class="form-group">
+            <label asp-for="Beneficiary.Region" class="control-label"></label>
+            <select asp-for="Beneficiary.RegionID" class="form-control"
+            asp-items="@Model.RegionSL"></select>
+            <span asp-validation-for="Beneficiary.RegionID" class="text-danger"></span>
+            </div>
 
-              <div class="form-group">
-                <label asp-for="Beneficiary.Province" class="control-label"></label>
-                <select asp-for="Beneficiary.ProvinceID" class="form-control" 
-                        asp-items="@Model.ProvinceSL"></select>
-                <span asp-validation-for="Beneficiary.ProvinceID" class="text-danger"></span>
-            </div> 
+            <div class="form-group">
+            <label asp-for="Beneficiary.Province" class="control-label"></label>
+            <select asp-for="Beneficiary.ProvinceID" class="form-control"
+            asp-items="@Model.ProvinceSL"></select>
+            <span asp-validation-for="Beneficiary.ProvinceID" class="text-danger"></span>
+            </div>
 
-              <div class="form-group">
-                <label asp-for="Beneficiary.Municipality" class="control-label"></label>
-                <select asp-for="Beneficiary.MunicipalityID" class="form-control" 
-                        asp-items="@Model.MunicipalitySL"></select>
-                <span asp-validation-for="Beneficiary.MunicipalityID" class="text-danger"></span>
-            </div> 
+            <div class="form-group">
+            <label asp-for="Beneficiary.Municipality" class="control-label"></label>
+            <select asp-for="Beneficiary.MunicipalityID" class="form-control"
+            asp-items="@Model.MunicipalitySL"></select>
+            <span asp-validation-for="Beneficiary.MunicipalityID" class="text-danger"></span>
+            </div>
 
-              <div class="form-group">
-                <label asp-for="Beneficiary.Barangay" class="control-label"></label>
-                <select asp-for="Beneficiary.BarangayID" class="form-control" 
-                        asp-items="@Model.BarangaySL"></select>
-                <span asp-validation-for="Beneficiary.BarangayID" class="text-danger"></span>
-            </div>  *@
-                  <div class="form-group">
+            <div class="form-group">
+            <label asp-for="Beneficiary.Barangay" class="control-label"></label>
+            <select asp-for="Beneficiary.BarangayID" class="form-control"
+            asp-items="@Model.BarangaySL"></select>
+            <span asp-validation-for="Beneficiary.BarangayID" class="text-danger"></span>
+            </div> *@
+            <div class="form-group">
                 <label asp-for="Beneficiary.RegionID" class="control-label"></label>
                 <select id="RegionID" asp-for="Beneficiary.RegionID" class="form-control" asp-items="@Model.RegionSL">
                     <option value="">--Select Region--</option>
@@ -117,7 +135,8 @@
 
             <div class="form-group">
                 <label asp-for="Beneficiary.ProvinceID" class="control-label"></label>
-                <select id="ProvinceID" asp-for="Beneficiary.ProvinceID" class="form-control" asp-items="@Model.ProvinceSL">
+                <select id="ProvinceID" asp-for="Beneficiary.ProvinceID" class="form-control"
+                    asp-items="@Model.ProvinceSL">
                     <option value="">--Select Province--</option>
                 </select>
                 <span asp-validation-for="Beneficiary.ProvinceID" class="text-danger"></span>
@@ -125,7 +144,8 @@
 
             <div class="form-group">
                 <label asp-for="Beneficiary.MunicipalityID" class="control-label"></label>
-                <select id="MunicipalityID" asp-for="Beneficiary.MunicipalityID" class="form-control" asp-items="@Model.MunicipalitySL">
+                <select id="MunicipalityID" asp-for="Beneficiary.MunicipalityID" class="form-control"
+                    asp-items="@Model.MunicipalitySL">
                     <option value="">--Select Municipality--</option>
                 </select>
                 <span asp-validation-for="Beneficiary.MunicipalityID" class="text-danger"></span>
@@ -133,11 +153,47 @@
 
             <div class="form-group">
                 <label asp-for="Beneficiary.BarangayID" class="control-label"></label>
-                <select id="BarangayID" asp-for="Beneficiary.BarangayID" class="form-control" asp-items="@Model.BarangaySL">
+                <select id="BarangayID" asp-for="Beneficiary.BarangayID" class="form-control"
+                    asp-items="@Model.BarangaySL">
                     <option value="">--Select Barangay--</option>
                 </select>
                 <span asp-validation-for="Beneficiary.BarangayID" class="text-danger"></span>
             </div>
+
+            <div class="form-group">
+                <label asp-for="Beneficiary.Sex" class="control-label"></label>
+                <select asp-for="Beneficiary.SexID" class="form-control" asp-items="@Model.SexSL"></select>
+                <span asp-validation-for="Beneficiary.SexID" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Beneficiary.Maritalstatus" class="control-label"></label>
+                <select asp-for="Beneficiary.MaritalstatusID" class="form-control"
+                    asp-items="@Model.MaritalstatusSL"></select>
+                <span asp-validation-for="Beneficiary.MaritalstatusID" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Beneficiary.Status" class="control-label"></label>
+                <select asp-for="Beneficiary.StatusID" class="form-control" asp-items="@Model.StatusSL"></select>
+                <span asp-validation-for="Beneficiary.StatusID" class="text-danger"></span>
+            </div>
+
+             @* <div class="form-group">
+                <label asp-for="ValidationForm.AssessmentID" class="control-label"></label>
+                <input asp-for="ValidationForm.AssessmentID" class="form-control" />
+                <span asp-validation-for="ValidationForm.AssessmentID" class="text-danger"></span>
+            </div>
+             <div class="form-group">
+                <label asp-for="ValidationForm.Pantawid" class="control-label"></label>
+                <input asp-for="ValidationForm.Pantawid" class="form-control" />
+                <span asp-validation-for="ValidationForm.Pantawid" class="text-danger"></span>
+            </div>
+             <div class="form-group">
+                <label asp-for="ValidationForm.Indigenous" class="control-label"></label>
+                <input asp-for="ValidationForm.Indigenous" class="form-control" />
+                <span asp-validation-for="ValidationForm.Indigenous" class="text-danger"></span>
+            </div> *@
 
 
 
@@ -147,6 +203,31 @@
             </div>
         </form>
     </div>
+    <div class="column" >
+        @* <h2>Add Validation Form</h2>
+        <form method="post">
+            <div class="form-group">
+                <label asp-for="ValidationForm.AssessmentID" class="control-label"></label>
+                <input asp-for="ValidationForm.AssessmentID" class="form-control" />
+                <span asp-validation-for="ValidationForm.AssessmentID" class="text-danger"></span>
+            </div>
+             <div class="form-group">
+                <label asp-for="ValidationForm.Pantawid" class="control-label"></label>
+                <input asp-for="ValidationForm.Pantawid" class="form-control" />
+                <span asp-validation-for="ValidationForm.Pantawid" class="text-danger"></span>
+            </div>
+             <div class="form-group">
+                <label asp-for="ValidationForm.Indigenous" class="control-label"></label>
+                <input asp-for="ValidationForm.Indigenous" class="form-control" />
+                <span asp-validation-for="ValidationForm.Indigenous" class="text-danger"></span>
+            </div>
+
+               <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+        <p>Some text..</p>*@
+    </div> 
 </div>
 
 <div>
@@ -221,5 +302,7 @@
             });
         });
     </script>
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }
