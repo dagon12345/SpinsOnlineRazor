@@ -6,15 +6,13 @@
 
 }
 <style>
+    table {
+    @*display:block;overflow-x:auto;white-space:nowrap;*@
+    }
 
-table {
-    @* display: block;
-    overflow-x: auto;
-    white-space: nowrap; *@
-}
     #fontsize {
-  font-size: 12px;
-}
+        font-size: 12px;
+    }
 </style>
 
 <h1>Beneficiaries</h1>
@@ -48,8 +46,12 @@ The W3C guidelines recommend that GET should be used when the action doesn't res
         <form class="d-flex" asp-page="./Index" method="get">
             <input class="form-control me-sm-2" type="search" placeholder="Search Name" name="SearchString"
                 value="@Model.CurrentFilter">
-            <button class="btn btn-secondary my-2 my-sm-0" type="submit" value="Search"><i class="bi bi-search"></i></button>
-            <a class="btn btn-primary" style="margin-right: 5" asp-page="./Index"><i class="bi bi-arrow-clockwise"></i></a>
+
+            <button class="btn btn-secondary my-2 my-sm-0" type="submit" value="Search"><i
+                    class="bi bi-search"></i></button>
+                    
+            <a class="btn btn-primary" style="margin-right: 5" asp-page="./Index"><i
+                    class="bi bi-arrow-clockwise"></i></a>
         </form>
     </div>
 
@@ -58,131 +60,128 @@ The W3C guidelines recommend that GET should be used when the action doesn't res
 
 
 
-<div class="container"   style="overflow-x:auto; ">
-    @* <table class="table  table-striped table-responsive-stack table-light" id="pane"
-        border="1"  style="line-height: 12px;"> *@
-        <table class="table table-hover">
+@* <div class="container" style="overflow-x:auto; ">
+<table class="table table-hover">
 
-        <thead>
-            <tr>
-                 <th style="text-align: center;">
-                    <div class="btn-group" role="group" aria-label="Actions">
-                        <div class="header-container" style="width: 50px;">
-                            Actions
-                        </div>
-                    </div>
-                </th>
-                 <th >
-         
-                    <a asp-page="./Index" asp-route-sortOrder="@Model.NameSort"
-                        asp-route-currentFilter="@Model.CurrentFilter">
-                        @Html.DisplayNameFor(model => model.Beneficiaries[0].LastName)
-                    </a>
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Beneficiaries[0].FirstName)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Beneficiaries[0].MiddleName)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Beneficiaries[0].ExtName)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Beneficiaries[0].BirthDate)
-                </th>
-
-                          
-                </th>
-
-                <th>
-
-               
-            </tr>
-        </thead>
-        <tbody>
-            <tr >
-                @foreach (var item in Model.Beneficiaries)
-                {
-                <tr id="fontsize" class="table-primary">
-                       <td style="text-align:center; ">
-                        <div class="btn-group" role="group" aria-label="Actions">
-
-                            <a class="btn btn-secondary" asp-page="./Edit" asp-route-id="@item.BeneficiaryID">
-                                <i class="bi bi-pencil-square" style="font-size: 8px;"></i>
-                            </a>
-                            @*Enter this if you want to open the form
-                            into another form  target="_blank"*@
-
-                            <a class="btn btn-info" asp-page="./Details" asp-route-id="@item.BeneficiaryID">
-                                <i class="bi bi-eye"></i>
-                            </a>
-
-                            <a class="btn btn-danger" asp-page="./Delete" asp-route-id="@item.BeneficiaryID">
-                                <i class="bi bi-trash3-fill" style="font-size: 8px;"> </i>
-                            </a>
-
-
-                        </div>
-                    </td>
-
-
-                    <td >
-                            @Html.DisplayFor(modelItem => item.LastName)
-                    </td>
-                    <td >
-                            @Html.DisplayFor(modelItem => item.FirstName)
-                    </td>
-                    <td>
-                            @Html.DisplayFor(modelItem => item.MiddleName)
-                    </td>
-                    <td>
-                            @Html.DisplayFor(modelItem => item.ExtName)
-                    </td>
-                    <td>
-                            @Html.DisplayFor(modelItem => item.BirthDate)
-                    </td>
-
-                 
-                     <td>
-                             <div class="btn-group" role="group" aria-label="Actions">
-                             <a class="btn btn-success" asp-page="./AddValidationForm" asp-route-id="@item.BeneficiaryID">
-                                <i class="bi bi-folder-plus"></i>
-                            </a>
-                        </div>
-                    </td>
-
-  
-                </tr>
-                }
-            </tr>
-
-        </tbody>
-    </table>
+<thead>
+<tr>
+<th style="text-align: center;">
+<div class="btn-group" role="group" aria-label="Actions">
+<div class="header-container" style="width: 50px;">
+Actions
 </div>
+</div>
+</th>
+<th >
 
-<ejs-grid id="Grid" dataSource="@Model.Beneficiaries">
-            
+<a asp-page="./Index" asp-route-sortOrder="@Model.NameSort"
+asp-route-currentFilter="@Model.CurrentFilter">
+@Html.DisplayNameFor(model => model.Beneficiaries[0].LastName)
+</a>
+</th>
+<th>
+@Html.DisplayNameFor(model => model.Beneficiaries[0].FirstName)
+</th>
+<th>
+@Html.DisplayNameFor(model => model.Beneficiaries[0].MiddleName)
+</th>
+<th>
+@Html.DisplayNameFor(model => model.Beneficiaries[0].ExtName)
+</th>
+<th>
+@Html.DisplayNameFor(model => model.Beneficiaries[0].BirthDate)
+</th>
+
+
+</th>
+
+<th>
+
+
+</tr>
+</thead>
+<tbody>
+<tr >
+@foreach (var item in Model.Beneficiaries)
+{
+<tr id="fontsize" class="table-primary">
+<td style="text-align:center; ">
+<div class="btn-group" role="group" aria-label="Actions">
+
+<a class="btn btn-secondary" asp-page="./Edit" asp-route-id="@item.BeneficiaryID">
+<i class="bi bi-pencil-square" style="font-size: 8px;"></i>
+</a>
+
+<a class="btn btn-info" asp-page="./Details" asp-route-id="@item.BeneficiaryID">
+<i class="bi bi-eye"></i>
+</a>
+
+<a class="btn btn-danger" asp-page="./Delete" asp-route-id="@item.BeneficiaryID">
+<i class="bi bi-trash3-fill" style="font-size: 8px;"> </i>
+</a>
+
+
+</div>
+</td>
+
+
+<td >
+@Html.DisplayFor(modelItem => item.LastName)
+</td>
+<td >
+@Html.DisplayFor(modelItem => item.FirstName)
+</td>
+<td>
+@Html.DisplayFor(modelItem => item.MiddleName)
+</td>
+<td>
+@Html.DisplayFor(modelItem => item.ExtName)
+</td>
+<td>
+@Html.DisplayFor(modelItem => item.BirthDate)
+</td>
+
+
+<td>
+<div class="btn-group" role="group" aria-label="Actions">
+<a class="btn btn-success" asp-page="./AddValidationForm" asp-route-id="@item.BeneficiaryID">
+<i class="bi bi-folder-plus"></i>
+</a>
+</div>
+</td>
+
+
+</tr>
+}
+</tr>
+
+</tbody>
+</table>
+</div> *@
+
+<ejs-grid id="Grid" dataSource="@Model.BeneficiaryViewModel">
+
     <e-grid-columns>
-         <e-grid-column headerText="" template="#template" width="150"></e-grid-column>
-         <e-grid-column field="BeneficiaryID" headerText="ID"  width="120"></e-grid-column>
-        <e-grid-column field="LastName" headerText="Last Name"  width="120"></e-grid-column>
+        <e-grid-column headerText="" template="#template" width="40"></e-grid-column>
+        <e-grid-column field="BeneficiaryID" headerText="ID" visible="false" width="50"></e-grid-column>
+        <e-grid-column field="LastName" headerText="Last Name" width="120"></e-grid-column>
         <e-grid-column field="FirstName" headerText="First Name" width="150"></e-grid-column>
         <e-grid-column field="MiddleName" headerText="MiddleName" width="130"></e-grid-column>
         <e-grid-column field="ExtName" headerText="Extension Name" width="120"></e-grid-column>
-        <e-grid-column field="BirthDate" headerText="Birth Date"  format="yMd" width="140"></e-grid-column>
-         <e-grid-column headerText="" template="#templateedit" width="60" textAlign="Right"></e-grid-column>
-          <e-grid-column headerText="" template="#templateview" width="60"></e-grid-column>
-           <e-grid-column headerText="" template="#templatedelete" width="60" textAlign="Left" ></e-grid-column>                
-        
+        <e-grid-column field="BirthDate" headerText="Birth Date" format="yMd" width="140"></e-grid-column>
+        <e-grid-column field="Status" headerText="Status" width="140"></e-grid-column>
+        <e-grid-column field="Referencecode" headerText="Validation Number" width="140"></e-grid-column>
+        <e-grid-column field="SpinsBatch" headerText="Spins Batch" width="140"></e-grid-column>
+        <e-grid-column headerText="" template="#templateedit" width="60" textAlign="Right"></e-grid-column>
+        <e-grid-column headerText="" template="#templateview" width="60" textAlign="Center"></e-grid-column>
+        <e-grid-column headerText="" template="#templatedelete" width="60" textAlign="Left"></e-grid-column>
+
     </e-grid-columns>
-    
+</ejs-grid>
 
- </ejs-grid>
-
- @*This is for validation form*@
+@*This is for validation form*@
 <script id="template" type="text/x-template">
-    <a href="#" onclick="navigateToValidationForm(this)">Validation Form</a>
+    <a href="#" onclick="navigateToValidationForm(this) " ><i class="bi bi-folder-plus"></i></a>
 </script>
 
 <script>
@@ -190,11 +189,11 @@ The W3C guidelines recommend that GET should be used when the action doesn't res
         var grid = document.getElementsByClassName('e-grid')[0].ej2_instances[0];
         var rowObj = grid.getRowObjectFromUID(ej.base.closest(e, '.e-row').getAttribute('data-uid'));
         var beneficiaryID = rowObj.data['BeneficiaryID']; // Get the BeneficiaryID from the grid row
-        window.location.href = './AddValidationForm?id=' + beneficiaryID; // Navigate to AddValidationForm page with beneficiaryID as query parameter
+        window.location.href = '/Beneficiaries/AddValidationForm?id=' + beneficiaryID; // Navigate to AddValidationForm page with beneficiaryID as query parameter
     }
 </script>
 
- @*This is for edit form*@
+@*This is for edit form*@
 <script id="templateedit" type="text/x-template">
     <a href="#" onclick="navigateToEditForm(this)">Edit</a>
 </script>
@@ -204,11 +203,11 @@ The W3C guidelines recommend that GET should be used when the action doesn't res
         var grid = document.getElementsByClassName('e-grid')[0].ej2_instances[0];
         var rowObj = grid.getRowObjectFromUID(ej.base.closest(e, '.e-row').getAttribute('data-uid'));
         var beneficiaryID = rowObj.data['BeneficiaryID']; // Get the BeneficiaryID from the grid row
-        window.location.href = './Edit?id=' + beneficiaryID; // Navigate to AddValidationForm page with beneficiaryID as query parameter
+        window.location.href = '/Beneficiaries/Edit?id=' + beneficiaryID; // Navigate to AddValidationForm page with beneficiaryID as query parameter
     }
 </script>
 
- @*This is for view form*@
+@*This is for view form*@
 <script id="templateview" type="text/x-template">
     <a href="#" onclick="navigateToViewForm(this)">View</a>
 </script>
@@ -218,11 +217,11 @@ The W3C guidelines recommend that GET should be used when the action doesn't res
         var grid = document.getElementsByClassName('e-grid')[0].ej2_instances[0];
         var rowObj = grid.getRowObjectFromUID(ej.base.closest(e, '.e-row').getAttribute('data-uid'));
         var beneficiaryID = rowObj.data['BeneficiaryID']; // Get the BeneficiaryID from the grid row
-        window.location.href = './Details?id=' + beneficiaryID; // Navigate to AddValidationForm page with beneficiaryID as query parameter
+        window.location.href = '/Beneficiaries/Details?id=' + beneficiaryID; // Navigate to AddValidationForm page with beneficiaryID as query parameter
     }
 </script>
 
- @*This is for delete form*@
+@*This is for delete form*@
 <script id="templatedelete" type="text/x-template">
     <a href="#" onclick="navigateToDeleteForm(this)">Delete</a>
 </script>
@@ -232,26 +231,25 @@ The W3C guidelines recommend that GET should be used when the action doesn't res
         var grid = document.getElementsByClassName('e-grid')[0].ej2_instances[0];
         var rowObj = grid.getRowObjectFromUID(ej.base.closest(e, '.e-row').getAttribute('data-uid'));
         var beneficiaryID = rowObj.data['BeneficiaryID']; // Get the BeneficiaryID from the grid row
-        window.location.href = './Delete?id=' + beneficiaryID; // Navigate to AddValidationForm page with beneficiaryID as query parameter
+        window.location.href = '/Beneficiaries/Delete?id=' + beneficiaryID; // Navigate to AddValidationForm page with beneficiaryID as query parameter
     }
 </script>
 
 
-    @*Paging code for razor below*@
 
-    @{
-        //An mga button ma disable kung waya nay previous or next page.
-        var prevDisabled = !Model.Beneficiaries.HasPreviousPage ? "disabled" : "";
-        var nextDisabled = !Model.Beneficiaries.HasNextPage ? "disabled" : "";
-    }
-    @*The paging buttons are displayed by tag helpers:*@
-    <a asp-page="./Index" asp-route-sortOrder="@Model.CurrentSort"
-        asp-route-pageIndex="@(Model.Beneficiaries.PageIndex - 1)" asp-route-currentFilter="@Model.CurrentFilter"
-        class="btn btn-primary @prevDisabled">
-        &laquo;
-    </a>
-    <a asp-page="./Index" asp-route-sortOrder="@Model.CurrentSort"
-        asp-route-pageIndex="@(Model.Beneficiaries.PageIndex + 1)" asp-route-currentFilter="@Model.CurrentFilter"
-        class="btn btn-primary @nextDisabled">
-        &raquo;
-    </a>
+
+ @{
+    //An mga button ma disable kung waya nay previous or next page.
+    var prevDisabled = !Model.BeneficiaryViewModel.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.BeneficiaryViewModel.HasNextPage ? "disabled" : "";
+}
+<a asp-page="./Index" asp-route-sortOrder="@Model.CurrentSort"
+    asp-route-pageIndex="@(Model.BeneficiaryViewModel.PageIndex - 1)" asp-route-currentFilter="@Model.CurrentFilter"
+    class="btn btn-primary @prevDisabled">
+    &laquo;
+</a>
+<a asp-page="./Index" asp-route-sortOrder="@Model.CurrentSort"
+    asp-route-pageIndex="@(Model.BeneficiaryViewModel.PageIndex + 1)" asp-route-currentFilter="@Model.CurrentFilter"
+    class="btn btn-primary @nextDisabled">
+    &raquo;
+</a> 

@@ -125,7 +125,7 @@ namespace SpinsOnlineRazor.Pages.Beneficiaries
 
                 _context.Beneficiaries.Add(emptyBeneficiary);
                 await _context.SaveChangesAsync();
-                return RedirectToPage("./Index");
+                return RedirectToPage("/Beneficiaries/Index");
             }
             // PopulateHealthStatusDropDownList(_context, emptyBeneficiary.HealthStatusID);
             // PopulateHealthStatusDropDownList(_context, emptyBeneficiary.IdentificationTypeID);

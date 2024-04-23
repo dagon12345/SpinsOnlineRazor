@@ -73,13 +73,13 @@ called after a failure to delete the student object.*/
             {
                 _context.Beneficiaries.Remove(beneficiary);
                 await _context.SaveChangesAsync();
-                return RedirectToPage("./Index");
+                return RedirectToPage("/Beneficiaries/Index");
             }
             catch (DbUpdateException ex)
             {
                 _logger.LogError(ex, ErrorMessage);
 
-                return RedirectToAction("./Delete", new { id, saveChangesError = true });
+                return RedirectToAction("/Beneficiaries/Delete", new { id, saveChangesError = true });
             }
             /*The delete operation might fail because of transient network problems. 
             Transient network errors are more likely when the database is in the cloud. 

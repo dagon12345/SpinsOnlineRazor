@@ -157,7 +157,7 @@ namespace SpinsOnlineRazor.Pages.Beneficiaries
             {
                 //beneficaryToUpdate.ValidationformID = beneficaryToUpdate.BeneficiaryID; // Update Beneficiary validation form ID same with existed Validation form
                 await _context.SaveChangesAsync();
-                return RedirectToPage("./Index");
+                return RedirectToPage("/Beneficiaries/Index");
             }
             //Addin of validation form
 

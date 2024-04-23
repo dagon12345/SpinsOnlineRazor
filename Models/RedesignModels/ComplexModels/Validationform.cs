@@ -11,7 +11,7 @@ namespace SpinsOnlineRazor.Models.RedesignModels.ComplexModels
         public int AssessmentID { get; set; }
         //public Assessment Assessment { get; set; }
         public int ReferenceCode { get; set; } // URL for PDF FIles
-        public int? SpinsBatch { get; set; }
+        public int SpinsBatch { get; set; }
         public bool Pantawid { get; set; }
         public bool Indigenous { get; set; }
 
