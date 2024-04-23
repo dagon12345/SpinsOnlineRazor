@@ -125,51 +125,39 @@ namespace SpinsOnlineRazor.Data
       context.SaveChanges();
 
 
-      //   var eligible = new Assessment
-      //   {
-      //     AssessmentID = 1,
-      //     Name = "Eligible"
-      //   };
-      //   var drop = new Assessment
-      //   {
-      //     AssessmentID = 2,
-      //     Name = "Drop/Not Eligible"
+        var eligible = new Assessment
+        {
+          AssessmentID = 1,
+          Name = "Eligible"
+        };
+        var drop = new Assessment
+        {
+          AssessmentID = 2,
+          Name = "Drop/Not Eligible"
 
-      //   };
-      //   var pending = new Assessment
-      //   {
-      //     AssessmentID = 3,
-      //     Name = "Pending - Revalidate"
+        };
+        var pending = new Assessment
+        {
+          AssessmentID = 3,
+          Name = "Pending - Revalidate"
 
-      //   };
-      //   var deceased = new Assessment
-      //   {
-      //     AssessmentID = 4,
-      //     Name = "Deceased"
-      //   };
-      //   var assessments = new Assessment[]
-      //  {
-      //             eligible,
-      //             drop,
-      //             pending,
-      //             deceased
-      //  };
-
-      //   context.Assessments.AddRange(assessments);
-      //   context.SaveChanges();
-
-      var validationforms = new Validationform[]
-      {
-          new Validationform{ValidationformID=10,ReferenceCode=21031243,SpinsBatch=98,AssessmentID=1,Pantawid=true,Indigenous=true},
-          new Validationform{ValidationformID=20,ReferenceCode=21031242,SpinsBatch=98,AssessmentID=3,Pantawid=false,Indigenous=true},
-          new Validationform{ValidationformID=30,ReferenceCode=21031241,SpinsBatch=99,AssessmentID=4,Pantawid=true,Indigenous=false},
-          new Validationform{ValidationformID=40,ReferenceCode=21031240,SpinsBatch=99,AssessmentID=2,Pantawid=false,Indigenous=true},
-
-
+        };
+        var deceased = new Assessment
+        {
+          AssessmentID = 4,
+          Name = "Deceased"
+        };
+        var assessments = new Assessment[]
+       {
+                  eligible,
+                  drop,
+                  pending,
+                  deceased
        };
 
-      context.Validationforms.AddRange(validationforms);
-      context.SaveChanges();
+        context.Assessments.AddRange(assessments);
+        context.SaveChanges();
+
 
 
 
@@ -210,6 +198,7 @@ namespace SpinsOnlineRazor.Data
 
       var espina = new Beneficiary
       {
+        BeneficiaryID = 1,
         LastName = "ESPINA",
         FirstName = "LANCE ANDREI",
         MiddleName = "URIARTE",
@@ -229,7 +218,6 @@ namespace SpinsOnlineRazor.Data
         SexID = 1,
         MaritalstatusID = 1,
         StatusID = 99,
-        ValidationformID = 10,
         // DateEntered = DateTime.Parse("2024-04-20"),
         // EnteredBy = "Unknown",
         // InclusionDate = DateTime.Parse("2024-04-20"),
@@ -247,6 +235,7 @@ namespace SpinsOnlineRazor.Data
       };
       var alquizar = new Beneficiary
       {
+         BeneficiaryID = 2,
         LastName = "ALQUIZAR",
         FirstName = "CORNELIA",
         MiddleName = "ONYOT",
@@ -266,8 +255,6 @@ namespace SpinsOnlineRazor.Data
         SexID = 1,
         MaritalstatusID = 1,
         StatusID = 1,
-        ValidationformID = 20,
-
         // DateEntered = DateTime.Parse("2024-04-20"),
         // EnteredBy = "Unknown",
         // InclusionDate = DateTime.Parse("2024-04-20"),
@@ -283,6 +270,7 @@ namespace SpinsOnlineRazor.Data
       };
       var amemenzi = new Beneficiary
       {
+         BeneficiaryID = 3,
         LastName = "AMEMENZI",
         FirstName = "MARIA",
         MiddleName = "JAIME",
@@ -302,8 +290,6 @@ namespace SpinsOnlineRazor.Data
         SexID = 1,
         MaritalstatusID = 1,
         StatusID = 1,
-        ValidationformID = 30,
-
         // DateEntered = DateTime.Parse("2024-04-20"),
         // EnteredBy = "Unknown",
         // InclusionDate = DateTime.Parse("2024-04-20"),
@@ -319,6 +305,7 @@ namespace SpinsOnlineRazor.Data
       };
       var balingit = new Beneficiary
       {
+        BeneficiaryID = 4,
         LastName = "BALINGIT",
         FirstName = "CIPRIANO",
         MiddleName = "CIBALLOS",
@@ -338,7 +325,6 @@ namespace SpinsOnlineRazor.Data
         SexID = 1,
         MaritalstatusID = 1,
         StatusID = 1,
-        ValidationformID = 40,
         // IdentificationTypeID = 2,
         // DateEntered = DateTime.Parse("2024-04-20"),
         // EnteredBy = "Unknown",
@@ -361,6 +347,21 @@ namespace SpinsOnlineRazor.Data
      };
 
       context.Beneficiaries.AddRange(beneficiaries);
+      context.SaveChanges();
+
+
+      
+      var validationforms = new Validationform[]
+      {
+          new Validationform{ValidationformID=11,BeneficiaryID=1,ReferenceCode=21031243,SpinsBatch=98,AssessmentID=1,Pantawid=true,Indigenous=true},
+          new Validationform{ValidationformID=12,BeneficiaryID=2,ReferenceCode=21031242,SpinsBatch=98,AssessmentID=3,Pantawid=false,Indigenous=true},
+          new Validationform{ValidationformID=13,BeneficiaryID=3,ReferenceCode=21031241,SpinsBatch=99,AssessmentID=4,Pantawid=true,Indigenous=false},
+          new Validationform{ValidationformID=14,BeneficiaryID=4,ReferenceCode=21031240,SpinsBatch=99,AssessmentID=2,Pantawid=false,Indigenous=true},
+
+
+       };
+
+      context.Validationforms.AddRange(validationforms);
       context.SaveChanges();
 
     }

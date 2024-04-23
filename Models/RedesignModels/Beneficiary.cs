@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using NuGet.Common;
 using SpinsOnlineRazor.Models.RedesignModels.ComplexModels;
 
@@ -78,8 +79,8 @@ namespace SpinsOnlineRazor.Models.RedesignModels
          public Maritalstatus Maritalstatus { get; set; }//For marital Model
          public int StatusID { get; set; }
          public Status Status { get; set; }//For Status model
-         public int? ValidationformID { get; set; }
-         public Validationform Validationform { get; set; }//For Valdationform Model
+        // public int? ValidationformID { get; set; }
+         public Validationform Validationform { get; set; }//For Valdationform Model BenficiaryID is the KF
         //  public DateTime DateEntered { get; set; }
         //  public string EnteredBy { get; set; }
         //  public DateTime InclusionDate { get; set; }

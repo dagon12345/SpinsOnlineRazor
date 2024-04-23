@@ -107,9 +107,6 @@ namespace SpinsOnlineRazor.Migrations
                     b.Property<int>("StatusID")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("ValidationformID")
-                        .HasColumnType("INTEGER");
-
                     b.HasKey("BeneficiaryID");
 
                     b.HasIndex("BarangayID");
@@ -130,17 +127,32 @@ namespace SpinsOnlineRazor.Migrations
 
                     b.HasIndex("StatusID");
 
-                    b.HasIndex("ValidationformID");
-
                     b.ToTable("Beneficiary", (string)null);
+                });
+
+            modelBuilder.Entity("SpinsOnlineRazor.Models.RedesignModels.ComplexModels.Assessment", b =>
+                {
+                    b.Property<int>("AssessmentID")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("AssessmentID");
+
+                    b.ToTable("Assessment", (string)null);
                 });
 
             modelBuilder.Entity("SpinsOnlineRazor.Models.RedesignModels.ComplexModels.Validationform", b =>
                 {
                     b.Property<int>("ValidationformID")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("AssessmentID")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("BeneficiaryID")
                         .HasColumnType("INTEGER");
 
                     b.Property<bool>("Indigenous")
@@ -156,6 +168,11 @@ namespace SpinsOnlineRazor.Migrations
                         .HasColumnType("INTEGER");
 
                     b.HasKey("ValidationformID");
+
+                    b.HasIndex("AssessmentID");
+
+                    b.HasIndex("BeneficiaryID")
+                        .IsUnique();
 
                     b.ToTable("Validationform", (string)null);
                 });
@@ -326,10 +343,6 @@ namespace SpinsOnlineRazor.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("SpinsOnlineRazor.Models.RedesignModels.ComplexModels.Validationform", "Validationform")
-                        .WithMany("Beneficiaries")
-                        .HasForeignKey("ValidationformID");
-
                     b.Navigation("Barangay");
 
                     b.Navigation("HealthStatus");
@@ -347,8 +360,25 @@ namespace SpinsOnlineRazor.Migrations
                     b.Navigation("Sex");
 
                     b.Navigation("Status");
+                });
 
-                    b.Navigation("Validationform");
+            modelBuilder.Entity("SpinsOnlineRazor.Models.RedesignModels.ComplexModels.Validationform", b =>
+                {
+                    b.HasOne("SpinsOnlineRazor.Models.RedesignModels.ComplexModels.Assessment", "Assessment")
+                        .WithMany("Validationforms")
+                        .HasForeignKey("AssessmentID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SpinsOnlineRazor.Models.RedesignModels.Beneficiary", "Beneficiary")
+                        .WithOne("Validationform")
+                        .HasForeignKey("SpinsOnlineRazor.Models.RedesignModels.ComplexModels.Validationform", "BeneficiaryID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Assessment");
+
+                    b.Navigation("Beneficiary");
                 });
 
             modelBuilder.Entity("SpinsOnlineRazor.Models.RedesignModels.Barangay", b =>
@@ -356,9 +386,14 @@ namespace SpinsOnlineRazor.Migrations
                     b.Navigation("Beneficiaries");
                 });
 
-            modelBuilder.Entity("SpinsOnlineRazor.Models.RedesignModels.ComplexModels.Validationform", b =>
+            modelBuilder.Entity("SpinsOnlineRazor.Models.RedesignModels.Beneficiary", b =>
                 {
-                    b.Navigation("Beneficiaries");
+                    b.Navigation("Validationform");
+                });
+
+            modelBuilder.Entity("SpinsOnlineRazor.Models.RedesignModels.ComplexModels.Assessment", b =>
+                {
+                    b.Navigation("Validationforms");
                 });
 
             modelBuilder.Entity("SpinsOnlineRazor.Models.RedesignModels.HealthStatus", b =>

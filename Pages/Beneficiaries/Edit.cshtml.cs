@@ -155,7 +155,7 @@ namespace SpinsOnlineRazor.Pages.Beneficiaries
             ))
 
             {
-                //beneficaryToUpdate.ValidationformID = ValidationForm.ValidationformID; // Update Beneficiary validation form ID same with existed Validation form
+                //beneficaryToUpdate.ValidationformID = beneficaryToUpdate.BeneficiaryID; // Update Beneficiary validation form ID same with existed Validation form
                 await _context.SaveChangesAsync();
                 return RedirectToPage("./Index");
             }
@@ -193,5 +193,7 @@ namespace SpinsOnlineRazor.Pages.Beneficiaries
             // PopulateBarangayDropDownList(_context, beneficaryToUpdate.BarangayID);
             return Page();
         }
+
+        
     }
 }

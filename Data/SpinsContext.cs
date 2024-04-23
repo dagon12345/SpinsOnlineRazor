@@ -23,6 +23,8 @@ namespace SpinsOnlineRazor.Data
         public DbSet<Status> Statuses { get; set; }
         public DbSet<Validationform> Validationforms { get; set; }
 
+        public DbSet<Assessment> Assessments { get; set; }
+
         /*Calls OnModelCreating. OnModelCreating:
         Is called when SchoolContext has been initialized, but before the model has been locked down and used to initialize the context.
         Is required because later in the tutorial the Beneficiary entity will have references to the other entities.*/
@@ -32,6 +34,12 @@ namespace SpinsOnlineRazor.Data
            masuyod sija sa masterlists which is dabo sila Beneficiary*/
 
            modelBuilder.Entity<Beneficiary>().ToTable("Beneficiary");
+        //   modelBuilder.Entity<Beneficiary>()
+        //   .HasOne(p => p.Validationform)
+        //   .WithMany(p => p.Beneficiaries)
+        //   .HasForeignKey( p => p.BeneficiaryID)
+        //   .IsRequired(false);
+
            modelBuilder.Entity<Region>().ToTable("Region");
             modelBuilder.Entity<IdentificationType>().ToTable("IdentificationType");
             modelBuilder.Entity<HealthStatus>().ToTable("HealthStatus");
@@ -41,7 +49,13 @@ namespace SpinsOnlineRazor.Data
                modelBuilder.Entity<Sex>().ToTable("Sex");
                modelBuilder.Entity<Maritalstatus>().ToTable("Maritalstatus");
                 modelBuilder.Entity<Status>().ToTable("Status");
+
                 modelBuilder.Entity<Validationform>().ToTable("Validationform");
+                 modelBuilder.Entity<Assessment>().ToTable("Assessment");
+                // .HasMany(p => p.Beneficiaries)
+                // .WithOne(p => p.Validationform)
+                // .HasForeignKey(p => p.BeneficiaryID)
+                // .IsRequired(false);
 
 
 

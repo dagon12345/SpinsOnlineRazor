@@ -56,6 +56,8 @@ namespace SpinsOnlineRazor.Pages.Beneficiaries
         .Include(p => p.Sex)
         .Include(p => p.Maritalstatus)
         .Include(p => p.Status)
+        .Include(p => p.Validationform)
+            .ThenInclude(p => p.Assessment)
         .FirstOrDefaultAsync(m => m.BeneficiaryID == id);
 
 
@@ -65,5 +67,7 @@ namespace SpinsOnlineRazor.Pages.Beneficiaries
             }
             return Page();
         }
+
+   
     }
 }

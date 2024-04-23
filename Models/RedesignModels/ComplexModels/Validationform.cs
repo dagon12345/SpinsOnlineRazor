@@ -4,8 +4,10 @@ namespace SpinsOnlineRazor.Models.RedesignModels.ComplexModels
 {
     public class Validationform
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        
         public int ValidationformID { get; set; }
+        [ForeignKey("Beneficiary")]
+        public int BeneficiaryID { get; set; }// The FK
         public int AssessmentID { get; set; }
         //public Assessment Assessment { get; set; }
         public int ReferenceCode { get; set; } // URL for PDF FIles
@@ -13,8 +15,8 @@ namespace SpinsOnlineRazor.Models.RedesignModels.ComplexModels
         public bool Pantawid { get; set; }
         public bool Indigenous { get; set; }
 
-        public ICollection<Beneficiary> Beneficiaries { get; set; } // Dabo na bene mugamit sa m
-                                                                    // isa ra ka assessment kada validation
+        public Beneficiary Beneficiary { get; set; } //One is to One relationship with Beneficiary
+        public Assessment Assessment { get; set; }
 
     }
 }
