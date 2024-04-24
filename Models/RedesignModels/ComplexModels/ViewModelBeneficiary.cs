@@ -41,6 +41,7 @@ namespace SpinsOnlineRazor.Models.RedesignModels.ComplexModels
         public string RegionName { get; set; }
         public string ProvinceName { get; set; }
         public string MunicipalityName { get; set; }
+        public int MunicipalityID { get; set; }
         public string BarangayName { get; set; }
         public string IdentificationNo { get; set; }
 
@@ -70,6 +71,7 @@ namespace SpinsOnlineRazor.Models.RedesignModels.ComplexModels
 
         //Masterlist
         public string Status { get; set; }
+        public int StatusID { get; set; }
         public string IdentificationType { get; set; }
 
         //Beneficiary model

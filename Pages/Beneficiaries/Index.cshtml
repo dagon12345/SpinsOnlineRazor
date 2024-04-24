@@ -45,36 +45,42 @@ The W3C guidelines recommend that GET should be used when the action doesn't res
     <div class="col-sm-6 ">
         <form class="d-flex" asp-page="./Index" method="get">
 
-
+            <div class="input-group mb-3">
                 @* <label asp-for="Beneficiary.Status" class="control-label"></label> *@
-                <select  asp-for="Beneficiary.MunicipalityID" class="form-control me-sm-2" name="SearchString" type="search" asp-items="@Model.MunicipalitySL"  value="@Model.CurrentFilter">
-                    <option value="0">--Select Municipality--</option>
-                    
+                <select asp-for="Beneficiary.Municipality" class="form-control me-sm-2" name="searchMunicipality" asp-items="@Model.MunicipalityOptions"
+                    value="@Model.MunicipalityFilter " selected="selected">
+                    <option value="">--Select Municipality--</option>
                 </select>
 
-                 @* <select  asp-for="Beneficiary.StatusID" class="form-control me-sm-2" name="SearchString" type="search" asp-items="@Model.StatusSL"  value="@Model.CurrentFilter">
-                    <option value="0">--Select Status--</option>
-                    
-                </select> *@
 
-                @* <input class="form-control me-sm-2" type="search" placeholder="Search Name" name="SearchString" value="@Model.CurrentFilter"> *@
-    
+                <select  asp-for="Beneficiary.Status" class="form-control me-sm-2" name="searchStatus" asp-items="@Model.StatusOptions"
+                    value="@Model.StatusFilter" selected="selected">
+                    <option value="">--Select Status--</option>
 
-            @* <input class="form-control me-sm-2" type="search" placeholder="Search Name" name="SearchString" value="@Model.CurrentFilter"> *@
+                </select>
+                <button class="btn btn-secondary my-2 my-sm-0" type="submit" value="Filter">
+                    <i class="bi bi-search"></i>
+                </button>
 
-            <button class="btn btn-secondary my-2 my-sm-0" type="submit" value="Search">
-                <i class="bi bi-search"></i>
-            </button>
-                    
-            <a class="btn btn-primary" style="margin-right: 5" asp-page="./Index">
-            <i class="bi bi-arrow-clockwise"></i>
-            </a>
+                <button class="btn btn-primary" style="margin-right: 5" asp-page="./Index">
+                    <i class="bi bi-arrow-clockwise"></i>
+                </button>
+            </div>
+
+            @* <input class="form-control me-sm-2" type="search" placeholder="Search Name" name="SearchString"
+            value="@Model.CurrentFilter"> *@
+
+
+            @* <input class="form-control me-sm-2" type="search" placeholder="Search Name" name="SearchString"
+            value="@Model.CurrentFilter"> *@
+
+
 
 
         </form>
     </div>
 
- 
+
 
 
 </div>
@@ -180,7 +186,8 @@ asp-route-currentFilter="@Model.CurrentFilter">
 </table>
 </div> *@
 
-<ejs-grid id="Grid" dataSource="@Model.BeneficiaryViewModel" detailTemplate="#detailtemplate">
+<ejs-grid id="Grid" dataSource="@Model.BeneficiaryViewModel" detailTemplate="#detailtemplate" allowPaging="true">
+    <e-grid-pagesettings pageSize="20"></e-grid-pagesettings>
 
     <e-grid-columns>
         <e-grid-column headerText="" template="#template" width="40"></e-grid-column>
@@ -195,10 +202,10 @@ asp-route-currentFilter="@Model.CurrentFilter">
         <e-grid-column field="MiddleName" headerText="MiddleName" width="130"></e-grid-column>
         <e-grid-column field="ExtName" headerText="Extension Name" width="120"></e-grid-column>
 
-         <e-grid-column field="RegionName" headerText="Region" width="150"></e-grid-column>
-          <e-grid-column field="ProvinceName" headerText="Province" width="150"></e-grid-column>
-           <e-grid-column field="MunicipalityName" headerText="Municipality" width="120"></e-grid-column>
-            <e-grid-column field="BarangayName" headerText="Barangay" width="120"></e-grid-column>
+        <e-grid-column field="RegionName" headerText="Region" width="150"></e-grid-column>
+        <e-grid-column field="ProvinceName" headerText="Province" width="150"></e-grid-column>
+        <e-grid-column field="MunicipalityName" headerText="Municipality" width="120"></e-grid-column>
+        <e-grid-column field="BarangayName" headerText="Barangay" width="120"></e-grid-column>
 
         <e-grid-column field="Assessment" headerText="Assessment" width="180"></e-grid-column>
         <e-grid-column field="Referencecode" headerText="Validation Number" width="140"></e-grid-column>
@@ -276,7 +283,7 @@ asp-route-currentFilter="@Model.CurrentFilter">
                     <span style="font-weight: 500;">Health Status: </span> ${Remarks}
                 </td>
             </tr>
-            
+
              </tr>
         </tbody>
     </table>
@@ -341,35 +348,35 @@ asp-route-currentFilter="@Model.CurrentFilter">
 
 
 
-@* 
- @{
-    //An mga button ma disable kung waya nay previous or next page.
-    var prevDisabled = !Model.Beneficiaries.HasPreviousPage ? "disabled" : "";
-    var nextDisabled = !Model.Beneficiaries.HasNextPage ? "disabled" : "";
+@*
+@{
+//An mga button ma disable kung waya nay previous or next page.
+var prevDisabled = !Model.Beneficiaries.HasPreviousPage ? "disabled" : "";
+var nextDisabled = !Model.Beneficiaries.HasNextPage ? "disabled" : "";
 }
 <a asp-page="./Index" asp-route-sortOrder="@Model.CurrentSort"
-    asp-route-pageIndex="@(Model.Beneficiaries.PageIndex - 1)" asp-route-currentFilter="@Model.CurrentFilter"
-    class="btn btn-primary @prevDisabled">
-    &laquo;
+asp-route-pageIndex="@(Model.Beneficiaries.PageIndex - 1)" asp-route-currentFilter="@Model.CurrentFilter"
+class="btn btn-primary @prevDisabled">
+&laquo;
 </a>
 <a asp-page="./Index" asp-route-sortOrder="@Model.CurrentSort"
-    asp-route-pageIndex="@(Model.Beneficiaries.PageIndex + 1)" asp-route-currentFilter="@Model.CurrentFilter"
-    class="btn btn-primary @nextDisabled">
-    &raquo;
-</a>  *@
+asp-route-pageIndex="@(Model.Beneficiaries.PageIndex + 1)" asp-route-currentFilter="@Model.CurrentFilter"
+class="btn btn-primary @nextDisabled">
+&raquo;
+</a> *@
 
- @{
-    //An mga button ma disable kung waya nay previous or next page.
-    var prevDisabled = !Model.BeneficiaryViewModel.HasPreviousPage ? "disabled" : "";
-    var nextDisabled = !Model.BeneficiaryViewModel.HasNextPage ? "disabled" : "";
+@* @{
+//An mga button ma disable kung waya nay previous or next page.
+var prevDisabled = !Model.BeneficiaryViewModel.HasPreviousPage ? "disabled" : "";
+var nextDisabled = !Model.BeneficiaryViewModel.HasNextPage ? "disabled" : "";
 }
 <a asp-page="./Index" asp-route-sortOrder="@Model.CurrentSort"
-    asp-route-pageIndex="@(Model.BeneficiaryViewModel.PageIndex - 1)" asp-route-currentFilter="@Model.CurrentFilter"
-    class="btn btn-primary @prevDisabled">
-    &laquo;
+asp-route-pageIndex="@(Model.BeneficiaryViewModel.PageIndex - 1)" asp-route-currentFilter="@Model.CurrentFilter"
+class="btn btn-primary @prevDisabled">
+&laquo;
 </a>
 <a asp-page="./Index" asp-route-sortOrder="@Model.CurrentSort"
-    asp-route-pageIndex="@(Model.BeneficiaryViewModel.PageIndex + 1)" asp-route-currentFilter="@Model.CurrentFilter"
-    class="btn btn-primary @nextDisabled">
-    &raquo;
-</a> 
+asp-route-pageIndex="@(Model.BeneficiaryViewModel.PageIndex + 1)" asp-route-currentFilter="@Model.CurrentFilter"
+class="btn btn-primary @nextDisabled">
+&raquo;
+</a> *@
