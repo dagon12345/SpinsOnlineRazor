@@ -44,16 +44,37 @@ The W3C guidelines recommend that GET should be used when the action doesn't res
 
     <div class="col-sm-6 ">
         <form class="d-flex" asp-page="./Index" method="get">
-            <input class="form-control me-sm-2" type="search" placeholder="Search Name" name="SearchString"
-                value="@Model.CurrentFilter">
 
-            <button class="btn btn-secondary my-2 my-sm-0" type="submit" value="Search"><i
-                    class="bi bi-search"></i></button>
+
+                @* <label asp-for="Beneficiary.Status" class="control-label"></label> *@
+                <select  asp-for="Beneficiary.MunicipalityID" class="form-control me-sm-2" name="SearchString" type="search" asp-items="@Model.MunicipalitySL"  value="@Model.CurrentFilter">
+                    <option value="0">--Select Municipality--</option>
                     
-            <a class="btn btn-primary" style="margin-right: 5" asp-page="./Index"><i
-                    class="bi bi-arrow-clockwise"></i></a>
+                </select>
+
+                 @* <select  asp-for="Beneficiary.StatusID" class="form-control me-sm-2" name="SearchString" type="search" asp-items="@Model.StatusSL"  value="@Model.CurrentFilter">
+                    <option value="0">--Select Status--</option>
+                    
+                </select> *@
+
+                @* <input class="form-control me-sm-2" type="search" placeholder="Search Name" name="SearchString" value="@Model.CurrentFilter"> *@
+    
+
+            @* <input class="form-control me-sm-2" type="search" placeholder="Search Name" name="SearchString" value="@Model.CurrentFilter"> *@
+
+            <button class="btn btn-secondary my-2 my-sm-0" type="submit" value="Search">
+                <i class="bi bi-search"></i>
+            </button>
+                    
+            <a class="btn btn-primary" style="margin-right: 5" asp-page="./Index">
+            <i class="bi bi-arrow-clockwise"></i>
+            </a>
+
+
         </form>
     </div>
+
+ 
 
 
 </div>
@@ -159,25 +180,108 @@ asp-route-currentFilter="@Model.CurrentFilter">
 </table>
 </div> *@
 
-<ejs-grid id="Grid" dataSource="@Model.BeneficiaryViewModel">
+<ejs-grid id="Grid" dataSource="@Model.BeneficiaryViewModel" detailTemplate="#detailtemplate">
 
     <e-grid-columns>
         <e-grid-column headerText="" template="#template" width="40"></e-grid-column>
+        <e-grid-column headerText="" template="#templateedit" width="40" textAlign="Right"></e-grid-column>
+        @* <e-grid-column headerText="" template="#templateview" width="60" textAlign="Center"></e-grid-column> *@
+        <e-grid-column headerText="" template="#templatedelete" width="60" textAlign="Left"></e-grid-column>
+
         <e-grid-column field="BeneficiaryID" headerText="ID" visible="false" width="50"></e-grid-column>
+        <e-grid-column field="Status" headerText="Status" width="120"></e-grid-column>
         <e-grid-column field="LastName" headerText="Last Name" width="120"></e-grid-column>
         <e-grid-column field="FirstName" headerText="First Name" width="150"></e-grid-column>
         <e-grid-column field="MiddleName" headerText="MiddleName" width="130"></e-grid-column>
         <e-grid-column field="ExtName" headerText="Extension Name" width="120"></e-grid-column>
-        <e-grid-column field="BirthDate" headerText="Birth Date" format="yMd" width="140"></e-grid-column>
-        <e-grid-column field="Status" headerText="Status" width="140"></e-grid-column>
+
+         <e-grid-column field="RegionName" headerText="Region" width="150"></e-grid-column>
+          <e-grid-column field="ProvinceName" headerText="Province" width="150"></e-grid-column>
+           <e-grid-column field="MunicipalityName" headerText="Municipality" width="120"></e-grid-column>
+            <e-grid-column field="BarangayName" headerText="Barangay" width="120"></e-grid-column>
+
+        <e-grid-column field="Assessment" headerText="Assessment" width="180"></e-grid-column>
         <e-grid-column field="Referencecode" headerText="Validation Number" width="140"></e-grid-column>
         <e-grid-column field="SpinsBatch" headerText="Spins Batch" width="140"></e-grid-column>
-        <e-grid-column headerText="" template="#templateedit" width="60" textAlign="Right"></e-grid-column>
-        <e-grid-column headerText="" template="#templateview" width="60" textAlign="Center"></e-grid-column>
-        <e-grid-column headerText="" template="#templatedelete" width="60" textAlign="Left"></e-grid-column>
+        <e-grid-column field="Indigenous" headerText="Indigenous" displayAsCheckBox="true" width="140"></e-grid-column>
+        <e-grid-column field="Pantawid" headerText="Pantawid" displayAsCheckBox="true" width="140"></e-grid-column>
+
 
     </e-grid-columns>
 </ejs-grid>
+
+@*Design for the detailtable in datagrid*@
+<style type="text/css" class="cssStyles">
+    .detailtable td {
+        font-size: 13px;
+        padding: 4px;
+        max-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-weight: normal;
+    }
+</style>
+
+<script type="text/x-template" id="detailtemplate">
+    <table class="detailtable" width="100%">
+        <colgroup>
+            <col width="20%" />
+            <col width="20%" />
+            <col width="20%" />
+            <col width="40%" />
+        </colgroup>
+        <tbody>
+            <tr>
+                 <td>
+                    <span style="font-weight: 500;">Birth Date: </span> ${BirthDate.toLocaleDateString()}
+                </td>
+                 <td>
+                    <span style="font-weight: 500;">Address/Purok: </span> ${Address}
+                </td>
+                <td>
+                    <span style="font-weight: 500;">Sex: </span> ${Sex}
+                </td>
+
+            </tr>
+             <tr>
+
+                <td>
+                    <span style="font-weight: 500;">ID Type: </span> ${IdentificationType}
+                </td>
+                 <td>
+                    <span style="font-weight: 500;">Contact Number: </span> ${ContactNumber}
+                </td>
+                  <td>
+                    <span style="font-weight: 500;">Marital Status: </span> ${MaritalStatus}
+                </td>
+
+            </tr>
+             <tr>
+
+                <td>
+                    <span style="font-weight: 500;">ID Number: </span> ${IdentificationNo}
+                </td>
+
+                 <td>
+                    <span style="font-weight: 500;">Health Status: </span> ${HealthStatus}
+                </td>
+            </tr>
+              <tr>
+
+                <td>
+                    <span style="font-weight: 500;">Date Issued: </span> ${IdentificationDate.toLocaleDateString()}
+                </td>
+                <td>
+                    <span style="font-weight: 500;">Health Status: </span> ${Remarks}
+                </td>
+            </tr>
+            
+             </tr>
+        </tbody>
+    </table>
+</script>
+
 
 @*This is for validation form*@
 <script id="template" type="text/x-template">
@@ -237,6 +341,22 @@ asp-route-currentFilter="@Model.CurrentFilter">
 
 
 
+@* 
+ @{
+    //An mga button ma disable kung waya nay previous or next page.
+    var prevDisabled = !Model.Beneficiaries.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.Beneficiaries.HasNextPage ? "disabled" : "";
+}
+<a asp-page="./Index" asp-route-sortOrder="@Model.CurrentSort"
+    asp-route-pageIndex="@(Model.Beneficiaries.PageIndex - 1)" asp-route-currentFilter="@Model.CurrentFilter"
+    class="btn btn-primary @prevDisabled">
+    &laquo;
+</a>
+<a asp-page="./Index" asp-route-sortOrder="@Model.CurrentSort"
+    asp-route-pageIndex="@(Model.Beneficiaries.PageIndex + 1)" asp-route-currentFilter="@Model.CurrentFilter"
+    class="btn btn-primary @nextDisabled">
+    &raquo;
+</a>  *@
 
  @{
     //An mga button ma disable kung waya nay previous or next page.

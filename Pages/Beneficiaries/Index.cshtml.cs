@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using Microsoft.AspNetCore.Mvc;
 using SpinsOnlineRazor.Models.RedesignModels.ComplexModels;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace SpinsOnlineRazor.Pages.Beneficiaries
 {
@@ -30,12 +31,35 @@ Replaces the code in the OnGetAsync method.*/
 
     public string CurrentSort { get; set; }
 
+        public SelectList HealthStatusSL { get; set; }
+        public SelectList IdentificationTypeSL { get; set; }
+        public SelectList RegionSL { get; set; }
+        public SelectList ProvinceSL { get; set; }
+        public SelectList MunicipalitySL { get; set; }
+        public SelectList BarangaySL { get; set; }
+        public SelectList SexSL { get; set; }
+        public SelectList MaritalStatusSL { get; set; }
+        public SelectList StatusSL { get; set; }
+   private void PopulateDropDownLists()
+        {
+            HealthStatusSL = new SelectList(_context.HealthStatuses.OrderBy(h => h.Name), nameof(HealthStatus.HealthStatusID), nameof(HealthStatus.Name));
+            IdentificationTypeSL = new SelectList(_context.IdentificationTypes.OrderBy(i => i.Name), nameof(IdentificationType.IdentificationTypeID), nameof(IdentificationType.Name));
+            RegionSL = new SelectList(_context.Regions.OrderBy(r => r.Name), nameof(Region.RegionID), nameof(Region.Name));
+            ProvinceSL = new SelectList(_context.Provinces.OrderBy(r => r.Name), nameof(Province.ProvinceID), nameof(Province.Name));
+            MunicipalitySL = new SelectList(_context.Municipalities.OrderBy(r => r.Name),  nameof(Municipality.MunicipalityID), nameof(Municipality.Name));
+            BarangaySL = new SelectList(new List<Barangay>(), nameof(Barangay.BarangayID), nameof(Barangay.Name));
+            SexSL = new SelectList(_context.Sexes.OrderBy(r => r.Name), nameof(Sex.SexID), nameof(Sex.Name));
+            MaritalStatusSL = new SelectList(_context.Maritalstatuses.OrderBy(r => r.Name), nameof(Maritalstatus.MaritalstatusID), nameof(Maritalstatus.Name));
+            StatusSL = new SelectList(_context.Statuses.OrderBy(r => r.Name), nameof(Status.StatusID), nameof(Status.Name));
+        }
     /*Changes the type of the Students property from IList<Student> to PaginatedList<Student>.
 Adds the page index, the current sortOrder, and the currentFilter to the OnGetAsync method signature.
 Saves the sort order in the CurrentSort property.
 Resets page index to 1 when there's a new search string.
 Uses the PaginatedList class to get Student entities.
 Sets pageSize to 2 from Configuration, 3 if configuration fails.*/
+   [BindProperty]
+    public Beneficiary Beneficiary { get; set; }
 
    public PaginatedList<ViewModelBeneficiary> BeneficiaryViewModel { get; set; }
     /*The OnGetAsync method receives a sortOrder parameter from the query string in the URL.
@@ -44,6 +68,7 @@ Sets pageSize to 2 from Configuration, 3 if configuration fails.*/
    public PaginatedList<Beneficiary> Beneficiaries { get; set; }
     public async Task OnGetAsync(string sortOrder, string currentFilter, string searchString, int? pageIndex)
     {
+       PopulateDropDownLists();
       /*When the Index page is requested from the Students link, there's no query string. 
       The students are displayed in ascending order by last name. 
       Ascending order by last name is the default in the switch statement.
@@ -79,14 +104,26 @@ Must be restored to the text box when the page is redisplayed.*/
       IQueryable are converted to a collection by calling a method such as ToListAsync. 
       Therefore, the IQueryable code results in a single query that's not executed until the following statement:
        Beneficiaries = await beneficiariesIQ.AsNoTracking().ToListAsync();*/
-      IQueryable<Beneficiary> beneficiariesIQ = from s in _context.Beneficiaries select s;
+      IQueryable<Beneficiary> beneficiariesIQ = from s in _context.Beneficiaries
+        .Include(r => r.HealthStatus)
+                .Include(r => r.Region)
+                .Include(r => r.Province)
+                .Include(r => r.Municipality)
+                .Include(r => r.Barangay)
+                .Include(r => r.Sex)
+                .Include(r => r.Maritalstatus)
+                .Include(r => r.Status)
+                .Include(r => r.IdentificationType)
+                .Include(r => r.Validationform)
+                .ThenInclude(r => r.Assessment)
+       select s;
       /*Adds the searchString parameter to the OnGetAsync method, 
       and saves the parameter value in the CurrentFilter property.
        The search string value is received from a text box that's added in the next section.
 Adds to the LINQ statement a Where clause. 
 The Where clause selects only beneficiaries whose LastName or FirstName or LastName and FirstName and MiddleName contains the search string. 
 The LINQ statement is executed only if there's a value to search for.*/
-      if (!String.IsNullOrEmpty(searchString))
+      if (!String.IsNullOrEmpty(searchString)) // Not null or empty because of !
       {
         /*SQL Server defaults to case-insensitive. SQLite defaults to case-sensitive.Kung Sql server dili case sensitive
         Kung SQLite ato gamiton kay case sensitive need nat mag add nan .ToUpper()
@@ -95,9 +132,11 @@ The LINQ statement is executed only if there's a value to search for.*/
         Pero jauy performance penalty and .ToUpper().The ToUpper code adds a function in the WHERE clause of the TSQL SELECT statement. 
         The added function prevents the optimizer from using an index. 
         Given that SQL is installed as case-insensitive, it's best to avoid the ToUpper call when it's not needed*/
-        beneficiariesIQ = beneficiariesIQ.Where(s => s.LastName.Contains(searchString) || s.FirstName.Contains(searchString)
+        beneficiariesIQ = beneficiariesIQ.Where(s => s.LastName.Contains(searchString) || s.FirstName.Contains(searchString) 
+        || s.MunicipalityID == int.Parse(searchString)
         || s.MiddleName.Contains(searchString) || s.LastName.Contains(searchString) && s.FirstName.Contains(searchString) && s.MiddleName.Contains(searchString));
       }
+
       switch (sortOrder)
       {
         case "name_desc":
@@ -110,29 +149,10 @@ The LINQ statement is executed only if there's a value to search for.*/
       }
       
 
-      //  var pageSize = Configuration.GetValue("PageSize", 6);
-      //   Beneficiaries = await PaginatedList<Beneficiary>.CreateAsync(
-      //       beneficiariesIQ
-      //       //.ThenInclude(v => v.Validationform.Assessment)
-      //      .AsNoTracking(), pageIndex ?? 1, pageSize);
-
-           
-       var pageSize = Configuration.GetValue("PageSize", 5);
-            IQueryable<Beneficiary> beneficiariesIQue = _context.Beneficiaries
-                .Include(r => r.HealthStatus)
-                .Include(r => r.Region)
-                .Include(r => r.Province)
-                .Include(r => r.Municipality)
-                .Include(r => r.Barangay)
-                .Include(r => r.Sex)
-                .Include(r => r.Maritalstatus)
-                .Include(r => r.Status)
-                .Include(r => r.IdentificationType)
-                .Include(r => r.Validationform)
-                .ThenInclude(r => r.Assessment);
-            BeneficiaryViewModel = await PaginatedList<ViewModelBeneficiary>.CreateAsync(
-                beneficiariesIQue.Select(p => new ViewModelBeneficiary
-                {
+       var pageSize = Configuration.GetValue("PageSize", 11);
+        BeneficiaryViewModel = await PaginatedList<ViewModelBeneficiary>.CreateAsync(
+            beneficiariesIQ.Select(p => new ViewModelBeneficiary
+            {
                     BeneficiaryID = p.BeneficiaryID,
                     LastName = p.LastName,
                     FirstName = p.FirstName,
@@ -160,6 +180,7 @@ The LINQ statement is executed only if there's a value to search for.*/
                     Indigenous = p.Validationform.Indigenous
                     
                 }).AsNoTracking(), pageIndex ?? 1, pageSize);
+
 
     }
   }
