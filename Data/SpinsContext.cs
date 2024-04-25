@@ -12,7 +12,7 @@ namespace SpinsOnlineRazor.Data
         }
         //Need nat mugamit nan plural variables para ma match an dbset name
 
-        public DbSet<ViewModelBeneficiary> viewModelBeneficiaries { get; set; }
+        //public DbSet<ViewModelBeneficiary> viewModelBeneficiaries { get; set; }
         public DbSet<Beneficiary> Beneficiaries { get; set; }
         public DbSet<Region> Regions { get; set; }
         public DbSet<Province> Provinces { get; set; }

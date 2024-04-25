@@ -5,9 +5,9 @@ namespace SpinsOnlineRazor.Models.RedesignModels.ComplexModels
     public class Validationform
     {
         
-        public int ValidationformID { get; set; }
+        public int? ValidationformID { get; set; }
         [ForeignKey("Beneficiary")]
-        public int BeneficiaryID { get; set; }// The FK
+        public int? BeneficiaryID { get; set; }// The FK
         public int AssessmentID { get; set; }
         //public Assessment Assessment { get; set; }
         public int ReferenceCode { get; set; } // URL for PDF FIles

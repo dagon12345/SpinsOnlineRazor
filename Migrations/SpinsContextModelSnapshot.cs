@@ -49,6 +49,27 @@ namespace SpinsOnlineRazor.Migrations
                         .HasMaxLength(11)
                         .HasColumnType("TEXT");
 
+                    b.Property<DateTime>("DateEntered")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime?>("DeceasedDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("DeletedBy")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime?>("DeletedDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("EnteredBy")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ExclusionBatch")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime?>("ExclusionDate")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("ExtName")
                         .HasMaxLength(3)
                         .HasColumnType("TEXT");
@@ -76,6 +97,12 @@ namespace SpinsOnlineRazor.Migrations
                     b.Property<int>("IdentificationTypeID")
                         .HasColumnType("INTEGER");
 
+                    b.Property<DateTime?>("InclusionDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasMaxLength(20)
@@ -86,6 +113,12 @@ namespace SpinsOnlineRazor.Migrations
 
                     b.Property<string>("MiddleName")
                         .HasMaxLength(20)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("TEXT");
 
                     b.Property<int>("MunicipalityID")
@@ -164,7 +197,7 @@ namespace SpinsOnlineRazor.Migrations
                     b.Property<int>("ReferenceCode")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("SpinsBatch")
+                    b.Property<int>("SpinsBatch")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("ValidationformID");

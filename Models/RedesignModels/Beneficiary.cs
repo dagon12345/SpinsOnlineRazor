@@ -7,7 +7,8 @@ namespace SpinsOnlineRazor.Models.RedesignModels
 {
     public class Beneficiary
     {
-        public int BeneficiaryID { get; set; }
+        public int? BeneficiaryID { get; set; }
+        public Validationform Validationform { get; set; }//For Valdationform Model BenficiaryID is the KF
         [Required]
         [StringLength(20, MinimumLength = 2, ErrorMessage = "Last name cannot be longer than 20 characters.")]
         [Display(Name = "Last Name")]
@@ -80,17 +81,18 @@ namespace SpinsOnlineRazor.Models.RedesignModels
          public int StatusID { get; set; }
          public Status Status { get; set; }//For Status model
         // public int? ValidationformID { get; set; }
-         public Validationform Validationform { get; set; }//For Valdationform Model BenficiaryID is the KF
-        //  public DateTime DateEntered { get; set; }
-        //  public string EnteredBy { get; set; }
-        //  public DateTime InclusionDate { get; set; }
-        //  public string ExclusionBatch { get; set; }
-        //  public DateTime? ExclusionDate { get; set; }
-        //  public DateTime? DeceasedDate { get; set; }
-        //  public string  ModifiedBy { get; set; }
-        //  public DateTime ModifiedDate { get; set; }
-        //  public bool IsDeleted { get; set; }
-        //  public DateTime? DeletedDate { get; set; }
-        //  public string DeletedBy { get; set; }
+        
+         
+         public DateTime DateEntered { get; set; }
+         public string EnteredBy { get; set; } // Login name
+         public DateTime? InclusionDate { get; set; } // Date ACtive from applicant
+         public string ExclusionBatch { get; set; } // exclusion date auto increment
+         public DateTime? ExclusionDate { get; set; } // date delisted
+         public DateTime? DeceasedDate { get; set; } // date of death
+         public string ModifiedBy { get; set; } // login name
+         public DateTime? ModifiedDate { get; set; } // date edited
+         public bool IsDeleted { get; set; }// boolean soft delete
+         public DateTime? DeletedDate { get; set; } // date deleted
+         public string DeletedBy { get; set; } // login name
     }
 }

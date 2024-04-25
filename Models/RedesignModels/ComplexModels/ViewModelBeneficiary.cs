@@ -4,8 +4,7 @@ namespace SpinsOnlineRazor.Models.RedesignModels.ComplexModels
 {
     public class ViewModelBeneficiary
     {
-        [Key]
-        public int BeneficiaryID { get; set; }
+        public int? BeneficiaryID { get; set; }
         [Required]
         [StringLength(20, MinimumLength=2, ErrorMessage = "Last name cannot be longer than 20 characters.")]
         [Display(Name = "Last Name")]

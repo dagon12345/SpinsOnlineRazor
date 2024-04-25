@@ -122,6 +122,18 @@ namespace SpinsOnlineRazor.Pages.Beneficiaries
             {
                 // Set StatusID to 99 if it's not already set
                 emptyBeneficiary.StatusID = 99;
+                emptyBeneficiary.DateEntered = DateTime.UtcNow;
+                emptyBeneficiary.EnteredBy = "SampleEnteredBy";
+                emptyBeneficiary.InclusionDate = null;
+                emptyBeneficiary.ExclusionBatch = "";
+                emptyBeneficiary.ExclusionDate = null;
+                emptyBeneficiary.DeceasedDate = null;
+                emptyBeneficiary.ModifiedBy = "";
+                emptyBeneficiary.ModifiedDate = null;
+                emptyBeneficiary.IsDeleted = false;
+                emptyBeneficiary.DeletedDate = null;
+                emptyBeneficiary.DeletedBy = "";
+
 
                 _context.Beneficiaries.Add(emptyBeneficiary);
                 await _context.SaveChangesAsync();
