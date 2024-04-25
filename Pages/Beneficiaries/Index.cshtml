@@ -4,6 +4,8 @@
 @{
     ViewData["Title"] = "Beneficiaries";
 
+
+
 }
 <style>
     table {
@@ -26,196 +28,170 @@ When HTTP GET is used, the form data is passed in the URL as query strings.
 Passing the data with query strings enables users to bookmark the URL.
 The W3C guidelines recommend that GET should be used when the action doesn't result in an update.*@
 
+<body>
 
 
-<div class="Row" style="display: flex; justify-content: space-between;">
+    <div class="Row" style="display: flex; justify-content: space-between;">
 
-    <div class="col-sm-6 ">
-        <p>
-            <a class="btn btn-success" asp-page="Create" style="padding: 5px; margin-left: 2%;">
-                Add <i class="bi bi-plus-circle-fill"></i>
-            </a>
-            @* <button class="btn btn-primary" data-kt-menu-placement="bottom-end"
-            onclick="ExportToExcel('xlsx')"style="padding: 5px; "><i class="bi bi-file-earmark-excel-fill"></i>Export
-            </button> *@
-        </p>
-    </div>
+        <div class="col-sm-6 ">
+            <p>
+                <a class="btn btn-success" asp-page="Create" style="padding: 5px; margin-left: 2%;">
+                    Add <i class="bi bi-plus-circle-fill"></i>
+                </a>
+            </p>
+        </div>
 
 
-    <div class="col-sm-6 ">
-        <form class="d-flex" asp-page="./Index" method="get">
+        <div class="col-sm-6 ">
+            <form class="d-flex" asp-page="./Index" method="get">
 
-            <div class="input-group mb-3">
-                @* <label asp-for="Beneficiary.Status" class="control-label"></label> *@
-                <select asp-for="Beneficiary.Municipality" class="form-control me-sm-2" name="searchMunicipality" asp-items="@Model.MunicipalityOptions"
-                    value="@Model.MunicipalityFilter " selected="selected">
-                    <option value="">--Select Municipality--</option>
-                </select>
+                <div class="input-group mb-3">
 
+     
+                    <select class="form-control me-sm-2" name="searchMunicipality"
+                        asp-items="@Model.MunicipalityOptions" value="@Model.MunicipalityFilter">
+                        <option value="">@Model.MunicipalityOptions</option>
+                    </select>
 
-                <select  asp-for="Beneficiary.Status" class="form-control me-sm-2" name="searchStatus" asp-items="@Model.StatusOptions"
-                    value="@Model.StatusFilter" selected="selected">
-                    <option value="">--Select Status--</option>
+                    @* <select name="MunicipalityID" asp-items="Model.Municipalities" value="@Model.MunicipalityFilter"></select> *@
 
-                </select>
-                <button class="btn btn-secondary my-2 my-sm-0" type="submit" value="Filter">
+                    <select class="form-control me-sm-2" name="searchStatus" asp-items="@Model.StatusOptions"
+                        value="@Model.StatusFilter">
+                        <option value="">All Status</option>
+                    </select>
+
+                    @* <a class="btn btn-secondary my-2 my-sm-0" type="submit">
                     <i class="bi bi-search"></i>
-                </button>
+                    </a> *@
 
-                <button class="btn btn-primary" style="margin-right: 5" asp-page="./Index">
-                    <i class="bi bi-arrow-clockwise"></i>
-                </button>
-            </div>
+                    <input type="submit" value="Search" class="btn btn-primary" />
 
-            @* <input class="form-control me-sm-2" type="search" placeholder="Search Name" name="SearchString"
-            value="@Model.CurrentFilter"> *@
+                    <a class="btn btn-secondary" style="margin-right: 5" asp-page="./Index">
+                        <i class="bi bi-arrow-clockwise"></i>
+                    </a>
 
 
-            @* <input class="form-control me-sm-2" type="search" placeholder="Search Name" name="SearchString"
-            value="@Model.CurrentFilter"> *@
-
-
-
-
-        </form>
+                </div>
+            </form>
+        </div>
     </div>
 
 
 
+    <ejs-grid id="Grid" dataSource="@Model.BeneficiaryViewModel" detailTemplate="#detailtemplate" allowPaging="true"
+        created="created" frozenColumns="5" allowFiltering="true" height="500"
+        toolbar="@(new List<string>() { "Search"})" actionBegin="actionBegin" actionComplete="actionComplete">
+        <e-grid-searchSettings fields="@(new string[] { "LastName","FirstName","MiddleName"})" operator="contains"
+            ignoreCase="true"></e-grid-searchSettings>
+        <e-grid-pagesettings pageSize="20"></e-grid-pagesettings>
+        <e-grid-filterSettings type="Excel" enableInfiniteScrolling="true"
+            loadingIndicator="Spinner"></e-grid-filterSettings>
 
-</div>
+        <e-grid-columns>
+            <e-grid-column headerText="" template="#template" width="25"></e-grid-column>
+            <e-grid-column headerText="" template="#templateedit" width="25" textAlign="Center"></e-grid-column>
+            @* <e-grid-column headerText="" template="#templateview" width="60" textAlign="Center"></e-grid-column> *@
+            <e-grid-column headerText="" template="#templatedelete" width="25" textAlign="Center"></e-grid-column>
 
+            <e-grid-column field="BeneficiaryID" headerText="ID" visible="false" width="50"></e-grid-column>
+            <e-grid-column field="Status" headerText="Status" width="120" textAlign="Center"></e-grid-column>
+            <e-grid-column field="LastName" headerText="Last Name" width="120"></e-grid-column>
+            <e-grid-column field="FirstName" headerText="First Name" width="150"></e-grid-column>
+            <e-grid-column field="MiddleName" headerText="Middle Name" width="150"></e-grid-column>
+            <e-grid-column field="ExtName" headerText="Ext Name" width="120"></e-grid-column>
+            <e-grid-column field="Age" headerText="Age" width="120" textAlign="Center"></e-grid-column>
 
+            <e-grid-column field="RegionName" headerText="Region" width="150"></e-grid-column>
+            <e-grid-column field="ProvinceName" headerText="Province" width="150"></e-grid-column>
+            <e-grid-column field="MunicipalityName" headerText="Municipality" width="150"></e-grid-column>
+            <e-grid-column field="BarangayName" headerText="Barangay" width="150"></e-grid-column>
 
-@* <div class="container" style="overflow-x:auto; ">
-<table class="table table-hover">
-
-<thead>
-<tr>
-<th style="text-align: center;">
-<div class="btn-group" role="group" aria-label="Actions">
-<div class="header-container" style="width: 50px;">
-Actions
-</div>
-</div>
-</th>
-<th >
-
-<a asp-page="./Index" asp-route-sortOrder="@Model.NameSort"
-asp-route-currentFilter="@Model.CurrentFilter">
-@Html.DisplayNameFor(model => model.Beneficiaries[0].LastName)
-</a>
-</th>
-<th>
-@Html.DisplayNameFor(model => model.Beneficiaries[0].FirstName)
-</th>
-<th>
-@Html.DisplayNameFor(model => model.Beneficiaries[0].MiddleName)
-</th>
-<th>
-@Html.DisplayNameFor(model => model.Beneficiaries[0].ExtName)
-</th>
-<th>
-@Html.DisplayNameFor(model => model.Beneficiaries[0].BirthDate)
-</th>
+            <e-grid-column field="Assessment" headerText="Assessment" width="180"></e-grid-column>
+            <e-grid-column field="Referencecode" headerText="Validation #" width="150"></e-grid-column>
+            <e-grid-column field="SpinsBatch" headerText="Spins Batch" width="140"></e-grid-column>
+            <e-grid-column field="Indigenous" headerText="Indigenous" displayAsCheckBox="true"
+                width="140"></e-grid-column>
+            <e-grid-column field="Pantawid" headerText="Pantawid" displayAsCheckBox="true" width="140"></e-grid-column>
 
 
-</th>
+        </e-grid-columns>
+    </ejs-grid>
+</body>
 
-<th>
+<script>
+    var values;
+    var key = '';
+    var refresh = false;
+    var removeQuery = false;
+    var valueAssign = false;
 
+    function actionBegin(args) {
+        if (args.requestType == 'searching') {
+            const keys = args.searchString.split(',');
+            var flag = true;
+            var predicate;
+            if (keys.length > 1) {
+                if (this.searchSettings.key !== '') {
+                    values = args.searchString;
+                    keys.forEach((key) => {
+                        this.getColumns().forEach((col) => {
+                            if (flag) {
+                                predicate = new ej.data.Predicate(
+                                    col.field,
+                                    'contains',
+                                    key,
+                                    true
+                                );
 
-</tr>
-</thead>
-<tbody>
-<tr >
-@foreach (var item in Model.Beneficiaries)
-{
-<tr id="fontsize" class="table-primary">
-<td style="text-align:center; ">
-<div class="btn-group" role="group" aria-label="Actions">
+                                flag = false;
+                            } else {
+                                var predic = new ej.data.Predicate(
+                                    col.field,
+                                    'contains',
+                                    key,
+                                    true
+                                );
 
-<a class="btn btn-secondary" asp-page="./Edit" asp-route-id="@item.BeneficiaryID">
-<i class="bi bi-pencil-square" style="font-size: 8px;"></i>
-</a>
+                                predicate = predicate.or(predic);
+                            }
+                        });
+                    });
+                    this.query = new ej.data.Query().where(predicate);
+                    this.searchSettings.key = '';
+                    refresh = true;
+                    valueAssign = true;
+                    removeQuery = true;
+                    this.refresh();
+                }
+            }
+        }
+    }
+    function actionComplete(args) {
 
-<a class="btn btn-info" asp-page="./Details" asp-route-id="@item.BeneficiaryID">
-<i class="bi bi-eye"></i>
-</a>
+        if (args.requestType === 'refresh' && valueAssign) {
+            document.getElementById(this.element.id + '_searchbar').value = values;
+            valueAssign = false;
+        } else if (
+            document.getElementById(this.element.id + '_searchbar').value === '' &&
+            args.requestType === 'refresh' &&
+            removeQuery
+        ) {
+            this.query = new ej.data.Query();
+            removeQuery = false;
+            this.refresh();
+        }
+    }
+</script>
 
-<a class="btn btn-danger" asp-page="./Delete" asp-route-id="@item.BeneficiaryID">
-<i class="bi bi-trash3-fill" style="font-size: 8px;"> </i>
-</a>
+<script>
+    function created() {
+        var grid = document.getElementById("Grid").ej2_instances[0];
+        document.getElementById(grid.element.id + "_searchbar").addEventListener('keyup', () => {
+            grid.search(event.target.value)
+        });
+    }
+</script>
 
-
-</div>
-</td>
-
-
-<td >
-@Html.DisplayFor(modelItem => item.LastName)
-</td>
-<td >
-@Html.DisplayFor(modelItem => item.FirstName)
-</td>
-<td>
-@Html.DisplayFor(modelItem => item.MiddleName)
-</td>
-<td>
-@Html.DisplayFor(modelItem => item.ExtName)
-</td>
-<td>
-@Html.DisplayFor(modelItem => item.BirthDate)
-</td>
-
-
-<td>
-<div class="btn-group" role="group" aria-label="Actions">
-<a class="btn btn-success" asp-page="./AddValidationForm" asp-route-id="@item.BeneficiaryID">
-<i class="bi bi-folder-plus"></i>
-</a>
-</div>
-</td>
-
-
-</tr>
-}
-</tr>
-
-</tbody>
-</table>
-</div> *@
-
-<ejs-grid id="Grid" dataSource="@Model.BeneficiaryViewModel" detailTemplate="#detailtemplate" allowPaging="true">
-    <e-grid-pagesettings pageSize="20"></e-grid-pagesettings>
-
-    <e-grid-columns>
-        <e-grid-column headerText="" template="#template" width="40"></e-grid-column>
-        <e-grid-column headerText="" template="#templateedit" width="40" textAlign="Right"></e-grid-column>
-        @* <e-grid-column headerText="" template="#templateview" width="60" textAlign="Center"></e-grid-column> *@
-        <e-grid-column headerText="" template="#templatedelete" width="60" textAlign="Left"></e-grid-column>
-
-        <e-grid-column field="BeneficiaryID" headerText="ID" visible="false" width="50"></e-grid-column>
-        <e-grid-column field="Status" headerText="Status" width="120"></e-grid-column>
-        <e-grid-column field="LastName" headerText="Last Name" width="120"></e-grid-column>
-        <e-grid-column field="FirstName" headerText="First Name" width="150"></e-grid-column>
-        <e-grid-column field="MiddleName" headerText="MiddleName" width="130"></e-grid-column>
-        <e-grid-column field="ExtName" headerText="Extension Name" width="120"></e-grid-column>
-
-        <e-grid-column field="RegionName" headerText="Region" width="150"></e-grid-column>
-        <e-grid-column field="ProvinceName" headerText="Province" width="150"></e-grid-column>
-        <e-grid-column field="MunicipalityName" headerText="Municipality" width="120"></e-grid-column>
-        <e-grid-column field="BarangayName" headerText="Barangay" width="120"></e-grid-column>
-
-        <e-grid-column field="Assessment" headerText="Assessment" width="180"></e-grid-column>
-        <e-grid-column field="Referencecode" headerText="Validation Number" width="140"></e-grid-column>
-        <e-grid-column field="SpinsBatch" headerText="Spins Batch" width="140"></e-grid-column>
-        <e-grid-column field="Indigenous" headerText="Indigenous" displayAsCheckBox="true" width="140"></e-grid-column>
-        <e-grid-column field="Pantawid" headerText="Pantawid" displayAsCheckBox="true" width="140"></e-grid-column>
-
-
-    </e-grid-columns>
-</ejs-grid>
 
 @*Design for the detailtable in datagrid*@
 <style type="text/css" class="cssStyles">
@@ -280,7 +256,7 @@ asp-route-currentFilter="@Model.CurrentFilter">
                     <span style="font-weight: 500;">Date Issued: </span> ${IdentificationDate.toLocaleDateString()}
                 </td>
                 <td>
-                    <span style="font-weight: 500;">Health Status: </span> ${Remarks}
+                    <span style="font-weight: 500;">Remarks: </span> ${Remarks}
                 </td>
             </tr>
 
@@ -306,7 +282,7 @@ asp-route-currentFilter="@Model.CurrentFilter">
 
 @*This is for edit form*@
 <script id="templateedit" type="text/x-template">
-    <a href="#" onclick="navigateToEditForm(this)">Edit</a>
+    <a href="#" onclick="navigateToEditForm(this)"><i class="bi bi-pencil-square"></i></a>
 </script>
 
 <script>
@@ -334,7 +310,7 @@ asp-route-currentFilter="@Model.CurrentFilter">
 
 @*This is for delete form*@
 <script id="templatedelete" type="text/x-template">
-    <a href="#" onclick="navigateToDeleteForm(this)">Delete</a>
+    <a href="#" onclick="navigateToDeleteForm(this)"><i class="bi bi-trash"></i></a>
 </script>
 
 <script>
