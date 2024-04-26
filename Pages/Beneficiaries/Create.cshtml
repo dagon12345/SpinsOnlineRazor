@@ -71,7 +71,7 @@
                 </div>
                 <div class="form-group">
                     <label asp-for="Beneficiary.BirthDate" class="control-label"></label>
-                    <input asp-for="Beneficiary.BirthDate" class="form-control" />
+                    <input asp-for="Beneficiary.BirthDate" class="form-control" id="birthDateInput" />
                     <span asp-validation-for="Beneficiary.BirthDate" class="text-danger"></span>
                 </div>
 
@@ -191,15 +191,17 @@
                 <input type="submit" value="Create" class="btn btn-primary" />
 
             </div>
-             <div>
+            <div>
                 <a asp-page="./Index">Back to List</a>
-             </div>
+            </div>
 
     </form>
 
 </div>
 </div>
 </div>
+
+
 
 
 @section Scripts {

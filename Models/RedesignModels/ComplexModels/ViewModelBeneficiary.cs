@@ -56,6 +56,9 @@ namespace SpinsOnlineRazor.Models.RedesignModels.ComplexModels
         public string Address { get; set; }
         public string ContactNumber { get; set; }
 
+        //Additional Beneficiary data below
+        public DateTime DateEntered { get; set; }
+
         //Joined
         public string Sex { get; set; }
 
@@ -63,10 +66,10 @@ namespace SpinsOnlineRazor.Models.RedesignModels.ComplexModels
         //Validation form
         public string Assessment { get; set; }
         //public IFormFile BookPdf { get; set; }
-        public int Referencecode { get; set; }
-        public int SpinsBatch { get; set; }
-        public bool Pantawid { get; set; }
-        public bool Indigenous { get; set; }
+        public int? Referencecode { get; set; }
+        public int? SpinsBatch { get; set; }
+        public bool? Pantawid { get; set; }
+        public bool? Indigenous { get; set; }
 
         //Masterlist
         public string Status { get; set; }

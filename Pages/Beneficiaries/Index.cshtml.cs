@@ -102,8 +102,12 @@ namespace SpinsOnlineRazor.Pages.Beneficiaries
             Pantawid = p.Validationform.Pantawid,
             Indigenous = p.Validationform.Indigenous,
 
+
             StatusID = p.StatusID,
-            MunicipalityID = p.MunicipalityID
+            MunicipalityID = p.MunicipalityID,
+
+            //added properties below
+            DateEntered = p.DateEntered
 
           })
           .AsNoTracking()
