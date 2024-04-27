@@ -19,84 +19,90 @@
         height: 100%;
         /* Should be removed. Only for demonstration */
     }
-    #cellcolor{
-        background-color: #003C43;
-        color:white ;
-        
-    }
-    #secondcellcolor{
-        background-color: #77B0AA;
-        color:black ;
-        }
-    #thirdcellcolor{
-        background-color: #E3FEF7;
-        color:black ;
-        }
 </style>
 
 <h1>Validation Form (GIS)</h1>
 <div>
     <h4>Selected Benficiary</h4>
-    <hr/>
-    <div class="row">
-    <div class="column">
-        <div class="form-group">
-            <label asp-for="Beneficiary.BeneficiaryID" class="control-label" style="font-weight: 500;"></label>
-                 <div id="cellcolor">@Html.DisplayFor(model => model.Beneficiary.BeneficiaryID)</div>
-        </div>
-         <div class="form-group">
-                <label asp-for="Beneficiary.LastName" class="control-label" style="font-weight: 500;"></label>
-                 <div id="cellcolor" >@Html.DisplayFor(model => model.Beneficiary.LastName)</div>
-            </div>
-            <div class="form-group">
-                <label asp-for="Beneficiary.FirstName" class="control-label" style="font-weight: 500;"></label>
-                 <div id="cellcolor">@Html.DisplayFor(model => model.Beneficiary.FirstName)</div>
-            </div>
-           <div class="form-group">
-                <label asp-for="Beneficiary.MiddleName" class="control-label" style="font-weight: 500;"></label>
-                 <div id="cellcolor">@Html.DisplayFor(model => model.Beneficiary.MiddleName)</div>
-            </div>
-           <div class="form-group">
-                <label asp-for="Beneficiary.ExtName" class="control-label" style="font-weight: 500;"></label>
-                 <div id="cellcolor">@Html.DisplayFor(model => model.Beneficiary.ExtName)</div>
-            </div>
-    </div>
-    <div class="column">
-        <h3>Validation Form here</h3>
-        <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Beneficiary.Validationform.Assessment)
-            </dt>
-            <dd class="form-group">
-                @Html.DisplayFor(model => model.Beneficiary.Validationform.Assessment.Name)
-            </dd>
+    <hr />
+    <form method="post">
+        <div class="row">
 
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Beneficiary.Validationform.ReferenceCode)
-            </dt>
-            <dd class="form-group">
-                @Html.DisplayFor(model => model.Beneficiary.Validationform.ReferenceCode)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Beneficiary.Validationform.SpinsBatch)
-            </dt>
-            <dd class="form-group">
-                @Html.DisplayFor(model => model.Beneficiary.Validationform.SpinsBatch)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Beneficiary.Validationform.Pantawid)
-            </dt>
-            <dd class="form-group">
-                @Html.DisplayFor(model => model.Beneficiary.Validationform.Pantawid)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Beneficiary.Validationform.Indigenous)
-            </dt>
-            <dd class="form-group">
-                @Html.DisplayFor(model => model.Beneficiary.Validationform.Indigenous)
-            </dd>
-    </div>
+            <div class="column">
+
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Validationform.BeneficiaryID" />
+
+                <div class="form-group">
+                    <label asp-for="Validationform.Beneficiary.LastName" class="control-label"></label>
+                    <input asp-for="Validationform.Beneficiary.LastName" class="form-control" />
+                    <span asp-validation-for="Validationform.Beneficiary.LastName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Validationform.Beneficiary.FirstName" class="control-label"></label>
+                    <input asp-for="Validationform.Beneficiary.FirstName" class="form-control" />
+                    <span asp-validation-for="Validationform.Beneficiary.FirstName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Validationform.Beneficiary.MiddleName" class="control-label"></label>
+                    <input asp-for="Validationform.Beneficiary.MiddleName" class="form-control" />
+                    <span asp-validation-for="Validationform.Beneficiary.MiddleName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Validationform.Beneficiary.ExtName" class="control-label"></label>
+                    <input asp-for="Validationform.Beneficiary.ExtName" class="form-control" />
+                    <span asp-validation-for="Validationform.Beneficiary.ExtName" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="column">
+                <h3>Validation Form here</h3>
+                <hr/>
+
+                <div class="form-group">
+                    <label asp-for="Validationform.AssessmentID" class="control-label"></label>
+                    <select id="AssessmentID" asp-for="Validationform.AssessmentID" class="form-control"
+                        asp-items="@Model.AssessmentSL">
+                        <option value="">--Select Assessment--</option>
+                    </select>
+                    <span asp-validation-for="Validationform.AssessmentID" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Validationform.Pantawid" class="control-label"></label>
+                    <ejs-checkbox ejs-for="Validationform.Pantawid" checked="true"></ejs-checkbox>
+
+                    <label asp-for="Validationform.Indigenous" class="control-label"></label>
+                    <ejs-checkbox ejs-for="Validationform.Indigenous" checked="true"></ejs-checkbox>
+                </div>
+
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Validationform.ReferenceCode)
+                </dt>
+                <dd class="form-group">
+                    @Html.DisplayFor(model => model.Validationform.ReferenceCode)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Validationform.SpinsBatch)
+                </dt>
+                <dd class="form-group">
+                    @Html.DisplayFor(model => model.Validationform.SpinsBatch)
+                </dd>
+
+
+
+            </div>
+
+           
+
+
+        </div>
+          <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+    </form>
+
 </div>
-</div>
+
 
 
 <div>

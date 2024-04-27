@@ -159,38 +159,7 @@ namespace SpinsOnlineRazor.Pages.Beneficiaries
                 await _context.SaveChangesAsync();
                 return RedirectToPage("/Beneficiaries/Index");
             }
-            //Addin of validation form
-
-            // var emptyValidationForm = new Validationform();
-
-            // if (await TryUpdateModelAsync<Validationform>(emptyValidationForm, "Validationform",
-            //  s => s.ValidationformID, s => s.AssessmentID, s => s.ReferenceCode, s => s.SpinsBatch, s => s.Pantawid, s => s.Indigenous
-            //  ))
-            // {
-            //     // Set StatusID to 99 if it's not already set
-            //     emptyValidationForm.ValidationformID = Beneficiary.BeneficiaryID; // Add validation form ID same with existed Beneficary form
-            //     // Generate a reference code consisting of year, month, day, and a random number
-            //     int referenceCode =
-            //         (DateTime.Now.Year % 100) * 1_000_000 +    // Year (last two digits) shifted left by 6 digits
-            //         DateTime.Now.Month * 10_000 +               // Month shifted left by 4 digits
-            //         DateTime.Now.Day * 100 +                    // Day shifted left by 2 digits
-            //         new Random().Next(100);                     // Random number (2 digits)
-
-            //     // Assign the reference code to your property (assuming emptyValidationForm is an instance of your model)
-            //     emptyValidationForm.ReferenceCode = referenceCode;
-
-
-
-            //     _context.Validationforms.Add(emptyValidationForm);
-            //     await _context.SaveChangesAsync();
-            //     return RedirectToPage("./Index");
-            // }
-            // PopulateHealthStatusDropDownList(_context, beneficaryToUpdate.HealthStatusID);
-            // PopulateIDDropDownList(_context, beneficaryToUpdate.IdentificationTypeID);
-            // PopulateRegionDropDownList(_context, beneficaryToUpdate.RegionID);
-            // PopulateProvinceDropDownList(_context, beneficaryToUpdate.ProvinceID);
-            // PopulateMunicipalityDropDownList(_context, beneficaryToUpdate.MunicipalityID);
-            // PopulateBarangayDropDownList(_context, beneficaryToUpdate.BarangayID);
+         
             return Page();
         }
 
