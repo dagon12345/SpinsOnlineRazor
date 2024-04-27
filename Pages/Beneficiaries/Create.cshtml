@@ -69,11 +69,21 @@
                     <input asp-for="Beneficiary.ExtName" class="form-control" />
                     <span asp-validation-for="Beneficiary.ExtName" class="text-danger"></span>
                 </div>
+                @* <div class="form-group">
+                <label asp-for="Beneficiary.BirthDate" class="control-label"></label>
+                <input asp-for="Beneficiary.BirthDate" class="form-control" id="birthDateInput" />
+                <span asp-validation-for="Beneficiary.BirthDate" class="text-danger"></span>
+                </div> *@
                 <div class="form-group">
                     <label asp-for="Beneficiary.BirthDate" class="control-label"></label>
-                    <input asp-for="Beneficiary.BirthDate" class="form-control" id="birthDateInput" />
-                    <span asp-validation-for="Beneficiary.BirthDate" class="text-danger"></span>
+                    <ejs-datepicker id="birthdatePicker" ejs-for="Beneficiary.BirthDate"
+                        max="@DateTime.Now.AddYears(-60).ToString("yyyy-MM-dd")"></ejs-datepicker>
+                    <div id="errorMessage">
+                        <span asp-validation-for="Beneficiary.BirthDate"></span>
+                    </div>
                 </div>
+
+                @* <ejs-datetimepicker id="datetimepicker"></ejs-datetimepicker> *@
 
                 <div class="form-group">
                     <label asp-for="Beneficiary.IdentificationType" class="control-label"></label>
@@ -195,17 +205,44 @@
                 <a asp-page="./Index">Back to List</a>
             </div>
 
+
     </form>
+    <script>
+        document.getElementById('birthdatePicker').addEventListener('blur', function () {
+            var birthdate = new Date(this.value);
+            var minDate = new Date();
+            minDate.setFullYear(minDate.getFullYear() - 60); // Set minimum date to 60 years ago
+
+            if (birthdate > minDate) {
+                document.getElementById('errorMessage').innerHTML = '<span>Date entered is invalid. Please enter a valid date (age must be 60 years or above).</span>';
+                this.focus();
+            } else {
+                document.getElementById('errorMessage').innerHTML = '';
+            }
+        });
+    </script>
+
+
+
 
 </div>
 </div>
 </div>
+
+
+
+
 
 
 
 
 @section Scripts {
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+
+
     <script>
         $(document).ready(function () {
             $('#RegionID').change(function () {

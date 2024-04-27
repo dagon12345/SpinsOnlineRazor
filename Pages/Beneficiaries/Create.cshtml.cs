@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -27,6 +28,7 @@ namespace SpinsOnlineRazor.Pages.Beneficiaries
         public SelectList SexSL { get; set; }
         public SelectList MaritalStatusSL { get; set; }
         public SelectList StatusSL { get; set; }
+
 
 
         public IActionResult OnGet()
@@ -92,11 +94,13 @@ namespace SpinsOnlineRazor.Pages.Beneficiaries
             return new JsonResult(barangays);
         }
 
+
         [BindProperty]
         public Beneficiary Beneficiary { get; set; }
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
+
             /*Uses the posted form values from the PageContext property in the PageModel.
                 Updates only the properties listed (s => s.FirstMidName, s => s.LastName, s => s.EnrollmentDate).
                 Looks for form fields with a "student" prefix.

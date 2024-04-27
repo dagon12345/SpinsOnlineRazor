@@ -26,14 +26,54 @@ namespace SpinsOnlineRazor.Models.RedesignModels
         [Display(Name = "Extension Name")]
         public string ExtName { get; set; }
         //public int RegionID { get; set; }
-        [DataType(DataType.Date)]
+
         /*The DisplayFormat attribute is used to explicitly specify the date format. 
         The ApplyFormatInEditMode setting specifies that the formatting should also be applied to the edit UI. 
         Some fields shouldn't use ApplyFormatInEditMode. 
         For example, the currency symbol should generally not be displayed in an edit text box.*/
+        [Required(ErrorMessage = "Birth date is required.")]
+        [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [Display(Name = "Birth Date")]
+        //[MinimumAge(60, ErrorMessage = "You must be at least 60 years old.")]
         public DateTime BirthDate { get; set; }
+
+        // public class MinimumAgeAttribute : ValidationAttribute
+        // {
+        //     private readonly int _minimumAge;
+
+        //     public MinimumAgeAttribute(int minimumAge)
+        //     {
+        //         _minimumAge = minimumAge;
+        //     }
+
+        //     protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+        //     {
+        //         if (value != null)
+        //         {
+        //             var birthDate = (DateTime)value;
+        //             var age = CalculateAge(birthDate);
+        //             if (age < _minimumAge)
+        //             {
+        //                 return new ValidationResult(ErrorMessage);
+        //             }
+        //         }
+        //         return ValidationResult.Success;
+        //     }
+
+        //     private int CalculateAge(DateTime birthDate)
+        //     {
+        //         var today = DateTime.Today;
+        //         var age = today.Year - birthDate.Year;
+        //         if (birthDate.Date > today.AddYears(-age))
+        //         {
+        //             age--;
+        //         }
+        //         return age;
+        //     }
+        // }
+
+
         public int IdentificationTypeID { get; set; }
         public IdentificationType IdentificationType { get; set; }//For ID Model
 
