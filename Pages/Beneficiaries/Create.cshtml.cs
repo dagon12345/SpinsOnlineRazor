@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using NuGet.Protocol;
 using SpinsOnlineRazor.Models.RedesignModels;
 using SpinsOnlineRazor.Models.RedesignModels.ComplexModels;
 using SpinsOnlineRazor.Models.RedesignModels.Dropdowns;
@@ -13,10 +14,12 @@ namespace SpinsOnlineRazor.Pages.Beneficiaries
     public class CreateModel : PageModel
     {
         private readonly Data.SpinsContext _context;
+        private readonly ILogger<PageModel> _logger;
 
-        public CreateModel(Data.SpinsContext context)
+        public CreateModel(Data.SpinsContext context, ILogger<PageModel> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
         public SelectList HealthStatusSL { get; set; }
@@ -100,7 +103,6 @@ namespace SpinsOnlineRazor.Pages.Beneficiaries
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-
             /*Uses the posted form values from the PageContext property in the PageModel.
                 Updates only the properties listed (s => s.FirstMidName, s => s.LastName, s => s.EnrollmentDate).
                 Looks for form fields with a "student" prefix.
@@ -111,17 +113,11 @@ namespace SpinsOnlineRazor.Pages.Beneficiaries
             //Code below disables the overposting, para sa mga hackers maka set sila nan data like bisan not eligible e eligible
             var emptyBeneficiary = new Beneficiary();
 
-            // if (await TryUpdateModelAsync<Beneficiary>(emptyBeneficiary, "Beneficiary", s => s.RegionID,s => s.ProvinceID,s => s.MunicipalityID,s => s.BarangayID, 
-            //  s => s.SexID,s => s.MaritalstatusID,s => s.ValidationformID, s => s.StatusID,s => s.IdentificationTypeID,
-            //  s => s.LastName, s => s.FirstName,
-            //  s => s.MiddleName, s => s.ExtName, s => s.BirthDate, s => s.IdentificationNumber,
-            //  s => s.IdentificationDateIssued, s => s.SpecificAddress, s => s.ContactNumber, s => s.HealthStatusID, s => s.HealthRemarks
-            //  ))
             if (await TryUpdateModelAsync<Beneficiary>(emptyBeneficiary, "Beneficiary",
              s => s.HealthStatusID, s => s.IdentificationTypeID, s => s.RegionID, s => s.ProvinceID, s => s.MunicipalityID, s => s.BarangayID,
              s => s.SexID, s => s.MaritalstatusID,
              s => s.LastName, s => s.FirstName, s => s.MiddleName, s => s.ExtName, s => s.BirthDate, s => s.IdentificationNumber,
-             s => s.IdentificationDateIssued, s => s.SpecificAddress, s => s.ContactNumber, s => s.HealthRemarks
+             s => s.IdentificationDateIssued, s => s.SpecificAddress, s => s.ContactNumber, s => s.HealthRemarks, s => s.Validationform
              ))
             {
                 // Set StatusID to 99 if it's not already set
@@ -141,14 +137,15 @@ namespace SpinsOnlineRazor.Pages.Beneficiaries
 
                 _context.Beneficiaries.Add(emptyBeneficiary);
                 await _context.SaveChangesAsync();
-                return RedirectToPage("/Beneficiaries/Index");
+
+            
+                return RedirectToPage("./Index");
+               
             }
-            // PopulateHealthStatusDropDownList(_context, emptyBeneficiary.HealthStatusID);
-            // PopulateHealthStatusDropDownList(_context, emptyBeneficiary.IdentificationTypeID);
-            // PopulateRegionDropDownList(_context, emptyBeneficiary.RegionID);
-            // PopulateProvinceDropDownList(_context, emptyBeneficiary.ProvinceID);
-            // PopulateMunicipalityDropDownList(_context, emptyBeneficiary.MunicipalityID);
-            // PopulateBarangayDropDownList(_context, emptyBeneficiary.BarangayID);
+
+            // Below for adding validation form, once the user entered an beneificary automatic assign an validation form, but its empty.
+
+     
             return Page();
         }
     }

@@ -3,9 +3,102 @@
 @{
     ViewData["Title"] = "AddValidationForm";
 }
+<style>
+    * {
+        box-sizing: border-box;
+    }
 
-<h1>@ViewData["Title"]</h1>
+    .row {
+        display: flex;
+    }
+
+    /* Create two equal columns that sits next to each other */
+    .column {
+        flex: 50%;
+        padding: 10px;
+        height: 100%;
+        /* Should be removed. Only for demonstration */
+    }
+    #cellcolor{
+        background-color: #003C43;
+        color:white ;
+        
+    }
+    #secondcellcolor{
+        background-color: #77B0AA;
+        color:black ;
+        }
+    #thirdcellcolor{
+        background-color: #E3FEF7;
+        color:black ;
+        }
+</style>
+
+<h1>Validation Form (GIS)</h1>
+<div>
+    <h4>Selected Benficiary</h4>
+    <hr/>
+    <div class="row">
+    <div class="column">
+        <div class="form-group">
+            <label asp-for="Beneficiary.BeneficiaryID" class="control-label" style="font-weight: 500;"></label>
+                 <div id="cellcolor">@Html.DisplayFor(model => model.Beneficiary.BeneficiaryID)</div>
+        </div>
+         <div class="form-group">
+                <label asp-for="Beneficiary.LastName" class="control-label" style="font-weight: 500;"></label>
+                 <div id="cellcolor" >@Html.DisplayFor(model => model.Beneficiary.LastName)</div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Beneficiary.FirstName" class="control-label" style="font-weight: 500;"></label>
+                 <div id="cellcolor">@Html.DisplayFor(model => model.Beneficiary.FirstName)</div>
+            </div>
+           <div class="form-group">
+                <label asp-for="Beneficiary.MiddleName" class="control-label" style="font-weight: 500;"></label>
+                 <div id="cellcolor">@Html.DisplayFor(model => model.Beneficiary.MiddleName)</div>
+            </div>
+           <div class="form-group">
+                <label asp-for="Beneficiary.ExtName" class="control-label" style="font-weight: 500;"></label>
+                 <div id="cellcolor">@Html.DisplayFor(model => model.Beneficiary.ExtName)</div>
+            </div>
+    </div>
+    <div class="column">
+        <h3>Validation Form here</h3>
+        <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Beneficiary.Validationform.Assessment)
+            </dt>
+            <dd class="form-group">
+                @Html.DisplayFor(model => model.Beneficiary.Validationform.Assessment.Name)
+            </dd>
+
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Beneficiary.Validationform.ReferenceCode)
+            </dt>
+            <dd class="form-group">
+                @Html.DisplayFor(model => model.Beneficiary.Validationform.ReferenceCode)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Beneficiary.Validationform.SpinsBatch)
+            </dt>
+            <dd class="form-group">
+                @Html.DisplayFor(model => model.Beneficiary.Validationform.SpinsBatch)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Beneficiary.Validationform.Pantawid)
+            </dt>
+            <dd class="form-group">
+                @Html.DisplayFor(model => model.Beneficiary.Validationform.Pantawid)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Beneficiary.Validationform.Indigenous)
+            </dt>
+            <dd class="form-group">
+                @Html.DisplayFor(model => model.Beneficiary.Validationform.Indigenous)
+            </dd>
+    </div>
+</div>
+</div>
+
 
 <div>
-    
+
 </div>

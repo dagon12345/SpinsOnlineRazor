@@ -1,24 +1,38 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore;
+using SpinsOnlineRazor.Data;
+using SpinsOnlineRazor.Models.RedesignModels;
 
 namespace SpinsOnlineRazor.Pages.Beneficiaries
 {
     public class AddValidationForm : PageModel
     {
-        private readonly ILogger<AddValidationForm> _logger;
+        private readonly SpinsContext _context;
 
-        public AddValidationForm(ILogger<AddValidationForm> logger)
+        public AddValidationForm(SpinsContext context)
         {
-            _logger = logger;
+            _context = context;
         }
+        public Beneficiary Beneficiary { get; set; }
 
-        public void OnGet()
+        public async Task<IActionResult> OnGetAsync(int? id)
         {
+           if(id == null)
+           {
+            return NotFound();
+           }
+           Beneficiary = await _context.Beneficiaries
+           .AsNoTracking()
+           .Include(p => p.Validationform)
+           .ThenInclude(p => p.Assessment)
+           .FirstOrDefaultAsync(m => m.BeneficiaryID == id);
+
+           if (Beneficiary == null)
+            {
+                return NotFound();
+            }
+           return Page();
         }
     }
 }

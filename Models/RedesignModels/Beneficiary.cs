@@ -7,7 +7,7 @@ namespace SpinsOnlineRazor.Models.RedesignModels
 {
     public class Beneficiary
     {
-        public int? BeneficiaryID { get; set; }
+        public int BeneficiaryID { get; set; }
         public Validationform Validationform { get; set; }//For Valdationform Model BenficiaryID is the KF
         [Required]
         [StringLength(20, MinimumLength = 2, ErrorMessage = "Last name cannot be longer than 20 characters.")]

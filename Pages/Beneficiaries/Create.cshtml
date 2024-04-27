@@ -183,14 +183,19 @@
                     </select>
                     <span asp-validation-for="Beneficiary.MaritalstatusID" class="text-danger"></span>
                 </div>
+                
+                <hr/>
+
+                <div class="form-group">
+                    <label asp-for="Beneficiary.Validationform.Pantawid" class="control-label"></label>
+                    <ejs-checkbox ejs-for="Beneficiary.Validationform.Pantawid" checked="true"></ejs-checkbox>
+
+                    <label asp-for="Beneficiary.Validationform.Indigenous" class="control-label"></label>
+                    <ejs-checkbox ejs-for="Beneficiary.Validationform.Indigenous" checked="true"></ejs-checkbox>
+                </div>
+
+
             </div>
-            @* <div class="form-group">
-            <label asp-for="Beneficiary.Status" class="control-label"></label>
-            <select asp-for="Beneficiary.StatusID" class="form-control" asp-items="@Model.StatusSL">
-            <option value="">--Select Status--</option>
-            </select>
-            <span asp-validation-for="Beneficiary.StatusID" class="text-danger"></span>
-            </div> *@
 
 
 

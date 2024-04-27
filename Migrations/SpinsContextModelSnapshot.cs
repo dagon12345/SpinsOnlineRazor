@@ -182,7 +182,7 @@ namespace SpinsOnlineRazor.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("AssessmentID")
+                    b.Property<int?>("AssessmentID")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("BeneficiaryID")
@@ -399,9 +399,7 @@ namespace SpinsOnlineRazor.Migrations
                 {
                     b.HasOne("SpinsOnlineRazor.Models.RedesignModels.ComplexModels.Assessment", "Assessment")
                         .WithMany("Validationforms")
-                        .HasForeignKey("AssessmentID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AssessmentID");
 
                     b.HasOne("SpinsOnlineRazor.Models.RedesignModels.Beneficiary", "Beneficiary")
                         .WithOne("Validationform")

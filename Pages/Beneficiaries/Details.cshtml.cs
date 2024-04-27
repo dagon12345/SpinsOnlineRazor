@@ -14,9 +14,9 @@ namespace SpinsOnlineRazor.Pages.Beneficiaries
     public class DetailsModel : PageModel
     {
         //private readonly IWebHostEnvironment _webHostEnvironment;
-        private readonly SpinsOnlineRazor.Data.SpinsContext _context;
+        private readonly SpinsContext _context;
 
-        public DetailsModel(SpinsOnlineRazor.Data.SpinsContext context)
+        public DetailsModel(SpinsContext context)
         {
             _context = context;
         }
@@ -36,16 +36,6 @@ namespace SpinsOnlineRazor.Pages.Beneficiaries
 
             //Code na mag pa show instead of Region, Province, Municipality, and Barangay codes and e show ila name an e show.
             Beneficiary = await _context.Beneficiaries
-            // .Include(m => m.Region)
-            // .Include(m => m.Province)
-            // .Include(m => m.Municipality)
-            // .Include(m => m.Barangay)
-            // .Include(s => s.Validationform)
-            // .ThenInclude(s => s.Assessment)
-            // .Include(s => s.Sex)
-            // .Include(s => s.Maritalstatus)
-            // .Include(s => s.IdentificationType)
-            // .Include(h => h.HealthStatus)// This entity is one is to one relation with Beneficiar
         .AsNoTracking()
         .Include(b => b.HealthStatus)
         .Include(b => b.IdentificationType)
@@ -68,6 +58,6 @@ namespace SpinsOnlineRazor.Pages.Beneficiaries
             return Page();
         }
 
-   
+
     }
 }
