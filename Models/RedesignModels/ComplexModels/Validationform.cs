@@ -1,10 +1,11 @@
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SpinsOnlineRazor.Models.RedesignModels.ComplexModels
 {
     public class Validationform
     {
-        
+
         public int ValidationformID { get; set; }
         //[ForeignKey("Beneficiary")]
         public int BeneficiaryID { get; set; }// The FK
@@ -14,6 +15,9 @@ namespace SpinsOnlineRazor.Models.RedesignModels.ComplexModels
         public int SpinsBatch { get; set; }
         public bool Pantawid { get; set; }
         public bool Indigenous { get; set; }
+        public string GisPdfUrl { get; set; }
+        //public byte[] Content { get; set; }
+
 
         public Beneficiary Beneficiary { get; set; } //One is to One relationship with Beneficiary
         public Assessment Assessment { get; set; }

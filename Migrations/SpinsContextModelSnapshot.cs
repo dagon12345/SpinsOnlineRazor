@@ -188,6 +188,9 @@ namespace SpinsOnlineRazor.Migrations
                     b.Property<int>("BeneficiaryID")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("GisPdfUrl")
+                        .HasColumnType("TEXT");
+
                     b.Property<bool>("Indigenous")
                         .HasColumnType("INTEGER");
 

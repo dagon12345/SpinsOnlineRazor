@@ -14,7 +14,8 @@
 
     /* Create two equal columns that sits next to each other */
     .column {
-        flex: 50%;
+        using SpinsOnlineRazor.Models.RedesignModels.ComplexModels;
+        flex: 33%;
         padding: 10px;
         height: 100%;
         /* Should be removed. Only for demonstration */
@@ -25,10 +26,13 @@
 <div>
     <h4>Selected Benficiary</h4>
     <hr />
-    <form method="post">
+    <form enctype="multipart/form-data" method="post">
+        @* <form method="post"> *@
         <div class="row">
 
             <div class="column">
+                <h3>Benficary Name Here</h3>
+                <hr />
 
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <input type="hidden" asp-for="Validationform.BeneficiaryID" />
@@ -53,10 +57,12 @@
                     <input asp-for="Validationform.Beneficiary.ExtName" class="form-control" />
                     <span asp-validation-for="Validationform.Beneficiary.ExtName" class="text-danger"></span>
                 </div>
+
             </div>
+            @*Second column*@
             <div class="column">
                 <h3>Validation Form here</h3>
-                <hr/>
+                <hr />
 
                 <div class="form-group">
                     <label asp-for="Validationform.AssessmentID" class="control-label"></label>
@@ -91,15 +97,76 @@
 
 
             </div>
+            @*Third column*@
+            <div class="column">
+                <h3>Uploading of GIS Here</h3>
+                <hr />
 
-           
+                <div class="form-group">
+                    @* <label asp-for="FileUpload.GisPdf" class="control-label"></label> *@
+                    <div class="custom-file">
+                        <input asp-for="FileUpload.GisPdf" class="custom-file-input" id="customFile">
+                    </div>
+                    <span asp-validation-for="FileUpload.GisPdf" class="text-danger"></span>
 
+                    @* <div class="form-group">
+                    <a class="btn btn-primary" href="@Model.Validationform.GisPdfUrl">
+                    View
+                    </a> *@
+
+                </div>
+                <div class="form-group">
+                    <iframe id="pdfViewer" src="/pdf/Validationforms/@(Model.Validationform.ReferenceCode).pdf"
+                        class="form-control" style="height: 500px;"></iframe>
+                </div>
+                @* <div class="form-group">
+                <iframe id="pdfViewer" src="Model.Validationform.ReferenceCode" class="form-control" style="height:
+                500px;"></iframe>
+                </div> *@
+            </div>
 
         </div>
-          <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-    </form>
+
+        <div class="form-group">
+            <input type="submit" id="submitButton" value="Save" class="btn btn-primary" />
+            @* <input asp-page-handler="Upload" class="btn" type="submit" value="Upload"> *@
+        </div>
+</form>
+</div>
+
+
+
+@* <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function () {
+$('#customFile').change(function () {
+var fileInput = $(this)[0];
+if (fileInput.files && fileInput.files[0]) {
+var reader = new FileReader();
+reader.onload = function (e) {
+$('#pdfViewer').attr('src', e.target.result);
+}
+reader.readAsDataURL(fileInput.files[0]);
+}
+});
+});
+</script> *@
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#submitButton').click(function () {
+            var fileInput = $('#customFile')[0];
+            if (!fileInput.files || !fileInput.files[0]) {
+                alert("Please select a file to upload.");
+                return false; // Prevent form submission
+            }
+        });
+    });
+</script>
+
+
+
 
 </div>
 
