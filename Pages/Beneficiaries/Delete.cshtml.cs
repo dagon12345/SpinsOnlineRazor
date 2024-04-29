@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 using SpinsOnlineRazor.Data;
 using SpinsOnlineRazor.Models.RedesignModels;
 
@@ -64,16 +65,24 @@ called after a failure to delete the student object.*/
                 return NotFound();
             }
 
-            var beneficiary = await _context.Beneficiaries.FindAsync(id);
+            var beneficiary = _context.Beneficiaries.Find(id);
+           // var beneficiary =  _context.Beneficiaries.First();
+
+            //var db = new SpinsContext();
+            //var bene = await _context.Beneficiaries.FindAsync(id);
             if (beneficiary == null)
             {
                 return NotFound();
             }
             try
             {
+                // _context.Beneficiaries.Remove(beneficiary);
+                // await _context.SaveChangesAsync();
+                // return RedirectToPage("./Index");
+
                 _context.Beneficiaries.Remove(beneficiary);
-                await _context.SaveChangesAsync();
-                return RedirectToPage("/Beneficiaries/Index");
+                 _context.SaveChanges();
+                return RedirectToPage("./Index");
             }
             catch (DbUpdateException ex)
             {

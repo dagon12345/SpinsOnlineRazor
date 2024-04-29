@@ -107,10 +107,13 @@ namespace SpinsOnlineRazor.Pages.Beneficiaries
            MunicipalityID = p.MunicipalityID,
 
            //added properties below
-           DateEntered = p.DateEntered
+           DateEntered = p.DateEntered,
+
+           IsDeleted = p.IsDeleted
 
          })
         .AsNoTracking()
+        //.Where(b => !b.IsDeleted)
         .ToListAsync();
 
 

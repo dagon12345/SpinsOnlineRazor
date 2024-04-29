@@ -140,6 +140,9 @@ namespace SpinsOnlineRazor.Migrations
                     b.Property<int>("StatusID")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("StatusRemarks")
+                        .HasColumnType("TEXT");
+
                     b.HasKey("BeneficiaryID");
 
                     b.HasIndex("BarangayID");

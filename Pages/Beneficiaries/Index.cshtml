@@ -47,13 +47,14 @@ The W3C guidelines recommend that GET should be used when the action doesn't res
 
                 <div class="input-group mb-3">
 
-     
+
                     <select class="form-control me-sm-2" name="searchMunicipality"
                         asp-items="@Model.MunicipalityOptions" value="@Model.MunicipalityFilter">
                         <option value="">All Municipalities</option>
                     </select>
 
-                    @* <select name="MunicipalityID" asp-items="Model.Municipalities" value="@Model.MunicipalityFilter"></select> *@
+                    @* <select name="MunicipalityID" asp-items="Model.Municipalities"
+                    value="@Model.MunicipalityFilter"></select> *@
 
                     <select class="form-control me-sm-2" name="searchStatus" asp-items="@Model.StatusOptions"
                         value="@Model.StatusFilter">
@@ -95,6 +96,7 @@ The W3C guidelines recommend that GET should be used when the action doesn't res
 
             <e-grid-column field="BeneficiaryID" headerText="ID" visible="false" width="50"></e-grid-column>
             <e-grid-column field="Status" headerText="Status" width="120" textAlign="Center"></e-grid-column>
+            <e-grid-column field="Assessment" headerText="Assessment" width="180"></e-grid-column>
             <e-grid-column field="LastName" headerText="Last Name" width="120"></e-grid-column>
             <e-grid-column field="FirstName" headerText="First Name" width="150"></e-grid-column>
             <e-grid-column field="MiddleName" headerText="Middle Name" width="150"></e-grid-column>
@@ -106,12 +108,13 @@ The W3C guidelines recommend that GET should be used when the action doesn't res
             <e-grid-column field="MunicipalityName" headerText="Municipality" width="150"></e-grid-column>
             <e-grid-column field="BarangayName" headerText="Barangay" width="150"></e-grid-column>
 
-            <e-grid-column field="Assessment" headerText="Assessment" width="180"></e-grid-column>
+
             <e-grid-column field="Referencecode" headerText="Validation #" width="150"></e-grid-column>
             <e-grid-column field="SpinsBatch" headerText="Spins Batch" width="140"></e-grid-column>
-            <e-grid-column field="Indigenous" headerText="Indigenous" displayAsCheckBox="true"width="140"></e-grid-column>
+            <e-grid-column field="Indigenous" headerText="Indigenous" displayAsCheckBox="true"
+                width="140"></e-grid-column>
             <e-grid-column field="Pantawid" headerText="Pantawid" displayAsCheckBox="true" width="140"></e-grid-column>
-            <e-grid-column field="DateEntered" headerText="Date Entered" format="yMd"  width="140"></e-grid-column>
+            <e-grid-column field="DateEntered" headerText="Date Entered" format="yMd" width="140"></e-grid-column>
 
 
         </e-grid-columns>

@@ -118,6 +118,7 @@ namespace SpinsOnlineRazor.Models.RedesignModels
         public int MaritalstatusID { get; set; }
         public Maritalstatus Maritalstatus { get; set; }//For marital Model
         public int StatusID { get; set; }
+        public string StatusRemarks { get; set; }
         public Status Status { get; set; }//For Status model
                                           // public int? ValidationformID { get; set; }
 

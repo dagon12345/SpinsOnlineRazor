@@ -11,7 +11,8 @@ namespace SpinsOnlineRazor.Models.RedesignModels
         public string Name { get; set; }
 
         
-        public ICollection<Beneficiary> Beneficiaries { get; set; } // Dabo na bene mugamit sa m
+        //public ICollection<Beneficiary> Beneficiaries { get; set; } // Dabo na bene mugamit sa m
+        public ICollection<Beneficiary> Beneficiaries { get; set; }
        // public ICollection<Province> Provinces { get; set; } // dabo na province mugamit sa region
     }
 }

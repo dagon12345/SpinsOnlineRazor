@@ -6,9 +6,36 @@ namespace SpinsOnlineRazor.Data
 {
     public class SpinsContext : DbContext
     {
+        //New code for delete, instead of remove update it.
+
         public SpinsContext(DbContextOptions<SpinsContext> options)
             : base(options)
         {
+        }
+
+        //Override the SaveChanges for Delete instead of physical delete we make this and soft delete.
+
+        public override int SaveChanges()
+        {
+            HandleBeneficiaryDelete();
+            return base.SaveChanges();
+        }
+        private void HandleBeneficiaryDelete()
+        {
+            var entities = ChangeTracker.Entries()
+                                .Where(e => e.State == EntityState.Deleted);
+            foreach (var entity in entities)
+            {
+                if (entity.Entity is Beneficiary)
+                {
+                    entity.State = EntityState.Modified;
+                    var bene = entity.Entity as Beneficiary;
+                    bene.IsDeleted = true;
+                    bene.DeletedDate = DateTime.UtcNow; 
+                    bene.DeletedBy = "The User";
+
+                }
+            }
         }
         //Need nat mugamit nan plural variables para ma match an dbset name
 
@@ -32,36 +59,37 @@ namespace SpinsOnlineRazor.Data
         Is required because later in the tutorial the Beneficiary entity will have references to the other entities.*/
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-           /*An isa ka masterlists is ra ka beneficary kay bawal dabo, pero
-           masuyod sija sa masterlists which is dabo sila Beneficiary*/
+            /*An isa ka masterlists is ra ka beneficary kay bawal dabo, pero
+            masuyod sija sa masterlists which is dabo sila Beneficiary*/
 
-           modelBuilder.Entity<Beneficiary>().ToTable("Beneficiary");
-        //   modelBuilder.Entity<Beneficiary>()
-        //   .HasOne(p => p.Validationform)
-        //   .WithMany(p => p.Beneficiaries)
-        //   .HasForeignKey( p => p.BeneficiaryID)
-        //   .IsRequired(false);
+            modelBuilder.Entity<Beneficiary>().ToTable("Beneficiary");
+            modelBuilder.Entity<Beneficiary>().HasQueryFilter(b => !b.IsDeleted); // This is to filter if the IsDeleted was true this is to use the do not repeart yourself code pattern
+            //   modelBuilder.Entity<Beneficiary>()
+            //   .HasOne(p => p.Validationform)
+            //   .WithMany(p => p.Beneficiaries)
+            //   .HasForeignKey( p => p.BeneficiaryID)
+            //   .IsRequired(false);
 
-           modelBuilder.Entity<Region>().ToTable("Region");
+            modelBuilder.Entity<Region>().ToTable("Region");
             modelBuilder.Entity<IdentificationType>().ToTable("IdentificationType");
             modelBuilder.Entity<HealthStatus>().ToTable("HealthStatus");
-             modelBuilder.Entity<Province>().ToTable("Province");
-              modelBuilder.Entity<Municipality>().ToTable("Municipality");
-               modelBuilder.Entity<Barangay>().ToTable("Barangay");
-               modelBuilder.Entity<Sex>().ToTable("Sex");
-               modelBuilder.Entity<Maritalstatus>().ToTable("Maritalstatus");
-                modelBuilder.Entity<Status>().ToTable("Status");
+            modelBuilder.Entity<Province>().ToTable("Province");
+            modelBuilder.Entity<Municipality>().ToTable("Municipality");
+            modelBuilder.Entity<Barangay>().ToTable("Barangay");
+            modelBuilder.Entity<Sex>().ToTable("Sex");
+            modelBuilder.Entity<Maritalstatus>().ToTable("Maritalstatus");
+            modelBuilder.Entity<Status>().ToTable("Status");
 
-                modelBuilder.Entity<Validationform>().ToTable("Validationform");
-                 modelBuilder.Entity<Assessment>().ToTable("Assessment");
-                // .HasMany(p => p.Beneficiaries)
-                // .WithOne(p => p.Validationform)
-                // .HasForeignKey(p => p.BeneficiaryID)
-                // .IsRequired(false);
+            modelBuilder.Entity<Validationform>().ToTable("Validationform");
+            modelBuilder.Entity<Assessment>().ToTable("Assessment");
+            // .HasMany(p => p.Beneficiaries)
+            // .WithOne(p => p.Validationform)
+            // .HasForeignKey(p => p.BeneficiaryID)
+            // .IsRequired(false);
 
 
 
-            
+
         }
 
         /*NOTE: A foreign key constraint fail usually means that the code is trying to insert something 

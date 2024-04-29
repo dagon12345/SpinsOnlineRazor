@@ -80,8 +80,7 @@ namespace SpinsOnlineRazor.Models.RedesignModels.ComplexModels
         public string HealthStatus { get; set; }
         public string Remarks { get; set; }
 
-        //Delete Model
-        public bool Deleted { get; set; }
+        public bool IsDeleted { get; set; }
 
          public int Age { get; set; }
 
