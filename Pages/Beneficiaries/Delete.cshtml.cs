@@ -58,11 +58,11 @@ called after a failure to delete the student object.*/
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync(int? id)
+        public Task<IActionResult> OnPost(int? id)
         {
             if (id == null)
             {
-                return NotFound();
+                 return Task.FromResult<IActionResult>(NotFound());
             }
 
             var beneficiary = _context.Beneficiaries.Find(id);
@@ -72,7 +72,7 @@ called after a failure to delete the student object.*/
             //var bene = await _context.Beneficiaries.FindAsync(id);
             if (beneficiary == null)
             {
-                return NotFound();
+                 return Task.FromResult<IActionResult>(NotFound());
             }
             try
             {
@@ -82,13 +82,14 @@ called after a failure to delete the student object.*/
 
                 _context.Beneficiaries.Remove(beneficiary);
                  _context.SaveChanges();
-                return RedirectToPage("./Index");
+                //return RedirectToPage("./Index");
+                return Task.FromResult<IActionResult>(RedirectToPage("./Index"));
             }
             catch (DbUpdateException ex)
             {
                 _logger.LogError(ex, ErrorMessage);
 
-                return RedirectToAction("/Beneficiaries/Delete", new { id, saveChangesError = true });
+                return Task.FromResult<IActionResult>(RedirectToAction("/Beneficiaries/Delete", new { id, saveChangesError = true }));
             }
             /*The delete operation might fail because of transient network problems. 
             Transient network errors are more likely when the database is in the cloud. 
