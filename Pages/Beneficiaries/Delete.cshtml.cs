@@ -82,6 +82,8 @@ called after a failure to delete the student object.*/
 
                 _context.Beneficiaries.Remove(beneficiary);
                  _context.SaveChanges();
+
+
                 //return RedirectToPage("./Index");
                 return Task.FromResult<IActionResult>(RedirectToPage("./Index"));
             }

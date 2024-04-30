@@ -54,6 +54,8 @@ namespace SpinsOnlineRazor.Data
 
         public DbSet<Assessment> Assessments { get; set; }
 
+       // public DbSet<Logs> dbLogs { get; set; }
+
         /*Calls OnModelCreating. OnModelCreating:
         Is called when SchoolContext has been initialized, but before the model has been locked down and used to initialize the context.
         Is required because later in the tutorial the Beneficiary entity will have references to the other entities.*/
@@ -82,6 +84,7 @@ namespace SpinsOnlineRazor.Data
 
             modelBuilder.Entity<Validationform>().ToTable("Validationform");
             modelBuilder.Entity<Assessment>().ToTable("Assessment");
+             //modelBuilder.Entity<Logs>().ToTable("Logs");
             // .HasMany(p => p.Beneficiaries)
             // .WithOne(p => p.Validationform)
             // .HasForeignKey(p => p.BeneficiaryID)

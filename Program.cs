@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using Serilog;
 using SpinsOnlineRazor.Data;
 using SpinsOnlineRazor.Models.RedesignModels;
 
@@ -22,6 +23,12 @@ builder.Services.AddControllers()
         options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles;
     });
 Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("Mgo+DSMBMAY9C3t2UFhhQlJBfV5AQmBIYVp/TGpJfl96cVxMZVVBJAtUQF1hTX5Xd0NjWX9acHZRQ2hb");
+
+// ILogger builder using SeriLog
+// builder.Host.UseSerilog((context, services, configuration) => configuration
+//                 .ReadFrom.Configuration(context.Configuration));
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
