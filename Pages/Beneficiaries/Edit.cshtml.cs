@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using SpinsOnlineRazor.Data;
 using SpinsOnlineRazor.Models.RedesignModels;
 using SpinsOnlineRazor.Models.RedesignModels.ComplexModels;
@@ -49,6 +50,7 @@ namespace SpinsOnlineRazor.Pages.Beneficiaries
             .Include(p => p.Maritalstatus)
             .Include(p => p.Status)
             .Include(p => p.Validationform)
+            .Include(p => p.Logs)
             .FirstOrDefaultAsync(m => m.BeneficiaryID == id);
 
 
@@ -124,13 +126,20 @@ namespace SpinsOnlineRazor.Pages.Beneficiaries
                 .Select(b => new { b.BarangayID, b.Name })
                 .ToListAsync();
 
-            return new JsonResult(barangays);
+            return new
+             JsonResult(barangays);
         }
-
 
 
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see https://aka.ms/RazorPagesCRUD.
+        public async Task<string> GetStatusName(int statusId)
+        {
+            var status = await _context.Statuses.FindAsync(statusId);
+            return status?.Name;
+        }
+
+
         public async Task<IActionResult> OnPostAsync(int? id)
         {
 
@@ -139,30 +148,80 @@ namespace SpinsOnlineRazor.Pages.Beneficiaries
                 return NotFound();
             }
 
-            var beneficaryToUpdate = await _context.Beneficiaries.FindAsync(id);
-            if (beneficaryToUpdate == null)
+            var beneficiaryToUpdate = await _context.Beneficiaries.FindAsync(id);
+            if (beneficiaryToUpdate == null)
             {
                 return NotFound();
             }
 
-            if (await TryUpdateModelAsync<Beneficiary>(
-                beneficaryToUpdate,
-                "beneficiary", // Prefix for form value
-             s => s.HealthStatusID, s => s.IdentificationTypeID, s => s.RegionID, s => s.ProvinceID, s => s.MunicipalityID, s => s.BarangayID,
-             s => s.LastName, s => s.FirstName, s => s.MiddleName, s => s.ExtName, s => s.BirthDate, s => s.IdentificationNumber, s => s.SexID,
-             s => s.MaritalstatusID, s => s.StatusID,
-             s => s.IdentificationDateIssued, s => s.SpecificAddress, s => s.ContactNumber, s => s.HealthRemarks
-            ))
+            // Clone the original beneficiary object to track changes
+            var originalBeneficiary = JsonConvert.DeserializeObject<Beneficiary>(JsonConvert.SerializeObject(beneficiaryToUpdate));
 
+            if (await TryUpdateModelAsync<Beneficiary>(
+                beneficiaryToUpdate,
+                "beneficiary", // Prefix for form value
+                s => s.HealthStatusID, s => s.IdentificationTypeID, s => s.RegionID, s => s.ProvinceID, s => s.MunicipalityID, s => s.BarangayID,
+                s => s.LastName, s => s.FirstName, s => s.MiddleName, s => s.ExtName, s => s.BirthDate, s => s.IdentificationNumber, s => s.SexID,
+                s => s.MaritalstatusID, s => s.StatusID,
+                s => s.IdentificationDateIssued, s => s.SpecificAddress, s => s.ContactNumber, s => s.HealthRemarks
+            ))
             {
-                //beneficaryToUpdate.ValidationformID = beneficaryToUpdate.BeneficiaryID; // Update Beneficiary validation form ID same with existed Validation form
+                // Compare original and updated beneficiary objects to detect changes
+                var changes = new List<string>();
+                var properties = typeof(Beneficiary).GetProperties();
+                foreach (var property in properties)
+                {
+                    // Exclude ExtName from the list of properties to check for changes
+                    if (property.Name == "ExtName")
+                    {
+                        continue;
+                    }
+                    var originalValue = property.GetValue(originalBeneficiary);
+                    var updatedValue = property.GetValue(beneficiaryToUpdate);
+                    if (!object.Equals(originalValue, updatedValue))
+                    {
+                        // Convert ID to name for specific properties
+                        if (property.Name == "StatusID")
+                        {
+                            var originalStatusName = await GetStatusName((int)originalValue);
+                            var updatedStatusName = await GetStatusName((int)updatedValue);
+                            changes.Add($"Status: {originalStatusName} to {updatedStatusName}");
+                        }
+                        else
+                        {
+                            changes.Add($"{property.Name}: {originalValue} to {updatedValue}");
+                        }
+                    }
+                }
+                // If ExtName is empty, remove it from the changes list
+                if (string.IsNullOrEmpty(beneficiaryToUpdate.ExtName))
+                {
+                    changes.RemoveAll(change => change.StartsWith("ExtName"));
+                }
+
+                if (changes.Any())
+                {
+                    // Create a new Log entity
+                    var log = new Log
+                    {
+                        BenficiaryID = beneficiaryToUpdate.BeneficiaryID,
+                        Message = $"Beneficiary details updated. Changes: {string.Join(", ", changes)}",
+                        LogType = 0, // Assuming 1 represents an update
+                        User = "Current user", // Set the user who made the changes
+                        DateTimeEntry = DateTime.Now // Set the current date and time
+                    };
+
+                    // Add the Log entity to the DbContext
+                    _context.Logs.Add(log);
+                }
+
                 await _context.SaveChangesAsync();
                 return RedirectToPage("/Beneficiaries/Index");
             }
-         
+
             return Page();
         }
 
-        
+
     }
 }

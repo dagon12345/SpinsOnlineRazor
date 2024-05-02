@@ -100,38 +100,7 @@ namespace SpinsOnlineRazor.Pages.Beneficiaries
             ))
             {
 
-                // if (!int.IsNullOrEmpty(validationFormToUpdate.ReferenceCode))
-                // {
-                //     var filePath = Path.Combine(_webHostEnvironment.WebRootPath, "pdf/Validationforms");
-
-                //     // Retry logic with delay
-                //     const int maxRetries = 3;
-                //     const int delayMs = 1000;
-                //     int retries = 0;
-
-                //     while (retries < maxRetries)
-                //     {
-                //         try
-                //         {
-                //             // Attempt to delete the file
-                //             if (System.IO.File.Exists(filePath))
-                //             {
-                //                 System.IO.File.Delete(filePath);
-                //                 break; // If deletion succeeds, exit the loop
-                //             }
-                //         }
-                //         catch (IOException ex)
-                //         {
-                //             // Handle file in use exception
-                //             Console.WriteLine($"Failed to delete file: {ex.Message}");
-                //             retries++;
-                //             Thread.Sleep(delayMs); // Wait before retrying
-                //         }
-                //     }
-                // }
-
-
-                //  _context.Validationforms.Add(file);
+                
                 if (FileUpload.GisPdf != null)
                 {
                     // Delete the existing PDF file, if it exists
@@ -154,47 +123,17 @@ namespace SpinsOnlineRazor.Pages.Beneficiaries
 
                     // Update the reference code in your model
                     validationFormToUpdate.ReferenceCode = referenceCode;
+
+                    
                 }
+               
                 await _context.SaveChangesAsync();
                 return RedirectToPage("./Index");
             }
 
             return Page();
         }
-        // private async Task<string> UploadImage(string folderPath, IFormFile file)
-        // {
-        //     string year = DateTime.Now.Year.ToString();
-        //     string month = DateTime.Now.Month.ToString().PadLeft(2, '0'); // Ensure two digits
-        //     string day = DateTime.Now.Day.ToString().PadLeft(2, '0'); // Ensure two digits
-        //     string randomNumbers = GenerateRandomNumbers(4); // Function to generate four random numbers
-
-        //     //folderPath += Guid.NewGuid().ToString() + "_" + file.FileName;
-        //     folderPath += $"{year}{month}{day}{randomNumbers}.pdf";
-
-        //     string serverFolder = Path.Combine(_webHostEnvironment.WebRootPath, folderPath);
-
-        //     await file.CopyToAsync(new FileStream(serverFolder, FileMode.Create));
-
-        //     return "/" + folderPath;
-        // }
-        // private async Task<string> UploadImage(int referenceCode, IFormFile file)
-        // {
-        //     string year = DateTime.Now.Year.ToString();
-        //     string month = DateTime.Now.Month.ToString().PadLeft(2, '0');
-        //     string day = DateTime.Now.Day.ToString().PadLeft(2, '0');
-        //     string randomNumbers = GenerateRandomNumbers(4);
-
-        //     string folderPath = $"pdf/Validationforms/{year}{month}{day}{randomNumbers}_{referenceCode}.pdf";
-        //     string serverFolder = Path.Combine(_webHostEnvironment.WebRootPath, folderPath);
-
-        //     using (var fileStream = new FileStream(serverFolder, FileMode.Create))
-        //     {
-        //         await file.CopyToAsync(fileStream);
-        //     }
-
-        //     return "/" + folderPath;
-        // }
-
+        
         private async Task UploadPdf(string fileName, IFormFile file)
         {
             // Save the PDF file with the given filename

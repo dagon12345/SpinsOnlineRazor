@@ -46,7 +46,6 @@
     <form method="post">
         <div class="row">
             <div class="column">
-
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group">
                     <label asp-for="Beneficiary.LastName" class="control-label"></label>
@@ -193,15 +192,9 @@
                     <label asp-for="Beneficiary.Validationform.Indigenous" class="control-label"></label>
                     <ejs-checkbox ejs-for="Beneficiary.Validationform.Indigenous" checked="true"></ejs-checkbox>
                 </div>
-
-
             </div>
 
-
-
-
-
-
+        </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
 
@@ -209,8 +202,6 @@
             <div>
                 <a asp-page="./Index">Back to List</a>
             </div>
-
-
     </form>
     <script>
         document.getElementById('birthdatePicker').addEventListener('blur', function () {
@@ -231,8 +222,7 @@
 
 
 </div>
-</div>
-</div>
+
 
 
 

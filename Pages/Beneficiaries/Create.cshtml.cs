@@ -121,11 +121,11 @@ namespace SpinsOnlineRazor.Pages.Beneficiaries
              s => s.IdentificationDateIssued, s => s.SpecificAddress, s => s.ContactNumber, s => s.HealthRemarks, s => s.Validationform
              ))
             {
-                                  _logger.LogTrace("This is a Trace log, the most detailed information.");
-                _logger.LogDebug("This is a Debug log, useful for debugging.");
-                _logger.LogInformation("This is an Information log, general info about app flow.");
-                _logger.LogWarning("This is a Warning log, indicating a potential issue.");
-                _logger.LogCritical("This is a Critical log, indicating a serious failure in the application.");
+                //                   _logger.LogTrace("This is a Trace log, the most detailed information.");
+                // _logger.LogDebug("This is a Debug log, useful for debugging.");
+                // _logger.LogInformation("This is an Information log, general info about app flow.");
+                // _logger.LogWarning("This is a Warning log, indicating a potential issue.");
+                // _logger.LogCritical("This is a Critical log, indicating a serious failure in the application.");
                 // Set StatusID to 99 if it's not already set
                 emptyBeneficiary.StatusID = 99;
                 emptyBeneficiary.DateEntered = DateTime.UtcNow;

@@ -9,6 +9,9 @@ namespace SpinsOnlineRazor.Models.RedesignModels
     {
         public int BeneficiaryID { get; set; }
         public Validationform Validationform { get; set; }//For Valdationform Model BenficiaryID is the KF
+        
+        public ICollection<Log> Logs { get; set; } // One bene a lot of log
+
         [Required]
         [StringLength(20, MinimumLength = 2, ErrorMessage = "Last name cannot be longer than 20 characters.")]
         [Display(Name = "Last Name")]
@@ -37,42 +40,6 @@ namespace SpinsOnlineRazor.Models.RedesignModels
         [Display(Name = "Birth Date")]
         //[MinimumAge(60, ErrorMessage = "You must be at least 60 years old.")]
         public DateTime BirthDate { get; set; }
-
-        // public class MinimumAgeAttribute : ValidationAttribute
-        // {
-        //     private readonly int _minimumAge;
-
-        //     public MinimumAgeAttribute(int minimumAge)
-        //     {
-        //         _minimumAge = minimumAge;
-        //     }
-
-        //     protected override ValidationResult IsValid(object value, ValidationContext validationContext)
-        //     {
-        //         if (value != null)
-        //         {
-        //             var birthDate = (DateTime)value;
-        //             var age = CalculateAge(birthDate);
-        //             if (age < _minimumAge)
-        //             {
-        //                 return new ValidationResult(ErrorMessage);
-        //             }
-        //         }
-        //         return ValidationResult.Success;
-        //     }
-
-        //     private int CalculateAge(DateTime birthDate)
-        //     {
-        //         var today = DateTime.Today;
-        //         var age = today.Year - birthDate.Year;
-        //         if (birthDate.Date > today.AddYears(-age))
-        //         {
-        //             age--;
-        //         }
-        //         return age;
-        //     }
-        // }
-
 
         public int IdentificationTypeID { get; set; }
         public IdentificationType IdentificationType { get; set; }//For ID Model

@@ -363,6 +363,19 @@ namespace SpinsOnlineRazor.Data
       context.Validationforms.AddRange(validationforms);
       context.SaveChanges();
 
+         var logs = new Log[]
+      {
+          new Log{BenficiaryID=1,Message="Change the date",LogType=0,User="SampleUser",DateTimeEntry=DateTime.Parse("2023-12-30")},
+         // new Validationform{ValidationformID=12,BeneficiaryID=2,ReferenceCode=21031242,SpinsBatch=98,AssessmentID=3,Pantawid=false,Indigenous=true},
+        //  new Validationform{ValidationformID=13,BeneficiaryID=3,ReferenceCode=21031241,SpinsBatch=99,AssessmentID=4,Pantawid=true,Indigenous=false},
+        //  new Validationform{ValidationformID=14,BeneficiaryID=4,ReferenceCode=21031240,SpinsBatch=99,AssessmentID=2,Pantawid=false,Indigenous=true},
+
+
+       };
+
+      context.Logs.AddRange(logs);
+      context.SaveChanges();
+
     }
   }
 }

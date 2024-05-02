@@ -18,6 +18,14 @@ namespace SpinsOnlineRazor.Data
         public override int SaveChanges()
         {
             HandleBeneficiaryDelete();
+            // foreach (var entityEntry in ChangeTracker.Entries<Beneficiary>()) // Detects changes automatically
+            // {
+            //     if (entityEntry.State == EntityState.Added)
+            //     {
+            //         entityEntry.Entity.LastName = "ajcvickers";
+            //         entityEntry.Entity.FirstName = "ajcvickers";
+            //     }
+            // }
             return base.SaveChanges();
         }
         private void HandleBeneficiaryDelete()
@@ -31,7 +39,7 @@ namespace SpinsOnlineRazor.Data
                     entity.State = EntityState.Modified;
                     var bene = entity.Entity as Beneficiary;
                     bene.IsDeleted = true;
-                    bene.DeletedDate = DateTime.UtcNow; 
+                    bene.DeletedDate = DateTime.UtcNow;
                     bene.DeletedBy = "The User";
 
                 }
@@ -54,7 +62,7 @@ namespace SpinsOnlineRazor.Data
 
         public DbSet<Assessment> Assessments { get; set; }
 
-       // public DbSet<Logs> dbLogs { get; set; }
+        public DbSet<Log> Logs { get; set; }
 
         /*Calls OnModelCreating. OnModelCreating:
         Is called when SchoolContext has been initialized, but before the model has been locked down and used to initialize the context.
@@ -84,7 +92,7 @@ namespace SpinsOnlineRazor.Data
 
             modelBuilder.Entity<Validationform>().ToTable("Validationform");
             modelBuilder.Entity<Assessment>().ToTable("Assessment");
-             //modelBuilder.Entity<Logs>().ToTable("Logs");
+            modelBuilder.Entity<Log>().ToTable("Log");
             // .HasMany(p => p.Beneficiaries)
             // .WithOne(p => p.Validationform)
             // .HasForeignKey(p => p.BeneficiaryID)

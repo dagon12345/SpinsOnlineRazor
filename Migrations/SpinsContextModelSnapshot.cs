@@ -242,6 +242,34 @@ namespace SpinsOnlineRazor.Migrations
                     b.ToTable("IdentificationType", (string)null);
                 });
 
+            modelBuilder.Entity("SpinsOnlineRazor.Models.RedesignModels.Log", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("BenficiaryID")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("DateTimeEntry")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("LogType")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Message")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("User")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BenficiaryID");
+
+                    b.ToTable("Log", (string)null);
+                });
+
             modelBuilder.Entity("SpinsOnlineRazor.Models.RedesignModels.Maritalstatus", b =>
                 {
                     b.Property<int>("MaritalstatusID")
@@ -418,6 +446,17 @@ namespace SpinsOnlineRazor.Migrations
                     b.Navigation("Beneficiary");
                 });
 
+            modelBuilder.Entity("SpinsOnlineRazor.Models.RedesignModels.Log", b =>
+                {
+                    b.HasOne("SpinsOnlineRazor.Models.RedesignModels.Beneficiary", "Beneficiary")
+                        .WithMany("Logs")
+                        .HasForeignKey("BenficiaryID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Beneficiary");
+                });
+
             modelBuilder.Entity("SpinsOnlineRazor.Models.RedesignModels.Barangay", b =>
                 {
                     b.Navigation("Beneficiaries");
@@ -425,6 +464,8 @@ namespace SpinsOnlineRazor.Migrations
 
             modelBuilder.Entity("SpinsOnlineRazor.Models.RedesignModels.Beneficiary", b =>
                 {
+                    b.Navigation("Logs");
+
                     b.Navigation("Validationform");
                 });
 
