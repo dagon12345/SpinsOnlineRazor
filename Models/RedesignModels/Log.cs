@@ -12,7 +12,7 @@ namespace SpinsOnlineRazor.Models.RedesignModels
         public int Id { get; set; }
         
         [ForeignKey("Beneficiary")]
-        public int BenficiaryID { get; set; }
+        public int BeneficiaryID { get; set; }
         public string Message { get; set; }
         public int LogType { get; set; }
         public string User { get; set; }

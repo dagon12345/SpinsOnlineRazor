@@ -21,11 +21,12 @@
         height: 100%;
         /* Should be removed. Only for demonstration */
     }
+
     table {
-    display:block;
-    overflow-x:auto;
-    white-space:nowrap;
-    width: 100px;
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+        width: 100px;
     }
 </style>
 
@@ -41,8 +42,8 @@
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <input type="hidden" asp-for="Beneficiary.BeneficiaryID" />
                 @* <div class="form-group">
-                    <label asp-for="Beneficiary.BeneficiaryID" class="control-label"></label>
-                    <div>@Html.DisplayFor(model => model.Beneficiary.BeneficiaryID)</div>
+                <label asp-for="Beneficiary.BeneficiaryID" class="control-label"></label>
+                <div>@Html.DisplayFor(model => model.Beneficiary.BeneficiaryID)</div>
                 </div> *@
                 <div class="form-group">
                     <label asp-for="Beneficiary.LastName" class="control-label"></label>
@@ -172,12 +173,18 @@
 
 
             </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+            <div>
+                <a asp-page="./Index">Back to List</a>
+            </div>
 
 
             <div class="column">
                 <div class="form-group">
                     <h5>Changes Logs</h5>
-                    <table class="table">
+                    @* <table class="table">
                         <tr>
                             <th>Message</th>
                             <th>DateTimeEntry</th>
@@ -197,15 +204,14 @@
                                 </td>
                             </tr>
                         }
-                    </table>
-                </div>
-
-                <div class="form-group">
-                    <input type="submit" value="Save" class="btn btn-primary" />
-                </div>
-
-                <div>
-                    <a asp-page="./Index">Back to List</a>
+                    </table> *@
+                    <ejs-grid id="Grid" dataSource="@Model.LogViewModel" height="200" >
+                        <e-grid-columns>
+                            <e-grid-column field="Message" headerText="Message" width="700"></e-grid-column>
+                            <e-grid-column field="DateTimeEntry" headerText="Date Time" width="120" format="yMd"></e-grid-column>
+                            <e-grid-column field="User" headerText="User" width="100"></e-grid-column>
+                        </e-grid-columns>
+                    </ejs-grid>
                 </div>
             </div>
         </div>

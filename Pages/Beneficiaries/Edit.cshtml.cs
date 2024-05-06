@@ -28,16 +28,38 @@ namespace SpinsOnlineRazor.Pages.Beneficiaries
         [BindProperty]
         public Validationform ValidationForm { get; set; }
 
+        public IList<ViewModelLog> LogViewModel { get; set; }
+
+
         /*FirstOrDefaultAsync has been replaced with FindAsync. 
         When you don't have to include related data, FindAsync is more efficient.
         OnPostAsync has an id parameter.
         The current student is fetched from the database, rather than creating an empty student.*/
         public async Task<IActionResult> OnGetAsync(int? id)
         {
+
+            IQueryable<Log> LogsIQ = _context.Logs;
+
             if (id == null)
             {
                 return NotFound();
             }
+
+          LogViewModel = await LogsIQ
+         .Where(p => p.BeneficiaryID == id)
+         .OrderByDescending(p => p.DateTimeEntry) // Order by DateTime in descending order
+         .Select(p => new ViewModelLog
+         {
+           BeneficiaryID = p.BeneficiaryID,
+           Message = p.Message,
+           LogType = p.LogType,
+           User = p.User,
+           DateTimeEntry = p.DateTimeEntry 
+         })
+        // .AsNoTracking()
+        .ToListAsync();
+        //.FirstOrDefaultAsync();
+        //.FirstAsync(id);
 
             Beneficiary = await _context.Beneficiaries
             .Include(b => b.HealthStatus)
@@ -133,11 +155,55 @@ namespace SpinsOnlineRazor.Pages.Beneficiaries
 
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see https://aka.ms/RazorPagesCRUD.
+
+        public async Task<string> GetHealthStatusName(int healthstatusId)
+        {
+            var healthStatus = await _context.HealthStatuses.FindAsync(healthstatusId);
+            return healthStatus?.Name;
+        }
+        public async Task<string> GetRegionName(int regionId)
+        {
+            var region = await _context.Regions.FindAsync(regionId);
+            return region?.Name;
+        }
+
+        public async Task<string> GetProvinceName(int provinceId)
+        {
+            var province = await _context.Provinces.FindAsync(provinceId);
+            return province?.Name;
+        }
+        public async Task<string> GetMunicipalityName(int municipalityId)
+        {
+            var municipality = await _context.Municipalities.FindAsync(municipalityId);
+            return municipality?.Name;
+        }
+        public async Task<string> GetBarangayName(int barangayId)
+        {
+            var barangay = await _context.Barangays.FindAsync(barangayId);
+            return barangay?.Name;
+        }
+        public async Task<string> IdentificationtypeName(int identificationId)
+        {
+            var identification = await _context.IdentificationTypes.FindAsync(identificationId);
+            return identification?.Name;
+        }
+
+        public async Task<string> GetSexName(int SexId)
+        {
+            var sex = await _context.Sexes.FindAsync(SexId);
+            return sex?.Name;
+        }
+        public async Task<string> GetMaritalName(int maritalstatusId)
+        {
+            var maritalstatus = await _context.Maritalstatuses.FindAsync(maritalstatusId);
+            return maritalstatus?.Name;
+        }
         public async Task<string> GetStatusName(int statusId)
         {
             var status = await _context.Statuses.FindAsync(statusId);
             return status?.Name;
         }
+
 
 
         public async Task<IActionResult> OnPostAsync(int? id)
@@ -168,44 +234,120 @@ namespace SpinsOnlineRazor.Pages.Beneficiaries
             {
                 // Compare original and updated beneficiary objects to detect changes
                 var changes = new List<string>();
-                var properties = typeof(Beneficiary).GetProperties();
-                foreach (var property in properties)
+                // Compare specific properties for changes
+                if (originalBeneficiary.LastName != beneficiaryToUpdate.LastName)
                 {
-                    // Exclude ExtName from the list of properties to check for changes
-                    if (property.Name == "ExtName")
-                    {
-                        continue;
-                    }
-                    var originalValue = property.GetValue(originalBeneficiary);
-                    var updatedValue = property.GetValue(beneficiaryToUpdate);
-                    if (!object.Equals(originalValue, updatedValue))
-                    {
-                        // Convert ID to name for specific properties
-                        if (property.Name == "StatusID")
-                        {
-                            var originalStatusName = await GetStatusName((int)originalValue);
-                            var updatedStatusName = await GetStatusName((int)updatedValue);
-                            changes.Add($"Status: {originalStatusName} to {updatedStatusName}");
-                        }
-                        else
-                        {
-                            changes.Add($"{property.Name}: {originalValue} to {updatedValue}");
-                        }
-                    }
+                    changes.Add($"Last Name: {originalBeneficiary.LastName} => {beneficiaryToUpdate.LastName}");
                 }
-                // If ExtName is empty, remove it from the changes list
-                if (string.IsNullOrEmpty(beneficiaryToUpdate.ExtName))
+                if (originalBeneficiary.FirstName != beneficiaryToUpdate.FirstName)
                 {
-                    changes.RemoveAll(change => change.StartsWith("ExtName"));
+                    changes.Add($"First Name: {originalBeneficiary.FirstName} => {beneficiaryToUpdate.FirstName}");
                 }
+
+                if (originalBeneficiary.MiddleName != beneficiaryToUpdate.MiddleName)
+                {
+                    changes.Add($"Middle Name: {originalBeneficiary.MiddleName} => {beneficiaryToUpdate.MiddleName}");
+                }
+
+                if (originalBeneficiary.ExtName != beneficiaryToUpdate.ExtName)
+                {
+                    changes.Add($"Ext Name: {originalBeneficiary.ExtName} => {beneficiaryToUpdate.ExtName}");
+                }
+                if (originalBeneficiary.BirthDate != beneficiaryToUpdate.BirthDate)
+                {
+                    changes.Add($"Birth Date: {originalBeneficiary.BirthDate} => {beneficiaryToUpdate.BirthDate}");
+                }
+
+                if (originalBeneficiary.IdentificationNumber != beneficiaryToUpdate.IdentificationNumber)
+                {
+                    changes.Add($"Id Number: {originalBeneficiary.IdentificationNumber} => {beneficiaryToUpdate.IdentificationNumber}");
+                }
+
+                if (originalBeneficiary.IdentificationDateIssued != beneficiaryToUpdate.IdentificationDateIssued)
+                {
+                    changes.Add($"Id Issued Date: {originalBeneficiary.IdentificationDateIssued} => {beneficiaryToUpdate.IdentificationDateIssued}");
+                }
+
+                if (originalBeneficiary.SpecificAddress != beneficiaryToUpdate.SpecificAddress)
+                {
+                    changes.Add($"Address: {originalBeneficiary.SpecificAddress} => {beneficiaryToUpdate.SpecificAddress}");
+                }
+
+                if (originalBeneficiary.ContactNumber != beneficiaryToUpdate.ContactNumber)
+                {
+                    changes.Add($"Contact Number: {originalBeneficiary.ContactNumber} => {beneficiaryToUpdate.ContactNumber}");
+                }
+                if (originalBeneficiary.HealthRemarks != beneficiaryToUpdate.HealthRemarks)
+                {
+                    changes.Add($"Health Remarks: {originalBeneficiary.HealthRemarks} => {beneficiaryToUpdate.HealthRemarks}");
+                }
+
+                //Below are the FK with names
+                if (originalBeneficiary.IdentificationTypeID != beneficiaryToUpdate.IdentificationTypeID)
+                {
+                    var originalIdName = await IdentificationtypeName(originalBeneficiary.IdentificationTypeID);
+                    var updatedIdName = await IdentificationtypeName(beneficiaryToUpdate.IdentificationTypeID);
+                    changes.Add($"Id type: {originalIdName} => {updatedIdName}");
+                }
+
+                if (originalBeneficiary.HealthStatusID != beneficiaryToUpdate.HealthStatusID)
+                {
+                    var originalHealthStatusName = await GetHealthStatusName(originalBeneficiary.HealthStatusID);
+                    var updatedHealthStatusName = await GetHealthStatusName(beneficiaryToUpdate.HealthStatusID);
+                    changes.Add($"HealthStatus: {originalHealthStatusName} => {updatedHealthStatusName}");
+                }
+
+                if (originalBeneficiary.ProvinceID != beneficiaryToUpdate.ProvinceID)
+                {
+                    var originalProvinceName = await GetProvinceName(originalBeneficiary.ProvinceID);
+                    var updatedProvinceName = await GetProvinceName(beneficiaryToUpdate.ProvinceID);
+                    changes.Add($"Province: {originalProvinceName} => {updatedProvinceName}");
+                }
+
+                if (originalBeneficiary.MunicipalityID != beneficiaryToUpdate.MunicipalityID)
+                {
+                    var originalMunicipalityName = await GetMunicipalityName(originalBeneficiary.MunicipalityID);
+                    var updatedMunicipalityName = await GetMunicipalityName(beneficiaryToUpdate.MunicipalityID);
+                    changes.Add($"Municipality: {originalMunicipalityName} => {updatedMunicipalityName}");
+                }
+
+                if (originalBeneficiary.BarangayID != beneficiaryToUpdate.BarangayID)
+                {
+                    var originalBarangayName = await GetBarangayName(originalBeneficiary.BarangayID);
+                    var updatedBarangayName = await GetBarangayName(beneficiaryToUpdate.BarangayID);
+                    changes.Add($"Barangay: {originalBarangayName} => {updatedBarangayName}");
+                }
+
+                if (originalBeneficiary.SexID != beneficiaryToUpdate.SexID)
+                {
+                    var originalSexName = await GetSexName(originalBeneficiary.SexID);
+                    var updatedSexName = await GetSexName(beneficiaryToUpdate.SexID);
+                    changes.Add($"Sex: {originalSexName} => {updatedSexName}");
+                }
+
+                if (originalBeneficiary.MaritalstatusID != beneficiaryToUpdate.MaritalstatusID)
+                {
+                    var originalMaritalName = await GetMaritalName(originalBeneficiary.MaritalstatusID);
+                    var updatedMaritalName = await GetMaritalName(beneficiaryToUpdate.MaritalstatusID);
+                    changes.Add($"Marital Status: {originalMaritalName} => {updatedMaritalName}");
+                }
+
+                if (originalBeneficiary.StatusID != beneficiaryToUpdate.StatusID)
+                {
+                    var originalStatusName = await GetStatusName(originalBeneficiary.StatusID);
+                    var updatedStatusName = await GetStatusName(beneficiaryToUpdate.StatusID);
+                    changes.Add($"Status: {originalStatusName} => {updatedStatusName}");
+                }
+
 
                 if (changes.Any())
                 {
                     // Create a new Log entity
                     var log = new Log
                     {
-                        BenficiaryID = beneficiaryToUpdate.BeneficiaryID,
-                        Message = $"Beneficiary details updated. Changes: {string.Join(", ", changes)}",
+                        BeneficiaryID = beneficiaryToUpdate.BeneficiaryID,
+                        // Message = $"Beneficiary details updated. Changes: {string.Join(", ", changes)}",
+                        Message = $"Changes: {string.Join(", ", changes)}",
                         LogType = 0, // Assuming 1 represents an update
                         User = "Current user", // Set the user who made the changes
                         DateTimeEntry = DateTime.Now // Set the current date and time
@@ -221,7 +363,6 @@ namespace SpinsOnlineRazor.Pages.Beneficiaries
 
             return Page();
         }
-
 
     }
 }

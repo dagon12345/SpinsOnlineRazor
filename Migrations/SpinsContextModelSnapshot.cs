@@ -248,7 +248,7 @@ namespace SpinsOnlineRazor.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("BenficiaryID")
+                    b.Property<int>("BeneficiaryID")
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("DateTimeEntry")
@@ -265,7 +265,7 @@ namespace SpinsOnlineRazor.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BenficiaryID");
+                    b.HasIndex("BeneficiaryID");
 
                     b.ToTable("Log", (string)null);
                 });
@@ -450,7 +450,7 @@ namespace SpinsOnlineRazor.Migrations
                 {
                     b.HasOne("SpinsOnlineRazor.Models.RedesignModels.Beneficiary", "Beneficiary")
                         .WithMany("Logs")
-                        .HasForeignKey("BenficiaryID")
+                        .HasForeignKey("BeneficiaryID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
