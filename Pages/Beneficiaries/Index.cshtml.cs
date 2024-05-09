@@ -6,11 +6,15 @@ using Microsoft.AspNetCore.Mvc;
 using SpinsOnlineRazor.Models.RedesignModels.ComplexModels;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Identity.Client;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SpinsOnlineRazor.Pages.Beneficiaries
 {
+  [Authorize]
   public class IndexModel : PageModel
   {
+    //Authorization above and below
+    public bool IsAdmin => HttpContext.User.HasClaim("IsAdmin", bool.TrueString);
     private readonly SpinsContext _context;
     private readonly IConfiguration Configuration;
     public IndexModel(SpinsContext context, IConfiguration configuration)
@@ -107,6 +111,7 @@ namespace SpinsOnlineRazor.Pages.Beneficiaries
            MunicipalityID = p.MunicipalityID,
 
            //added properties below
+           EnteredBy = p.EnteredBy,
            DateEntered = p.DateEntered,
 
            IsDeleted = p.IsDeleted
@@ -154,6 +159,8 @@ namespace SpinsOnlineRazor.Pages.Beneficiaries
            StatusID = p.StatusID,
            MunicipalityID = p.MunicipalityID,
 
+             EnteredBy = p.EnteredBy,
+
            DateEntered = p.DateEntered
 
          })
@@ -197,6 +204,8 @@ namespace SpinsOnlineRazor.Pages.Beneficiaries
 
            StatusID = p.StatusID,
            MunicipalityID = p.MunicipalityID,
+              //added properties below
+           EnteredBy = p.EnteredBy,
            DateEntered = p.DateEntered
 
          })
@@ -243,6 +252,8 @@ namespace SpinsOnlineRazor.Pages.Beneficiaries
 
            StatusID = p.StatusID,
            MunicipalityID = p.MunicipalityID,
+              //added properties below
+           EnteredBy = p.EnteredBy,
           DateEntered = p.DateEntered
 
          })

@@ -593,3 +593,6 @@ C:\Users\DSWD\SpinsOnlineRazor\obj\Debug\net8.0\refint\SpinsOnlineRazor.dll
 C:\Users\DSWD\SpinsOnlineRazor\obj\Debug\net8.0\SpinsOnlineRazor.pdb
 C:\Users\DSWD\SpinsOnlineRazor\obj\Debug\net8.0\SpinsOnlineRazor.genruntimeconfig.cache
 C:\Users\DSWD\SpinsOnlineRazor\obj\Debug\net8.0\ref\SpinsOnlineRazor.dll
+C:\Users\DSWD\SpinsOnlineRazor\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\DSWD\SpinsOnlineRazor\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.UI.dll
+C:\Users\DSWD\SpinsOnlineRazor\bin\Debug\net8.0\QRCoder.dll

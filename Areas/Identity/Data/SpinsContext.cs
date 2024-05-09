@@ -1,10 +1,12 @@
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using SpinsOnlineRazor.Areas.Identity.Data;
 using SpinsOnlineRazor.Models.RedesignModels;
 using SpinsOnlineRazor.Models.RedesignModels.ComplexModels;
 
 namespace SpinsOnlineRazor.Data
 {
-    public class SpinsContext : DbContext
+    public class SpinsContext : IdentityDbContext<SpinsUser>
     {
         //New code for delete, instead of remove update it.
 
@@ -69,6 +71,7 @@ namespace SpinsOnlineRazor.Data
         Is required because later in the tutorial the Beneficiary entity will have references to the other entities.*/
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
             /*An isa ka masterlists is ra ka beneficary kay bawal dabo, pero
             masuyod sija sa masterlists which is dabo sila Beneficiary*/
 

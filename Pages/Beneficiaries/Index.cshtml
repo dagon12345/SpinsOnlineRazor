@@ -34,11 +34,14 @@ The W3C guidelines recommend that GET should be used when the action doesn't res
     <div class="Row" style="display: flex; justify-content: space-between;">
 
         <div class="col-sm-6 ">
+            @if (Model.IsAdmin)
+            {
             <p>
                 <a class="btn btn-success" asp-page="Create" style="padding: 5px; margin-left: 2%;">
                     Add <i class="bi bi-plus-circle-fill"></i>
                 </a>
             </p>
+            }
         </div>
 
 
@@ -89,10 +92,13 @@ The W3C guidelines recommend that GET should be used when the action doesn't res
             loadingIndicator="Spinner"></e-grid-filterSettings>
 
         <e-grid-columns>
+            @if (Model.IsAdmin)
+            {
             <e-grid-column headerText="" template="#template" width="25"></e-grid-column>
             <e-grid-column headerText="" template="#templateedit" width="25" textAlign="Center"></e-grid-column>
             @* <e-grid-column headerText="" template="#templateview" width="60" textAlign="Center"></e-grid-column> *@
             <e-grid-column headerText="" template="#templatedelete" width="25" textAlign="Center"></e-grid-column>
+            }
 
             <e-grid-column field="BeneficiaryID" headerText="ID" visible="false" width="50"></e-grid-column>
             <e-grid-column field="Status" headerText="Status" width="120" textAlign="Center"></e-grid-column>
@@ -114,6 +120,7 @@ The W3C guidelines recommend that GET should be used when the action doesn't res
             <e-grid-column field="Indigenous" headerText="Indigenous" displayAsCheckBox="true"
                 width="140"></e-grid-column>
             <e-grid-column field="Pantawid" headerText="Pantawid" displayAsCheckBox="true" width="140"></e-grid-column>
+            <e-grid-column field="EnteredBy" headerText="Entered By" width="140"></e-grid-column>
             <e-grid-column field="DateEntered" headerText="Date Entered" format="yMd" width="140"></e-grid-column>
 
 

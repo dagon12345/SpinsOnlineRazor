@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using SpinsOnlineRazor.Data;
 using SpinsOnlineRazor.Models.RedesignModels;
 using SpinsOnlineRazor.Models.RedesignModels.ComplexModels;
@@ -59,6 +60,7 @@ namespace SpinsOnlineRazor.Pages.Beneficiaries
             {
                 return NotFound();
             }
+            
             return Page();
         }
 
@@ -126,6 +128,47 @@ namespace SpinsOnlineRazor.Pages.Beneficiaries
 
                     
                 }
+
+
+                //   // Compare original and updated beneficiary objects to detect changes
+                // var originalBeneficiary = JsonConvert.DeserializeObject<Beneficiary>(JsonConvert.SerializeObject(validationFormToUpdate.Beneficiary));
+                // var changes = new List<string>();
+                // // Compare specific properties for changes
+                // if (originalBeneficiary.LastName != validationFormToUpdate.Beneficiary.LastName)
+                // {
+                //     changes.Add($"Last Name: {originalBeneficiary.LastName} => {validationFormToUpdate.Beneficiary.LastName}");
+                // }
+                // if (originalBeneficiary.FirstName != validationFormToUpdate.Beneficiary.FirstName)
+                // {
+                //     changes.Add($"First Name: {originalBeneficiary.FirstName} => {validationFormToUpdate.Beneficiary.FirstName}");
+                // }
+
+                // if (originalBeneficiary.MiddleName != validationFormToUpdate.Beneficiary.MiddleName)
+                // {
+                //     changes.Add($"Middle Name: {originalBeneficiary.MiddleName} => {validationFormToUpdate.Beneficiary.MiddleName}");
+                // }
+
+                // if (originalBeneficiary.ExtName != validationFormToUpdate.Beneficiary.ExtName)
+                // {
+                //     changes.Add($"Ext Name: {originalBeneficiary.ExtName} => {validationFormToUpdate.Beneficiary.ExtName}");
+                // }
+
+                // if (changes.Any())
+                // {
+                //     // Create a new Log entity
+                //     var log = new Log
+                //     {
+                //         BeneficiaryID = validationFormToUpdate.BeneficiaryID,
+                //         // Message = $"Beneficiary details updated. Changes: {string.Join(", ", changes)}",
+                //         Message = $"{string.Join(", ", changes)}",
+                //         LogType = 0, // Assuming 1 represents an update
+                //         User = "Current user", // Set the user who made the changes
+                //         DateTimeEntry = DateTime.Now // Set the current date and time
+                //     };
+
+                //     // Add the Log entity to the DbContext
+                //     _context.Logs.Add(log);
+                // }
                
                 await _context.SaveChangesAsync();
                 return RedirectToPage("./Index");

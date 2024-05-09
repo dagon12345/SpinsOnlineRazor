@@ -1,18 +1,30 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
-using Serilog;
 using SpinsOnlineRazor.Data;
-using SpinsOnlineRazor.Models.RedesignModels;
-
+using Microsoft.AspNetCore.Identity;
+using SpinsOnlineRazor.Areas.Identity.Data;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using SpinsOnlineRazor.Services;
+using QRCoder;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddRazorPages();
 builder.Services.AddDbContext<SpinsContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("SpinsContext")));
+
+builder.Services.AddDefaultIdentity<SpinsUser>(options => options.SignIn.RequireConfirmedAccount = true)
+      .AddEntityFrameworkStores<SpinsContext>();
+
+builder.Services.AddRazorPages(options =>
+    options.Conventions.AuthorizePage("/AdminsOnly", "Admin"));
+builder.Services.AddTransient<IEmailSender, EmailSender>();
+builder.Services.AddSingleton(new QRCodeService(new QRCodeGenerator()));
+
+builder.Services.AddAuthorization(options =>
+    options.AddPolicy("Admin", policy =>
+        policy.RequireAuthenticatedUser()
+            .RequireClaim("IsAdmin", bool.TrueString)));
+
 
     /*The AddDatabaseDeveloperPageExceptionFilter provides helpful error 
     information in the development environment for EF migrations errors.*/
@@ -65,7 +77,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapRazorPages();

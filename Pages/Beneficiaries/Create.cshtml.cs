@@ -1,9 +1,12 @@
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using NuGet.Protocol;
+using SpinsOnlineRazor.Areas.Identity.Data;
 using SpinsOnlineRazor.Data;
 using SpinsOnlineRazor.Models.RedesignModels;
 using SpinsOnlineRazor.Models.RedesignModels.ComplexModels;
@@ -12,15 +15,22 @@ using Syncfusion.EJ2.Charts;
 
 namespace SpinsOnlineRazor.Pages.Beneficiaries
 {
+    [Authorize]
     public class CreateModel : PageModel
     {
+         public bool IsAdmin => HttpContext.User.HasClaim("IsAdmin", bool.TrueString);
+        private readonly UserManager<SpinsUser> _userManager;
+        private readonly SignInManager<SpinsUser> _signInManager;
         private readonly SpinsContext _context;
         private readonly ILogger<CreateModel> _logger;
 
-        public CreateModel(SpinsContext context, ILogger<CreateModel> logger)
+        public CreateModel(SpinsContext context, ILogger<CreateModel> logger, UserManager<SpinsUser> userManager,
+            SignInManager<SpinsUser> signInManager)
         {
             _context = context;
             _logger = logger;
+            _userManager = userManager;
+            _signInManager = signInManager;
         }
 
         public SelectList HealthStatusSL { get; set; }
@@ -104,6 +114,8 @@ namespace SpinsOnlineRazor.Pages.Beneficiaries
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
+            if (!IsAdmin) return Forbid();
+            var user = await _userManager.GetUserAsync(User);
             /*Uses the posted form values from the PageContext property in the PageModel.
                 Updates only the properties listed (s => s.FirstMidName, s => s.LastName, s => s.EnrollmentDate).
                 Looks for form fields with a "student" prefix.
@@ -129,7 +141,7 @@ namespace SpinsOnlineRazor.Pages.Beneficiaries
                 // Set StatusID to 99 if it's not already set
                 emptyBeneficiary.StatusID = 99;
                 emptyBeneficiary.DateEntered = DateTime.UtcNow;
-                emptyBeneficiary.EnteredBy = "SampleEnteredBy";
+                emptyBeneficiary.EnteredBy =  $"{user.FirstName} {user.LastName}";
                 emptyBeneficiary.InclusionDate = null;
                 emptyBeneficiary.ExclusionBatch = "";
                 emptyBeneficiary.ExclusionDate = null;
@@ -143,16 +155,16 @@ namespace SpinsOnlineRazor.Pages.Beneficiaries
 
                 _context.Beneficiaries.Add(emptyBeneficiary);
                 await _context.SaveChangesAsync();
-                
 
-            
+
+
                 return RedirectToPage("./Index");
-               
+
             }
 
             // Below for adding validation form, once the user entered an beneificary automatic assign an validation form, but its empty.
 
-     
+
             return Page();
         }
     }

@@ -253,12 +253,8 @@
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
     },
     {
-      "Id": "C:\\Users\\DSWD\\SpinsOnlineRazor\\wwwroot\\pdf\\Validationforms\\24127031.pdf",
-      "PackagePath": "staticwebassets\\pdf\\Validationforms\\24127031.pdf"
-    },
-    {
-      "Id": "C:\\Users\\DSWD\\SpinsOnlineRazor\\wwwroot\\pdf\\Validationforms\\24134096.pdf",
-      "PackagePath": "staticwebassets\\pdf\\Validationforms\\24134096.pdf"
+      "Id": "C:\\Users\\DSWD\\SpinsOnlineRazor\\wwwroot\\pdf\\Validationforms\\24060818.pdf",
+      "PackagePath": "staticwebassets\\pdf\\Validationforms\\24060818.pdf"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.SpinsOnlineRazor.Microsoft.AspNetCore.StaticWebAssets.props",

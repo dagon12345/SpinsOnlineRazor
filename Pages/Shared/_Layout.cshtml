@@ -51,7 +51,7 @@
 
 <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
   <div class="container-fluid">
-    <a class="navbar-brand " href="#">SpinS Online</a>
+    <a class="navbar-brand " href="/Index">SpinS Online</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -68,9 +68,12 @@
         <li class="nav-item">
           <a class="nav-link " href="#">Masterlists</a>
         </li>
+            @if (Context.User.HasClaim("IsAdmin", bool.TrueString))
+    {
         <li class="nav-item">
           <a class="nav-link " href="#">About</a>
         </li>
+        }
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
           <div class="dropdown-menu">
@@ -82,6 +85,7 @@
           </div>
         </li>
       </ul>
+      <partial name="_LoginPartial" />
  
 
       

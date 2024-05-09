@@ -2,11 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using SpinsOnlineRazor.Areas.Identity.Data;
 using SpinsOnlineRazor.Data;
 using SpinsOnlineRazor.Models.RedesignModels;
 using SpinsOnlineRazor.Models.RedesignModels.ComplexModels;
@@ -16,11 +18,16 @@ namespace SpinsOnlineRazor.Pages.Beneficiaries
 {
     public class EditModel : PageModel
     {
+        private readonly UserManager<SpinsUser> _userManager;
+        private readonly SignInManager<SpinsUser> _signInManager;
         private readonly SpinsContext _context;
 
-        public EditModel(SpinsContext context)
+        public EditModel(SpinsContext context, UserManager<SpinsUser> userManager,
+            SignInManager<SpinsUser> signInManager)
         {
             _context = context;
+            _userManager = userManager;
+            _signInManager = signInManager;
         }
 
         [BindProperty]
@@ -37,6 +44,13 @@ namespace SpinsOnlineRazor.Pages.Beneficiaries
         The current student is fetched from the database, rather than creating an empty student.*/
         public async Task<IActionResult> OnGetAsync(int? id)
         {
+            //var user = await _userManager.GetUserAsync(User);
+            // if (user == null)
+            // {
+            //     return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+            // }
+
+            //await LoadAsync(user);
 
             IQueryable<Log> LogsIQ = _context.Logs;
 
@@ -45,21 +59,21 @@ namespace SpinsOnlineRazor.Pages.Beneficiaries
                 return NotFound();
             }
 
-          LogViewModel = await LogsIQ
-         .Where(p => p.BeneficiaryID == id)
-         .OrderByDescending(p => p.DateTimeEntry) // Order by DateTime in descending order
-         .Select(p => new ViewModelLog
-         {
-           BeneficiaryID = p.BeneficiaryID,
-           Message = p.Message,
-           LogType = p.LogType,
-           User = p.User,
-           DateTimeEntry = p.DateTimeEntry 
-         })
-        // .AsNoTracking()
-        .ToListAsync();
-        //.FirstOrDefaultAsync();
-        //.FirstAsync(id);
+            LogViewModel = await LogsIQ
+           .Where(p => p.BeneficiaryID == id)
+           .OrderByDescending(p => p.DateTimeEntry) // Order by DateTime in descending order
+           .Select(p => new ViewModelLog
+           {
+               BeneficiaryID = p.BeneficiaryID,
+               Message = p.Message,
+               LogType = p.LogType,
+               User = p.User,
+               DateTimeEntry = p.DateTimeEntry
+           })
+          // .AsNoTracking()
+          .ToListAsync();
+            //.FirstOrDefaultAsync();
+            //.FirstAsync(id);
 
             Beneficiary = await _context.Beneficiaries
             .Include(b => b.HealthStatus)
@@ -208,6 +222,7 @@ namespace SpinsOnlineRazor.Pages.Beneficiaries
 
         public async Task<IActionResult> OnPostAsync(int? id)
         {
+             var user = await _userManager.GetUserAsync(User);
 
             if (id == null)
             {
@@ -347,9 +362,9 @@ namespace SpinsOnlineRazor.Pages.Beneficiaries
                     {
                         BeneficiaryID = beneficiaryToUpdate.BeneficiaryID,
                         // Message = $"Beneficiary details updated. Changes: {string.Join(", ", changes)}",
-                        Message = $"Changes: {string.Join(", ", changes)}",
+                        Message = $"{string.Join(", ", changes)}",
                         LogType = 0, // Assuming 1 represents an update
-                        User = "Current user", // Set the user who made the changes
+                        User = $"{user.FirstName} {user.LastName}", // Set the user who made the changes
                         DateTimeEntry = DateTime.Now // Set the current date and time
                     };
 

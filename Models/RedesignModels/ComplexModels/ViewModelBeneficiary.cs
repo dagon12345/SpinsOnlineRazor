@@ -57,6 +57,7 @@ namespace SpinsOnlineRazor.Models.RedesignModels.ComplexModels
         public string ContactNumber { get; set; }
 
         //Additional Beneficiary data below
+        public string EnteredBy { get; set; }
         public DateTime DateEntered { get; set; }
 
         //Joined
