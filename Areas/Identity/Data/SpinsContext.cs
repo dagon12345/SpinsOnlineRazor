@@ -42,7 +42,7 @@ namespace SpinsOnlineRazor.Data
                     var bene = entity.Entity as Beneficiary;
                     bene.IsDeleted = true;
                     bene.DeletedDate = DateTime.UtcNow;
-                    bene.DeletedBy = "The User";
+                    //bene.DeletedBy = "The User";
 
                 }
             }

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SpinsOnlineRazor")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f7a621b32402051c1f60f8a09b6726663d7b7c6b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f9d017bd83ff568aec8c1cc300bb4d8c828a8957")]
 [assembly: System.Reflection.AssemblyProductAttribute("SpinsOnlineRazor")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SpinsOnlineRazor")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

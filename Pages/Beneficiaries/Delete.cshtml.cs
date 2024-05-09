@@ -2,10 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
+using SpinsOnlineRazor.Areas.Identity.Data;
 using SpinsOnlineRazor.Data;
 using SpinsOnlineRazor.Models.RedesignModels;
 
@@ -20,11 +22,16 @@ called after a failure to delete the student object.*/
         private readonly SpinsContext _context;
         private readonly ILogger<DeleteModel> _logger;
 
-        public DeleteModel(SpinsContext context,
-                           ILogger<DeleteModel> logger)
+            private readonly UserManager<SpinsUser> _userManager;
+        private readonly SignInManager<SpinsUser> _signInManager;
+
+        public DeleteModel(SpinsContext context, ILogger<DeleteModel> logger,UserManager<SpinsUser> userManager,
+            SignInManager<SpinsUser> signInManager)
         {
             _context = context;
             _logger = logger;
+                 _userManager = userManager;
+            _signInManager = signInManager;
         }
 
         [BindProperty]
@@ -58,40 +65,47 @@ called after a failure to delete the student object.*/
             return Page();
         }
 
-        public Task<IActionResult> OnPost(int? id)
+        public async Task<IActionResult> OnPostAsync(int? id)
         {
+            var user = await _userManager.GetUserAsync(User);
+            
             if (id == null)
             {
-                 return Task.FromResult<IActionResult>(NotFound());
+                 //return Task.FromResult<IActionResult>(NotFound());
+
+                 return NotFound();
             }
 
-            var beneficiary = _context.Beneficiaries.Find(id);
+            var beneficiary =  _context.Beneficiaries.Find(id);
            // var beneficiary =  _context.Beneficiaries.First();
 
             //var db = new SpinsContext();
             //var bene = await _context.Beneficiaries.FindAsync(id);
             if (beneficiary == null)
             {
-                 return Task.FromResult<IActionResult>(NotFound());
+               //  return Task.FromResult<IActionResult>(NotFound());
+                return NotFound();
             }
             try
             {
                 // _context.Beneficiaries.Remove(beneficiary);
                 // await _context.SaveChangesAsync();
                 // return RedirectToPage("./Index");
-
+                beneficiary.DeletedBy = $"{user.FirstName} {user.LastName}";
                 _context.Beneficiaries.Remove(beneficiary);
-                 _context.SaveChanges();
+                _context.SaveChanges();
 
 
                 //return RedirectToPage("./Index");
-                return Task.FromResult<IActionResult>(RedirectToPage("./Index"));
+                //return Task.FromResult<IActionResult>(RedirectToPage("./Index"));
+                return RedirectToPage("./Index");
             }
             catch (DbUpdateException ex)
             {
                 _logger.LogError(ex, ErrorMessage);
 
-                return Task.FromResult<IActionResult>(RedirectToAction("/Beneficiaries/Delete", new { id, saveChangesError = true }));
+                //return Task.FromResult<IActionResult>(RedirectToAction("/Beneficiaries/Delete", new { id, saveChangesError = true }));
+                return RedirectToAction("/Beneficiaries/Delete", new { id, saveChangesError = true });
             }
             /*The delete operation might fail because of transient network problems. 
             Transient network errors are more likely when the database is in the cloud. 
