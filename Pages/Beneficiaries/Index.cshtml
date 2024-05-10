@@ -36,11 +36,11 @@ The W3C guidelines recommend that GET should be used when the action doesn't res
         <div class="col-sm-6 ">
             @if (Model.IsAdmin)
             {
-            <p>
-                <a class="btn btn-success" asp-page="Create" style="padding: 5px; margin-left: 2%;">
-                    Add <i class="bi bi-plus-circle-fill"></i>
-                </a>
-            </p>
+                <p>
+                    <a class="btn btn-success" asp-page="Create" style="padding: 5px; margin-left: 2%;">
+                        Add <i class="bi bi-plus-circle-fill"></i>
+                    </a>
+                </p>
             }
         </div>
 
@@ -94,10 +94,11 @@ The W3C guidelines recommend that GET should be used when the action doesn't res
         <e-grid-columns>
             @if (Model.IsAdmin)
             {
-            <e-grid-column headerText="" template="#template" width="25"></e-grid-column>
-            <e-grid-column headerText="" template="#templateedit" width="25" textAlign="Center"></e-grid-column>
-            @* <e-grid-column headerText="" template="#templateview" width="60" textAlign="Center"></e-grid-column> *@
-            <e-grid-column headerText="" template="#templatedelete" width="25" textAlign="Center"></e-grid-column>
+                <e-grid-column headerText="" template="#template" width="25"></e-grid-column>
+                <e-grid-column headerText="" template="#templateedit" width="25" textAlign="Center"></e-grid-column>
+                @* <e-grid-column headerText="" template="#templateview" width="60" textAlign="Center"></e-grid-column> *@
+                <e-grid-column headerText="" template="#templatedelete" width="25" textAlign="Center"></e-grid-column>
+                 <e-grid-column headerText="" template="#templatedelist" width="70" textAlign="Center" headerText="Delist"></e-grid-column>
             }
 
             <e-grid-column field="BeneficiaryID" headerText="ID" visible="false" width="50"></e-grid-column>
@@ -122,6 +123,9 @@ The W3C guidelines recommend that GET should be used when the action doesn't res
             <e-grid-column field="Pantawid" headerText="Pantawid" displayAsCheckBox="true" width="140"></e-grid-column>
             <e-grid-column field="EnteredBy" headerText="Entered By" width="140"></e-grid-column>
             <e-grid-column field="DateEntered" headerText="Date Entered" format="yMd" width="140"></e-grid-column>
+            <e-grid-column field="ModifiedBy" headerText="Modified By" width="140"></e-grid-column>
+            <e-grid-column field="ModifiedDate" headerText="Modified Date" format="yMd" width="140"></e-grid-column>
+
 
 
         </e-grid-columns>
@@ -219,55 +223,63 @@ The W3C guidelines recommend that GET should be used when the action doesn't res
 <script type="text/x-template" id="detailtemplate">
     <table class="detailtable" width="100%">
         <colgroup>
-            <col width="20%" />
-            <col width="20%" />
-            <col width="20%" />
-            <col width="40%" />
+            <col width="10%" />
+            <col width="10%" />
+            <col width="10%" />
+            <col width="70%" />
         </colgroup>
         <tbody>
             <tr>
                  <td>
-                    <span style="font-weight: 500;">Birth Date: </span> ${BirthDate.toLocaleDateString()}
+                    <span style="font-weight: 500;">Birth Date: </span> ${BirthDate.toLocaleDateString()} @*First Column*@
                 </td>
                  <td>
-                    <span style="font-weight: 500;">Address/Purok: </span> ${Address}
+                    <span style="font-weight: 500;">Address/Purok: </span> ${Address}  @*Second Column*@
                 </td>
                 <td>
-                    <span style="font-weight: 500;">Sex: </span> ${Sex}
+                    <span style="font-weight: 500;">Sex: </span> ${Sex} @*Third Column*@
                 </td>
 
             </tr>
              <tr>
 
                 <td>
-                    <span style="font-weight: 500;">ID Type: </span> ${IdentificationType}
+                    <span style="font-weight: 500;">ID Type: </span> ${IdentificationType} @*First Column*@
                 </td>
                  <td>
-                    <span style="font-weight: 500;">Contact Number: </span> ${ContactNumber}
+                    <span style="font-weight: 500;">Contact Number: </span> ${ContactNumber} @*Second Column*@
                 </td>
                   <td>
-                    <span style="font-weight: 500;">Marital Status: </span> ${MaritalStatus}
+                    <span style="font-weight: 500;">Marital Status: </span> ${MaritalStatus}  @*Third Column*@
                 </td>
+
 
             </tr>
              <tr>
 
                 <td>
-                    <span style="font-weight: 500;">ID Number: </span> ${IdentificationNo}
+                    <span style="font-weight: 500;">ID Number: </span> ${IdentificationNo} @*First Column*@
                 </td>
 
                  <td>
-                    <span style="font-weight: 500;">Health Status: </span> ${HealthStatus}
+                    <span style="font-weight: 500;">Health Status: </span> ${HealthStatus} @*Second Column*@
+                </td>
+                   <td>
+                    <span style="font-weight: 500;">Health Remarks: </span> ${Remarks}  @*Third Column*@
                 </td>
             </tr>
               <tr>
 
                 <td>
-                    <span style="font-weight: 500;">Date Issued: </span> ${IdentificationDateIssued.toLocaleDateString()}
+                    <span style="font-weight: 500;">Date Issued: </span> ${IdentificationDateIssued.toLocaleDateString()} @*First Column*@
                 </td>
-                <td>
-                    <span style="font-weight: 500;">Remarks: </span> ${Remarks}
+                 <td>
+                        @*Second Column*@
                 </td>
+                       <td>
+                    <span style="font-weight: 500;">Status Remarks: </span> ${StatusRemarks} @*Third Column*@
+                </td>
+
             </tr>
 
              </tr>
@@ -321,6 +333,21 @@ The W3C guidelines recommend that GET should be used when the action doesn't res
 @*This is for delete form*@
 <script id="templatedelete" type="text/x-template">
     <a href="#" onclick="navigateToDeleteForm(this)"><i class="bi bi-trash"></i></a>
+</script>
+
+<script>
+    function navigateToDeleteForm(e) {
+        var grid = document.getElementsByClassName('e-grid')[0].ej2_instances[0];
+        var rowObj = grid.getRowObjectFromUID(ej.base.closest(e, '.e-row').getAttribute('data-uid'));
+        var beneficiaryID = rowObj.data['BeneficiaryID']; // Get the BeneficiaryID from the grid row
+        window.location.href = '/Beneficiaries/Delete?id=' + beneficiaryID; // Navigate to AddValidationForm page with beneficiaryID as query parameter
+    }
+</script>
+
+
+@*This is for delist form*@
+<script id="templatedelist" type="text/x-template">
+    <a href="#" onclick="navigateToDeleteForm(this)">Delist</a>
 </script>
 
 <script>

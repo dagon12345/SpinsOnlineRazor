@@ -60,13 +60,16 @@ namespace SpinsOnlineRazor.Models.RedesignModels.ComplexModels
         public string EnteredBy { get; set; }
         public DateTime DateEntered { get; set; }
 
+        public string ModifiedBy { get; set; }
+
+        public DateTime? ModifiedDate { get; set; }
+
         //Joined
         public string Sex { get; set; }
 
         public string MaritalStatus { get; set; }
         //Validation form
         public string Assessment { get; set; }
-        //public IFormFile BookPdf { get; set; }
         public int? Referencecode { get; set; }
         public int? SpinsBatch { get; set; }
         public bool? Pantawid { get; set; }
@@ -74,6 +77,7 @@ namespace SpinsOnlineRazor.Models.RedesignModels.ComplexModels
 
         //Masterlist
         public string Status { get; set; }
+        public string StatusRemarks { get; set; }
         public int StatusID { get; set; }
         public string IdentificationType { get; set; }
 

@@ -66,6 +66,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/DSWD/SpinsOnlineRazor/Pages/Admins/AdminsOnly.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5zXEFkbWluc09ubHkuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/DSWD/SpinsOnlineRazor/Pages/Beneficiaries/AddValidationForm.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQmVuZWZpY2lhcmllc1xBZGRWYWxpZGF0aW9uRm9ybS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

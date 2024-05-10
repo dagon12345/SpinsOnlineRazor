@@ -2,126 +2,134 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Spins Online</title>
-    @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />*@
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/SpinsOnlineRazor.styles.css" asp-append-version="true" />
-   
-     <link rel="stylesheet" href="~/css/mycss.css"/>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>@ViewData["Title"] - Spins Online</title>
+  @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />*@
+  <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+  <link rel="stylesheet" href="~/SpinsOnlineRazor.styles.css" asp-append-version="true" />
 
-       <!-- Syncfusion ASP.NET Core controls styles -->
-    <link rel="stylesheet" href="https://cdn.syncfusion.com/ej2/25.1.35/fluent.css" />
-    
+  <link rel="stylesheet" href="~/css/mycss.css" />
+
+  <!-- Syncfusion ASP.NET Core controls styles -->
+  <link rel="stylesheet" href="https://cdn.syncfusion.com/ej2/25.1.35/fluent.css" />
+
 </head>
 
 <body>
-    <header>
-        @*
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">Spins Online</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
-                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/About">About</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Beneficiaries/Index">MasterList</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Payroll/Index">Blank</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Delisted/Index">Blank</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Reports/Index">Blank</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        *@
-
-<nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
-  <div class="container-fluid">
-    <a class="navbar-brand " href="/Index">SpinS Online</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarColor01">
-      <ul class="navbar-nav me-auto">
-        <li class="nav-item">
-          <a class="nav-link active" href="/Index">Home
-            <span class="visually-hidden">(current)</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/Beneficiaries/Index">Beneficiaries</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link " href="#">Masterlists</a>
-        </li>
-            @if (Context.User.HasClaim("IsAdmin", bool.TrueString))
-    {
-        <li class="nav-item">
-          <a class="nav-link " href="#">About</a>
-        </li>
-        }
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Separated link</a>
-          </div>
-        </li>
-      </ul>
-      <partial name="_LoginPartial" />
- 
-
-      
-@* <form asp-page="./Index" method="get">
-    <div class="form-actions no-color">
-        <p>
-            <input type="text" name="SearchString" value="@Model.CurrentFilter" placeholder="Find by Name" />
-            <input type="submit" value="Search" class="btn btn-primary" /> |
-            <a asp-page="./Index">Back to full list</a>
-        </p>
-    </div>
-</form> *@
-
-    </div>
-  </div>
-</nav>
-    </header>
+  <header>
+    @*
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
     <div class="container">
-        <main role="main" class="pb-12">
-            @RenderBody()
-        </main>
+    <a class="navbar-brand" asp-area="" asp-page="/Index">Spins Online</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+    <ul class="navbar-nav flex-grow-1">
+    <li class="nav-item">
+    <a class="nav-link text-dark" asp-area="" asp-page="/About">About</a>
+    </li>
+    <li class="nav-item">
+    <a class="nav-link text-dark" asp-area="" asp-page="/Beneficiaries/Index">MasterList</a>
+    </li>
+    <li class="nav-item">
+    <a class="nav-link text-dark" asp-area="" asp-page="/Payroll/Index">Blank</a>
+    </li>
+    <li class="nav-item">
+    <a class="nav-link text-dark" asp-area="" asp-page="/Delisted/Index">Blank</a>
+    </li>
+    <li class="nav-item">
+    <a class="nav-link text-dark" asp-area="" asp-page="/Reports/Index">Blank</a>
+    </li>
+    </ul>
     </div>
+    </div>
+    </nav>
+    *@
 
-  
+    <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
+      <div class="container-fluid">
+        <a class="navbar-brand " href="/Index">SpinS Online</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01"
+          aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarColor01">
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+              <a class="nav-link active" href="/Index">Home
+                <span class="visually-hidden">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/Beneficiaries/Index">Beneficiaries</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link " href="#">Masterlists</a>
+            </li>
+          
+              <li class="nav-item">
+                <a class="nav-link " href="#">About</a>
+              </li>
+           
+              @if (Context.User.HasClaim("IsAdmin", bool.TrueString))
+            {
+            <li class="nav-item">
+                <a class="nav-link " href="/Admins/AdminsOnly">Admins</a>
+              </li>
+            }
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                aria-expanded="false">Dropdown</a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Separated link</a>
+              </div>
+            </li>
+          </ul>
+          <partial name="_LoginPartial" />
 
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
-    @*<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>*@
-    <script src="~/js/site.js" asp-append-version="true"></script>
-   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-     <!-- Syncfusion ASP.NET Core controls scripts -->
-    <script src="https://cdn.syncfusion.com/ej2/25.1.35/dist/ej2.min.js"></script>
-    <!-- Syncfusion ASP.NET Core Script Manager -->
-    <ejs-scripts></ejs-scripts>
-    @await RenderSectionAsync("Scripts", required: false)
+
+
+          @* <form asp-page="./Index" method="get">
+          <div class="form-actions no-color">
+          <p>
+          <input type="text" name="SearchString" value="@Model.CurrentFilter" placeholder="Find by Name" />
+          <input type="submit" value="Search" class="btn btn-primary" /> |
+          <a asp-page="./Index">Back to full list</a>
+          </p>
+          </div>
+          </form> *@
+
+        </div>
+      </div>
+    </nav>
+  </header>
+  <div class="container">
+    <main role="main" class="pb-12">
+      @RenderBody()
+    </main>
+  </div>
+
+
+
+  <script src="~/lib/jquery/dist/jquery.min.js"></script>
+  <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
+  @*<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>*@
+  <script src="~/js/site.js" asp-append-version="true"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+  <!-- Syncfusion ASP.NET Core controls scripts -->
+  <script src="https://cdn.syncfusion.com/ej2/25.1.35/dist/ej2.min.js"></script>
+  <!-- Syncfusion ASP.NET Core Script Manager -->
+  <ejs-scripts></ejs-scripts>
+  @await RenderSectionAsync("Scripts", required: false)
 </body>
 
 </html>
-

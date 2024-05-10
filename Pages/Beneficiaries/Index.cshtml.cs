@@ -100,6 +100,7 @@ namespace SpinsOnlineRazor.Pages.Beneficiaries
            Sex = p.Sex.Name,
            MaritalStatus = p.Maritalstatus.Name,
            Status = p.Status.Name,
+           StatusRemarks = p.StatusRemarks,
            Assessment = p.Validationform.Assessment.Name,
            Referencecode = p.Validationform.ReferenceCode,
            SpinsBatch = p.Validationform.SpinsBatch,
@@ -113,6 +114,9 @@ namespace SpinsOnlineRazor.Pages.Beneficiaries
            //added properties below
            EnteredBy = p.EnteredBy,
            DateEntered = p.DateEntered,
+
+           ModifiedBy = p.ModifiedBy,
+           ModifiedDate = p.ModifiedDate, //Nullable
 
            IsDeleted = p.IsDeleted
 
@@ -150,6 +154,7 @@ namespace SpinsOnlineRazor.Pages.Beneficiaries
            Sex = p.Sex.Name,
            MaritalStatus = p.Maritalstatus.Name,
            Status = p.Status.Name,
+           StatusRemarks = p.StatusRemarks,
            Assessment = p.Validationform.Assessment.Name,
            Referencecode = p.Validationform.ReferenceCode,
            SpinsBatch = p.Validationform.SpinsBatch,
@@ -159,9 +164,11 @@ namespace SpinsOnlineRazor.Pages.Beneficiaries
            StatusID = p.StatusID,
            MunicipalityID = p.MunicipalityID,
 
-             EnteredBy = p.EnteredBy,
+           EnteredBy = p.EnteredBy,
 
-           DateEntered = p.DateEntered
+           DateEntered = p.DateEntered,
+           ModifiedBy = p.ModifiedBy,
+           ModifiedDate = p.ModifiedDate //Nullable
 
          })
         .AsNoTracking()
@@ -196,6 +203,7 @@ namespace SpinsOnlineRazor.Pages.Beneficiaries
            Sex = p.Sex.Name,
            MaritalStatus = p.Maritalstatus.Name,
            Status = p.Status.Name,
+           StatusRemarks = p.StatusRemarks,
            Assessment = p.Validationform.Assessment.Name,
            Referencecode = p.Validationform.ReferenceCode,
            SpinsBatch = p.Validationform.SpinsBatch,
@@ -204,9 +212,11 @@ namespace SpinsOnlineRazor.Pages.Beneficiaries
 
            StatusID = p.StatusID,
            MunicipalityID = p.MunicipalityID,
-              //added properties below
+           //added properties below
            EnteredBy = p.EnteredBy,
-           DateEntered = p.DateEntered
+           DateEntered = p.DateEntered,
+           ModifiedBy = p.ModifiedBy,
+           ModifiedDate = p.ModifiedDate //Nullable
 
          })
         .AsNoTracking()
@@ -244,6 +254,7 @@ namespace SpinsOnlineRazor.Pages.Beneficiaries
            Sex = p.Sex.Name,
            MaritalStatus = p.Maritalstatus.Name,
            Status = p.Status.Name,
+           StatusRemarks = p.StatusRemarks,
            Assessment = p.Validationform.Assessment.Name,
            Referencecode = p.Validationform.ReferenceCode,
            SpinsBatch = p.Validationform.SpinsBatch,
@@ -252,9 +263,11 @@ namespace SpinsOnlineRazor.Pages.Beneficiaries
 
            StatusID = p.StatusID,
            MunicipalityID = p.MunicipalityID,
-              //added properties below
+           //added properties below
            EnteredBy = p.EnteredBy,
-          DateEntered = p.DateEntered
+           DateEntered = p.DateEntered,
+           ModifiedBy = p.ModifiedBy,
+           ModifiedDate = p.ModifiedDate //Nullable
 
          })
         .AsNoTracking()

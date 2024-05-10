@@ -170,7 +170,12 @@
                     <select asp-for="Beneficiary.StatusID" class="form-control" asp-items="@Model.StatusSL"></select>
                     <span asp-validation-for="Beneficiary.StatusID" class="text-danger"></span>
                 </div>
-
+                
+                @* <div class="form-group" id="RemarksTextbox">
+                    <label asp-for="Beneficiary.StatusRemarks" class="control-label"></label>
+                    <input asp-for="Beneficiary.StatusRemarks" class="form-control" />
+                    <span asp-validation-for="Beneficiary.StatusRemarks" class="text-danger"></span>
+                </div> *@
 
             </div>
             <div class="form-group">
@@ -180,35 +185,14 @@
                 <a asp-page="./Index">Back to List</a>
             </div>
 
-
             <div class="column">
                 <div class="form-group">
                     <h5>Changes Logs</h5>
-                    @* <table class="table">
-                        <tr>
-                            <th>Message</th>
-                            <th>DateTimeEntry</th>
-                            <th>User</th>
-                        </tr>
-                        @foreach (var item in Model.Beneficiary.Logs)
-                        {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Message)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.DateTimeEntry)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.User)
-                                </td>
-                            </tr>
-                        }
-                    </table> *@
-                    <ejs-grid id="Grid" dataSource="@Model.LogViewModel" height="200" >
+                    <ejs-grid id="Grid" dataSource="@Model.LogViewModel" height="200">
                         <e-grid-columns>
                             <e-grid-column field="Message" headerText="Message" width="700"></e-grid-column>
-                            <e-grid-column field="DateTimeEntry" headerText="Date Time" width="120" format="yMd"></e-grid-column>
+                            <e-grid-column field="DateTimeEntry" headerText="Date Time" width="120"
+                                format="yMd"></e-grid-column>
                             <e-grid-column field="User" headerText="User" width="100"></e-grid-column>
                         </e-grid-columns>
                     </ejs-grid>
@@ -303,6 +287,7 @@
             });
         });
     </script>
+ 
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }

@@ -127,7 +127,13 @@ namespace SpinsOnlineRazor.Pages.Beneficiaries
             BarangaySL = new SelectList(_context.Barangays.OrderBy(r => r.Name), nameof(Barangay.BarangayID), nameof(Barangay.Name));
             SexSL = new SelectList(_context.Sexes.OrderBy(r => r.Name), nameof(Sex.SexID), nameof(Sex.Name));
             MaritalstatusSL = new SelectList(_context.Maritalstatuses.OrderBy(r => r.Name), nameof(Maritalstatus.MaritalstatusID), nameof(Maritalstatus.Name));
-            StatusSL = new SelectList(_context.Statuses.OrderBy(r => r.Name), nameof(Status.StatusID), nameof(Status.Name));
+
+            // Filter the Statuses to only include "Active" and "Applicant"
+            var filteredStatuses = _context.Statuses
+                .Where(s => s.Name == "Active" || s.Name == "Applicant")
+                .OrderBy(s => s.Name);
+                //Populate the status dropdown list
+            StatusSL = new SelectList(filteredStatuses, nameof(Status.StatusID), nameof(Status.Name));
         }
 
         // Cascading the dropdown regions on code below.
@@ -222,7 +228,7 @@ namespace SpinsOnlineRazor.Pages.Beneficiaries
 
         public async Task<IActionResult> OnPostAsync(int? id)
         {
-             var user = await _userManager.GetUserAsync(User);
+            var user = await _userManager.GetUserAsync(User);
 
             if (id == null)
             {
@@ -243,7 +249,7 @@ namespace SpinsOnlineRazor.Pages.Beneficiaries
                 "beneficiary", // Prefix for form value
                 s => s.HealthStatusID, s => s.IdentificationTypeID, s => s.RegionID, s => s.ProvinceID, s => s.MunicipalityID, s => s.BarangayID,
                 s => s.LastName, s => s.FirstName, s => s.MiddleName, s => s.ExtName, s => s.BirthDate, s => s.IdentificationNumber, s => s.SexID,
-                s => s.MaritalstatusID, s => s.StatusID,
+                s => s.MaritalstatusID, s => s.StatusID, s => s.StatusRemarks,
                 s => s.IdentificationDateIssued, s => s.SpecificAddress, s => s.ContactNumber, s => s.HealthRemarks
             ))
             {
@@ -295,6 +301,10 @@ namespace SpinsOnlineRazor.Pages.Beneficiaries
                 if (originalBeneficiary.HealthRemarks != beneficiaryToUpdate.HealthRemarks)
                 {
                     changes.Add($"Health Remarks: {originalBeneficiary.HealthRemarks} => {beneficiaryToUpdate.HealthRemarks}");
+                }
+                if (originalBeneficiary.StatusRemarks != beneficiaryToUpdate.StatusRemarks)
+                {
+                    changes.Add($"Status Remarks: {originalBeneficiary.StatusRemarks} => {beneficiaryToUpdate.StatusRemarks}");
                 }
 
                 //Below are the FK with names
@@ -371,6 +381,10 @@ namespace SpinsOnlineRazor.Pages.Beneficiaries
                     // Add the Log entity to the DbContext
                     _context.Logs.Add(log);
                 }
+
+                //below is to update ModifiedDate and Modified By
+                beneficiaryToUpdate.ModifiedBy = $"{user.FirstName} {user.LastName}";
+                beneficiaryToUpdate.ModifiedDate = DateTime.Today;
 
                 await _context.SaveChangesAsync();
                 return RedirectToPage("/Beneficiaries/Index");

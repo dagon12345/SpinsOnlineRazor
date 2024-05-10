@@ -41,7 +41,7 @@ namespace SpinsOnlineRazor.Data
                     entity.State = EntityState.Modified;
                     var bene = entity.Entity as Beneficiary;
                     bene.IsDeleted = true;
-                    bene.DeletedDate = DateTime.UtcNow;
+                    bene.DeletedDate = DateTime.Today;
                     //bene.DeletedBy = "The User";
 
                 }

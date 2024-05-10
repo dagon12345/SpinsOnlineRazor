@@ -140,7 +140,7 @@ namespace SpinsOnlineRazor.Pages.Beneficiaries
                 // _logger.LogCritical("This is a Critical log, indicating a serious failure in the application.");
                 // Set StatusID to 99 if it's not already set
                 emptyBeneficiary.StatusID = 99;
-                emptyBeneficiary.DateEntered = DateTime.UtcNow;
+                emptyBeneficiary.DateEntered = DateTime.Today;
                 emptyBeneficiary.EnteredBy =  $"{user.FirstName} {user.LastName}";
                 emptyBeneficiary.InclusionDate = null;
                 emptyBeneficiary.ExclusionBatch = "";

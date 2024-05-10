@@ -257,6 +257,10 @@
       "PackagePath": "staticwebassets\\pdf\\Validationforms\\24060818.pdf"
     },
     {
+      "Id": "C:\\Users\\DSWD\\SpinsOnlineRazor\\wwwroot\\pdf\\Validationforms\\24118802.pdf",
+      "PackagePath": "staticwebassets\\pdf\\Validationforms\\24118802.pdf"
+    },
+    {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.SpinsOnlineRazor.Microsoft.AspNetCore.StaticWebAssets.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
     },

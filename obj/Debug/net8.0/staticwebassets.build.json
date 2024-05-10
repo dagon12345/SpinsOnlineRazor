@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "rfu9eU3UDZoB4UzBzXR+sC6AuuwS1a+7IoJj7vC2NFw=",
+  "Hash": "khxLfqQWt/88KEP7Ofi2+ufYH1SpJoY2khryRq9/AkQ=",
   "Source": "SpinsOnlineRazor",
   "BasePath": "_content/SpinsOnlineRazor",
   "Mode": "Default",
@@ -2390,6 +2390,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\pdf\\Validationforms\\24060818.pdf"
+    },
+    {
+      "Identity": "C:\\Users\\DSWD\\SpinsOnlineRazor\\wwwroot\\pdf\\Validationforms\\24118802.pdf",
+      "SourceId": "SpinsOnlineRazor",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\DSWD\\SpinsOnlineRazor\\wwwroot\\",
+      "BasePath": "_content/SpinsOnlineRazor",
+      "RelativePath": "pdf/Validationforms/24118802.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\pdf\\Validationforms\\24118802.pdf"
     }
   ]
 }
